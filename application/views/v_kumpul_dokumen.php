@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pengumpulan Dokumen</title>
+
+  <!-- Favicons -->
+  <link href="<?php echo base_url(); ?>resources/assets/img/logo.jpg" rel="icon">
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/adminlte.min.css">
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+</head>
+
+<body class="hold-transition">
+  <div class="wrapper">
+    <div class="container-fluid">
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">Form Pengumpulan Dokumen</h3>
+        </div>
+
+        <!-- form start -->
+        <form action="<?php echo base_url() . 'Pengumpulan_Dokumen/kumpul_dokumen' ?>" method="post" enctype="multipart/form-data" target="_blank">
+          <div class="card-body">
+            <div class="form-group">
+              <label>Nama Lengkap</label>
+              <input type="text" class="form-control" name="nama_pengumpul" required>
+            </div>
+
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" class="form-control" name="email_pengumpul" required>
+            </div>
+
+            <!-- Jenis Dokumen -->
+            <div class="form-group">
+              <label>Jenis Dokumen</label>
+              <select class="form-control select2bs4" style="width: 100%;" name="id_dokumen" required>
+                <option selected disabled value>Pilih Jenis Dokumen</option>
+                <?php foreach ($jenisDokumen as $list_jenis_dokumen) { ?>
+                  <option value="<?php echo $list_jenis_dokumen->id_dokumen ?>">
+                    <?php echo $list_jenis_dokumen->jenis_dokumen ?>
+                  </option>
+                <?php } ?>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInputFile">File input</label>
+              <div class="input-group">
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="exampleInputFile" name="dokumen" required>
+                  <label class="custom-file-label" for="exampleInputFile">Pilih file (Maks size file 5 MB & format PDF)</label>
+                </div>
+                <div class="input-group-append">
+                  <span class="input-group-text">Upload</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- ./wrapper -->
+
+  <!-- jQuery -->
+  <script src="<?php echo base_url(); ?>assets/plugins/jquery/jquery.min.js"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <script src="<?php echo base_url(); ?>assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+  <script>
+    $.widget.bridge('uibutton', $.ui.button)
+  </script>
+  <!-- Bootstrap 4 -->
+  <script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Sparkline -->
+  <script src="<?php echo base_url(); ?>assets/plugins/sparklines/sparkline.js"></script>
+  <!-- jQuery Knob Chart -->
+  <script src="<?php echo base_url(); ?>assets/plugins/jquery-knob/jquery.knob.min.js"></script>
+  <!-- Tempusdominus Bootstrap 4 -->
+  <script src="<?php echo base_url(); ?>assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="<?php echo base_url(); ?>assets/dist/js/adminlte.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="<?php echo base_url(); ?>assets/dist/js/demo.js"></script>
+  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+  <script src="<?php echo base_url(); ?>assets/dist/js/pages/dashboard.js"></script>
+
+  <!-- bs-custom-file-input -->
+  <script src="<?php echo base_url(); ?>assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+
+  <script>
+    $(function() {
+      bsCustomFileInput.init();
+    });
+  </script>
+</body>
+
+</html>
