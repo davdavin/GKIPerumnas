@@ -24,7 +24,8 @@ class Admin extends CI_Controller
         $this->load->view('v_lihat_admin.php', $data);
     }
 
-    public function tampil_admin() {
+    public function tampil_admin()
+    {
         $query = $this->M_Admin->tampil()->result();
         echo json_encode($query);
     }
