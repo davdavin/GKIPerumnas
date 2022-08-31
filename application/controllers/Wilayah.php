@@ -11,18 +11,20 @@ class Wilayah extends CI_Controller
             redirect('Login_Admin');
         }
 
-        $this->load->model(array('M_Wilayah', 'M_Anggota_Jemaat'));
+        $this->load->model(array('M_Wilayah', 'M_Anggota_Jemaat', 'M_Request'));
     }
 
     public function index()
     {
         $data['wilayah'] = $this->M_Wilayah->tampil()->result();
         $data['jemaat'] = $this->M_Anggota_Jemaat->tampil()->result();
-        $this->load->view('templates/header.php');
+        $notif['notifRequest'] = $this->M_Request->tampil_notifikasi_request()->result();
+        $this->load->view('templates/header.php', $notif);
         $this->load->view('wilayah/v_lihat_wilayah.php', $data);
     }
 
-    public function tampil_wilayah() {
+    public function tampil_wilayah()
+    {
         $wilayah = $this->M_Wilayah->tampil()->result();
         echo json_encode($wilayah);
     }
@@ -49,7 +51,8 @@ class Wilayah extends CI_Controller
     {
         $data['wilayahEdit'] = $this->M_Wilayah->tampil_edit($id_wilayah)->result();
         $data['jemaat'] = $this->M_Anggota_Jemaat->tampil()->result();
-        $this->load->view('templates/header.php');
+        $notif['notifRequest'] = $this->M_Request->tampil_notifikasi_request()->result();
+        $this->load->view('templates/header.php', $notif);
         $this->load->view('wilayah/v_edit_wilayah', $data);
     }
 

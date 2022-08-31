@@ -10,7 +10,7 @@ class Admin extends CI_Controller
         if ($this->session->userdata('status') != "login") {
             redirect('Login_Admin');
         }
-        $this->load->model(array('M_Admin'));
+        $this->load->model(array('M_Admin', 'M_Request'));
         $this->load->helper('url', 'form');
         $this->load->library('form_validation');
     }
@@ -19,7 +19,8 @@ class Admin extends CI_Controller
     {
         $data['admin'] = $this->M_Admin->tampil()->result();
         $data['levelAdmin'] = $this->M_Admin->tampil_level()->result();
-        $this->load->view('templates/header.php');
+        $notif['notifRequest'] = $this->M_Request->tampil_notifikasi_request()->result();
+        $this->load->view('templates/header.php', $notif);
         $this->load->view('templates/sidebar.php');
         $this->load->view('v_lihat_admin.php', $data);
     }
