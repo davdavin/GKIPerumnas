@@ -11,19 +11,21 @@ class Anggota_Jemaat extends CI_Controller
             redirect('Login_Admin');
         }
 
-        $this->load->model(array('M_Anggota_Jemaat', 'M_Wilayah'));
+        $this->load->model(array('M_Anggota_Jemaat', 'M_Wilayah', 'M_Request'));
     }
 
     public function index()
     {
-        $data['jemaat'] = $this->M_Anggota_Jemaat->tampil()->result();
+        //  $data['jemaat'] = $this->M_Anggota_Jemaat->tampil()->result();
         $data['wilayah'] = $this->M_Wilayah->tampil()->result();
-        $this->load->view('templates/header.php');
+        $notif['notifRequest'] = $this->M_Request->tampil_notifikasi_request()->result();
+        $this->load->view('templates/header.php', $notif);
         $this->load->view('templates/sidebar.php');
         $this->load->view('jemaat/v_lihat_anggota_jemaat.php', $data);
     }
 
-    public function tampil_jemaat() {
+    public function tampil_jemaat()
+    {
         $query = $this->M_Anggota_Jemaat->tampil()->result();
         echo json_encode($query);
     }
@@ -115,7 +117,7 @@ class Anggota_Jemaat extends CI_Controller
                     'error_jemaat' => 'sudah memiliki akun'
                 );
                 echo json_encode($respon);
-            } else { 
+            } else {
                 $ambil_tglahir_nama = $this->db->query("SELECT nama_lengkap_anggota, tanggal_lahir_anggota FROM anggota_jemaat WHERE id_anggota = '$jemaat'")->row_array();
 
                 //masih coba
@@ -142,7 +144,8 @@ class Anggota_Jemaat extends CI_Controller
     {
         $data['detailJemaat'] = $this->M_Anggota_Jemaat->tampil_detail($id_anggota)->result();
         $data['wilayah'] = $this->M_Wilayah->tampil()->result();
-        $this->load->view('templates/header.php');
+        $notif['notifRequest'] = $this->M_Request->tampil_notifikasi_request()->result();
+        $this->load->view('templates/header.php', $notif);
         $this->load->view('templates/sidebar.php');
         $this->load->view('jemaat/v_detail_anggota_jemaat.php', $data);
     }
@@ -152,7 +155,8 @@ class Anggota_Jemaat extends CI_Controller
         $where = array('id_anggota' => $id_anggota);
         $data['jemaatEdit'] = $this->M_Anggota_Jemaat->tampil_edit($where, 'anggota_jemaat')->result();
         $data['wilayah'] = $this->M_Wilayah->tampil()->result();
-        $this->load->view('templates/header.php');
+        $notif['notifRequest'] = $this->M_Request->tampil_notifikasi_request()->result();
+        $this->load->view('templates/header.php', $notif);
         $this->load->view('templates/sidebar.php');
         $this->load->view('jemaat/v_edit_anggota_jemaat.php', $data);
     }

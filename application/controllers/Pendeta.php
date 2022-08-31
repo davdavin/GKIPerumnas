@@ -11,23 +11,25 @@ class Pendeta extends CI_Controller
             redirect('Login_Admin');
         }
 
-        $this->load->model(array('M_Pendeta'));
+        $this->load->model(array('M_Pendeta', 'M_Request'));
         $this->load->helper(array('form', 'url'));
     }
 
     public function index()
     {
-        $this->load->view('templates/header.php');
+        $notif['notifRequest'] = $this->M_Request->tampil_notifikasi_request()->result();
+        $this->load->view('templates/header.php', $notif);
         $this->load->view('pendeta/v_lihat_pendeta.php');
     }
 
-    public function tampil_pendeta() {
+    public function tampil_pendeta()
+    {
         $query = $this->M_Pendeta->tampil()->result_array();
 
-        for($i = 0; $i < count($query); $i++) {
+        for ($i = 0; $i < count($query); $i++) {
             $query[$i]['tanggal_lahir_pendeta'] = tanggal_indonesia($query[$i]['tanggal_lahir_pendeta']);
         }
-        
+
         echo json_encode($query);
     }
 
@@ -70,7 +72,8 @@ class Pendeta extends CI_Controller
     public function detail_pendeta($id_pendeta)
     {
         $data['detailPendeta'] = $this->M_Pendeta->tampil_detail($id_pendeta)->result();
-        $this->load->view('templates/header.php');
+        $notif['notifRequest'] = $this->M_Request->tampil_notifikasi_request()->result();
+        $this->load->view('templates/header.php', $notif);
         $this->load->view('pendeta/v_detail_pendeta', $data);
     }
 
@@ -78,7 +81,8 @@ class Pendeta extends CI_Controller
     {
         $where = array('id_pendeta' => $id_pendeta);
         $data['pendetaEdit'] = $this->M_Pendeta->tampil_edit($where, 'pendeta')->result();
-        $this->load->view('templates/header.php');
+        $notif['notifRequest'] = $this->M_Request->tampil_notifikasi_request()->result();
+        $this->load->view('templates/header.php', $notif);
         $this->load->view('pendeta/v_edit_pendeta', $data);
     }
 

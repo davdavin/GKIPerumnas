@@ -11,18 +11,20 @@ class Konten extends CI_Controller
             redirect('Login_Admin');
         }
 
-        $this->load->model(array('M_Konten'));
+        $this->load->model(array('M_Konten', 'M_Request'));
         $this->load->helper(array('form', 'url'));
     }
 
     public function index()
     {
         $data['kontenFotoIbadah'] = $this->M_Konten->tampil_konten_foto_ibadah()->result();
-        $this->load->view('templates/header.php');
+        $notif['notifRequest'] = $this->M_Request->tampil_notifikasi_request()->result();
+        $this->load->view('templates/header.php', $notif);
         $this->load->view('v_konten.php', $data);
     }
 
-    public function tampil_slide() {
+    public function tampil_slide()
+    {
         $query = $this->M_Konten->tampil_konten_slide()->result();
         echo json_encode($query);
     }
@@ -36,7 +38,8 @@ class Konten extends CI_Controller
     public function edit_tulisan($id_slide)
     {
         $data['kontenSlide'] = $this->M_Konten->tampil_edit_slide($id_slide)->result();
-        $this->load->view('templates/header.php');
+        $notif['notifRequest'] = $this->M_Request->tampil_notifikasi_request()->result();
+        $this->load->view('templates/header.php', $notif);
         $this->load->view('v_edit_slide.php', $data);
     }
 
@@ -50,13 +53,13 @@ class Konten extends CI_Controller
 
         $where = array('id_slide' => $id_slide);
 
-        if($gambar_baru == "") {
+        if ($gambar_baru == "") {
             $data = array(
                 'judul_slide' => $judul_slide,
                 'deskripsi_slide' => $deskripsi_slide,
                 'gambar_slide' => $gambar_lama
             );
-    
+
             $this->M_Konten->update_record($where, $data, 'konten_slide');
             $this->session->set_flashdata('sukses', 'Konten berhasil diubah');
             redirect('Konten');
@@ -68,7 +71,7 @@ class Konten extends CI_Controller
 
             $this->load->library('upload', $config);
             if (!$this->upload->do_upload('gambar_baru')) {
-       /*         $respon = array(
+                /*         $respon = array(
                     'sukses' => false,
                     'error_slide' => "Tidak berhasil upload. Perhatikan ukuran file dan tipe file"
                 );
@@ -76,7 +79,7 @@ class Konten extends CI_Controller
                 $this->session->set_flashdata('gagal', 'Konten tidak berhasil diubah');
                 redirect('Konten');
             } else {
-          //      $gambar = $this->upload->data('file_name');
+                //      $gambar = $this->upload->data('file_name');
 
                 $data = array(
                     'judul_slide' => $judul_slide,
@@ -85,16 +88,15 @@ class Konten extends CI_Controller
                 );
 
                 @unlink('./resources/assets/img/slide/' . $gambar_lama); //untuk hapus gambar lama
-        
+
                 $this->M_Konten->update_record($where, $data, 'konten_slide');
                 $this->session->set_flashdata('sukses', 'Konten berhasil diubah');
                 redirect('Konten');
 
-           /*     $this->M_Konten->update_record($where, $data, 'konten_slide');
+                /*     $this->M_Konten->update_record($where, $data, 'konten_slide');
                 $respon['sukses'] = "Berhasil ganti foto";
                 echo json_encode($respon); */
             }
-         
         }
     }
 
