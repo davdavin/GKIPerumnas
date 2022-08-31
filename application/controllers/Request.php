@@ -86,11 +86,14 @@ class Request extends CI_Controller
                     $pekerjaan = $this->encryption->encrypt($pekerjaan);
                 }
 
+                date_default_timezone_set('Asia/Jakarta');
+                $tanggal = date('Y-m-d H:i:s');
+
                 $ambil_id_anggota = $this->db->query("SELECT id_anggota FROM anggota_jemaat WHERE no_anggota = '$no_anggota'")->row_array();
 
                 $data = array(
                     'id_anggota' => $ambil_id_anggota['id_anggota'], 'nohp_baru' => $nohp, 'email_baru' => $email,
-                    'alamat_baru' => $alamat, 'pekerjaan_baru' => $pekerjaan, 'is_notif' => 0
+                    'alamat_baru' => $alamat, 'pekerjaan_baru' => $pekerjaan, 'tanggal_kirim' => $tanggal, 'is_notif' => 0
                 );
                 $this->M_Request->insert_record($data, 'permintaan_perubahan_data_jemaat');
                 $respon['sukses'] = "Berhasil Dikirim";
