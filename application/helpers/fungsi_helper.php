@@ -12,6 +12,12 @@ function tanggal_indonesia($tanggal_lengkap)
     return $tanggal_baru; //echo $tanggal_baru;
 }
 
+function waktu($waktu)
+{
+    $waktu_baru = date_format(date_create($waktu), "H:i");
+    return $waktu_baru;
+}
+
 /*function login_status()
 {
 $ci = get_istance(); //kaykanya
