@@ -8,7 +8,7 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
             <li class="breadcrumb-item active">Artikel</li>
             <li class="breadcrumb-item active">Tambah</li>
           </ol>
@@ -129,7 +129,7 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?php echo base_url(); ?>assets/dist/js/pages/dashboard.js"></script>
 <!-- SweetAlert2 -->
-<script src="<?php echo base_url() ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- tinymce -->
 <script src="<?php echo base_url(); ?>resources/tinymce/tinymce.min.js"></script>
 <script src="<?php echo base_url(); ?>resources/tinymce/jquery.tinymce.min.js"></script>
