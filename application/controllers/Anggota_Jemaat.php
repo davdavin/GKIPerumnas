@@ -11,14 +11,15 @@ class Anggota_Jemaat extends CI_Controller
             redirect('Login_Admin');
         }
 
-        $this->load->model(array('M_Anggota_Jemaat', 'M_Wilayah', 'M_Request'));
+        $this->load->model(array('M_Anggota_Jemaat', 'M_Wilayah', 'M_Permintaan'));
     }
 
     public function index()
     {
         //  $data['jemaat'] = $this->M_Anggota_Jemaat->tampil()->result();
         $data['wilayah'] = $this->M_Wilayah->tampil()->result();
-        $notif['notifRequest'] = $this->M_Request->tampil_notifikasi_request()->result();
+        $notif['jumlahNotif'] = $this->M_Request->ambil_jumlah_notifikasi_baru()->result();
+        $notif['notifBaru'] = $this->M_Request->tampil_notifikasi_baru()->result();
         $this->load->view('templates/header.php', $notif);
         $this->load->view('templates/sidebar.php');
         $this->load->view('jemaat/v_lihat_anggota_jemaat.php', $data);
@@ -144,7 +145,8 @@ class Anggota_Jemaat extends CI_Controller
     {
         $data['detailJemaat'] = $this->M_Anggota_Jemaat->tampil_detail($id_anggota)->result();
         $data['wilayah'] = $this->M_Wilayah->tampil()->result();
-        $notif['notifRequest'] = $this->M_Request->tampil_notifikasi_request()->result();
+        $notif['jumlahNotif'] = $this->M_Request->ambil_jumlah_notifikasi_baru()->result();
+        $notif['notifBaru'] = $this->M_Request->tampil_notifikasi_baru()->result();
         $this->load->view('templates/header.php', $notif);
         $this->load->view('templates/sidebar.php');
         $this->load->view('jemaat/v_detail_anggota_jemaat.php', $data);
@@ -155,7 +157,8 @@ class Anggota_Jemaat extends CI_Controller
         $where = array('id_anggota' => $id_anggota);
         $data['jemaatEdit'] = $this->M_Anggota_Jemaat->tampil_edit($where, 'anggota_jemaat')->result();
         $data['wilayah'] = $this->M_Wilayah->tampil()->result();
-        $notif['notifRequest'] = $this->M_Request->tampil_notifikasi_request()->result();
+        $notif['jumlahNotif'] = $this->M_Request->ambil_jumlah_notifikasi_baru()->result();
+        $notif['notifBaru'] = $this->M_Request->tampil_notifikasi_baru()->result();
         $this->load->view('templates/header.php', $notif);
         $this->load->view('templates/sidebar.php');
         $this->load->view('jemaat/v_edit_anggota_jemaat.php', $data);
@@ -202,6 +205,52 @@ class Anggota_Jemaat extends CI_Controller
         );
 
         $this->M_Anggota_Jemaat->update_record($where, $data, 'anggota_jemaat');
+        $this->session->set_flashdata('sukses', 'Data berhasil diubah');
+        redirect('Anggota_Jemaat');
+    }
+
+    public function ubah_data_jemaat($id_permintaan)
+    {
+        $data['permintaanPerubahan'] = $this->M_Permintaan->tampil_data_permintaan($id_permintaan)->result();
+        $this->load->view('templates/header.php');
+        $this->load->view('templates/sidebar.php');
+        $this->load->view('v_respon_perubahan_data.php', $data);
+    }
+
+    public function proses_permintaan_perubahan()
+    {
+        $id_permintaan = $this->input->post('id_permintaan');
+        $no_anggota = $this->input->post('no_anggota');
+        $nohp_anggota = $this->input->post('nohp');
+        $email_anggota = $this->input->post('email_anggota');
+        $alamat_anggota = $this->input->post('alamat_anggota');
+        $pekerjaan_anggota = $this->input->post('pekerjaan');
+
+        $where = array(
+            'no_anggota' => $no_anggota
+        );
+
+        if ($nohp_anggota != "-") {
+            $nohp_baru = array('nohp_anggota' => $nohp_anggota);
+            $this->M_Anggota_Jemaat->update_record($where, $nohp_baru, 'anggota_jemaat');
+        }
+        if ($email_anggota != "-") {
+            $email_baru = array('email_anggota' => $email_anggota);
+            $this->M_Anggota_Jemaat->update_record($where, $email_baru, 'anggota_jemaat');
+        }
+        if ($alamat_anggota != "-") {
+            $alamat_baru = array('alamat_anggota' => $alamat_anggota);
+            $this->M_Anggota_Jemaat->update_record($where, $alamat_baru, 'anggota_jemaat');
+        }
+        if ($pekerjaan_anggota != "-") {
+            $pekerjaan_baru = array('pekerjaan_anggota' => $pekerjaan_anggota);
+            $this->M_Anggota_Jemaat->update_record($where, $pekerjaan_baru, 'anggota_jemaat');
+        }
+        $where_permintaan = array(
+            'id_permintaan' => $id_permintaan
+        );
+        $permintaan = array('is_updated' => 1);
+        $this->M_Request->update_record($where_permintaan, $permintaan, 'permintaan_perubahan_data_jemaat');
         $this->session->set_flashdata('sukses', 'Data berhasil diubah');
         redirect('Anggota_Jemaat');
     }
