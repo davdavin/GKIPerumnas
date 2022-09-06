@@ -18,9 +18,7 @@ class Anggota_Jemaat extends CI_Controller
     {
         //  $data['jemaat'] = $this->M_Anggota_Jemaat->tampil()->result();
         $data['wilayah'] = $this->M_Wilayah->tampil()->result();
-        $notif['jumlahNotif'] = $this->M_Request->ambil_jumlah_notifikasi_baru()->result();
-        $notif['notifBaru'] = $this->M_Request->tampil_notifikasi_baru()->result();
-        $this->load->view('templates/header.php', $notif);
+        $this->load->view('templates/header.php');
         $this->load->view('templates/sidebar.php');
         $this->load->view('jemaat/v_lihat_anggota_jemaat.php', $data);
     }
@@ -145,9 +143,7 @@ class Anggota_Jemaat extends CI_Controller
     {
         $data['detailJemaat'] = $this->M_Anggota_Jemaat->tampil_detail($id_anggota)->result();
         $data['wilayah'] = $this->M_Wilayah->tampil()->result();
-        $notif['jumlahNotif'] = $this->M_Request->ambil_jumlah_notifikasi_baru()->result();
-        $notif['notifBaru'] = $this->M_Request->tampil_notifikasi_baru()->result();
-        $this->load->view('templates/header.php', $notif);
+        $this->load->view('templates/header.php');
         $this->load->view('templates/sidebar.php');
         $this->load->view('jemaat/v_detail_anggota_jemaat.php', $data);
     }
@@ -157,9 +153,7 @@ class Anggota_Jemaat extends CI_Controller
         $where = array('id_anggota' => $id_anggota);
         $data['jemaatEdit'] = $this->M_Anggota_Jemaat->tampil_edit($where, 'anggota_jemaat')->result();
         $data['wilayah'] = $this->M_Wilayah->tampil()->result();
-        $notif['jumlahNotif'] = $this->M_Request->ambil_jumlah_notifikasi_baru()->result();
-        $notif['notifBaru'] = $this->M_Request->tampil_notifikasi_baru()->result();
-        $this->load->view('templates/header.php', $notif);
+        $this->load->view('templates/header.php');
         $this->load->view('templates/sidebar.php');
         $this->load->view('jemaat/v_edit_anggota_jemaat.php', $data);
     }
