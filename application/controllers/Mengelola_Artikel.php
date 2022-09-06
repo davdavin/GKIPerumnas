@@ -11,7 +11,7 @@ class Mengelola_Artikel extends CI_Controller
             redirect('Login_Admin');
         }
 
-        $this->load->model(array('M_Artikel', 'M_Request'));
+        $this->load->model(array('M_Artikel'));
         $this->load->helper(array('form', 'url', 'file'));
         $this->load->library('form_validation');
     }
@@ -19,8 +19,7 @@ class Mengelola_Artikel extends CI_Controller
     public function index()
     {
         $data['artikel'] = $this->M_Artikel->lihat_artikel()->result();
-        $notif['notifRequest'] = $this->M_Request->tampil_notifikasi_request()->result();
-        $this->load->view('templates/header.php', $notif);
+        $this->load->view('templates/header.php');
         $this->load->view('templates/sidebar.php');
         $this->load->view('artikel/v_lihat_tabel_artikel.php', $data);
     }
@@ -34,8 +33,7 @@ class Mengelola_Artikel extends CI_Controller
     public function tambah_artikel()
     {
         $data['tipe_artikel'] = $this->M_Artikel->tampil_tipe_artikel()->result();
-        $notif['notifRequest'] = $this->M_Request->tampil_notifikasi_request()->result();
-        $this->load->view('templates/header.php', $notif);
+        $this->load->view('templates/header.php');
         $this->load->view('templates/sidebar.php');
         $this->load->view('artikel/v_input_artikel.php', $data);
     }
@@ -43,8 +41,7 @@ class Mengelola_Artikel extends CI_Controller
     public function tipe_artikel()
     {
         $data['tipe_artikel'] = $this->M_Artikel->tampil_tipe_artikel()->result();
-        $notif['notifRequest'] = $this->M_Request->tampil_notifikasi_request()->result();
-        $this->load->view('templates/header.php', $notif);
+        $this->load->view('templates/header.php');
         $this->load->view('templates/sidebar.php');
         $this->load->view('artikel/v_tipe_artikel.php', $data);
     }
@@ -140,8 +137,7 @@ class Mengelola_Artikel extends CI_Controller
     {
         $data['artikel_edit'] = $this->M_Artikel->pilihan_artikel($id_artikel)->result();
         $data['tipe_artikel'] = $this->M_Artikel->tampil_tipe_artikel()->result();
-        $notif['notifRequest'] = $this->M_Request->tampil_notifikasi_request()->result();
-        $this->load->view('templates/header.php', $notif);
+        $this->load->view('templates/header.php');
         $this->load->view('templates/sidebar.php');
         $this->load->view('artikel/v_edit_artikel.php', $data);
     }

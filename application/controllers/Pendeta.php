@@ -11,14 +11,13 @@ class Pendeta extends CI_Controller
             redirect('Login_Admin');
         }
 
-        $this->load->model(array('M_Pendeta', 'M_Request'));
+        $this->load->model(array('M_Pendeta'));
         $this->load->helper(array('form', 'url'));
     }
 
     public function index()
     {
-        $notif['notifRequest'] = $this->M_Request->tampil_notifikasi_request()->result();
-        $this->load->view('templates/header.php', $notif);
+        $this->load->view('templates/header.php');
         $this->load->view('pendeta/v_lihat_pendeta.php');
     }
 
@@ -72,8 +71,7 @@ class Pendeta extends CI_Controller
     public function detail_pendeta($id_pendeta)
     {
         $data['detailPendeta'] = $this->M_Pendeta->tampil_detail($id_pendeta)->result();
-        $notif['notifRequest'] = $this->M_Request->tampil_notifikasi_request()->result();
-        $this->load->view('templates/header.php', $notif);
+        $this->load->view('templates/header.php');
         $this->load->view('pendeta/v_detail_pendeta', $data);
     }
 
@@ -81,8 +79,7 @@ class Pendeta extends CI_Controller
     {
         $where = array('id_pendeta' => $id_pendeta);
         $data['pendetaEdit'] = $this->M_Pendeta->tampil_edit($where, 'pendeta')->result();
-        $notif['notifRequest'] = $this->M_Request->tampil_notifikasi_request()->result();
-        $this->load->view('templates/header.php', $notif);
+        $this->load->view('templates/header.php');
         $this->load->view('pendeta/v_edit_pendeta', $data);
     }
 
