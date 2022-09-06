@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Request extends CI_Controller
+class Permintaan extends CI_Controller
 {
     public function __construct()
     {
@@ -93,9 +93,16 @@ class Request extends CI_Controller
 
                 $data = array(
                     'id_anggota' => $ambil_id_anggota['id_anggota'], 'nohp_baru' => $nohp, 'email_baru' => $email,
-                    'alamat_baru' => $alamat, 'pekerjaan_baru' => $pekerjaan, 'tanggal_kirim' => $tanggal, 'is_notif' => 0
+                    'alamat_baru' => $alamat, 'pekerjaan_baru' => $pekerjaan, 'tanggal_permintaan' => $tanggal, 'is_notif' => 0, 'is_updated' => 0
                 );
                 $this->M_Request->insert_record($data, 'permintaan_perubahan_data_jemaat');
+                //masih coba
+                // $to = "projectwebdua@gmail.com";
+                // $subject = "My subject";
+                // $txt = "Segera akan di infokan. Jika sudah di update.";
+                // $headers = "From: officehourcompany@gmail.com";
+
+                // mail($to, $subject, $txt, $headers);
                 $respon['sukses'] = "Berhasil Dikirim";
                 echo json_encode($respon);
             }
