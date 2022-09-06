@@ -11,7 +11,7 @@ class Dokumen extends CI_Controller
             redirect('Login_Admin');
         }
 
-        $this->load->model(array('M_Dokumen', 'M_Request'));
+        $this->load->model(array('M_Dokumen'));
         $this->load->helper(array('form', 'url', 'file'));
     }
 
@@ -19,8 +19,7 @@ class Dokumen extends CI_Controller
     {
         $data['dokumen'] = $this->M_Dokumen->tampil()->result();
         $data['pengumpulanDokumen'] = $this->M_Dokumen->tampil_pengumpulan()->result();
-        $notif['notifRequest'] = $this->M_Request->tampil_notifikasi_request()->result();
-        $this->load->view('templates/header.php', $notif);
+        $this->load->view('templates/header.php');
         $this->load->view('templates/sidebar.php');
         $this->load->view('v_lihat_dokumen.php', $data);
     }
@@ -73,8 +72,7 @@ class Dokumen extends CI_Controller
     {
         $where = array('id_dokumen' => $id_dokumen);
         $data['dokumenEdit'] = $this->M_Dokumen->tampil_edit($where, 'dokumen')->result();
-        $notif['notifRequest'] = $this->M_Request->tampil_notifikasi_request()->result();
-        $this->load->view('templates/header.php', $notif);
+        $this->load->view('templates/header.php');
         $this->load->view('templates/sidebar.php');
         $this->load->view('v_edit_dokumen.php', $data);
     }

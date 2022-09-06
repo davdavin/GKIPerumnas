@@ -11,15 +11,14 @@ class Konten extends CI_Controller
             redirect('Login_Admin');
         }
 
-        $this->load->model(array('M_Konten', 'M_Request'));
+        $this->load->model(array('M_Konten'));
         $this->load->helper(array('form', 'url'));
     }
 
     public function index()
     {
         $data['kontenFotoIbadah'] = $this->M_Konten->tampil_konten_foto_ibadah()->result();
-        $notif['notifRequest'] = $this->M_Request->tampil_notifikasi_request()->result();
-        $this->load->view('templates/header.php', $notif);
+        $this->load->view('templates/header.php');
         $this->load->view('v_konten.php', $data);
     }
 
@@ -38,8 +37,7 @@ class Konten extends CI_Controller
     public function edit_tulisan($id_slide)
     {
         $data['kontenSlide'] = $this->M_Konten->tampil_edit_slide($id_slide)->result();
-        $notif['notifRequest'] = $this->M_Request->tampil_notifikasi_request()->result();
-        $this->load->view('templates/header.php', $notif);
+        $this->load->view('templates/header.php');
         $this->load->view('v_edit_slide.php', $data);
     }
 

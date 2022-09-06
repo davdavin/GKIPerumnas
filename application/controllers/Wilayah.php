@@ -11,15 +11,14 @@ class Wilayah extends CI_Controller
             redirect('Login_Admin');
         }
 
-        $this->load->model(array('M_Wilayah', 'M_Anggota_Jemaat', 'M_Request'));
+        $this->load->model(array('M_Wilayah', 'M_Anggota_Jemaat'));
     }
 
     public function index()
     {
         $data['wilayah'] = $this->M_Wilayah->tampil()->result();
         $data['jemaat'] = $this->M_Anggota_Jemaat->tampil()->result();
-        $notif['notifRequest'] = $this->M_Request->tampil_notifikasi_request()->result();
-        $this->load->view('templates/header.php', $notif);
+        $this->load->view('templates/header.php');
         $this->load->view('wilayah/v_lihat_wilayah.php', $data);
     }
 
@@ -51,8 +50,7 @@ class Wilayah extends CI_Controller
     {
         $data['wilayahEdit'] = $this->M_Wilayah->tampil_edit($id_wilayah)->result();
         $data['jemaat'] = $this->M_Anggota_Jemaat->tampil()->result();
-        $notif['notifRequest'] = $this->M_Request->tampil_notifikasi_request()->result();
-        $this->load->view('templates/header.php', $notif);
+        $this->load->view('templates/header.php');
         $this->load->view('wilayah/v_edit_wilayah', $data);
     }
 
