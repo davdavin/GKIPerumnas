@@ -12,15 +12,27 @@ function tanggal_indonesia($tanggal_lengkap)
     return $tanggal_baru; //echo $tanggal_baru;
 }
 
-function waktu($waktu)
-{
+function waktu($waktu) {
     $waktu_baru = date_format(date_create($waktu), "H:i");
     return $waktu_baru;
 }
 
-/*function login_status()
+function dekripsi_notifikasi($data) {
+//$ci =& get_instance();
+
+$ci = get_instance();
+
+$ci->load->library('encryption');
+if($data == NULL) {
+    return '-';
+} else {
+    return $ci->encryption->decrypt($data);
+}
+}
+
+/*function login_status($status)
 {
-$ci = get_istance(); //kaykanya
+$ci = get_instance(); //kaykanya
     if ($status != "login") {
         redirect('Login_Admin');
     }
