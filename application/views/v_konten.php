@@ -309,37 +309,37 @@
       "autoWidth": false,
       "searching": false,
       ajax: {
-        url: `<?php echo base_url() . 'Konten/tampil_slide'?>`,
+        url: `<?php echo base_url() . 'Konten/tampil_slide' ?>`,
         dataSrc: ''
       },
       columns: [{
-        "data":"id_slide"
-      },
-      {
-        "data":"judul_slide"
-      },
-      {
-        sortable: false,
-        "data":"deskripsi_slide"
-      },
-      {
-        data: null,
-        name: null,
-        sortable: false,
-        render: function(data, type, row, meta) {
-          return `<img src="<?php echo base_url(); ?>resources/assets/img/slide/${row.gambar_slide}" class="img-fluid" alt="slide" width="200" height="200">`;
-        }
-      },
-      {
-        data: null,
-        name: null,
-        sortable: false,
-        render: function(data, type, row, meta) {
-          return `<a class="btn btn-info btn-sm" href="<?php echo base_url() . 'Konten/edit_tulisan/'?>${row.id_slide}">
+          "data": "id_slide"
+        },
+        {
+          "data": "judul_slide"
+        },
+        {
+          sortable: false,
+          "data": "deskripsi_slide"
+        },
+        {
+          data: "gambar_slide",
+          name: null,
+          sortable: false,
+          render: function(data, type, row, meta) {
+            return `<img src="<?php echo base_url(); ?>resources/assets/img/slide/${row.gambar_slide}" class="img-fluid" alt="` + data + `" width="200" height="200">`;
+          }
+        },
+        {
+          data: null,
+          name: null,
+          sortable: false,
+          render: function(data, type, row, meta) {
+            return `<a class="btn btn-info btn-sm" href="<?php echo base_url() . 'Konten/edit_tulisan/' ?>${row.id_slide}">
                     <i class="fas fa-pencil-alt"></i> Edit
                   </a>`;
+          }
         }
-      }
       ]
     });
 
@@ -359,11 +359,11 @@
           "data": "momen"
         },
         {
-          data: null,
+          data: "foto_ibadah",
           name: null,
           sortable: false,
           render: function(data, type, row, meta) {
-            return `<img src="<?php echo base_url(); ?>resources/assets/img/gallery/${row.foto_ibadah}" class="img-fluid" alt="fotoIbadah" width="200" height="200">`;
+            return `<img src="<?php echo base_url(); ?>resources/assets/img/gallery/${row.foto_ibadah}" class="img-fluid" alt="` + data + `" width="25%" height="25%">`;
           }
         },
         {

@@ -45,7 +45,7 @@ class Home extends CI_Controller
         $this->load->view('v_home.php', $data);
     }
 
-    public function coba()
+    /*  public function coba()
     {
         $this->load->library('encryption');
 
@@ -57,4 +57,14 @@ class Home extends CI_Controller
 
         echo $this->encryption->decrypt($encrypt) . '<br>';
     }
+
+    function coba2()
+    {
+        $to = "projectwebdua@gmail.com";
+        $subject = "My subject";
+        $txt = "Hello world!";
+        $headers = "From: officehourcompany@gmail.com";
+
+        mail($to, $subject, $txt, $headers);
+    } */
 }
