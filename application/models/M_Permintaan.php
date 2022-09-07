@@ -18,7 +18,8 @@ class M_Permintaan extends CI_Model
 
     public function tampil_notifikasi_request()
     {
-        return $this->db->query("SELECT id_permintaan, anggota_jemaat.id_anggota, nama_lengkap_anggota, nohp_baru, email_baru, alamat_baru, pekerjaan_baru, tanggal_permintaan, is_notif, is_updated FROM permintaan_perubahan_data_jemaat 
+        return $this->db->query("SELECT id_permintaan, anggota_jemaat.id_anggota, nama_lengkap_anggota, nohp_baru, email_baru, alamat_baru, pekerjaan_baru, tanggal_permintaan, is_notif, is_updated, nohp_anggota,
+                                email_anggota, alamat_anggota, pekerjaan_anggota FROM permintaan_perubahan_data_jemaat 
                                 INNER JOIN anggota_jemaat ON anggota_jemaat.id_anggota = permintaan_perubahan_data_jemaat.id_anggota ORDER BY tanggal_permintaan DESC");
     }
 
@@ -37,5 +38,11 @@ class M_Permintaan extends CI_Model
     {
         $this->db->where($where);
         $this->db->update($table, $data);
+    }
+
+    public function delete_record($where, $table)
+    {
+        $this->db->where($where);
+        $this->db->delete($table);
     }
 }
