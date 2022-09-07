@@ -394,7 +394,7 @@
                                                                                     ?>">disini</a></p>
           </div>
           <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-            <div class="icon"><i class="bx bx-align-justify"></i></div>
+            <div class="icon"><i class="bx bx-edit-alt"></i></div>
             <h4 class="title">Permintaan Perubahan Data</h4>
             <p class="description">Klik link <a href="<?php echo base_url() . 'Permintaan' 
                                                                                     ?>">disini</a></p>
