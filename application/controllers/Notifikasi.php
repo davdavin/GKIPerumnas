@@ -18,7 +18,6 @@ class Notifikasi extends CI_Controller
 
     public function index()
     {
-        //  $this->load->library('encryption');
         $this->M_Permintaan->ubah_status_notif();
         $notif['notifBaru'] = $this->M_Permintaan->tampil_notifikasi_baru()->result();
         $notif['notifRequest'] = $this->M_Permintaan->tampil_notifikasi_request()->result();
@@ -38,14 +37,12 @@ class Notifikasi extends CI_Controller
         $this->load->view('v_tampil_notifikasi.php', $notif);
     }
 
-    /* public function deskripsi_notifikasi($data)
-    {
+    public function hapus_permintaan($id_permintaan) {
+        $where = array(
+            'id_permintaan' => $id_permintaan
+        );
 
-        $this->load->library('encryption');
-        if ($data == NULL) {
-            return '-';
-        } else {
-            return $this->encryption->decrypt($data);
-        }
-    } */
+        $this->M_Permintaan->delete_record($where, 'permintaan_perubahan_data_jemaat');
+        redirect('Notifikasi');
+    }
 }
