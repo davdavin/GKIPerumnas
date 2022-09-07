@@ -244,7 +244,7 @@ class Anggota_Jemaat extends CI_Controller
             'id_permintaan' => $id_permintaan
         );
         $permintaan = array('is_updated' => 1);
-        $this->M_Request->update_record($where_permintaan, $permintaan, 'permintaan_perubahan_data_jemaat');
+        $this->M_Permintaan->update_record($where_permintaan, $permintaan, 'permintaan_perubahan_data_jemaat');
         $this->session->set_flashdata('sukses', 'Data berhasil diubah');
         redirect('Anggota_Jemaat');
     }
