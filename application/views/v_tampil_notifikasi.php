@@ -90,12 +90,26 @@
                    <h3 class="timeline-header text-bold text-center">Notifikasi dari <?php echo $notif->nama_lengkap_anggota ?></h3>
 
                    <div class="timeline-body">
+                     <div class="row m-2 text-bold">
+                       <div class="col-sm-4">
+                         <p></p>
+                       </div>
+                       <div class="col-sm-4">
+                         <p>Baru</p>
+                       </div>
+                       <div class="col-sm-4">
+                         <p>Lama</p>
+                       </div>
+                     </div>
                      <div class="row m-2">
                        <div class="col-sm-4">
                          <p class="text-bold">No. HP Baru</p>
                        </div>
                        <div class="col-sm-4">
                          <p><?php echo dekripsi_notifikasi($notif->nohp_baru); ?></p>
+                       </div>
+                       <div class="col-sm-4">
+                         <p><?php echo $notif->nohp_anggota; ?></p>
                        </div>
                      </div>
                      <div class="row m-2">
@@ -105,6 +119,9 @@
                        <div class="col-sm-4">
                          <p><?php echo dekripsi_notifikasi($notif->email_baru); ?></p>
                        </div>
+                       <div class="col-sm-4">
+                         <p><?php echo $notif->email_anggota; ?></p>
+                       </div>
                      </div>
                      <div class="row m-2">
                        <div class="col-sm-4">
@@ -112,6 +129,9 @@
                        </div>
                        <div class="col-sm-4">
                          <p><?php echo dekripsi_notifikasi($notif->alamat_baru); ?></p>
+                       </div>
+                       <div class="col-sm-4">
+                         <p><?php echo $notif->alamat_anggota; ?></p>
                        </div>
                      </div>
                      <div class="row m-2">
@@ -121,6 +141,9 @@
                        <div class="col-sm-4">
                          <p><?php echo dekripsi_notifikasi($notif->pekerjaan_baru); ?></p>
                        </div>
+                       <div class="col-sm-4">
+                         <p><?php echo $notif->pekerjaan_anggota; ?></p>
+                       </div>
                      </div>
 
                    </div>
@@ -129,6 +152,9 @@
                        <a class="btn btn-primary btn-sm" href="<?php echo base_url() . 'Anggota_Jemaat/ubah_data_jemaat/' . $notif->id_permintaan ?> ">Ubah Data</a>
                      <?php } else { ?>
                        <span class="badge badge-success">Sudah di ubah</span>
+                       <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'Notifikasi/hapus_permintaan/' . $notif->id_permintaan ?>">
+                         <i class="fas fa-trash"></i> Hapus
+                       </a>
                      <?php } ?>
                    </div>
                  </div>

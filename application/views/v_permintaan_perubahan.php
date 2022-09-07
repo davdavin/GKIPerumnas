@@ -25,7 +25,7 @@
 <body>
     <div class="container-request" style="background-image: url('<?php echo base_url(); ?>assets/formRequest/images/bg-01.jpg')">
         <div class="wrap-request">
-            <form id="submit-form" class="request-form validate-form" action="<?php echo base_url() . 'Request/kirim' ?>" method="post">
+            <form id="submit-form" class="request-form validate-form" action="<?php echo base_url() . 'Permintaan/kirim' ?>" method="post">
                 <span class="request-form-title"> Form Permintaan Perubahan Informasi Jemaat </span>
 
                 <div class="wrap-input-request">

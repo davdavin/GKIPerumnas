@@ -43,6 +43,20 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="https://npmcdn.com/flatpickr/dist/l10n/id.js"></script>
+
+  <style>
+    .timeline::before {
+      border-radius: 0.25rem;
+      background-color: #dee2e6;
+      bottom: 0;
+      content: "";
+      left: 31px;
+      margin: 0;
+      position: absolute;
+      top: 0;
+      width: 0px;
+    }
+  </style>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -69,32 +83,35 @@
       <ul class="navbar-nav ml-auto">
 
         <!-- Notifications Dropdown Menu -->
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
           <a class="nav-link" data-toggle="dropdown" href="#">
             <i class="far fa-bell"></i>
-            <span class="badge badge-warning navbar-badge"><?php echo count($notifRequest);?></span> <!--15 -->
+            <?php //foreach ($jumlahNotif as $jumlah) {
+            //     if ($jumlah->notifBaru > 0) { 
+            ?>
+            <span class="badge badge-danger navbar-badge"> &nbsp;</span>
+            <?php // }
+            //} 
+            ?>
           </a>
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <span class="dropdown-item dropdown-header"><?php echo count($notifRequest) . ' Notifikasi Permintaan'?></span>
+            <span class="dropdown-item dropdown-header"><?php //echo count($notifBaru) . ' Notifikasi Baru' 
+                                                        ?></span>
             <div class="dropdown-divider"></div>
+            <?php //foreach ($notifBaru as $notifikasi) { 
+            ?>
             <a href="#" class="dropdown-item">
-              <i class="fas fa-envelope mr-2"></i> 4 new messages
-              <span class="float-right text-muted text-sm">3 mins</span>
+              <i class="fas fa-envelope mr-2"></i> Permintaan Perubahan
+              <span class="float-right text-muted text-sm"><?php //echo date_format(date_create($notifikasi->tanggal_permintaan), 'H:i') 
+                                                            ?></span>
             </a>
             <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-users mr-2"></i> 8 friend requests
-              <span class="float-right text-muted text-sm">12 hours</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-file mr-2"></i> 3 new reports
-              <span class="float-right text-muted text-sm">2 days</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+            <?php //} 
+            ?>
+            <a href="<?php //echo base_url() . 'Notifikasi' 
+                      ?>" class="dropdown-item dropdown-footer">Lihat Semua</a>
           </div>
-        </li>
+        </li> -->
 
         <li class="nav-item">
           <a class="nav-link" data-widget="fullscreen" href="#" role="button">

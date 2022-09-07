@@ -7,7 +7,7 @@ class Permintaan extends CI_Controller
     {
         parent::__construct();
 
-        $this->load->model(array('M_Request'));
+        $this->load->model(array('M_Permintaan'));
         $this->load->helper('url', 'form');
         $this->load->library('form_validation');
     }
@@ -54,9 +54,8 @@ class Permintaan extends CI_Controller
             );
             echo json_encode($respon);
         } else {
-            $cek_id_anggota = $this->db->query("SELECT id_anggota FROM anggota_jemaat WHERE no_anggota = '$no_anggota'")->num_rows();
-
-            if ($cek_id_anggota == 0) {
+            $cek_id_anggota = $this->db->query("SELECT id_anggota, no_anggota FROM anggota_jemaat WHERE no_anggota = '$no_anggota'")->row_array();
+            if ($cek_id_anggota['no_anggota'] == "$no_anggota") {
                 $respon = array(
                     'sukses' => false,
                     'error_no_anggota' => 'No. Anggota tidak ditemukan'
@@ -95,7 +94,7 @@ class Permintaan extends CI_Controller
                     'id_anggota' => $ambil_id_anggota['id_anggota'], 'nohp_baru' => $nohp, 'email_baru' => $email,
                     'alamat_baru' => $alamat, 'pekerjaan_baru' => $pekerjaan, 'tanggal_permintaan' => $tanggal, 'is_notif' => 0, 'is_updated' => 0
                 );
-                $this->M_Request->insert_record($data, 'permintaan_perubahan_data_jemaat');
+                $this->M_Permintaan->insert_record($data, 'permintaan_perubahan_data_jemaat');
                 //masih coba
                 // $to = "projectwebdua@gmail.com";
                 // $subject = "My subject";
@@ -107,13 +106,5 @@ class Permintaan extends CI_Controller
                 echo json_encode($respon);
             }
         }
-    }
-
-    public function coba_tampil()
-    {
-        $this->load->library('encryption');
-        $query = $this->db->query("SELECT nohp_baru FROM permintaan_perubahan_data_jemaat WHERE id_permintaan = 1")->row_array();
-
-        echo $this->encryption->decrypt($query['nohp_baru']);
     }
 }

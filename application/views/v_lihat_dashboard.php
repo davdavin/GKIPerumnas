@@ -27,7 +27,7 @@
         <?php foreach ($jumlahPendeta as $total_pendeta) { ?>
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-info">
+            <div class="small-box bg-blue">
               <div class="inner">
                 <h3><?php echo $total_pendeta->jumlahPendeta ?></h3>
                 <p>Pendeta</p>
@@ -42,7 +42,7 @@
         <?php foreach ($jumlahJemaat as $total_jemaat) { ?>
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-success">
+            <div class="small-box bg-info">
               <div class="inner">
                 <h3><?php echo $total_jemaat->jumlahJemaat ?></h3>
 
@@ -71,17 +71,33 @@
           </div>
         <?php } ?>
         <!-- ./col -->
-        <!--   <div class="col-lg-3 col-6">
-          <div class="small-box bg-maroon">
+        <div class="col-lg-3 col-6">
+          <div class="small-box bg-success">
             <div class="inner">
-              <h3>0</h3>
+              <h3>Rp. 0</h3>
               <p>Total Keuangan Gereja</p>
             </div>
             <div class="icon">
               <i class="fas fa-wallet"></i>
             </div>
           </div>
-        </div> -->
+        </div>
+        <?php foreach ($permintaanBaru as $jumlah) { ?>
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-teal">
+              <div class="inner">
+                <h3><?Php echo $jumlah->jumlahPermintaanBaru ?></h3>
+
+                <p>Permintaan Perubahan Data</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-map"></i>
+              </div>
+              <a href="<?php echo base_url() . 'Notifikasi' ?>" class="small-box-footer">Lihat lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+        <?php } ?>
       </div>
     </div><!-- /.container-fluid -->
 
