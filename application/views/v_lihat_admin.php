@@ -201,46 +201,45 @@
         "emptyTable": "Tidak ada data yang tersedia pada tabel ini",
         "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
         "infoEmpty": "Menampilkan 0 sampai 0 dari 0 entri",
-        "infoFiltered":"(disaring dari _MAX_ entri keseluruhan)",
+        "infoFiltered": "(disaring dari _MAX_ entri keseluruhan)",
         "lengthMenu": "Tampilkan _MENU_ entri",
         "loadingRecords": "Sedang memuat...",
         "processing": "Sedang memproses...",
-        "search":"Cari:",
-        "zeroRecords":"Tidak ditemukan data yang sesuai",
+        "search": "Cari:",
+        "zeroRecords": "Tidak ditemukan data yang sesuai",
         "thousands": "'",
         "paginate": {
-          "first":"Pertama",
-          "last":"Terakhir",
-          "next":"Selanjutnya",
-          "previous":"Sebelumnya"
+          "first": "Pertama",
+          "last": "Terakhir",
+          "next": "Selanjutnya",
+          "previous": "Sebelumnya"
         }
       },
       ajax: {
-        url: '<?php echo base_url() . 'Admin/tampil_admin'?>',
+        url: '<?php echo base_url() . 'Admin/tampil_admin' ?>',
         dataSrc: ''
       },
-      columns: [
-        {
-          "data":"id_admin"
+      columns: [{
+          "data": "id_admin"
         },
         {
-          "data":"nama_lengkap"
+          "data": "nama_lengkap"
         },
         {
-          "data":"username"
+          "data": "username"
         },
         {
-          "data":"level_admin"
+          "data": "level_admin"
         },
         {
           data: null,
           name: null,
           render: function(data, type, row, meta) {
             switch (row.status_admin) {
-              case "1": 
+              case "1":
                 return `<span class="badge badge-success">Aktif</span>`;
                 break;
-              default: 
+              default:
                 return `<span class="badge badge-danger">Tidak Aktif</span>`;
                 break;
             }

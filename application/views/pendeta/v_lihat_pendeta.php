@@ -319,73 +319,72 @@
 <script src="<?php echo base_url(); ?>assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 
 <script>
- /* $(document).ready(function() {
+  /* $(document).ready(function() {
    
 
   }); */
 
   $(function() {
-    $('#tabel_pendeta').DataTable( {
+    $('#tabel_pendeta').DataTable({
       "responsive": true,
       "lengthChange": true,
       "autoWidth": false,
-    ajax: {
+      ajax: {
         url: '<?php echo base_url() . '/Pendeta/tampil_pendeta' ?>',
         dataSrc: ''
-    },
-    columns: [ 
-      {
-        "data":"id_pendeta"
       },
-      {
-        "data":"no_pendeta"
-      },
-      {
-        "data":"nama_lengkap_pendeta"
-      },
-      {
-        "data":"nohp_pendeta"
-      },
-      {
-        "data":"tanggal_lahir_pendeta"
-      },
-      {
-        data: null,
-        name: null,
-        sortable: true, //sort
-        render: function(data, type, row, meta) {
-              switch (row.status_pendeta) { //row.status_pendeta itu maksudnya status_pendeta di row ini 
-                case "1":
-                  return `<span class="badge badge-success">Aktif</span>`;
-                  break;
-                default:
-                  return `<span class="badge badge-danger">Tidak Aktif</span>`;
-                  break;
-                }
-        }
-      },
-      {
-        data: null,
-        name: null,
-        sortable: false,
-        render: function(data, type, row, meta) {
-              switch (row.status_pendeta) {
-                case "1":
-                  return `<a class="btn btn-primary btn-sm" href="<?php echo base_url('Pendeta/detail_pendeta') ?>/${row.id_pendeta}"><i class="fas fa-eye"></i> Detail</a>
+      columns: [{
+          "data": "id_pendeta"
+        },
+        {
+          "data": "no_pendeta"
+        },
+        {
+          "data": "nama_lengkap_pendeta"
+        },
+        {
+          "data": "nohp_pendeta"
+        },
+        {
+          "data": "tanggal_lahir_pendeta"
+        },
+        {
+          data: null,
+          name: null,
+          sortable: true, //sort
+          render: function(data, type, row, meta) {
+            switch (row.status_pendeta) { //row.status_pendeta itu maksudnya status_pendeta di row ini 
+              case "1":
+                return `<span class="badge badge-success">Aktif</span>`;
+                break;
+              default:
+                return `<span class="badge badge-danger">Tidak Aktif</span>`;
+                break;
+            }
+          }
+        },
+        {
+          data: null,
+          name: null,
+          sortable: false,
+          render: function(data, type, row, meta) {
+            switch (row.status_pendeta) {
+              case "1":
+                return `<a class="btn btn-primary btn-sm" href="<?php echo base_url('Pendeta/detail_pendeta') ?>/${row.id_pendeta}"><i class="fas fa-eye"></i> Detail</a>
                           <a class="btn btn-info btn-sm" href="<?php echo base_url('Pendeta/edit_pendeta') ?>/${row.id_pendeta}"><i class="fas fa-pencil-alt"></i> Edit</a>
                           <a id="tombol" class="btn btn-danger btn-sm" href="<?php echo base_url('Pendeta/hapus_pendeta') ?>/${row.id_pendeta}" ><i class="fas fa-trash"></i> Hapus </a>`;
-                  break;
-                default:
-                  return `<a class="btn btn-primary btn-sm" href="<?php echo base_url('Pendeta/detail_pendeta') ?>/${row.id_pendeta}"><i class="fas fa-eye"></i> Detail</a>
+                break;
+              default:
+                return `<a class="btn btn-primary btn-sm" href="<?php echo base_url('Pendeta/detail_pendeta') ?>/${row.id_pendeta}"><i class="fas fa-eye"></i> Detail</a>
                           <a class="btn btn-info btn-sm" href="<?php echo base_url('Pendeta/edit_pendeta') ?>/${row.id_pendeta}"><i class="fas fa-pencil-alt"></i> Edit</a>`;
-                  break;
-              }
-        }
-      },
-     ]
+                break;
+            }
+          }
+        },
+      ]
     });
 
-    $(document).on('click', '#tombol', function(e) { 
+    $(document).on('click', '#tombol', function(e) {
       e.preventDefault();
       const href = $(this).attr('href');
       Swal.fire({
@@ -403,7 +402,7 @@
         }
       });
     });
-   
+
     $('[data-mask]').inputmask();
 
     bsCustomFileInput.init();
