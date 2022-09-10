@@ -21,7 +21,7 @@ class Admin extends CI_Controller
         $data['levelAdmin'] = $this->M_Admin->tampil_level()->result();
         $this->load->view('templates/header.php');
         $this->load->view('templates/sidebar.php');
-        $this->load->view('v_lihat_admin.php', $data);
+        $this->load->view('admin/v_lihat_admin.php', $data);
     }
 
     public function tampil_admin()

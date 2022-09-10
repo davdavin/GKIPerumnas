@@ -20,7 +20,7 @@ class Anggota_Jemaat extends CI_Controller
         $data['wilayah'] = $this->M_Wilayah->tampil()->result();
         $this->load->view('templates/header.php');
         $this->load->view('templates/sidebar.php');
-        $this->load->view('jemaat/v_lihat_anggota_jemaat.php', $data);
+        $this->load->view('admin/jemaat/v_lihat_anggota_jemaat.php', $data);
     }
 
     public function tampil_jemaat()
@@ -145,7 +145,7 @@ class Anggota_Jemaat extends CI_Controller
         $data['wilayah'] = $this->M_Wilayah->tampil()->result();
         $this->load->view('templates/header.php');
         $this->load->view('templates/sidebar.php');
-        $this->load->view('jemaat/v_detail_anggota_jemaat.php', $data);
+        $this->load->view('admin/jemaat/v_detail_anggota_jemaat.php', $data);
     }
 
     public function edit_anggota($id_anggota)
@@ -155,7 +155,7 @@ class Anggota_Jemaat extends CI_Controller
         $data['wilayah'] = $this->M_Wilayah->tampil()->result();
         $this->load->view('templates/header.php');
         $this->load->view('templates/sidebar.php');
-        $this->load->view('jemaat/v_edit_anggota_jemaat.php', $data);
+        $this->load->view('admin/jemaat/v_edit_anggota_jemaat.php', $data);
     }
 
     public function proses_edit_anggota()

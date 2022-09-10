@@ -19,7 +19,7 @@ class Konten extends CI_Controller
     {
         $data['kontenFotoIbadah'] = $this->M_Konten->tampil_konten_foto_ibadah()->result();
         $this->load->view('templates/header.php');
-        $this->load->view('v_konten.php', $data);
+        $this->load->view('admin/konten/v_konten.php', $data);
     }
 
     public function tampil_slide()
@@ -38,7 +38,7 @@ class Konten extends CI_Controller
     {
         $data['kontenSlide'] = $this->M_Konten->tampil_edit_slide($id_slide)->result();
         $this->load->view('templates/header.php');
-        $this->load->view('v_edit_slide.php', $data);
+        $this->load->view('admin/konten/v_edit_slide.php', $data);
     }
 
     public function proses_edit_slide()
