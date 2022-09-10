@@ -43,34 +43,6 @@
               </tr>
             </thead>
             <tbody>
-              <?php
-              foreach ($dokumen as $list_dokumen) { ?>
-                <tr>
-                  <td><?php echo $list_dokumen->id_dokumen ?></td>
-                  <td><?php echo $list_dokumen->kode_dokumen ?></td>
-                  <td><?php echo $list_dokumen->jenis_dokumen ?></td>
-                  <td><a href="<?php echo base_url() . 'Dokumen/view_file/' . $list_dokumen->dokumen ?>" target="_blank"><?php echo $list_dokumen->dokumen ?></a></td>
-                  <td><?php echo $list_dokumen->keterangan ?></td>
-                  <td>
-                    <a class=" btn btn-primary btn-sm" href="<?php echo base_url() . 'uploadDokumen/' . $list_dokumen->dokumen ?>" download>
-                      <i class="fas fa-download">
-                      </i>
-                      Unduh
-                    </a>
-                    <a class="btn btn-info btn-sm" href="<?php echo base_url() . 'Dokumen/edit_dokumen/' . $list_dokumen->id_dokumen ?>">
-                      <i class="fas fa-pencil-alt">
-                      </i>
-                      Edit
-                    </a>
-                    <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'Dokumen/hapus_dokumen/' . $list_dokumen->id_dokumen ?>">
-                      <i class="fas fa-trash">
-                      </i>
-                      Hapus
-                    </a>
-                  </td>
-                </tr>
-              <?php
-              } ?>
 
             </tbody>
           </table>
@@ -105,7 +77,7 @@
                   <td><?php echo $list_pengumpulan_dokumen->email_pengumpul ?></td>
                   <td><?php echo $list_pengumpulan_dokumen->jenis_dokumen ?></td>
                   <td><?php echo $list_pengumpulan_dokumen->kumpul_dokumen ?></td>
-                  <td><?php echo date_format(date_create($list_pengumpulan_dokumen->tanggal_kumpul), "d F Y"); ?></td>
+                  <td><?php echo tanggal_indonesia($list_pengumpulan_dokumen->tanggal_kumpul); ?></td>
                   <td>
                     <a class="btn btn-primary btn-sm" href="<?php echo base_url() . 'pengumpulanDokumen/' . $list_pengumpulan_dokumen->kumpul_dokumen ?>" download>
                       <i class="fas fa-download">
@@ -222,30 +194,63 @@
 <script>
   $(function() {
     $("#list_dokumen").DataTable({
-      "responsive": true,
-      "lengthChange": true,
-      "autoWidth": false
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      responsive: true,
+      lengthChange: true,
+      autoWidth: false,
+      ajax: {
+        url: "<?php echo base_url() . 'Dokumen/tampil_dokumen' ?>",
+        dataSrc: ''
+      },
+      columns: [{
+          data: "id_dokumen"
+        },
+        {
+          data: "kode_dokumen"
+        },
+        {
+          data: "jenis_dokumen"
+        },
+        {
+          data: "dokumen",
+          name: null,
+          sortable: false,
+          render: function(data, type, row, meta) {
+            return `<a href="<?php echo base_url() . 'Dokumen/view_file/' ?>${row.dokumen}" target="_blank">` + data + `</a>`;
+          }
+        },
+        {
+          data: "keterangan",
+          sortable: false
+        },
+        {
+          data: null,
+          name: null,
+          sortable: false,
+          render: function(data, type, row, meta) {
+            return `<a class=" btn btn-primary btn-sm" href="<?php echo base_url() . 'uploadDokumen/' ?>${row.id_dokumen}" download>
+                      <i class="fas fa-download">
+                      </i>
+                      Unduh
+                    </a>
+                    <a class="btn btn-info btn-sm" href="<?php echo base_url() . 'Dokumen/edit_dokumen/' ?>${row.id_dokumen}">
+                      <i class="fas fa-pencil-alt">
+                      </i>
+                      Edit
+                    </a>
+                    <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'Dokumen/hapus_dokumen/' ?>${row.id_dokumen}">
+                      <i class="fas fa-trash">
+                      </i>
+                      Hapus
+                    </a>`
+          }
+        }
+      ]
+    });
 
     $("#pengumpulan").DataTable({
       "responsive": true,
       "lengthChange": true,
       "autoWidth": false
-    });
-
-    //Datemask dd/mm/yyyy
-    $('#datemask').inputmask('dd/mm/yyyy', {
-      'placeholder': 'dd/mm/yyyy'
-    })
-    //Datemask2 mm/dd/yyyy
-    $('#datemask2').inputmask('mm/dd/yyyy', {
-      'placeholder': 'mm/dd/yyyy'
-    })
-    //Money Euro
-    $('[data-mask]').inputmask()
-    //Date picker
-    $('#reservationdate').datetimepicker({
-      format: 'YYYY-MM-DD'
     });
 
     bsCustomFileInput.init();

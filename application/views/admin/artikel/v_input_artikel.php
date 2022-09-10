@@ -130,6 +130,8 @@
 <script src="<?php echo base_url(); ?>assets/dist/js/pages/dashboard.js"></script>
 <!-- SweetAlert2 -->
 <script src="<?php echo base_url(); ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- ckeditor5 -->
+<script src="<?php echo base_url(); ?>ckeditor5-build-classic/ckeditor.js"></script>
 <!-- tinymce -->
 <script src="<?php echo base_url(); ?>resources/tinymce/tinymce.min.js"></script>
 <script src="<?php echo base_url(); ?>resources/tinymce/jquery.tinymce.min.js"></script>
@@ -156,8 +158,14 @@
       }
     });
 
+    ClassicEditor
+    .create(document.querySelector('#textArea') )
+    .catch( error => {
+      console.error( error );
+    });
+
  
-    tinymce.init({
+  /*  tinymce.init({
       selector: '#textArea',
       height: 500,
      // plugins: ['code'],
@@ -166,7 +174,7 @@
       toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile anchor codesample | ltr rtl',
       toolbar_sticky: true,
       content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
-    });
+    }); */
 
     function valid() {
       $('.clear').hide();
