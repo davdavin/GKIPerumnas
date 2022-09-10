@@ -21,7 +21,7 @@ class Mengelola_Artikel extends CI_Controller
         $data['artikel'] = $this->M_Artikel->lihat_artikel()->result();
         $this->load->view('templates/header.php');
         $this->load->view('templates/sidebar.php');
-        $this->load->view('artikel/v_lihat_tabel_artikel.php', $data);
+        $this->load->view('admin/artikel/v_lihat_tabel_artikel.php', $data);
     }
 
     public function tampil_artikel()
@@ -35,7 +35,7 @@ class Mengelola_Artikel extends CI_Controller
         $data['tipe_artikel'] = $this->M_Artikel->tampil_tipe_artikel()->result();
         $this->load->view('templates/header.php');
         $this->load->view('templates/sidebar.php');
-        $this->load->view('artikel/v_input_artikel.php', $data);
+        $this->load->view('admin/artikel/v_input_artikel.php', $data);
     }
 
     public function tipe_artikel()
@@ -43,7 +43,7 @@ class Mengelola_Artikel extends CI_Controller
         $data['tipe_artikel'] = $this->M_Artikel->tampil_tipe_artikel()->result();
         $this->load->view('templates/header.php');
         $this->load->view('templates/sidebar.php');
-        $this->load->view('artikel/v_tipe_artikel.php', $data);
+        $this->load->view('admin/artikel/v_tipe_artikel.php', $data);
     }
 
     public function proses_tambah_artikel()
@@ -139,7 +139,7 @@ class Mengelola_Artikel extends CI_Controller
         $data['tipe_artikel'] = $this->M_Artikel->tampil_tipe_artikel()->result();
         $this->load->view('templates/header.php');
         $this->load->view('templates/sidebar.php');
-        $this->load->view('artikel/v_edit_artikel.php', $data);
+        $this->load->view('admin/artikel/v_edit_artikel.php', $data);
     }
 
     public function proses_edit_artikel()
