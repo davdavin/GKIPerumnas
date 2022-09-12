@@ -165,33 +165,6 @@
               </tr>
             </thead>
             <tbody>
-         <!--     <?php
-              foreach ($wilayah as $list_wilayah) { ?>
-                <tr>
-                  <td><?php echo $list_wilayah->id_wilayah ?></td>
-                  <td><?php echo $list_wilayah->kode_wilayah ?></td>
-                  <td><?php echo $list_wilayah->nama_lengkap_anggota ?></td>
-                  <td><?php echo $list_wilayah->nama_wilayah ?></td>
-                  <td>
-                    <!--  <a class="btn btn-primary btn-sm" href="#">
-                                  <i class="fas fa-eye">
-                                  </i>
-                                  Detail
-                              </a> 
-                    <a class="btn btn-info btn-sm" href="<?php echo base_url() . 'Wilayah/edit_wilayah/' . $list_wilayah->id_wilayah ?>">
-                      <i class="fas fa-pencil-alt">
-                      </i>
-                      Edit
-                    </a>
-                    <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'Wilayah/hapus_wilayah/' . $list_wilayah->id_wilayah ?>">
-                      <i class="fas fa-trash">
-                      </i>
-                      Hapus
-                    </a>
-                  </td>
-                </tr>
-              <?php
-              } ?> -->
             </tbody>
           </table>
         </div>
@@ -208,9 +181,9 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
-            <form action="<?php echo base_url() . 'Wilayah/tambah_wilayah' ?>" method="post">
 
+          <form action="<?php echo base_url() . 'Wilayah/tambah_wilayah' ?>" method="post">
+            <div class="modal-body">
               <input type="hidden" name="id_jemaat" id="id_jemaat">
               <div class="form-group">
                 <label>Koordinator Wilayah</label>
@@ -226,10 +199,11 @@
                 <label>Nama Wilayah</label>
                 <input type="text" class="form-control" name="nama_wilayah" required>
               </div>
-
-              <button type="submit" class="btn btn-block btn-primary btn-sm">Submit</button>
-            </form>
-          </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
         </div>
         <!-- /.modal-content -->
       </div>
@@ -345,36 +319,35 @@
         "emptyTable": "Tidak ada data yang tersedia pada tabel ini",
         "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
         "infoEmpty": "Menampilkan 0 sampai 0 dari 0 entri",
-        "infoFiltered":"(disaring dari _MAX_ entri keseluruhan)",
+        "infoFiltered": "(disaring dari _MAX_ entri keseluruhan)",
         "lengthMenu": "Tampilkan _MENU_ entri",
         "loadingRecords": "Sedang memuat...",
         "processing": "Sedang memproses...",
-        "search":"Cari:",
-        "zeroRecords":"Tidak ditemukan data yang sesuai",
+        "search": "Cari:",
+        "zeroRecords": "Tidak ditemukan data yang sesuai",
         "thousands": "'",
         "paginate": {
-          "first":"Pertama",
-          "last":"Terakhir",
-          "next":"Selanjutnya",
-          "previous":"Sebelumnya"
+          "first": "Pertama",
+          "last": "Terakhir",
+          "next": "Selanjutnya",
+          "previous": "Sebelumnya"
         }
       },
       ajax: {
-        url: '<?php echo base_url() . 'Wilayah/tampil_wilayah'?>',
+        url: '<?php echo base_url() . 'Wilayah/tampil_wilayah' ?>',
         dataSrc: ''
       },
-      columns:[
-        {
-          "data":"id_wilayah"
+      columns: [{
+          "data": "id_wilayah"
         },
         {
-          "data":"kode_wilayah"
+          "data": "kode_wilayah"
         },
         {
-          "data":"nama_lengkap_anggota"
+          "data": "nama_lengkap_anggota"
         },
         {
-          "data":"nama_wilayah"
+          "data": "nama_wilayah"
         },
         {
           "data": null,
@@ -439,7 +412,7 @@
       });
     }
 
-   
+
   });
 </script>
 
