@@ -15,13 +15,14 @@ class Dashboard extends CI_Controller
 
     public function index()
     {
+        $data['title'] = "Dashboard";
         $data['jumlahJemaat'] = $this->M_Anggota_Jemaat->tampil_total_jemaat()->result();
         $data['jumlahPendeta'] = $this->M_Pendeta->tampil_total_pendeta()->result();
         $data['jumlahWilayah'] = $this->M_Wilayah->tampil_total_wilayah()->result();
         $data['jumlahJemaatWilayah'] = $this->M_Wilayah->total_jemaat_di_wilayah()->result();
         $data['totalStatusJemaat'] = $this->M_Anggota_Jemaat->total_status_jemaat()->result();
         $data['permintaanBaru'] = $this->M_Permintaan->jumlah_permintaan_baru()->result();
-        $this->load->view('templates/header.php');
+        $this->load->view('templates/header.php', $data);
         $this->load->view('templates/sidebar.php');
         $this->load->view('admin/v_lihat_dashboard.php', $data);
     }

@@ -17,11 +17,18 @@ class Dokumen extends CI_Controller
 
     public function index()
     {
+        $data['title'] = "Dokumen";
         $data['dokumen'] = $this->M_Dokumen->tampil()->result();
         $data['pengumpulanDokumen'] = $this->M_Dokumen->tampil_pengumpulan()->result();
-        $this->load->view('templates/header.php');
+        $this->load->view('templates/header.php', $data);
         $this->load->view('templates/sidebar.php');
-        $this->load->view('v_lihat_dokumen.php', $data);
+        $this->load->view('admin/dokumen/v_lihat_dokumen.php', $data);
+    }
+
+    public function tampil_dokumen()
+    {
+        $dokumen = $this->M_Dokumen->tampil()->result();
+        echo json_encode($dokumen);
     }
 
     public function view_file($dokumen)
@@ -32,7 +39,7 @@ class Dokumen extends CI_Controller
 
         $data['dokumen'] = $this->db->query("SELECT dokumen FROM dokumen WHERE dokumen = '$dokumen'")->row_array();
         //   $this->load->view('templates/header.php');
-        $this->load->view('v_lihat_file.php', $data);
+        $this->load->view('admin/dokumen/v_lihat_file.php', $data);
     }
 
     public function tambah_dokumen()
@@ -70,11 +77,12 @@ class Dokumen extends CI_Controller
 
     public function edit_dokumen($id_dokumen)
     {
+        $data['title'] = "Dokumen";
         $where = array('id_dokumen' => $id_dokumen);
         $data['dokumenEdit'] = $this->M_Dokumen->tampil_edit($where, 'dokumen')->result();
-        $this->load->view('templates/header.php');
+        $this->load->view('templates/header.php', $data);
         $this->load->view('templates/sidebar.php');
-        $this->load->view('v_edit_dokumen.php', $data);
+        $this->load->view('admin/dokumen/v_edit_dokumen.php', $data);
     }
 
     public function proses_edit_dokumen()

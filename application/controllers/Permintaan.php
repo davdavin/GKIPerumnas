@@ -54,8 +54,8 @@ class Permintaan extends CI_Controller
             );
             echo json_encode($respon);
         } else {
-            $cek_id_anggota = $this->db->query("SELECT id_anggota, no_anggota FROM anggota_jemaat WHERE no_anggota = '$no_anggota'")->row_array();
-            if ($cek_id_anggota['no_anggota'] == "$no_anggota") {
+            $cek_id_anggota = $this->db->query("SELECT id_anggota, no_anggota FROM anggota_jemaat WHERE no_anggota = '$no_anggota'")->num_rows();
+            if ($cek_id_anggota == 0) {
                 $respon = array(
                     'sukses' => false,
                     'error_no_anggota' => 'No. Anggota tidak ditemukan'
@@ -98,10 +98,10 @@ class Permintaan extends CI_Controller
                 //masih coba
                 // $to = "projectwebdua@gmail.com";
                 // $subject = "My subject";
-                // $txt = "Segera akan di infokan. Jika sudah di update.";
+                // $message = "Segera akan di infokan. Jika sudah di update.";
                 // $headers = "From: officehourcompany@gmail.com";
 
-                // mail($to, $subject, $txt, $headers);
+                // mail($to, $subject, $message, $headers);
                 $respon['sukses'] = "Berhasil Dikirim";
                 echo json_encode($respon);
             }
