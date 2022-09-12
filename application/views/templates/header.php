@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard GKI Perumnas Tangerang</title>
+  <title> GKI Perumnas | <?php echo $title; ?></title>
 
   <!-- Favicons -->
   <link href="<?php echo base_url(); ?>resources/assets/img/logo-GKI-tr.png" rel="icon">

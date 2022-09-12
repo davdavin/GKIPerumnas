@@ -104,8 +104,9 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
+
+          <?php echo form_open_multipart('Dokumen/tambah_dokumen'); ?>
           <div class="modal-body">
-            <?php echo form_open_multipart('Dokumen/tambah_dokumen'); ?>
             <div class="form-group">
               <label for="jenisDokumen">Jenis dokumen</label>
               <input type="text" class="form-control" id="jenisDokumen" name="jenis" required>
@@ -126,9 +127,11 @@
               <label for="keterangan">Keterangan</label>
               <input type="text" class="form-control" id="keterangan" name="keterangan" required>
             </div>
-            <button type="submit" class="btn btn-block btn-primary btn-sm">Submit</button>
-            </form>
           </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+          </form>
         </div>
         <!-- /.modal-content -->
       </div>

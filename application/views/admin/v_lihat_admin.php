@@ -93,9 +93,8 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
-
-            <form class="form-submit" action="<?php echo base_url() . 'Admin/tambah_admin'  ?>" method="post">
+          <form class="form-submit" action="<?php echo base_url() . 'Admin/tambah_admin'  ?>" method="post">
+            <div class="modal-body">
               <div class="form-group">
                 <label>Nama Lengkap</label>
                 <input type="text" class="form-control" id="nama_admin" name="nama_admin" placeholder="Nama Lengkap">
@@ -133,10 +132,11 @@
                 <div class="px-2 error_level clear" style="display: none">
                 </div>
               </div>
-
-              <button type="submit" class="btn btn-block btn-primary btn-sm" id="tombolSimpan">Submit</button>
-            </form>
-          </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" id="tombolSimpan">Submit</button>
+            </div>
+          </form>
         </div>
         <!-- /.modal-content -->
       </div>

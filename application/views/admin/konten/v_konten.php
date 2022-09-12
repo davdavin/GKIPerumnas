@@ -240,7 +240,9 @@
                     </div>
                     <div class="p-2 error_upload clear" style="display:none"></div>
                   </div>
-                  <button type="submit" class="btn btn-block btn-primary btn-sm simpan">Update</button>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary simpan">Update</button>
+                  </div>
                 </form>
               </div>
             </div>
