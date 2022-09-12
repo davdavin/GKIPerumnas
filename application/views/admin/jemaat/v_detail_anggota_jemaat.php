@@ -78,7 +78,7 @@
                                     <h5> <strong> Umur </strong> </h5>
                                     <p><?php echo date('Y') - date_format(date_create($list_detail_jemaat->tanggal_lahir_anggota), "Y"); ?></p>
                                     <h5> <strong> Tanggal Lahir </strong> </h5>
-                                    <p><?php if ($list_detail_jemaat->tanggal_lahir_anggota == "0000-00-00") {
+                                    <p><?php if ($list_detail_jemaat->tanggal_lahir_anggota == "0000-00-00" || $list_detail_jemaat->tanggal_lahir_anggota == NULL) {
                                             echo " " . "<br>";
                                         } else {
                                             echo tanggal_indonesia($list_detail_jemaat->tanggal_lahir_anggota);
@@ -89,7 +89,7 @@
 
                                 <div class="col-sm-4">
                                     <h5> <strong> Tanggal Baptis </strong> </h5>
-                                    <p><?php if ($list_detail_jemaat->tanggal_baptis_anggota == "0000-00-00") {
+                                    <p><?php if ($list_detail_jemaat->tanggal_baptis_anggota == "0000-00-00" || $list_detail_jemaat->tanggal_baptis_anggota == NULL) {
                                             echo " " . "<br>";
                                         } else {
                                             echo tanggal_indonesia($list_detail_jemaat->tanggal_baptis_anggota);
@@ -97,7 +97,7 @@
                                         ?>
                                     </p>
                                     <h5> <strong> Tanggal Sidi </strong> </h5>
-                                    <p><?php if ($list_detail_jemaat->tanggal_sidi_anggota == "0000-00-00") {
+                                    <p><?php if ($list_detail_jemaat->tanggal_sidi_anggota == "0000-00-00" || $list_detail_jemaat->tanggal_sidi_anggota == NULL) {
                                             echo " " . "<br>";
                                         } else {
                                             echo tanggal_indonesia($list_detail_jemaat->tanggal_sidi_anggota);
@@ -105,7 +105,7 @@
                                         ?>
                                     </p>
                                     <h5> <strong> Tanggal Atestasi Masuk </strong> </h5>
-                                    <p><?php if ($list_detail_jemaat->tanggal_atestasi_masuk == "0000-00-00") {
+                                    <p><?php if ($list_detail_jemaat->tanggal_atestasi_masuk == "0000-00-00" || $list_detail_jemaat->tanggal_atestasi_masuk == NULL) {
                                             echo " " . "<br>";
                                         } else {
                                             echo tanggal_indonesia($list_detail_jemaat->tanggal_atestasi_masuk);
@@ -113,7 +113,7 @@
                                         ?>
                                     </p>
                                     <h5> <strong> Tanggal Atestasi Keluar </strong> </h5>
-                                    <p><?php if ($list_detail_jemaat->tanggal_atestasi_keluar == "0000-00-00") {
+                                    <p><?php if ($list_detail_jemaat->tanggal_atestasi_keluar == "0000-00-00" || $list_detail_jemaat->tanggal_atestasi_keluar == NULL) {
                                             echo " " . "<br>";
                                         } else {
                                             echo tanggal_indonesia($list_detail_jemaat->tanggal_atestasi_keluar);
@@ -121,7 +121,7 @@
                                         ?>
                                     </p>
                                     <h5> <strong> Tanggal Meninggal </strong> </h5>
-                                    <p><?php if ($list_detail_jemaat->tanggal_meninggal == "0000-00-00") {
+                                    <p><?php if ($list_detail_jemaat->tanggal_meninggal == "0000-00-00" || $list_detail_jemaat->tanggal_meninggal == NULL) {
                                             echo " " . "<br>";
                                         } else {
                                             echo tanggal_indonesia($list_detail_jemaat->tanggal_meninggal);
@@ -129,7 +129,7 @@
                                         ?>
                                     </p>
                                     <h5> <strong> Tanggal DKH </strong> </h5>
-                                    <p><?php if ($list_detail_jemaat->tanggal_dkh == "0000-00-00") {
+                                    <p><?php if ($list_detail_jemaat->tanggal_dkh == "0000-00-00" || $list_detail_jemaat->tanggal_dkh == NULL) {
                                             echo " " . "<br>";
                                         } else {
                                             echo tanggal_indonesia($list_detail_jemaat->tanggal_dkh);
@@ -137,7 +137,7 @@
                                         ?>
                                     </p>
                                     <h5> <strong> Tanggal Ex DKH </strong> </h5>
-                                    <p><?php if ($list_detail_jemaat->tanggal_ex_dkh == "0000-00-00") {
+                                    <p><?php if ($list_detail_jemaat->tanggal_ex_dkh == "0000-00-00" || $list_detail_jemaat->tanggal_ex_dkh == NULL) {
                                             echo " " . "<br>";
                                         } else {
                                             echo tanggal_indonesia($list_detail_jemaat->tanggal_ex_dkh);
