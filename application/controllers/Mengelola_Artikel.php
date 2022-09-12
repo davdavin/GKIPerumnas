@@ -18,8 +18,9 @@ class Mengelola_Artikel extends CI_Controller
 
     public function index()
     {
+        $data['title'] = "Artikel";
         $data['artikel'] = $this->M_Artikel->lihat_artikel()->result();
-        $this->load->view('templates/header.php');
+        $this->load->view('templates/header.php', $data);
         $this->load->view('templates/sidebar.php');
         $this->load->view('admin/artikel/v_lihat_tabel_artikel.php', $data);
     }
@@ -32,16 +33,18 @@ class Mengelola_Artikel extends CI_Controller
 
     public function tambah_artikel()
     {
+        $data['title'] = "Artikel";
         $data['tipe_artikel'] = $this->M_Artikel->tampil_tipe_artikel()->result();
-        $this->load->view('templates/header.php');
+        $this->load->view('templates/header.php', $data);
         $this->load->view('templates/sidebar.php');
         $this->load->view('admin/artikel/v_input_artikel.php', $data);
     }
 
     public function tipe_artikel()
     {
+        $data['title'] = "Artikel";
         $data['tipe_artikel'] = $this->M_Artikel->tampil_tipe_artikel()->result();
-        $this->load->view('templates/header.php');
+        $this->load->view('templates/header.php', $data);
         $this->load->view('templates/sidebar.php');
         $this->load->view('admin/artikel/v_tipe_artikel.php', $data);
     }
@@ -135,9 +138,10 @@ class Mengelola_Artikel extends CI_Controller
 
     public function edit_artikel($id_artikel)
     {
+        $data['title'] = "Artikel";
         $data['artikel_edit'] = $this->M_Artikel->pilihan_artikel($id_artikel)->result();
         $data['tipe_artikel'] = $this->M_Artikel->tampil_tipe_artikel()->result();
-        $this->load->view('templates/header.php');
+        $this->load->view('templates/header.php', $data);
         $this->load->view('templates/sidebar.php');
         $this->load->view('admin/artikel/v_edit_artikel.php', $data);
     }

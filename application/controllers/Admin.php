@@ -17,9 +17,10 @@ class Admin extends CI_Controller
 
     public function index()
     {
+        $data['title'] = "Admin";
         $data['admin'] = $this->M_Admin->tampil()->result();
         $data['levelAdmin'] = $this->M_Admin->tampil_level()->result();
-        $this->load->view('templates/header.php');
+        $this->load->view('templates/header.php', $data);
         $this->load->view('templates/sidebar.php');
         $this->load->view('admin/v_lihat_admin.php', $data);
     }

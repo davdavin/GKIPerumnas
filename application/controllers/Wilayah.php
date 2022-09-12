@@ -16,9 +16,10 @@ class Wilayah extends CI_Controller
 
     public function index()
     {
+        $data['title'] = "Wilayah";
         $data['wilayah'] = $this->M_Wilayah->tampil()->result();
         $data['jemaat'] = $this->M_Anggota_Jemaat->tampil()->result();
-        $this->load->view('templates/header.php');
+        $this->load->view('templates/header.php', $data);
         $this->load->view('admin/wilayah/v_lihat_wilayah.php', $data);
     }
 
@@ -48,9 +49,10 @@ class Wilayah extends CI_Controller
 
     public function edit_wilayah($id_wilayah)
     {
+        $data['title'] = "Wilayah";
         $data['wilayahEdit'] = $this->M_Wilayah->tampil_edit($id_wilayah)->result();
         $data['jemaat'] = $this->M_Anggota_Jemaat->tampil()->result();
-        $this->load->view('templates/header.php');
+        $this->load->view('templates/header.php', $data);
         $this->load->view('admin/wilayah/v_edit_wilayah', $data);
     }
 

@@ -17,8 +17,9 @@ class Anggota_Jemaat extends CI_Controller
     public function index()
     {
         //  $data['jemaat'] = $this->M_Anggota_Jemaat->tampil()->result();
+        $data['title'] = "Jemaat";
         $data['wilayah'] = $this->M_Wilayah->tampil()->result();
-        $this->load->view('templates/header.php');
+        $this->load->view('templates/header.php', $data);
         $this->load->view('templates/sidebar.php');
         $this->load->view('admin/jemaat/v_lihat_anggota_jemaat.php', $data);
     }
@@ -141,19 +142,21 @@ class Anggota_Jemaat extends CI_Controller
 
     public function lihat_detail_anggota($id_anggota)
     {
+        $data['title'] = "Jemaat";
         $data['detailJemaat'] = $this->M_Anggota_Jemaat->tampil_detail($id_anggota)->result();
         $data['wilayah'] = $this->M_Wilayah->tampil()->result();
-        $this->load->view('templates/header.php');
+        $this->load->view('templates/header.php', $data);
         $this->load->view('templates/sidebar.php');
         $this->load->view('admin/jemaat/v_detail_anggota_jemaat.php', $data);
     }
 
     public function edit_anggota($id_anggota)
     {
+        $data['title'] = 'Jemaat';
         $where = array('id_anggota' => $id_anggota);
         $data['jemaatEdit'] = $this->M_Anggota_Jemaat->tampil_edit($where, 'anggota_jemaat')->result();
         $data['wilayah'] = $this->M_Wilayah->tampil()->result();
-        $this->load->view('templates/header.php');
+        $this->load->view('templates/header.php', $data);
         $this->load->view('templates/sidebar.php');
         $this->load->view('admin/jemaat/v_edit_anggota_jemaat.php', $data);
     }
@@ -205,8 +208,9 @@ class Anggota_Jemaat extends CI_Controller
 
     public function ubah_data_jemaat($id_permintaan)
     {
+        $data['title'] = "Jemaat";
         $data['permintaanPerubahan'] = $this->M_Permintaan->tampil_data_permintaan($id_permintaan)->result();
-        $this->load->view('templates/header.php');
+        $this->load->view('templates/header.php', $data);
         $this->load->view('templates/sidebar.php');
         $this->load->view('v_respon_perubahan_data.php', $data);
     }

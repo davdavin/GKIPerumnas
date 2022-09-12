@@ -19,9 +19,10 @@ class Notifikasi extends CI_Controller
     public function index()
     {
         $this->M_Permintaan->ubah_status_notif();
-        $notif['notifBaru'] = $this->M_Permintaan->tampil_notifikasi_baru()->result();
-        $notif['notifRequest'] = $this->M_Permintaan->tampil_notifikasi_request()->result();
-        $notif2 = $this->M_Permintaan->tampil_notifikasi_request()->result_array();
+        $data['title'] = "Notifikasi";
+        $data['notifBaru'] = $this->M_Permintaan->tampil_notifikasi_baru()->result();
+        $data['notifRequest'] = $this->M_Permintaan->tampil_notifikasi_request()->result();
+        //  $notif2 = $this->M_Permintaan->tampil_notifikasi_request()->result_array();
         /*  for ($i = 0; $i < count($notif2); $i++) {
             $notifikasi['tampil'][$i] = array(
                 'nama_lengkap_anggota' =>    $notif2[$i]['nama_lengkap_anggota'],
@@ -32,12 +33,13 @@ class Notifikasi extends CI_Controller
                 'waktu_kirim' => $notif2[$i]['waktu_kirim']
             );
         } */
-        $this->load->view('templates/header.php', $notif);
+        $this->load->view('templates/header.php', $data);
         $this->load->view('templates/sidebar.php');
-        $this->load->view('v_tampil_notifikasi.php', $notif);
+        $this->load->view('v_tampil_notifikasi.php', $data);
     }
 
-    public function hapus_permintaan($id_permintaan) {
+    public function hapus_permintaan($id_permintaan)
+    {
         $where = array(
             'id_permintaan' => $id_permintaan
         );
