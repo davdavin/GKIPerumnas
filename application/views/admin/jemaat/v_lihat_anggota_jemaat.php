@@ -65,8 +65,8 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
-            <form action="<?php echo base_url() . 'Anggota_Jemaat/masuk_anggota_jemaat' ?>" method="post">
+          <form action="<?php echo base_url() . 'Anggota_Jemaat/masuk_anggota_jemaat' ?>" method="post">
+            <div class="modal-body">
               <div class="form-group">
                 <label for="inputNoAnggota">No Anggota</label>
                 <input type="number" class="form-control" id="inputNoAnggota" name="no_anggota" placeholder="No Anggota" required>
@@ -233,10 +233,11 @@
                   </div>
                 </div>
               </div>
-
-              <button type="submit" class="btn btn-block btn-primary btn-sm">Submit</button>
-            </form>
-          </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" onclick="loading()" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
         </div>
         <!-- /.modal-content -->
       </div>
@@ -330,6 +331,15 @@
 
 <!-- Page specific script -->
 <script>
+  /*   function loading() {
+      swal.fire({
+              title: 'Please Wait',
+              text: 'Submit jemaat',
+              icon: 'succes',
+              showConfirmButton: false,
+              timer: 2700,
+            });
+    }  */
   $(document).ready(function() {
     $('#list_anggota').DataTable({
       "responsive": true,
@@ -369,7 +379,7 @@
               case "1":
                 return `<span class="badge badge-success">Aktif</span>`;
                 break;
-              default: 
+              default:
                 return `<span class="badge badge-danger">Tidak Aktif</span>`;
                 break;
             }

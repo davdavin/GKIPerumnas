@@ -183,9 +183,8 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
-            <form action="<?php echo base_url() . 'Pendeta/tambah_pendeta' ?>" method="post" enctype="multipart/form-data">
-
+          <form action="<?php echo base_url() . 'Pendeta/tambah_pendeta' ?>" method="post" enctype="multipart/form-data">
+            <div class="modal-body">
               <div class="form-group">
                 <label>Nama Lengkap Pendeta</label>
                 <input type="text" class="form-control" name="nama_pendeta" placeholder="Nama Pendeta" required>
@@ -249,10 +248,11 @@
                   <option value="0">Tidak Aktif</option>
                 </select>
               </div>
-
-              <button type="submit" class="btn btn-block btn-primary btn-sm">Submit</button>
-            </form>
-          </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
         </div>
         <!-- /.modal-content -->
       </div>
