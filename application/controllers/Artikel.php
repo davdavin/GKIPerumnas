@@ -12,7 +12,7 @@ class Artikel extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Artikel';
+        $data['title'] = "Artikel";
 
         //masih coba
         //PAGINATION
@@ -104,7 +104,7 @@ class Artikel extends CI_Controller
         if ($id_artikel == NULL) {
             redirect('Artikel');
         } else {
-          //$this->baca_artikel($id_artikel);
+            //$this->baca_artikel($id_artikel);
             redirect('Artikel/baca_artikel/' . $id_artikel);
         }
     }
@@ -167,7 +167,7 @@ class Artikel extends CI_Controller
 
     public function renungan_harian()
     {
-        $data['title'] = 'Renungan Harian';
+        $data['title'] = "Renungan Harian";
         $this->pagination_tipe_artikel('renungan_harian', $data['title']);
         $per_page = 4; //10
         $start = $this->uri->segment(3);
@@ -178,7 +178,7 @@ class Artikel extends CI_Controller
 
     public function bacaan_doa()
     {
-        $data['title'] = 'Doa Harian';
+        $data['title'] = "Doa Harian";
         $this->pagination_tipe_artikel('bacaan_doa', $data['title']);
         $per_page = 4;
         $start = $this->uri->segment(3);
@@ -188,7 +188,7 @@ class Artikel extends CI_Controller
 
     public function warta_jemaat()
     {
-        $data['title'] = 'Warta Jemaat';
+        $data['title'] = "Warta Jemaat";
         $this->pagination_tipe_artikel('warta_jemaat', $data['title']);
         $per_page = 4;
         $start = $this->uri->segment(3);
@@ -198,7 +198,7 @@ class Artikel extends CI_Controller
 
     public function artikel_lainnya()
     {
-        $data['title'] = 'Artikel Lainnya';
+        $data['title'] = "Artikel Lainnya";
         $this->pagination_tipe_artikel('artikel_lainnya', $data['title']);
         $per_page = 4;
         $start = $this->uri->segment(3);
