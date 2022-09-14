@@ -38,21 +38,21 @@ class Login_Admin extends CI_Controller
                     redirect('Dashboard');
                 } else {
                     $this->session->set_flashdata('info', 'Password salah');
-                    redirect('Login_Admin');
+                    redirect('login');
                 }
             } else {
                 $this->session->set_flashdata('info', 'Akun ini tidak aktif');
-                redirect('Login_Admin');
+                redirect('login');
             }
         } else {
             $this->session->set_flashdata('info', 'Username salah');
-            redirect('Login_Admin');
+            redirect('login');
         }
     }
 
     function logout()
     {
         $this->session->sess_destroy();
-        redirect('Login_Admin');
+        redirect('login');
     }
 }
