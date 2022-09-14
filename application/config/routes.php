@@ -54,27 +54,27 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 // login admin
-$route['login'] = 'login_admin';
-$route['login/verifikasi'] = 'login_admin/verifikasi';
-$route['logout'] = 'login_admin/logout';
+$route['login'] = 'Login_Admin';
+$route['login/verifikasi'] = 'Login_Admin/verifikasi';
+$route['logout'] = 'Login_Admin/logout';
 
 // dashboard admin
-/*$route['dashboard'] = 'dashboard';
+/*$route['dashboard'] = 'Dashboard';
 
 // kelola admin
-$route['admin'] = 'admin';
-$route['admin/tambah'] = 'admin/tambah_admin';
-$route['admin/proses_edit_status'] = 'admin/proses_edit_status';
-$route['admin/hapus/(:num)'] = 'admin/hapus_admin/$1';
+$route['admin'] = 'Admin';
+$route['admin/tambah'] = 'Admin/tambah_admin';
+$route['admin/proses_edit_status'] = 'Admin/proses_edit_status';
+$route['admin/hapus/(:num)'] = 'Admin/hapus_admin/$1';
 
 // anggota Jemaat
-$route['anggota_jemaat'] = 'anggota_jemaat';
-$route['anggota_jemaat/tambah'] = 'anggota_jemaat/tambah_anggota_jemaat';
-$route['anggota_jemaat/detail/(:num)'] = 'anggota_jemaat/lihat_detail_anggota/$1';
-$route['anggota_jemaat/edit/(:num)'] = 'anggota_jemaat/edit_anggota/$1';
-$route['anggota_jemaat/proses_edit'] = 'anggota_jemaat/proses_edit';
-$route['anggota_jemaat/hapus/(:num)'] = 'anggota_jemaat/hapus_anggota/$1';
+$route['anggota_jemaat'] = 'Anggota_Jemaat';
+$route['anggota_jemaat/tambah'] = 'Anggota_Jemaat/tambah_anggota_jemaat';
+$route['anggota_jemaat/detail/(:num)'] = 'Anggota_Jemaat/lihat_detail_anggota/$1';
+$route['anggota_jemaat/edit/(:num)'] = 'Anggota_Jemaat/edit_anggota/$1';
+$route['anggota_jemaat/proses_edit'] = 'Anggota_Jemaat/proses_edit';
+$route['anggota_jemaat/hapus/(:num)'] = 'Anggota_Jemaat/hapus_anggota/$1';
 
 // respon permintaan perubahan
-$route['anggota_jemaat/ubah_data_jemaat/(:num)'] = 'anggota_jemaat/ubah_data_jemaat/$1';
-$route['anggota_jemaat/proses_permintaan_perubahan'] = 'anggota_jemaat/proses_permintaan_perubahan'; */
+$route['anggota_jemaat/ubah_data_jemaat/(:num)'] = 'Anggota_Jemaat/ubah_data_jemaat/$1';
+$route['anggota_jemaat/proses_permintaan_perubahan'] = 'Anggota_Jemaat/proses_permintaan_perubahan'; */
