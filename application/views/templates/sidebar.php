@@ -78,7 +78,11 @@
           </a>
         </li> -->
                 <li class="nav-item">
-                    <a href="<?php echo base_url() . 'Keuangan' ?>" class="nav-link">
+                    <a <?php if ($this->uri->segment(1) == "Keuangan") {
+                            echo "class='nav-link active'";
+                        } else {
+                            echo "class='nav-link'";
+                        } ?> href="<?php echo base_url() . 'Keuangan' ?>">
                         <i class="nav-icon fas fa-wallet"></i>
                         <p> Keuangan </p>
                     </a>
@@ -139,7 +143,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?php echo base_url() . 'Login_Admin/logout' ?>" class="nav-link">
+                    <a href="<?php echo base_url() . 'logout' ?>" class="nav-link">
                         <i class="nav-icon fas fa-sign-out-alt"></i>
                         <p> Logout </p>
                     </a>
@@ -161,7 +165,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo base_url() . 'Login_Admin/logout' ?>" class="nav-link">
+                            <a href="<?php echo base_url() . 'logout' ?>" class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
                                 <p> Logout </p>
                             </a>
