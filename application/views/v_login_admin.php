@@ -45,7 +45,7 @@
       <div class="card-body login-card-body">
         <p class="login-box-msg">Sign in</p>
 
-        <form action="<?php echo base_url() . 'Login_Admin/verifikasi' ?>" method="post">
+        <form action="<?php echo base_url() . 'login/verifikasi' ?>" method="post">
           <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Username" name="username" required>
             <div class="input-group-append">
