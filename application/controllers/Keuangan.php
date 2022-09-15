@@ -23,6 +23,24 @@ class Keuangan extends CI_Controller {
 
     public function tampil_keuangan() {
         $keuangan = $this->M_Keuangan->tampil()->result_array();
+
+        for($i = 0; $i < count($keuangan); $i++) {
+            $keuangan[$i]['nominal'] = mata_uang_indo($keuangan[$i]['nominal']);
+        }
         echo json_encode($keuangan);
+    }
+
+    public function input_pencatatan() {
+        $kegiatan = $this->input->post('kegiatan');
+        $nominal = $this->input->post('nominal');
+        $keterangan = $this->input->post('keterangan');
+
+        $data = array(
+            'kegiatan' => $kegiatan, 'nominal' => $nominal, 'keterangan' => $keterangan
+        );
+
+        $this->M_Keuangan->insert_record($data, 'keuangan');
+        $this->session->set_flashdata('sukses', 'Berhasil dicatat');
+        redirect('keuangan');
     }
 }
