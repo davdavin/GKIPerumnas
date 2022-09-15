@@ -60,7 +60,11 @@
           </a>
         </li> -->
                 <li class="nav-item">
-                    <a href="<?php echo base_url() . 'Pendeta' ?>" class="nav-link">
+                    <a <?php if ($this->uri->segment(1) == 'Pendeta') {
+                            echo "class='nav-link active'";
+                        } else {
+                            echo "class='nav-link'";
+                        } ?> href="<?php echo base_url() . 'Pendeta' ?>">
                         <i class="nav-icon fas fa-solid fa-user-friends"></i>
                         <p> Pendeta </p>
                     </a>
@@ -78,11 +82,11 @@
           </a>
         </li> -->
                 <li class="nav-item">
-                    <a <?php if ($this->uri->segment(1) == "Keuangan") {
+                    <a <?php if ($this->uri->segment(1) == "keuangan") {
                             echo "class='nav-link active'";
                         } else {
                             echo "class='nav-link'";
-                        } ?> href="<?php echo base_url() . 'Keuangan' ?>">
+                        } ?> href="<?php echo base_url() . 'keuangan' ?>">
                         <i class="nav-icon fas fa-wallet"></i>
                         <p> Keuangan </p>
                     </a>
@@ -137,7 +141,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?php echo base_url() . 'Konten' ?>" class="nav-link">
+                    <a <?php if ($this->uri->segment(1) == 'Konten') {
+                            echo "class='nav-link active'";
+                        } else {
+                            echo "class='nav-link'";
+                        } ?> href="<?php echo base_url() . 'Konten' ?>">
                         <i class="nav-icon fas fa-marker"></i>
                         <p> Konten </p>
                     </a>
