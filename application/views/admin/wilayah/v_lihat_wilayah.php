@@ -108,7 +108,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="<?php echo base_url() . 'Login_Admin/logout' ?>" class="nav-link">
+          <a href="<?php echo base_url() . 'logout' ?>" class="nav-link">
             <i class="nav-icon fas fa-sign-out-alt"></i>
             <p> Logout </p>
           </a>
@@ -334,8 +334,8 @@
         }
       },
       ajax: {
-        url: '<?php echo base_url() . 'Wilayah/tampil_wilayah' ?>',
-        dataSrc: ''
+        url: "<?php echo base_url() . 'Wilayah/tampil_wilayah' ?>",
+        dataSrc: ""
       },
       columns: [{
           "data": "id_wilayah"
@@ -353,12 +353,12 @@
           "data": null,
           name: null,
           render: function(data, type, row, meta) {
-            return `<a class="btn btn-info btn-sm" href="<?php echo base_url() . 'Wilayah/edit_wilayah/' . $list_wilayah->id_wilayah ?>">
+            return `<a class="btn btn-info btn-sm" href="<?php echo base_url() . 'Wilayah/edit_wilayah/'?>${row.id_wilayah}">
                       <i class="fas fa-pencil-alt">
                       </i>
                       Edit
                     </a>
-                    <a id="tombol-hapus" class="btn btn-danger btn-sm" href="<?php echo base_url() . 'Wilayah/hapus_wilayah/' . $list_wilayah->id_wilayah ?>">
+                    <a id="tombol-hapus" class="btn btn-danger btn-sm" href="<?php echo base_url() . 'Wilayah/hapus_wilayah/'?>${row.id_wilayah}">
                       <i class="fas fa-trash">
                       </i>
                       Hapus

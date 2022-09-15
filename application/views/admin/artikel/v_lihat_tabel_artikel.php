@@ -109,21 +109,20 @@
       "lengthChange": true,
       "autoWidth": false,
       ajax: {
-        url: '<?php echo base_url() . 'Mengelola_Artikel/tampil_artikel'?>',
-        dataSrc: ''
+        url: "<?php echo base_url() . 'Mengelola_Artikel/tampil_artikel' ?>",
+        dataSrc: ""
       },
-      columns: [
-        {
-          "data":"id_artikel"
+      columns: [{
+          "data": "id_artikel"
         },
         {
-          "data":"judul_artikel"
+          "data": "judul_artikel"
         },
         {
-          "data":"tipe_artikel"
+          "data": "tipe_artikel"
         },
         {
-          "data":"deskripsi_singkat"
+          "data": "deskripsi_singkat"
         },
         {
           data: null,

@@ -348,8 +348,8 @@
       //  "processing": true,
       //"severSide": true,
       ajax: {
-        url: '<?php echo base_url() . '/Anggota_Jemaat/tampil_jemaat' ?>',
-        dataSrc: ''
+        url: "<?php echo base_url() . 'Anggota_Jemaat/tampil_jemaat' ?>",
+        dataSrc: ""
       },
       columns: [{
           "data": "id_anggota"
@@ -468,7 +468,7 @@
       placeholder: 'pilih',
       //  minimumInputLength: 3,
       ajax: {
-        url: '<?php echo base_url() . 'Anggota_Jemaat/nama_jemaat' ?>',
+        url: "<?php echo base_url() . 'Anggota_Jemaat/nama_jemaat' ?>",
         type: 'POST',
         dataType: 'JSON',
         delay: 250,
