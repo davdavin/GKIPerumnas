@@ -19,6 +19,7 @@ class Pendeta extends CI_Controller
     {
         $data['title'] = "Pendeta";
         $this->load->view('templates/header.php', $data);
+        $this->load->view('templates/sidebar.php');
         $this->load->view('admin/pendeta/v_lihat_pendeta.php');
     }
 
@@ -74,6 +75,7 @@ class Pendeta extends CI_Controller
         $data['title'] = "Pendeta";
         $data['detailPendeta'] = $this->M_Pendeta->tampil_detail($id_pendeta)->result();
         $this->load->view('templates/header.php', $data);
+        $this->load->view('templates/sidebar.php');
         $this->load->view('admin/pendeta/v_detail_pendeta', $data);
     }
 
@@ -83,6 +85,7 @@ class Pendeta extends CI_Controller
         $where = array('id_pendeta' => $id_pendeta);
         $data['pendetaEdit'] = $this->M_Pendeta->tampil_edit($where, 'pendeta')->result();
         $this->load->view('templates/header.php', $data);
+        $this->load->view('templates/sidebar.php');
         $this->load->view('admin/pendeta/v_edit_pendeta', $data);
     }
 

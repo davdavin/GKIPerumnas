@@ -216,8 +216,8 @@
         }
       },
       ajax: {
-        url: '<?php echo base_url() . 'Admin/tampil_admin' ?>',
-        dataSrc: ''
+        url: "<?php echo base_url() . 'Admin/tampil_admin' ?>",
+        dataSrc: ""
       },
       columns: [{
           "data": "id_admin"

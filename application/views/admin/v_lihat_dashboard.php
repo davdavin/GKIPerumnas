@@ -45,7 +45,6 @@
             <div class="small-box bg-info">
               <div class="inner">
                 <h3><?php echo $total_jemaat->jumlahJemaat ?></h3>
-
                 <p>Anggota Jemaat</p>
               </div>
               <div class="icon">
@@ -61,7 +60,6 @@
             <div class="small-box bg-teal">
               <div class="inner">
                 <h3><?Php echo $total_wilayah->jumlahWilayah ?></h3>
-
                 <p>Wilayah</p>
               </div>
               <div class="icon">
@@ -71,10 +69,11 @@
           </div>
         <?php } ?>
         <!-- ./col -->
+        <?php foreach ($totalKeuangan as $total) { ?>
         <div class="col-lg-3 col-6">
           <div class="small-box bg-success">
             <div class="inner">
-              <h3>Rp. 0</h3>
+              <h3><?php echo mata_uang_indo($total->total); ?></h3>
               <p>Total Keuangan Gereja</p>
             </div>
             <div class="icon">
@@ -82,13 +81,13 @@
             </div>
           </div>
         </div>
+        <?php } ?>
         <?php foreach ($permintaanBaru as $jumlah) { ?>
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-teal">
               <div class="inner">
                 <h3><?Php echo $jumlah->jumlahPermintaanBaru ?></h3>
-
                 <p>Permintaan Perubahan Data</p>
               </div>
               <div class="icon">

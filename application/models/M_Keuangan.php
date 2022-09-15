@@ -5,6 +5,10 @@ class M_Keuangan extends CI_Model {
         return $this->db->query("SELECT * FROM keuangan");
     }
 
+    public function total_keuangan() {
+        return $this->db->query("SELECT sum(nominal) as total FROM keuangan");
+    }
+
     public function insert_record($data, $table)
     {
         $this->db->insert($table, $data);

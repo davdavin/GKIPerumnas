@@ -202,7 +202,7 @@
       autoWidth: false,
       ajax: {
         url: "<?php echo base_url() . 'Dokumen/tampil_dokumen' ?>",
-        dataSrc: ''
+        dataSrc: ""
       },
       columns: [{
           data: "id_dokumen"

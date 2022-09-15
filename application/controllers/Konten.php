@@ -20,6 +20,7 @@ class Konten extends CI_Controller
         $data['title'] = "Konten";
         $data['kontenFotoIbadah'] = $this->M_Konten->tampil_konten_foto_ibadah()->result();
         $this->load->view('templates/header.php', $data);
+        $this->load->view('templates/sidebar.php');
         $this->load->view('admin/konten/v_konten.php', $data);
     }
 
@@ -40,6 +41,7 @@ class Konten extends CI_Controller
         $data['title'] = "Konten";
         $data['kontenSlide'] = $this->M_Konten->tampil_edit_slide($id_slide)->result();
         $this->load->view('templates/header.php', $data);
+        $this->load->view('templates/sidebar.php');
         $this->load->view('admin/konten/v_edit_slide.php', $data);
     }
 
