@@ -8,7 +8,7 @@ function tanggal_indonesia($tanggal_lengkap)
     );
     $pisah = explode("/", $tanggal);
 
-    $tanggal_baru = $pisah[0] . ' ' . $nama_bulan[$pisah[1]] . ' ' . $pisah[2];
+    $tanggal_baru = $pisah[0] . " " . $nama_bulan[$pisah[1]] . " " . $pisah[2];
     return $tanggal_baru; //echo $tanggal_baru;
 }
 
@@ -20,14 +20,18 @@ function waktu($waktu) {
 function dekripsi_notifikasi($data) {
 //$ci =& get_instance();
 
-$ci = get_instance();
+$ci =& get_instance();
 
-$ci->load->library('encryption');
-if($data == NULL) {
-    return '-';
-} else {
-    return $ci->encryption->decrypt($data);
+    $ci->load->library('encryption');
+    if($data == NULL) {
+        return "-";
+    } else {
+        return $ci->encryption->decrypt($data);
+    }
 }
+
+function mata_uang_indo($nominal) {
+    return "Rp. " . number_format($nominal, '2', ',', '.') ;
 }
 
 /*function login_status($status)
