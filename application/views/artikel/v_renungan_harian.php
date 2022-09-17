@@ -75,7 +75,7 @@
                     <?php if (count($renungan) > 0) {
                         foreach ($renungan as $list_renungan) { ?>
                             <div class="col-lg-6 artikel-item" data-aos="fade-up">
-                                <h4><a href="<?php echo base_url() . 'Artikel/baca_artikel/' . $list_renungan->id_artikel; ?>"><?php echo $list_renungan->judul_artikel ?> </a></h4>
+                                <h4><a href="<?php echo base_url() . 'artikel/' . $list_renungan->id_artikel; ?>"><?php echo $list_renungan->judul_artikel ?> </a></h4>
                                 <p><?php echo $list_renungan->deskripsi_singkat ?></p>
                             </div>
                         <?php }
