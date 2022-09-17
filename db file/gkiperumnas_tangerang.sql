@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 14, 2022 at 05:34 AM
+-- Generation Time: Sep 17, 2022 at 02:34 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -144,10 +144,10 @@ CREATE TABLE `dokumen` (
 --
 
 INSERT INTO `dokumen` (`id_dokumen`, `kode_dokumen`, `jenis_dokumen`, `dokumen`, `keterangan`) VALUES
-(1, 'DKM1', 'Formulir Persyaratan Pendaftaran Jemaat Baru', 'Syarat_menjadi_anggota_jemaat.pdf', 'Syarat menjadi jemaat baru'),
+(1, 'DKM1', 'Formulir Persyaratan menjadi Anggota Jemaat', 'Syarat_menjadi_anggota_jemaat.pdf', 'Syarat menjadi jemaat baru'),
 (2, 'DKM2', 'Formulir Permohonan Baptis Anak', 'Permohonan_Baptis_Anak.pdf', 'Permohonan untuk menerima baptis anak'),
-(3, 'DKM3', 'Formulir Katekisasi', 'Formulir_Katekisasi.pdf', 'Formulir ini diperlukan untuk jemaat yang akan menerima sidi'),
-(4, 'DKM4', 'Permohonan Sidi', 'Permohonan_Baptis-Sidi_di_GKI_Perumnas.pdf', 'Diperlukan untuk jemaat yang akan menerima sidi');
+(3, 'DKM3', 'Formulir Katekisasi', 'Formulir-Katekisasi.pdf', 'Formulir ini diperlukan untuk jemaat yang akan menerima sidi'),
+(4, 'DKM4', 'Permohonan Sidi', 'Permohonan_Baptis-Sidi.pdf', 'Diperlukan untuk jemaat yang akan menerima sidi');
 
 -- --------------------------------------------------------
 
@@ -159,8 +159,16 @@ CREATE TABLE `keuangan` (
   `id_keuangan` int(11) NOT NULL,
   `kegiatan` varchar(100) NOT NULL,
   `nominal` int(11) NOT NULL,
+  `tanggal_masuk` date NOT NULL,
   `keterangan` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `keuangan`
+--
+
+INSERT INTO `keuangan` (`id_keuangan`, `kegiatan`, `nominal`, `tanggal_masuk`, `keterangan`) VALUES
+(1, 'Ibadah Mingguan', 1200000, '2022-09-11', 'Persembahan ibadah tanggal 11 September 2022');
 
 -- --------------------------------------------------------
 
@@ -463,7 +471,7 @@ ALTER TABLE `dokumen`
 -- AUTO_INCREMENT for table `keuangan`
 --
 ALTER TABLE `keuangan`
-  MODIFY `id_keuangan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_keuangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `konten_foto_ibadah`
