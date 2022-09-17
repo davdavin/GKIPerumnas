@@ -53,6 +53,9 @@ $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+//baca artikel
+$route['artikel/(:num)'] = 'Artikel/baca_artikel/$1';
+
 // login admin
 $route['login'] = 'Login_Admin';
 $route['login/verifikasi'] = 'Login_Admin/verifikasi';

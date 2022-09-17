@@ -80,7 +80,7 @@
 					<?php if (count($artikel) > 0) {
 						foreach ($artikel as $list_artikel) { ?>
 							<div class="col-lg-6 artikel-item" data-aos="fade-up">
-								<h4><a href="<?php echo base_url() . 'Artikel/baca_artikel/' . $list_artikel->id_artikel; ?>"><?php echo $list_artikel->judul_artikel ?> </a></h4>
+								<h4><a href="<?php echo base_url() . 'artikel/' . $list_artikel->id_artikel; ?>"><?php echo $list_artikel->judul_artikel ?> </a></h4>
 								<p><?php echo $list_artikel->deskripsi_singkat ?></p>
 							</div>
 						<?php }
@@ -98,7 +98,7 @@
 	<script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<!-- Select2 -->
 	<script src="<?php echo base_url(); ?>assets/plugins/select2/js/select2.full.min.js"></script>
-<!--	<script src="<?php echo base_url();?>assets/plugins/select2/js/i18n/id.js"></script> -->
+	<!--	<script src="<?php echo base_url(); ?>assets/plugins/select2/js/i18n/id.js"></script> -->
 	<!-- Vendor JS Files -->
 	<script src="<?php echo base_url(); ?>resources/assets/vendor/aos/aos.js"></script>
 	<script src="<?php echo base_url(); ?>resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -113,63 +113,63 @@
 
 	<script>
 		$(document).ready(function() {
-		$('.pilih-artikel').select2({
-			placeholder: 'cari',
-			//language: "id",
-			language: {
-				inputTooShort: function(args) {
-					var chars = args.minimum - args.input.length;
-					if(chars == args.minimum) {
-						return "Masukan minimal " + chars + " atau lebih karakter";
-					} else {
-						return "Masukan " + chars + " huruf lagi";
+			$('.pilih-artikel').select2({
+				placeholder: 'cari',
+				//language: "id",
+				language: {
+					inputTooShort: function(args) {
+						var chars = args.minimum - args.input.length;
+						if (chars == args.minimum) {
+							return "Masukan minimal " + chars + " atau lebih karakter";
+						} else {
+							return "Masukan " + chars + " huruf lagi";
+						}
+					},
+					searching: function() {
+						return "Mencari...";
+					},
+					noResults: function() {
+						return "Tidak ada data yang sesuai";
 					}
 				},
-				searching: function() {
-					return "Mencari...";
+				minimumInputLength: 3,
+				ajax: {
+					url: '<?php echo base_url() . 'Artikel/cari' ?>',
+					type: 'POST',
+					dataType: 'JSON',
+					delay: 250,
+					data: function(params) {
+						return {
+							searchTerm: params.term
+						};
+					},
+					processResults: function(data) {
+						return {
+							results: data,
+						};
+					},
+					//	cache: true
 				},
-				noResults: function() {
-					return "Tidak ada data yang sesuai";
-				}
-			},
-			minimumInputLength: 3,
-			ajax: {
-				url: '<?php echo base_url() . 'Artikel/cari' ?>',
-				type: 'POST',
-				dataType: 'JSON',
-				delay: 250,
-				data: function(params) {
-					return {
-						searchTerm: params.term
-					};
-				},
-				processResults: function(data) {
-					return {
-						results: data,
-					};
-				},
-				//	cache: true
-			},
+			});
+
+			$('b[role="presentation"]').hide();
 		});
 
-		$('b[role="presentation"]').hide();
-	});
-
-	/*	$('#cari').addEventListener("keypress", function(e) {
-				//e.preventDefault();
-				if(e.key === "Enter") {		
-					$('#cari-artikel').submit(function() {
+		/*	$('#cari').addEventListener("keypress", function(e) {
 					//e.preventDefault();
-						$.ajax({
-							url: $(this).attr('action'),
-							type: 'POST',
-							dataType: 'json',
-							data: $(this).serialize()
-						});
-						
-					}); 
-				} 
-			}); */
+					if(e.key === "Enter") {		
+						$('#cari-artikel').submit(function() {
+						//e.preventDefault();
+							$.ajax({
+								url: $(this).attr('action'),
+								type: 'POST',
+								dataType: 'json',
+								data: $(this).serialize()
+							});
+							
+						}); 
+					} 
+				}); */
 	</script>
 </body>
 

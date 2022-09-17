@@ -331,7 +331,7 @@
           <?php foreach ($artikel as $list_artikel) {
             if ($list_artikel->tipe_artikel != "Warta Jemaat") { ?>
               <div class="col-lg-6 artikel-item" data-aos="fade-up">
-                <h4><a href="<?php echo base_url() . 'Artikel/baca_artikel/' . $list_artikel->id_artikel; ?>"><?php echo $list_artikel->judul_artikel ?> </a></h4>
+                <h4><a href="<?php echo base_url() . 'artikel/' . $list_artikel->id_artikel; ?>"><?php echo $list_artikel->judul_artikel ?> </a></h4>
                 <p><?php echo $list_artikel->deskripsi_singkat ?></p>
               </div>
           <?php }
@@ -396,8 +396,8 @@
           <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
             <div class="icon"><i class="bx bx-edit-alt"></i></div>
             <h4 class="title">Permintaan Perubahan Data</h4>
-            <p class="description">Klik link <a href="<?php echo base_url() . 'Permintaan' 
-                                                                                    ?>">disini</a></p>
+            <p class="description">Klik link <a href="<?php echo base_url() . 'Permintaan'
+                                                      ?>">disini</a></p>
           </div>
         </div>
 

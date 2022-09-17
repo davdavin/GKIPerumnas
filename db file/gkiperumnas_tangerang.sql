@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 17, 2022 at 02:34 PM
+-- Generation Time: Sep 17, 2022 at 03:39 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -120,7 +120,7 @@ CREATE TABLE `artikel` (
 
 INSERT INTO `artikel` (`id_artikel`, `id_tipe_artikel`, `judul_artikel`, `deskripsi_singkat`, `isi`, `file`, `tanggal_pembuatan`) VALUES
 (2, 4, 'Sejarah Singkat GKI Perumnas', 'GKI Perumnas awalnya terbentuk dari beberapa keluarga Kristen yang berdomisili di daerah Perumnas 1 dan 2.', '<p style=\"text-align: justify; line-height: 1.4;\"><span style=\"font-family: helvetica, arial, sans-serif; font-size: 12pt;\">GKI Perumnas awalnya terbentuk dari beberapa keluarga Kristen yang berdomisili di daerah Perumnas 1 dan 2. Yang sering kali bertemu dalam perjalanan menuju ke GKI Sutopo atau perjalanan pulang ke rumah dengan menaiki kendaraan angkutan kota. Dari perkenalan beberapa keluarga yang sama-sama beribadah di GKI Sutopo, akhirnya terbentuklah paduan suara wilayah Perumnas yang seringkali berlatih di rumah keluarga Andreas atau Totok Suroto. Setelah paduan suara wilayah rutin berlatih akhirnya mulailah dibentuk sekolah minggu bagi anak-anak. Juga dilaksanakan perayaan natal dan paskah untuk anak-anak sekolah minggu dengan menggunakan gedung sekolah SMP 5. Ketika kegiatan sekolah Minggu sudah mulai rutin barulah kemudian dibentuk KRT (Kebaktian Rumah Tangga) di beberapa rumah anggota Jemaat. Dan ketika KRT sudah mulai rutin akhirnya disepakati untuk membuat pos Jemaat sekitar tahun 1985an. Setelah melalui proses yang panjgan menjadi bakal Jemaat akhirnya didewasakan menjadi jemaat yang ke-75 pada tanggal 31 Oktober 1995.</span></p>', NULL, '2021-12-08'),
-(3, 2, 'Test', 'oke', NULL, '293Konsultasi.pdf', '2022-05-10'),
+(3, 2, 'Test', 'oke', NULL, '67627144Konsultasi1.pdf', '2022-05-10'),
 (4, 1, 'Test1', 'okoke', '<p>Sikat lah masa engga</p>', NULL, '2022-05-09'),
 (5, 1, 'Test2', 'lalalal', '<p>Sik asik</p>', NULL, '2022-05-09'),
 (6, 1, 'Test Yu', 'sa', '<p>sa</p>', NULL, '2022-06-28');

@@ -62,7 +62,7 @@
                         foreach ($warta as $list) {
                     ?>
                             <div class="col-lg-6 artikel-item" data-aos="fade-up">
-                                <h4><a href="<?php echo base_url() . 'Artikel/baca_artikel/' . $list->id_artikel; ?>"><?php echo $list->judul_artikel ?> </a></h4>
+                                <h4><a href="<?php echo base_url() . 'artikel/' . $list->id_artikel; ?>"><?php echo $list->judul_artikel ?> </a></h4>
                                 <p><?php echo $list->deskripsi_singkat ?></p>
                             </div>
                         <?php }
@@ -70,7 +70,7 @@
                         <p class="tulisan-tengah"><?php echo "Belum Ada Warta Jemaat"; ?></p>
                     <?php   } ?>
                 </div>
-                <?php echo $this->pagination->create_links();?>
+                <?php echo $this->pagination->create_links(); ?>
             </div>
         </section>
     </main>
