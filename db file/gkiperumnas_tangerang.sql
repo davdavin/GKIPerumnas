@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 17, 2022 at 03:39 PM
+-- Generation Time: Sep 19, 2022 at 04:11 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -20,30 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `gkiperumnas_tangerang`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `admin`
---
-
-CREATE TABLE `admin` (
-  `id_admin` int(11) NOT NULL,
-  `id_level_admin` int(11) NOT NULL,
-  `nama_lengkap` text NOT NULL,
-  `username` varchar(25) NOT NULL,
-  `password` char(255) NOT NULL,
-  `status_admin` tinyint(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `admin`
---
-
-INSERT INTO `admin` (`id_admin`, `id_level_admin`, `nama_lengkap`, `username`, `password`, `status_admin`) VALUES
-(1, 1, 'Christian', 'admin', '$2y$10$V2C4UUFpOz32auPh99IqfeY6/WfV/J0w1jr5QpJQaakZCZr.GUrUu', 1),
-(2, 2, 'Boy', 'admin2', '$2y$10$F7HmEDTnN8YlfwuRYFcWbuPK343HFauM.5J7n1DiJt2/2GfTgM4ly', 1),
-(3, 1, 'Christella', 'elaela', '$2y$10$e7HuWNdcMjYrNxz7yPidL.6ohTUkUReG.hbAvUpdjByOBAxFVZy1q', 1);
 
 -- --------------------------------------------------------
 
@@ -83,7 +59,7 @@ CREATE TABLE `anggota_jemaat` (
 --
 
 INSERT INTO `anggota_jemaat` (`id_anggota`, `id_wilayah`, `no_anggota`, `username`, `password`, `nama_lengkap_anggota`, `alamat_anggota`, `nohp_anggota`, `email_anggota`, `jenis_kelamin_anggota`, `golongan_darah_anggota`, `status_anggota`, `pendidikan_anggota`, `pekerjaan_anggota`, `kelompok_etnis_anggota`, `tanggal_lahir_anggota`, `tanggal_baptis_anggota`, `tanggal_sidi_anggota`, `tanggal_atestasi_masuk`, `tanggal_atestasi_keluar`, `tanggal_meninggal`, `tanggal_dkh`, `tanggal_ex_dkh`, `status_akun`) VALUES
-(1, 1, '121212', 'brobro', '12345', 'Bro Philip', 'Jl. Apel', '089273218231', 'yoyoyoyo@gmail.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '2000-09-01', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1),
+(1, 1, '121212', 'brobro', '12345', 'Bro Philip', 'Jl. Apel', '0808273262314', 'yoyoyoyo@gmail.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '2000-09-01', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1),
 (2, 5, '12981231', 'sinta', '$2y$10$OaGyotAVZYTK2QHNhr3GXuERLJPXu4tDEgMFM/pvQ5Abd4dNldp2G', 'Sinta', 'Jl. Apel ', '089283282121', 'contoh@example.com', 'Perempuan', 'A', 1, 'S1', 'Front End', 'Sunda', '2000-05-04', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1),
 (3, 1, '123213', '', '', 'Jesica', 'Jl. Buah Apel No.2 ', '088217231921', 'sisisis@example.com', 'Perempuan', 'A', 0, 'S1', 'Analis', 'Jawa', '1999-01-09', '2009-03-12', '2010-08-25', '2000-08-23', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
 (4, 2, '123212', 'michael', '$2y$10$yg9JNtgBv5la1YFfswPd2.9RpyyZNTCdVasf2I8o2veFjKAsm6ya2', 'Michael', 'Jl', '088217231921', 'sisisis@example.com', 'Laki-laki', 'A', 1, 'S1', 'Analis', 'Jawa', '1999-01-21', '2009-03-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1),
@@ -119,11 +95,53 @@ CREATE TABLE `artikel` (
 --
 
 INSERT INTO `artikel` (`id_artikel`, `id_tipe_artikel`, `judul_artikel`, `deskripsi_singkat`, `isi`, `file`, `tanggal_pembuatan`) VALUES
+(1, 1, 'KELUARGA YANG HIDUP DALAM PEMULIHAN', 'Markus 10 : 17 - 31', '<p><span style=\"font-weight: 400;\">Seringkali kita berpikir bahwa pemulihan atau penyembuhan adalah sebuah pencapaian dalam hidup beriman. Sederhananya karena saya sudah menjadi Kristen yang baik maka saya mendapatkan Anugerah pemulihan itu. Lalu kalau saya Kristen yang tidak baik maka yang terjadi sebaliknya. Pada dasarnya kita tahu bahwa karya Allah tidak bergerak seperti itu, Karya Allah bukan honor berbuat baik atau pahala.&nbsp;</span></p>\r\n<p><span style=\"font-weight: 400;\">Tetapi Karya Allah adalah Anugerah&hellip;. Anugerah berarti bicara sesuatu yang dianugerahkan (diberikan) secara cuma-cuma. Lalu apa standart orang yang layak mendapatkan Anugerah, jawabnya kesetiaan.&nbsp;</span></p>\r\n<p><span style=\"font-weight: 400;\">Kesetiaan untuk hidup dalam Rancangan-Nya, kesetiaan mengikuti ajaran-Nya. Mengalami Anugerah adalah mau setia dalam rancangan Allah. Itulah mengapa Yesus berkata:</span></p>\r\n<p><em><span style=\"font-weight: 400;\">\"Hanya satu lagi kekuranganmu: pergilah, juallah apa yang kaumiliki dan berikanlah itu kepada orang-orang miskin, maka engkau akan beroleh harta di sorga, kemudian datanglah ke mari dan ikutlah Aku.\" (Mar 10:21).</span></em></p>\r\n<p><span style=\"font-weight: 400;\">Dan respon sang anak muda itu adalah kecewa dan sedih karena banyak hartanya. Response kesedihan itu tentu saja karena sang anak muda merasa rencana Allah tak sesuai dengan rancangannya. kita selalu ingin rancangan Allah sesuai dengan kita, dan tak jarang memaksakannya. Hal yang sama mungkin kita paksa kan juga kepada anggota keluarga kita.</span></p>\r\n<p><span style=\"font-weight: 400;\">Orang tua memaksakan rancangan nya pada anaknya, suami pada istrinya, dst. Padahal rancangan kita belum tentu rancangan Allah atas hidup mereka. Itulah mengapa Yesus berkata sukarlah memang untuk masuk kerajaan Allah (ay .24). Karena masuk kerajaan Allah berarti menemukan dan menghidupi rancangan Allah atas keluarga kita.&nbsp;</span></p>\r\n<p><span style=\"font-weight: 400;\">Jadi dapat disimpulkan pemulihan adalah proses perjalanan dalam menghidupi rancangan, Mengikuti rancangan Nya berarti mau melakukan kehendak Nya, setia pada ketetapan Nya, dan bersedia berkarya bagi sesama.</span></p>\r\n<p>&nbsp;</p>\r\n<p style=\"text-align: center;\"><strong><em>Jadikanlah Rancangan-Rancangan Allah sebagai yang terutama maka kita akan merasakan Pemulihan-Nya.</em></strong></p>', NULL, '2022-02-01'),
 (2, 4, 'Sejarah Singkat GKI Perumnas', 'GKI Perumnas awalnya terbentuk dari beberapa keluarga Kristen yang berdomisili di daerah Perumnas 1 dan 2.', '<p style=\"text-align: justify; line-height: 1.4;\"><span style=\"font-family: helvetica, arial, sans-serif; font-size: 12pt;\">GKI Perumnas awalnya terbentuk dari beberapa keluarga Kristen yang berdomisili di daerah Perumnas 1 dan 2. Yang sering kali bertemu dalam perjalanan menuju ke GKI Sutopo atau perjalanan pulang ke rumah dengan menaiki kendaraan angkutan kota. Dari perkenalan beberapa keluarga yang sama-sama beribadah di GKI Sutopo, akhirnya terbentuklah paduan suara wilayah Perumnas yang seringkali berlatih di rumah keluarga Andreas atau Totok Suroto. Setelah paduan suara wilayah rutin berlatih akhirnya mulailah dibentuk sekolah minggu bagi anak-anak. Juga dilaksanakan perayaan natal dan paskah untuk anak-anak sekolah minggu dengan menggunakan gedung sekolah SMP 5. Ketika kegiatan sekolah Minggu sudah mulai rutin barulah kemudian dibentuk KRT (Kebaktian Rumah Tangga) di beberapa rumah anggota Jemaat. Dan ketika KRT sudah mulai rutin akhirnya disepakati untuk membuat pos Jemaat sekitar tahun 1985an. Setelah melalui proses yang panjgan menjadi bakal Jemaat akhirnya didewasakan menjadi jemaat yang ke-75 pada tanggal 31 Oktober 1995.</span></p>', NULL, '2021-12-08'),
-(3, 2, 'Test', 'oke', NULL, '67627144Konsultasi1.pdf', '2022-05-10'),
-(4, 1, 'Test1', 'okoke', '<p>Sikat lah masa engga</p>', NULL, '2022-05-09'),
-(5, 1, 'Test2', 'lalalal', '<p>Sik asik</p>', NULL, '2022-05-09'),
+(4, 1, 'Test1', 'okoke', '<p>Oke</p>', NULL, '2022-05-09'),
+(5, 1, 'Test2', 'lalalal', '<p>Tess</p>', NULL, '2022-05-09'),
 (6, 1, 'Test Yu', 'sa', '<p>sa</p>', NULL, '2022-06-28');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `coba_ruangan`
+--
+
+CREATE TABLE `coba_ruangan` (
+  `id_coba_ruangan` int(11) NOT NULL,
+  `nama_ruangan` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `coba_ruangan`
+--
+
+INSERT INTO `coba_ruangan` (`id_coba_ruangan`, `nama_ruangan`) VALUES
+(1, 'rapat'),
+(2, 'meeting');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `detail_coba_ruangan`
+--
+
+CREATE TABLE `detail_coba_ruangan` (
+  `id_detail_coba_ruangan` int(11) NOT NULL,
+  `id_coba_ruangan` int(11) NOT NULL,
+  `gambar` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `detail_coba_ruangan`
+--
+
+INSERT INTO `detail_coba_ruangan` (`id_detail_coba_ruangan`, `id_coba_ruangan`, `gambar`) VALUES
+(1, 1, 'https://c0.wallpaperflare.com/preview/483/210/436/car-green-4x4-jeep.jpg'),
+(2, 1, 'https://www.newsbtc.com/wp-content/uploads/2020/06/mesut-kaya-LcCdl__-kO0-unsplash-scaled.jpg'),
+(3, 1, 'https://images6.alphacoders.com/312/thumb-1920-312773.jpg'),
+(4, 2, 'https://c0.wallpaperflare.com/preview/483/210/436/car-green-4x4-jeep.jpg\"'),
+(5, 1, 'https://www.newsbtc.com/wp-content/uploads/2020/06/mesut-kaya-LcCdl__-kO0-unsplash-scaled.jpg');
 
 -- --------------------------------------------------------
 
@@ -144,7 +162,7 @@ CREATE TABLE `dokumen` (
 --
 
 INSERT INTO `dokumen` (`id_dokumen`, `kode_dokumen`, `jenis_dokumen`, `dokumen`, `keterangan`) VALUES
-(1, 'DKM1', 'Formulir Persyaratan menjadi Anggota Jemaat', 'Syarat_menjadi_anggota_jemaat.pdf', 'Syarat menjadi jemaat baru'),
+(1, 'DKM1', 'Formulir Persyaratan Pendaftaran Jemaat baru', 'Syarat_menjadi_anggota_jemaat.pdf', 'Syarat menjadi jemaat baru'),
 (2, 'DKM2', 'Formulir Permohonan Baptis Anak', 'Permohonan_Baptis_Anak.pdf', 'Permohonan untuk menerima baptis anak'),
 (3, 'DKM3', 'Formulir Katekisasi', 'Formulir-Katekisasi.pdf', 'Formulir ini diperlukan untuk jemaat yang akan menerima sidi'),
 (4, 'DKM4', 'Permohonan Sidi', 'Permohonan_Baptis-Sidi.pdf', 'Diperlukan untuk jemaat yang akan menerima sidi');
@@ -224,21 +242,45 @@ INSERT INTO `konten_slide` (`id_slide`, `judul_slide`, `deskripsi_slide`, `gamba
 -- --------------------------------------------------------
 
 --
--- Table structure for table `level_admin`
+-- Table structure for table `level_user`
 --
 
-CREATE TABLE `level_admin` (
-  `id_level_admin` int(11) NOT NULL,
-  `level_admin` varchar(25) NOT NULL
+CREATE TABLE `level_user` (
+  `id_level_user` int(11) NOT NULL,
+  `level_user` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `level_admin`
+-- Dumping data for table `level_user`
 --
 
-INSERT INTO `level_admin` (`id_level_admin`, `level_admin`) VALUES
-(1, 'Admin 1'),
-(2, 'Admin 2');
+INSERT INTO `level_user` (`id_level_user`, `level_user`) VALUES
+(1, 'Sekretaris Umum'),
+(2, 'Wakil Sekretaris Umum'),
+(3, 'Pendeta'),
+(4, 'Calon Pendeta'),
+(5, 'Bendahara');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pemasukan_keuangan`
+--
+
+CREATE TABLE `pemasukan_keuangan` (
+  `id_pemasukan` int(11) NOT NULL,
+  `kegiatan` varchar(100) NOT NULL,
+  `nominal` int(11) NOT NULL,
+  `tanggal_masuk` datetime NOT NULL,
+  `keterangan` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pemasukan_keuangan`
+--
+
+INSERT INTO `pemasukan_keuangan` (`id_pemasukan`, `kegiatan`, `nominal`, `tanggal_masuk`, `keterangan`) VALUES
+(1, 'Ibadah Mingguan', 1200000, '2022-09-11 00:00:00', 'Persembahan ibadah tanggal 11 September 2022');
 
 -- --------------------------------------------------------
 
@@ -303,7 +345,7 @@ CREATE TABLE `permintaan_perubahan_data_jemaat` (
   `email_baru` varchar(255) DEFAULT NULL,
   `alamat_baru` varchar(255) DEFAULT NULL,
   `pekerjaan_baru` varchar(255) DEFAULT NULL,
-  `tanggal_permintaan` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `tanggal_permintaan` datetime NOT NULL,
   `is_notif` tinyint(4) NOT NULL,
   `is_updated` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -328,6 +370,30 @@ INSERT INTO `tipe_artikel` (`id_tipe_artikel`, `tipe_artikel`) VALUES
 (2, 'Warta Jemaat'),
 (3, 'Doa Harian'),
 (4, 'Artikel lainnya');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id_user` int(11) NOT NULL,
+  `id_level_user` int(11) NOT NULL,
+  `nama_lengkap` varchar(100) NOT NULL,
+  `username` varchar(25) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `status_user` tinyint(4) NOT NULL,
+  `tanggal_dibuat` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id_user`, `id_level_user`, `nama_lengkap`, `username`, `password`, `status_user`, `tanggal_dibuat`) VALUES
+(1, 1, 'Admin min', 'admin', '$2y$10$y2DQ4/TFFDm7A5.alm1c3OX93i.EgNjlnTAExsa38vHJhcttxODwC', 1, '2022-09-18 20:18:08'),
+(2, 1, 'Christella', 'stella', '$2y$10$zWa0ie9.mG4qe98Ax2L9POR5eRm0orxzPgLQalCxdkd.tY035Cay6', 1, '2022-09-18 20:13:20');
 
 -- --------------------------------------------------------
 
@@ -361,12 +427,6 @@ INSERT INTO `wilayah` (`id_wilayah`, `kode_wilayah`, `koordinator_wilayah`, `nam
 --
 
 --
--- Indexes for table `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id_admin`);
-
---
 -- Indexes for table `anggota_jemaat`
 --
 ALTER TABLE `anggota_jemaat`
@@ -377,6 +437,19 @@ ALTER TABLE `anggota_jemaat`
 --
 ALTER TABLE `artikel`
   ADD PRIMARY KEY (`id_artikel`);
+
+--
+-- Indexes for table `coba_ruangan`
+--
+ALTER TABLE `coba_ruangan`
+  ADD PRIMARY KEY (`id_coba_ruangan`);
+
+--
+-- Indexes for table `detail_coba_ruangan`
+--
+ALTER TABLE `detail_coba_ruangan`
+  ADD PRIMARY KEY (`id_detail_coba_ruangan`),
+  ADD KEY `FK_ID_COBA_RUANGAN` (`id_coba_ruangan`);
 
 --
 -- Indexes for table `dokumen`
@@ -403,10 +476,16 @@ ALTER TABLE `konten_slide`
   ADD PRIMARY KEY (`id_slide`);
 
 --
--- Indexes for table `level_admin`
+-- Indexes for table `level_user`
 --
-ALTER TABLE `level_admin`
-  ADD PRIMARY KEY (`id_level_admin`);
+ALTER TABLE `level_user`
+  ADD PRIMARY KEY (`id_level_user`);
+
+--
+-- Indexes for table `pemasukan_keuangan`
+--
+ALTER TABLE `pemasukan_keuangan`
+  ADD PRIMARY KEY (`id_pemasukan`);
 
 --
 -- Indexes for table `pendeta`
@@ -433,6 +512,12 @@ ALTER TABLE `tipe_artikel`
   ADD PRIMARY KEY (`id_tipe_artikel`);
 
 --
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id_user`);
+
+--
 -- Indexes for table `wilayah`
 --
 ALTER TABLE `wilayah`
@@ -444,12 +529,6 @@ ALTER TABLE `wilayah`
 --
 
 --
--- AUTO_INCREMENT for table `admin`
---
-ALTER TABLE `admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
 -- AUTO_INCREMENT for table `anggota_jemaat`
 --
 ALTER TABLE `anggota_jemaat`
@@ -459,7 +538,19 @@ ALTER TABLE `anggota_jemaat`
 -- AUTO_INCREMENT for table `artikel`
 --
 ALTER TABLE `artikel`
-  MODIFY `id_artikel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_artikel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `coba_ruangan`
+--
+ALTER TABLE `coba_ruangan`
+  MODIFY `id_coba_ruangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `detail_coba_ruangan`
+--
+ALTER TABLE `detail_coba_ruangan`
+  MODIFY `id_detail_coba_ruangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `dokumen`
@@ -486,10 +577,16 @@ ALTER TABLE `konten_slide`
   MODIFY `id_slide` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `level_admin`
+-- AUTO_INCREMENT for table `level_user`
 --
-ALTER TABLE `level_admin`
-  MODIFY `id_level_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `level_user`
+  MODIFY `id_level_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `pemasukan_keuangan`
+--
+ALTER TABLE `pemasukan_keuangan`
+  MODIFY `id_pemasukan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `pendeta`
@@ -507,13 +604,19 @@ ALTER TABLE `pengumpulan_dokumen`
 -- AUTO_INCREMENT for table `permintaan_perubahan_data_jemaat`
 --
 ALTER TABLE `permintaan_perubahan_data_jemaat`
-  MODIFY `id_permintaan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_permintaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tipe_artikel`
 --
 ALTER TABLE `tipe_artikel`
   MODIFY `id_tipe_artikel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `wilayah`
@@ -524,6 +627,12 @@ ALTER TABLE `wilayah`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `detail_coba_ruangan`
+--
+ALTER TABLE `detail_coba_ruangan`
+  ADD CONSTRAINT `FK_ID_COBA_RUANGAN` FOREIGN KEY (`id_coba_ruangan`) REFERENCES `coba_ruangan` (`id_coba_ruangan`);
 
 --
 -- Constraints for table `wilayah`
