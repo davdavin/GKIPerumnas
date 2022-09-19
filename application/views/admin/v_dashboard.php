@@ -69,18 +69,18 @@
           </div>
         <?php } ?>
         <!-- ./col -->
-        <?php foreach ($totalKeuangan as $total) { ?>
-        <div class="col-lg-3 col-6">
-          <div class="small-box bg-success">
-            <div class="inner">
-              <h3><?php echo mata_uang_indo($total->total); ?></h3>
-              <p>Total Keuangan Gereja</p>
-            </div>
-            <div class="icon">
-              <i class="fas fa-wallet"></i>
+        <?php foreach ($totalKeuangan as $saldo) { ?>
+          <div class="col-lg-3 col-6">
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3><?php echo mata_uang_indo($saldo->total); ?></h3>
+                <p>Total Keuangan Gereja</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-wallet"></i>
+              </div>
             </div>
           </div>
-        </div>
         <?php } ?>
         <?php foreach ($permintaanBaru as $jumlah) { ?>
           <div class="col-lg-3 col-6">

@@ -81,15 +81,46 @@
             <p> Ruangan </p>
           </a>
         </li> -->
-                <li class="nav-item">
+                <li <?php if ($this->uri->segment(1) == 'keuangan') {
+                        echo "class='nav-item menu-open'";
+                    } else {
+                        echo "class='nav-item'";
+                    } ?>>
                     <a <?php if ($this->uri->segment(1) == "keuangan") {
                             echo "class='nav-link active'";
                         } else {
                             echo "class='nav-link'";
                         } ?> href="<?php echo base_url() . 'keuangan' ?>">
                         <i class="nav-icon fas fa-wallet"></i>
-                        <p> Keuangan </p>
+                        <p>
+                            Keuangan
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a <?php if ($this->uri->segment(1) == "keuangan") {
+                                    echo "class='nav-link active'";
+                                } else {
+                                    echo "class='nav-link'";
+                                } ?> href="<?php echo base_url() . 'keuangan' ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Uang Masuk</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo base_url() . '' ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Uang Keluar</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo base_url() . '' ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Laporan</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li <?php if ($this->uri->segment(1) == 'mengelola_artikel') {
                         echo "class='nav-item menu-open'";
