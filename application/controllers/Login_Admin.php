@@ -24,10 +24,10 @@ class Login_Admin extends CI_Controller
         );
 
         //   $cek_status = $this->M_Admin->cek_status($username)->num_rows();
-        $cek_login = $this->M_Admin->cek_login('admin', $where)->row_array();
+        $cek_login = $this->M_Admin->cek_login('user', $where)->row_array();
 
         if ($cek_login) {
-            if ($cek_login['status_admin'] == 1) {
+            if ($cek_login['status_user'] == 1) {
                 if (password_verify($password, $cek_login['password'])) {
                     $session = array(
                         'username' => $cek_login['username'],
