@@ -24,7 +24,7 @@
         <h3 class="card-title">Form Edit Artikel</h3>
       </div>
       <?php foreach ($artikel_edit as $detail) { ?>
-        <form method="post" action="<?php echo base_url() . 'Mengelola_Artikel/proses_edit_artikel' ?>" class="submit-artikel" enctype="multipart/form-data">
+        <form method="post" action="<?php echo base_url() . 'mengelola_artikel/proses_edit' ?>" class="submit-artikel" enctype="multipart/form-data">
           <input type="hidden" name="id_artikel" value="<?= $detail->id_artikel; ?>">
           <div class="card-body">
             <div class="form-group">
@@ -240,7 +240,7 @@
                   showConfirmButton: false,
                   timer: 1000,
                 }).then((confirmed) => {
-                  window.location.href = "<?php echo base_url() . 'Mengelola_Artikel' ?>";
+                  window.location.href = "<?php echo base_url() . 'mengelola_artikel' ?>";
                 });
               }
             }
