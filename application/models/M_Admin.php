@@ -9,13 +9,13 @@ class M_Admin extends CI_Model
 
     public function tampil()
     {
-        $query = $this->db->query("SELECT * FROM admin JOIN level_admin ON admin.id_level_admin = level_admin.id_level_admin ");
+        $query = $this->db->query("SELECT * FROM user JOIN level_user ON user.id_level_user = level_user.id_level_user ");
         return $query;
     }
 
     public function tampil_level()
     {
-        return $this->db->query("SELECT * FROM level_admin");
+        return $this->db->query("SELECT * FROM level_user");
     }
 
     public function insert_record($data, $table)
