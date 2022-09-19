@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Mengelola_Artikel extends CI_Controller
+class MengelolaArtikel extends CI_Controller
 {
     public function __construct()
     {
@@ -242,12 +242,12 @@ class Mengelola_Artikel extends CI_Controller
         if ($file['file'] == NULL) {
             $this->M_Artikel->delete_record($where, 'artikel');
             $this->session->set_flashdata('sukses', 'Artikel berhasil dihapus');
-            redirect('Mengelola_Artikel');
+            redirect('mengelola_artikel');
         } else {
             @unlink('./wartaJemaat/' . $file['file']);
             $this->M_Artikel->delete_record($where, 'artikel');
             $this->session->set_flashdata('sukses', 'Artikel berhasil dihapus');
-            redirect('Mengelola_Artikel');
+            redirect('mengelola_artikel');
         }
     }
 }

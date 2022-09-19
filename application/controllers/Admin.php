@@ -7,9 +7,7 @@ class Admin extends CI_Controller
     {
         parent::__construct();
 
-        if ($this->session->userdata('status') != "login") {
-            redirect('login');
-        }
+       
         $this->load->model(array('M_Admin'));
         $this->load->helper('url', 'form');
         $this->load->library('form_validation');
@@ -17,29 +15,29 @@ class Admin extends CI_Controller
 
     public function index()
     {
-        $data['title'] = "Admin";
-        $data['admin'] = $this->M_Admin->tampil()->result();
-        $data['levelAdmin'] = $this->M_Admin->tampil_level()->result();
+        $data['title'] = "User";
+        $data['user'] = $this->M_Admin->tampil()->result();
+        $data['levelUser'] = $this->M_Admin->tampil_level()->result();
         $this->load->view('templates/header.php', $data);
         $this->load->view('templates/sidebar.php');
-        $this->load->view('admin/v_lihat_admin.php', $data);
+        $this->load->view('admin/v_manage_user.php', $data);
     }
 
-    public function tampil_admin()
+    public function tampil_user()
     {
         $query = $this->M_Admin->tampil()->result();
         echo json_encode($query);
     }
 
-    public function tambah_admin()
+    public function tambah_user()
     {
-        $nama_admin = $this->input->post('nama_admin');
+        $nama = $this->input->post('nama_lengkap');
         $username = $this->input->post('username');
         $password = $this->input->post('password');
         $level = $this->input->post('level');
 
-        $this->form_validation->set_rules('nama_admin', 'Nama', 'trim|required');
-        $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[15]|is_unique[admin.username]');
+        $this->form_validation->set_rules('nama_lengkap', 'Nama', 'trim|required');
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[15]|is_unique[user.username]');
         $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[5]|max_length[15]');
         $this->form_validation->set_rules('level', 'Level', 'required');
 
@@ -51,19 +49,21 @@ class Admin extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $respon = array(
                 'sukses' => false,
-                'error_nama' => form_error('nama_admin'),
+                'error_nama' => form_error('nama_lengkap'),
                 'error_username' => form_error('username'),
                 'error_password' => form_error('password'),
                 'error_level' => form_error('level')
             );
             echo json_encode($respon);
         } else {
+            date_default_timezone_set('Asia/Jakarta');
+            $tanggal = date('Y-m-d H:i:s');
             $data = array(
-                'id_level_admin' => $level, 'nama_lengkap' => $nama_admin, 'username' => $username,
-                'password' => password_hash($password, PASSWORD_DEFAULT), 'status_admin' => 1
+                'id_level_user' => $level, 'nama_lengkap' => $nama, 'username' => $username,
+                'password' => password_hash($password, PASSWORD_DEFAULT), 'status_user' => 1, 'tanggal_dibuat' => $tanggal
             );
 
-            $this->M_Admin->insert_record($data, 'admin');
+            $this->M_Admin->insert_record($data, 'user');
 
             $respon['sukses'] = "Data berhasil disimpan";
             echo json_encode($respon);
@@ -72,18 +72,18 @@ class Admin extends CI_Controller
 
     public function proses_edit_status()
     {
-        $where = array('id_admin' => $this->input->post('id'));
-        $data = array('status_admin' => $this->input->post('status'));
-        $this->M_Admin->update_record($where, $data, 'admin');
+        $where = array('id_user' => $this->input->post('id'));
+        $data = array('status_user' => $this->input->post('status'));
+        $this->M_Admin->update_record($where, $data, 'user');
         $this->session->set_flashdata('sukses', 'Berhasil ubah status');
         redirect('Admin');
     }
 
-    public function hapus_admin($id_admin)
+    public function hapus_user($id_user)
     {
-        $where = array('id_admin' => $id_admin);
-        $data = array('status_admin' => '0');
-        $this->M_Admin->update_record($where, $data, 'admin');
+        $where = array('id_user' => $id_user);
+        $data = array('status_user' => '0');
+        $this->M_Admin->update_record($where, $data, 'user');
         $this->session->set_flashdata('sukses', 'Berhasil ubah status menjadi tidak akitf');
         redirect('Admin');
     }

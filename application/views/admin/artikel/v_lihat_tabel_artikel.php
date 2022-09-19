@@ -27,7 +27,7 @@
         </div>
 
         <div class="card-body">
-          <a href="<?php echo base_url() . 'Mengelola_Artikel/tambah_artikel' ?>"><button type="button" class="btn btn-primary">
+          <a href="<?php echo base_url() . 'mengelola_artikel/tambah' ?>"><button type="button" class="btn btn-primary">
               <i class="fas fa-plus"></i> Tambah artikel
             </button></a><br><br>
 
@@ -41,8 +41,6 @@
                 <th>Aksi</th>
               </tr>
             </thead>
-            <tbody>
-            </tbody>
           </table>
         </div>
 
@@ -109,7 +107,7 @@
       "lengthChange": true,
       "autoWidth": false,
       ajax: {
-        url: "<?php echo base_url() . 'Mengelola_Artikel/tampil_artikel' ?>",
+        url: "<?php echo base_url() . 'MengelolaArtikel/tampil_artikel' ?>",
         dataSrc: ""
       },
       columns: [{
@@ -129,12 +127,12 @@
           name: null,
           sortable: false,
           render: function(data, type, row, meta) {
-            return `<a class="btn btn-info btn-sm" href="<?php echo base_url() . 'Mengelola_Artikel/edit_artikel/' ?>${row.id_artikel}">
+            return `<a class="btn btn-info btn-sm" href="<?php echo base_url() . 'mengelola_artikel/edit/' ?>${row.id_artikel}">
                       <i class="fas fa-pencil-alt">
                       </i>
                       Edit
                     </a>
-                    <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'Mengelola_Artikel/hapus_artikel/' ?>${row.id_artikel}">
+                    <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'mengelola_artikel/hapus/' ?>${row.id_artikel}">
                       <i class="fas fa-trash">
                       </i>
                       Hapus

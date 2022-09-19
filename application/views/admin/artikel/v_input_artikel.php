@@ -25,7 +25,7 @@
       </div>
       <!-- /.card-header -->
       <!-- form start -->
-      <form method="post" action="<?php echo base_url() . 'Mengelola_Artikel/proses_tambah_artikel' ?>" id="submit" class="submit-artikel" enctype="multipart/form-data">
+      <form method="post" action="<?php echo base_url() . 'mengelola_artikel/proses_tambah' ?>" id="submit" class="submit-artikel" enctype="multipart/form-data">
         <div class="card-body">
           <div class="form-group">
             <label>Judul Artikel</label>
@@ -130,8 +130,8 @@
 <script src="<?php echo base_url(); ?>assets/dist/js/pages/dashboard.js"></script>
 <!-- SweetAlert2 -->
 <script src="<?php echo base_url(); ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
-<!-- ckeditor5 -->
-<script src="<?php echo base_url(); ?>ckeditor5-build-classic/ckeditor.js"></script>
+<!-- ckeditor4 -->
+<script src="<?php echo base_url(); ?>ckeditor4/ckeditor.js"></script>
 <!-- tinymce -->
 <script src="<?php echo base_url(); ?>resources/tinymce/tinymce.min.js"></script>
 <script src="<?php echo base_url(); ?>resources/tinymce/jquery.tinymce.min.js"></script>
@@ -158,23 +158,18 @@
       }
     });
 
-    ClassicEditor
-    .create(document.querySelector('#textArea') )
-    .catch( error => {
-      console.error( error );
-    });
+    //  CKEDITOR.replace('textArea');
 
- 
-  /*  tinymce.init({
+    tinymce.init({
       selector: '#textArea',
       height: 500,
-     // plugins: ['code'],
+      // plugins: ['code'],
       plugins: 'print preview paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media mediaembed codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap emoticons',
       menubar: 'file edit view insert format tools table help',
       toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile anchor codesample | ltr rtl',
       toolbar_sticky: true,
       content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
-    }); */
+    });
 
     function valid() {
       $('.clear').hide();

@@ -91,12 +91,12 @@
                         <p> Keuangan </p>
                     </a>
                 </li>
-                <li <?php if ($this->uri->segment(1) == 'Mengelola_Artikel') {
+                <li <?php if ($this->uri->segment(1) == 'mengelola_artikel') {
                         echo "class='nav-item menu-open'";
                     } else {
                         echo "class='nav-item'";
                     } ?>>
-                    <a <?php if ($this->uri->segment(1) == 'Mengelola_Artikel') {
+                    <a <?php if ($this->uri->segment(1) == 'mengelola_artikel') {
                             echo "class='nav-link active'";
                         } else {
                             echo "class='nav-link'";
@@ -109,21 +109,21 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a <?php if ($this->uri->segment(1) == 'Mengelola_Artikel' && $this->uri->segment(2) == 'tambah_artikel' || $this->uri->segment(2) == 'edit_artikel' || $this->uri->segment(1) == 'Mengelola_Artikel' && $this->uri->segment(2) == '') {
+                            <a <?php if ($this->uri->segment(1) == 'mengelola_artikel' && $this->uri->segment(2) == 'tambah' || $this->uri->segment(2) == 'edit' || $this->uri->segment(1) == 'mengelola_artikel' && $this->uri->segment(2) == '') {
                                     echo "class='nav-link active'";
                                 } else {
                                     echo "class='nav-link'";
-                                } ?> href="<?php echo base_url() . 'Mengelola_Artikel' ?>">
+                                } ?> href="<?php echo base_url() . 'mengelola_artikel' ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Kelola Artikel</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a <?php if ($this->uri->segment(2) == 'tipe_artikel') {
+                            <a <?php if ($this->uri->segment(2) == 'tipe') {
                                     echo "class='nav-link active'";
                                 } else {
                                     echo "class='nav-link'";
-                                } ?> href="<?php echo base_url() . 'Mengelola_Artikel/tipe_artikel' ?>">
+                                } ?> href="<?php echo base_url() . 'mengelola_artikel/tipe' ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Tipe Artikel</p>
                             </a>
