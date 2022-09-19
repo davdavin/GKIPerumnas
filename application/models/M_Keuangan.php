@@ -1,12 +1,15 @@
 <?php
-class M_Keuangan extends CI_Model {
+class M_Keuangan extends CI_Model
+{
 
-    public function tampil() {
-        return $this->db->query("SELECT * FROM keuangan");
+    public function tampil()
+    {
+        return $this->db->query("SELECT * FROM pemasukan_keuangan");
     }
 
-    public function total_keuangan() {
-        return $this->db->query("SELECT sum(nominal) as total FROM keuangan");
+    public function total_keuangan()
+    {
+        return $this->db->query("SELECT sum(nominal) as total FROM pemasukan_keuangan");
     }
 
     public function insert_record($data, $table)
