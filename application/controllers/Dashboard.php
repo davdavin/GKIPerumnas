@@ -25,6 +25,6 @@ class Dashboard extends CI_Controller
         $data['permintaanBaru'] = $this->M_Permintaan->jumlah_permintaan_baru()->result();
         $this->load->view('templates/header.php', $data);
         $this->load->view('templates/sidebar.php');
-        $this->load->view('admin/v_lihat_dashboard.php', $data);
+        $this->load->view('admin/v_dashboard.php', $data);
     }
 }
