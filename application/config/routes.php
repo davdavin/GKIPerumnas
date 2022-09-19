@@ -61,6 +61,16 @@ $route['login'] = 'Login_Admin';
 $route['login/verifikasi'] = 'Login_Admin/verifikasi';
 $route['logout'] = 'Login_Admin/logout';
 
+//mengelola artikel
+$route['mengelola_artikel'] = 'MengelolaArtikel';
+$rotue['mengelola_artikel/tampil_artikel'] = 'MengelolaArtikel/tampil_artikel';
+$route['mengelola_artikel/tambah'] = 'MengelolaArtikel/tambah_artikel';
+$route['mengelola_artikel/tipe'] = 'MengelolaArtikel/tipe_artikel';
+$route['mengelola_artikel/proses_tambah'] = 'MengelolaArtikel/proses_tambah_artikel';
+$route['mengelola_artikel/edit/(:num)'] = 'MengelolaArtikel/edit_artikel/$1';
+$route['mengelola_artikel/proses_edit'] = 'MengelolaArtikel/proses_edit_artikel';
+$route['mengelola_artikel/hapus/(:num)'] = 'MengelolaArtikel/hapus_artikel/$1';
+
 // dashboard admin
 /*$route['dashboard'] = 'Dashboard';
 
