@@ -4,12 +4,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Admin</h1>
+          <h1>Mengelola User</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-            <li class="breadcrumb-item active">Admin</li>
+            <li class="breadcrumb-item active">User</li>
           </ol>
         </div>
       </div>
@@ -23,19 +23,19 @@
     <div class="container-fluid">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Tabel Data Admin</h3>
+          <h3 class="card-title">Tabel User</h3>
         </div>
 
         <div class="card-body">
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
-            <i class="fas fa-plus"></i> Tambah admin
+            <i class="fas fa-plus"></i> Tambah user
           </button><br><br>
 
           <table id="tabel_admin" class="table table-bordered table-striped">
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Nama Admin</th>
+                <th>Nama</th>
                 <th>Username</th>
                 <th>Level</th>
                 <th>Status</th>
@@ -47,10 +47,10 @@
           </table>
 
           <?php $no = 0;
-          foreach ($admin as $list_admin) {
+          foreach ($user as $list_user) {
             $no++; ?>
             <!-- modal untuk menampilakn form edit -->
-            <div class="modal fade" id="modal-lg<?php echo $list_admin->id_admin; ?>">
+            <div class="modal fade" id="modal-lg<?php echo $list_user->id_user; ?>">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -61,7 +61,7 @@
                   </div>
                   <div class="modal-body">
                     <form action="<?php echo base_url() . 'Admin/proses_edit_status' ?>" method="post">
-                      <input type="hidden" class="form-control" name="id" value="<?= $list_admin->id_admin; ?>">
+                      <input type="hidden" class="form-control" name="id" value="<?= $list_user->id_user; ?>">
                       <div class="form-group">
                         <label>Status</label>
                         <select class="form-control select2bs4" style="width: 100%;" id="status" name="status" required>
@@ -88,16 +88,16 @@
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Input Admin Baru</h4>
+            <h4 class="modal-title">Input User Baru</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form class="form-submit" action="<?php echo base_url() . 'Admin/tambah_admin'  ?>" method="post">
+          <form class="form-submit" action="<?php echo base_url() . 'Admin/tambah_user'  ?>" method="post">
             <div class="modal-body">
               <div class="form-group">
                 <label>Nama Lengkap</label>
-                <input type="text" class="form-control" id="nama_admin" name="nama_admin" placeholder="Nama Lengkap">
+                <input type="text" class="form-control" id="nama_admin" name="nama_lengkap" placeholder="Nama Lengkap">
                 <!-- INFO ERROR -->
                 <div class="px-2 error_nama clear" style="display: none">
                 </div>
@@ -124,8 +124,8 @@
                 <label>Level</label>
                 <select class="custom-select select2bs4" style="width: 100%;" id="level" name="level">
                   <option selected disabled value>-- Pilih --</option>
-                  <?php foreach ($levelAdmin as $list_level) { ?>
-                    <option value="<?php echo $list_level->id_level_admin ?>"><?php echo $list_level->level_admin ?></option>
+                  <?php foreach ($levelUser as $list_level) { ?>
+                    <option value="<?php echo $list_level->id_level_user ?>"><?php echo $list_level->level_user ?></option>
                   <?php } ?>
                 </select>
                 <!-- INFO ERROR -->
@@ -216,11 +216,11 @@
         }
       },
       ajax: {
-        url: "<?php echo base_url() . 'Admin/tampil_admin' ?>",
+        url: "<?php echo base_url() . 'Admin/tampil_user' ?>",
         dataSrc: ""
       },
       columns: [{
-          "data": "id_admin"
+          "data": "id_user"
         },
         {
           "data": "nama_lengkap"
@@ -229,13 +229,13 @@
           "data": "username"
         },
         {
-          "data": "level_admin"
+          "data": "level_user"
         },
         {
           data: null,
           name: null,
           render: function(data, type, row, meta) {
-            switch (row.status_admin) {
+            switch (row.status_user) {
               case "1":
                 return `<span class="badge badge-success">Aktif</span>`;
                 break;
@@ -250,17 +250,17 @@
           name: null,
           sortable: false,
           render: function(data, type, row, meta) {
-            switch (row.status_admin) {
+            switch (row.status_user) {
               case "1":
-                return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_admin}">
+                return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_user}">
                           <i class="fas fa-pencil-alt"></i> Edit
                         </a>
-                        <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'Admin/hapus_admin/' ?>${row.id_admin}" data-toggle="tooltip" data-placement="bottom" title="Hapus Data Admin">
+                        <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'Admin/hapus_user/' ?>${row.id_user}" data-toggle="tooltip" data-placement="bottom" title="Hapus Data Admin">
                           <i class="fas fa-trash"></i> Hapus
                         </a>`;
                 break;
               default:
-                return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_admin}">
+                return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_user}">
                           <i class="fas fa-pencil-alt"></i> Edit
                         </a>`;
             }
