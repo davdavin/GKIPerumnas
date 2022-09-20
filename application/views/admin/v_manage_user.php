@@ -37,6 +37,7 @@
                 <th>ID</th>
                 <th>Nama</th>
                 <th>Username</th>
+                <th>Email</th>
                 <th>Level</th>
                 <th>Status</th>
                 <th>Aksi</th>
@@ -97,7 +98,7 @@
             <div class="modal-body">
               <div class="form-group">
                 <label>Nama Lengkap</label>
-                <input type="text" class="form-control" id="nama_admin" name="nama_lengkap" placeholder="Nama Lengkap">
+                <input type="text" class="form-control" id="nama" name="nama_lengkap" placeholder="Nama Lengkap">
                 <!-- INFO ERROR -->
                 <div class="px-2 error_nama clear" style="display: none">
                 </div>
@@ -116,6 +117,14 @@
                 <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                 <!-- INFO ERROR -->
                 <div class="px-2 error_password clear" style="display: none">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                <!-- INFO ERROR -->
+                <div class="px-2 error_email clear" style="display: none">
                 </div>
               </div>
 
@@ -229,6 +238,9 @@
           "data": "username"
         },
         {
+          "data":"email_user"
+        },
+        {
           "data": "level_user"
         },
         {
@@ -302,9 +314,10 @@
 
     function valid() {
       $('.clear').hide();
-      $('#nama_admin').removeClass('is-invalid');
+      $('#nama').removeClass('is-invalid');
       $('#username').removeClass('is-invalid');
       $('#password').removeClass('is-invalid');
+      $('#email').removeClass('is-invalid');
       $('#level').removeClass('is-invalid');
     }
 
@@ -318,12 +331,12 @@
           var obj = $.parseJSON(respon);
           if (obj.sukses == false) {
             if (obj.error_nama) {
-              $('#nama_admin').addClass('is-invalid');
+              $('#nama').addClass('is-invalid');
               $('.error_nama').show();
               $('.error_nama').html(obj.error_nama);
               $('.error_nama').css("color", "red");
             } else {
-              $('#nama_admin').removeClass('is-invalid');
+              $('#nama').removeClass('is-invalid');
               $('.error_nama').hide();
             }
             if (obj.error_username) {
@@ -343,6 +356,15 @@
             } else {
               $('#password').removeClass('is-invalid');
               $('.error_password').hide();
+            }
+            if (obj.error_email) {
+              $('#email').addClass('is-invalid');
+              $('.error_email').show();
+              $('.error_email').html(obj.error_email);
+              $('.error_email').css("color", "red");
+            } else {
+              $('#email').removeClass('is-invalid');
+              $('.error_email').hide();
             }
             if (obj.error_level) {
               $('#level').addClass('is-invalid');
