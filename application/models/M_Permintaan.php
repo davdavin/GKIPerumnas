@@ -20,13 +20,13 @@ class M_Permintaan extends CI_Model
     {
         return $this->db->query("SELECT id_permintaan, anggota_jemaat.id_anggota, nama_lengkap_anggota, nohp_baru, email_baru, alamat_baru, pekerjaan_baru, tanggal_permintaan, is_notif, is_updated, nohp_anggota,
                                 email_anggota, alamat_anggota, pekerjaan_anggota FROM permintaan_perubahan_data_jemaat 
-                                INNER JOIN anggota_jemaat ON anggota_jemaat.id_anggota = permintaan_perubahan_data_jemaat.id_anggota ORDER BY tanggal_permintaan DESC");
+                                INNER JOIN anggota_jemaat ON permintaan_perubahan_data_jemaat.id_anggota = anggota_jemaat.id_anggota ORDER BY tanggal_permintaan DESC");
     }
-
+    
     public function tampil_data_permintaan($id_permintaan)
     {
         return $this->db->query("SELECT id_permintaan, permintaan_perubahan_data_jemaat.id_anggota, no_anggota, nama_lengkap_anggota, nohp_baru, email_baru, alamat_baru, pekerjaan_baru FROM permintaan_perubahan_data_jemaat 
-                                INNER JOIN anggota_jemaat ON anggota_jemaat.id_anggota = permintaan_perubahan_data_jemaat.id_anggota WHERE id_permintaan = '$id_permintaan'");
+                                INNER JOIN anggota_jemaat ON permintaan_perubahan_data_jemaat.id_anggota = anggota_jemaat.id_anggota WHERE id_permintaan = '$id_permintaan'");
     }
 
     public function ubah_status_notif()
