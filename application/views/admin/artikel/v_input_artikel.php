@@ -37,12 +37,12 @@
           <!-- Tipe artikel -->
           <div class="form-group">
             <label>Tipe Artikel</label>
-            <select class="custom-select select2bs4" style="width: 100%;" name="id_tipe_artikel" id="tipe">
+            <select class="custom-select select2bs4" style="width: 100%;" name="tipe_artikel" id="tipe">
               <option selected disabled value>-- Pilih --</option>
-
-              <?php foreach ($tipe_artikel as $list_tipe_artikel) { ?>
-                <option value="<?php echo $list_tipe_artikel->id_tipe_artikel ?>"><?php echo $list_tipe_artikel->tipe_artikel ?></option>
-              <?php } ?>
+              <option value="Renungan Harian">Renungan Harian</option>
+              <option value="Warta Jemaat">Warta Jemaat</option>
+              <option value="Doa Harian">Doa Harian</option>
+              <option value="Warta Jemaat">Artikel Lainnya</option>
             </select>
             <div class="px-2 error_tipe clear" style="display: none">
             </div>

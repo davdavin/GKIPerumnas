@@ -7,7 +7,7 @@ class Admin extends CI_Controller
     {
         parent::__construct();
 
-       
+        date_default_timezone_set('Asia/Jakarta');
         $this->load->model(array('M_Admin'));
         $this->load->helper('url', 'form');
         $this->load->library('form_validation');
@@ -34,11 +34,13 @@ class Admin extends CI_Controller
         $nama = $this->input->post('nama_lengkap');
         $username = $this->input->post('username');
         $password = $this->input->post('password');
+        $email = $this->input->post('email');
         $level = $this->input->post('level');
 
         $this->form_validation->set_rules('nama_lengkap', 'Nama', 'trim|required');
         $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[15]|is_unique[user.username]');
         $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[5]|max_length[15]');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|is_unique[user.email_user]');
         $this->form_validation->set_rules('level', 'Level', 'required');
 
         $this->form_validation->set_message('required', '{field} wajib diisi');
@@ -52,15 +54,15 @@ class Admin extends CI_Controller
                 'error_nama' => form_error('nama_lengkap'),
                 'error_username' => form_error('username'),
                 'error_password' => form_error('password'),
+                'error_email' => form_error('email'),
                 'error_level' => form_error('level')
             );
             echo json_encode($respon);
         } else {
-            date_default_timezone_set('Asia/Jakarta');
             $tanggal = date('Y-m-d H:i:s');
             $data = array(
                 'id_level_user' => $level, 'nama_lengkap' => $nama, 'username' => $username,
-                'password' => password_hash($password, PASSWORD_DEFAULT), 'status_user' => 1, 'tanggal_dibuat' => $tanggal
+                'password' => password_hash($password, PASSWORD_DEFAULT), 'email_user' => $email, 'status_user' => 1, 'created_at' => $tanggal
             );
 
             $this->M_Admin->insert_record($data, 'user');
@@ -72,8 +74,9 @@ class Admin extends CI_Controller
 
     public function proses_edit_status()
     {
+        $tanggal = date('Y-m-d H:i:s');
         $where = array('id_user' => $this->input->post('id'));
-        $data = array('status_user' => $this->input->post('status'));
+        $data = array('status_user' => $this->input->post('status'), 'updated_at' => $tanggal, 'deleted_at' => NULL);
         $this->M_Admin->update_record($where, $data, 'user');
         $this->session->set_flashdata('sukses', 'Berhasil ubah status');
         redirect('Admin');
@@ -81,8 +84,9 @@ class Admin extends CI_Controller
 
     public function hapus_user($id_user)
     {
+        $tanggal = date('Y-m-d H:i:s');
         $where = array('id_user' => $id_user);
-        $data = array('status_user' => '0');
+        $data = array('status_user' => '0', 'deleted_at' => $tanggal);
         $this->M_Admin->update_record($where, $data, 'user');
         $this->session->set_flashdata('sukses', 'Berhasil ubah status menjadi tidak akitf');
         redirect('Admin');

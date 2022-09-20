@@ -22,7 +22,7 @@ class MengelolaArtikel extends CI_Controller
         $data['artikel'] = $this->M_Artikel->lihat_artikel()->result();
         $this->load->view('templates/header.php', $data);
         $this->load->view('templates/sidebar.php');
-        $this->load->view('admin/artikel/v_lihat_tabel_artikel.php', $data);
+        $this->load->view('admin/artikel/v_mengelola_artikel.php', $data);
     }
 
     public function tampil_artikel()
@@ -34,31 +34,21 @@ class MengelolaArtikel extends CI_Controller
     public function tambah_artikel()
     {
         $data['title'] = "Artikel";
-        $data['tipe_artikel'] = $this->M_Artikel->tampil_tipe_artikel()->result();
         $this->load->view('templates/header.php', $data);
         $this->load->view('templates/sidebar.php');
         $this->load->view('admin/artikel/v_input_artikel.php', $data);
     }
-
-    public function tipe_artikel()
-    {
-        $data['title'] = "Artikel";
-        $data['tipe_artikel'] = $this->M_Artikel->tampil_tipe_artikel()->result();
-        $this->load->view('templates/header.php', $data);
-        $this->load->view('templates/sidebar.php');
-        $this->load->view('admin/artikel/v_tipe_artikel.php', $data);
-    }
-
+    
     public function proses_tambah_artikel()
     {
         $judul_artikel = $this->input->post('judul_artikel');
-        $id_tipe_artikel = $this->input->post('id_tipe_artikel');
+        $tipe_artikel = $this->input->post('tipe_artikel');
         $deskripsi_singkat = $this->input->post('deskripsi_singkat');
         $tanggal_pembuatan = $this->input->post('tanggal_pembuatan');
         $isi = $this->input->post('isi');
 
         $this->form_validation->set_rules('judul_artikel', 'Judul', 'trim|required|is_unique[artikel.judul_artikel]');
-        $this->form_validation->set_rules('id_tipe_artikel', 'Tipe', 'required');
+        $this->form_validation->set_rules('tipe_artikel', 'Tipe', 'required');
         $this->form_validation->set_rules('deskripsi_singkat', 'Deskripsi', 'trim|required');
         $this->form_validation->set_rules('tanggal_pembuatan', 'Tanggal', 'required');
 
@@ -71,7 +61,7 @@ class MengelolaArtikel extends CI_Controller
             $respon = array(
                 'sukses' => false,
                 'error_judul' => form_error('judul_artikel'),
-                'error_tipe' => form_error('id_tipe_artikel'),
+                'error_tipe' => form_error('tipe_artikel'),
                 'error_deskripsi' => form_error('deskripsi_singkat'),
                 'error_tanggal' => form_error('tanggal_pembuatan')
             );
@@ -96,7 +86,7 @@ class MengelolaArtikel extends CI_Controller
                     $file = $this->upload->data('file_name');
 
                     $data = array(
-                        'judul_artikel' => $judul_artikel, 'id_tipe_artikel' => $id_tipe_artikel, 'deskripsi_singkat' => $deskripsi_singkat,
+                        'judul_artikel' => $judul_artikel, 'tipe_artikel' => $tipe_artikel, 'deskripsi_singkat' => $deskripsi_singkat,
                         'isi' => NULL, 'file' => $file, 'tanggal_pembuatan' => $tanggal_pembuatan
                     );
 
@@ -106,7 +96,7 @@ class MengelolaArtikel extends CI_Controller
                 }
             } else if ($isi != "") {
                 $data = array(
-                    'judul_artikel' => $judul_artikel, 'id_tipe_artikel' => $id_tipe_artikel, 'deskripsi_singkat' => $deskripsi_singkat,
+                    'judul_artikel' => $judul_artikel, 'tipe_artikel' => $tipe_artikel, 'deskripsi_singkat' => $deskripsi_singkat,
                     'isi' => $isi, 'tanggal_pembuatan' => $tanggal_pembuatan
                 );
                 $this->M_Artikel->insert_record($data, 'artikel');
@@ -118,13 +108,13 @@ class MengelolaArtikel extends CI_Controller
         /*      if ($sukses == 1) {
             if ($isi == "") {
                 $data = array(
-                    'judul_artikel' => $judul_artikel, 'id_tipe_artikel' => $id_tipe_artikel, 'deskripsi_singkat' => $deskripsi_singkat,
+                    'judul_artikel' => $judul_artikel, 'tipe_artikel' => $tipe_artikel, 'deskripsi_singkat' => $deskripsi_singkat,
                     'file' => $dokumen, 'tanggal_pembuatan' => $tanggal_pembuatan
                 );
             } else {
 
                 $data = array(
-                    'judul_artikel' => $judul_artikel, 'id_tipe_artikel' => $id_tipe_artikel, 'deskripsi_singkat' => $deskripsi_singkat,
+                    'judul_artikel' => $judul_artikel, 'tipe_artikel' => $tipe_artikel, 'deskripsi_singkat' => $deskripsi_singkat,
                     'isi' => $isi, 'tanggal_pembuatan' => $tanggal_pembuatan
                 );
             }
@@ -140,7 +130,6 @@ class MengelolaArtikel extends CI_Controller
     {
         $data['title'] = "Artikel";
         $data['artikel_edit'] = $this->M_Artikel->pilihan_artikel($id_artikel)->result();
-        $data['tipe_artikel'] = $this->M_Artikel->tampil_tipe_artikel()->result();
         $this->load->view('templates/header.php', $data);
         $this->load->view('templates/sidebar.php');
         $this->load->view('admin/artikel/v_edit_artikel.php', $data);
@@ -150,7 +139,7 @@ class MengelolaArtikel extends CI_Controller
     {
         $id_artikel = $this->input->post('id_artikel');
         $judul_artikel = $this->input->post('judul_artikel');
-        $id_tipe_artikel = $this->input->post('id_tipe_artikel');
+        $tipe_artikel = $this->input->post('tipe_artikel');
         $deskripsi_singkat = $this->input->post('deskripsi_singkat');
         $tanggal_pembuatan = $this->input->post('tanggal_pembuatan');
         $isi = $this->input->post('isi');
@@ -164,7 +153,7 @@ class MengelolaArtikel extends CI_Controller
         } else {
             $this->form_validation->set_rules('judul_artikel', 'Judul', 'trim|required|is_unique[artikel.judul_artikel]');
         }
-        $this->form_validation->set_rules('id_tipe_artikel', 'Tipe', 'required');
+        $this->form_validation->set_rules('tipe_artikel', 'Tipe', 'required');
         $this->form_validation->set_rules('deskripsi_singkat', 'Deskripsi', 'trim|required');
         $this->form_validation->set_rules('tanggal_pembuatan', 'Tanggal', 'required');
 
@@ -177,7 +166,7 @@ class MengelolaArtikel extends CI_Controller
             $respon = array(
                 'sukses' => false,
                 'error_judul' => form_error('judul_artikel'),
-                'error_tipe' => form_error('id_tipe_artikel'),
+                'error_tipe' => form_error('tipe_artikel'),
                 'error_deskripsi' => form_error('deskripsi_singkat'),
                 'error_tanggal' => form_error('tanggal_pembuatan')
             );
@@ -187,7 +176,7 @@ class MengelolaArtikel extends CI_Controller
             if ($isi == "") {
                 if ($_FILES['pdf']['name'] == "") {
                     $data = array(
-                        'judul_artikel' => $judul_artikel, 'id_tipe_artikel' => $id_tipe_artikel, 'deskripsi_singkat' => $deskripsi_singkat,
+                        'judul_artikel' => $judul_artikel, 'tipe_artikel' => $tipe_artikel, 'deskripsi_singkat' => $deskripsi_singkat,
                         'isi' => NULL, 'file' => $artikel_lama['file'], 'tanggal_pembuatan' => $tanggal_pembuatan
                     );
 
@@ -210,7 +199,7 @@ class MengelolaArtikel extends CI_Controller
                         $file = $this->upload->data('file_name');
 
                         $data = array(
-                            'judul_artikel' => $judul_artikel, 'id_tipe_artikel' => $id_tipe_artikel, 'deskripsi_singkat' => $deskripsi_singkat,
+                            'judul_artikel' => $judul_artikel, 'tipe_artikel' => $tipe_artikel, 'deskripsi_singkat' => $deskripsi_singkat,
                             'isi' => NULL, 'file' => $file, 'tanggal_pembuatan' => $tanggal_pembuatan
                         );
 
@@ -223,7 +212,7 @@ class MengelolaArtikel extends CI_Controller
                 }
             } else if ($isi != "") {
                 $data = array(
-                    'judul_artikel' => $judul_artikel, 'id_tipe_artikel' => $id_tipe_artikel, 'deskripsi_singkat' => $deskripsi_singkat,
+                    'judul_artikel' => $judul_artikel, 'tipe_artikel' => $tipe_artikel, 'deskripsi_singkat' => $deskripsi_singkat,
                     'isi' => $isi, 'tanggal_pembuatan' => $tanggal_pembuatan
                 );
                 $this->M_Artikel->update_record($where, $data, 'artikel');

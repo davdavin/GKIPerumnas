@@ -10,7 +10,7 @@
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
             <li class="breadcrumb-item active">Keuangan</li>
-            <li class="breadcrumb-item active">Pemasukan</li>
+            <li class="breadcrumb-item active">Laporan</li>
           </ol>
         </div>
       </div>
@@ -24,22 +24,20 @@
     <div class="container-fluid">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Pemasukan</h3>
+          <h3 class="card-title">Laporan</h3>
         </div>
 
         <div class="card-body">
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
-            <i class="fas fa-plus"></i> Pencatatan
-          </button><br><br>
 
-          <table id="tabel_keuangan" class="table table-bordered table-striped" style="width: 100%;">
+          <table id="tabel_laporan" class="table table-bordered table-striped" style="width: 100%;">
             <thead>
               <tr>
                 <th>#</th>
-                <th>Kegiatan</th>
-                <th style="text-align: left;">Total</th>
-                <th>Tanggal Masuk</th>
-                <th>Keterangan</th>
+                <th>Tanggal</th>
+                <th style="text-align: left;">Saldo Awal</th>
+                <th style="text-align: left;">Uang Masuk</th>
+                <!-- <th style="text-align: left;">Uang Keluar</th> -->
+                <th style="text-align: left;">Saldo Akhir</th>
                 <th>Aksi</th>
               </tr>
             </thead>
@@ -48,57 +46,7 @@
 
       </div>
     </div>
-    <!-- modal untuk menampilkan form input admin -->
-    <div class="modal fade" id="modal-lg">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content" style="border-top: 10px solid #428bca;">
-          <div class="modal-header">
-            <h4 class="modal-title">Input Pencatatan</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <form class="form-submit" action="<?php echo base_url() . 'keuangan/pencatatan'  ?>" method="post">
-            <div class="modal-body">
-              <div class="form-group">
-                <label>Kegiatan</label>
-                <input type="text" class="form-control" id="kegiatan" name="kegiatan" placeholder="Kegiatan" required>
-                <!-- INFO ERROR -->
-                <div class="px-2 error_kegiatan clear" style="display: none">
-                </div>
-              </div>
-              <div class="form-group">
-                <label>Total</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Rp.</span>
-                  </div>
-                  <input type="number" class="form-control" id="uang_masuk" name="uang_masuk" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <label>Tanggal Masuk</label>
-                <input type="date" class="form-control" id="tanggal" name="tanggal_masuk" required>
-                <div class="px-2 error_tanggal" style="display: none">
-                </div>
-              </div>
-              <div class="form-group">
-                <label>Keterangan</label>
-                <input type="text" class="form-control" id="keterangan" name="keterangan" placeholder="Keterangan" required>
-                <!-- INFO ERROR -->
-                <div class="px-2 error_keterangan clear" style="display: none">
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-primary" id="tombolSimpan">Submit</button>
-            </div>
-          </form>
-        </div>
-        <!-- /.modal-content -->
-      </div>
-      <!-- /.modal-dialog -->
-    </div>
+
     <!-- /.container-fluid -->
   </section>
   <!-- /.content -->
@@ -146,7 +94,7 @@
 
 <script>
   $(document).ready(function() {
-    $('#tabel_keuangan').DataTable({
+    $('#tabel_laporan').DataTable({
       /*   "responsive": true,
          "lengthChange": true,
          "autoWidth": false, */
@@ -170,7 +118,7 @@
         }
       },
       ajax: {
-        url: "<?php echo base_url() . 'keuangan/tampil_keuangan' ?>",
+        url: "<?php echo base_url() . 'keuangan/lihat_laporan' ?>",
         dataSrc: ""
       },
       columns: [{
@@ -181,22 +129,40 @@
           }
         },
         {
-          "data": "kegiatan",
+          "data": "tanggal_perubahan"
+        },
+        {
+          "data": "saldo_awal",
+          "className": "dt-body-right"
         },
         {
           "data": "uang_masuk",
           "className": "dt-body-right"
         },
         {
-          "data": "tanggal_masuk"
-        },
-        {
-          "data": "keterangan",
-          sortable: false
+          "data": "saldo_akhir",
+          "className": "dt-body-right"
         }, {
           data: null,
           name: null,
           sortable: false,
+          render: function(type, data, row, meta) {
+            switch (row.operation) {
+              case "+":
+                return `<a class="btn btn-primary btn-sm" href="<?php echo base_url() . '' ?>${row.id_laporan_keuangan}">
+                         <i class="fas fa-eye"></i> Detail
+                        </a>`;
+                break;
+              case "-":
+                return `<a class="btn btn-primary btn-sm" href="<?php echo base_url() . '' ?>${row.id_laporan_keuangan}">
+                         <i class="fas fa-eye"></i> Detail
+                        </a>`;
+                break;
+              default:
+                return ``;
+                break;
+            }
+          }
         }
       ]
     });

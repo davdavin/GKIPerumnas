@@ -83,10 +83,10 @@ class Artikel extends CI_Controller
     public function cari_renungan_harian()
     {
         if (!isset($_POST['searchTerm'])) {
-            $renungan = $this->db->query("SELECT * FROM artikel WHERE id_tipe_artikel = 1")->result_array();
+            $renungan = $this->db->query("SELECT * FROM artikel WHERE tipe_artikel = 'Renungan Harian'")->result_array();
         } else {
             $search = strtolower($_POST['searchTerm']);
-            $renungan = $this->db->query("SELECT id_artikel, judul_artikel FROM artikel WHERE id_tipe_artikel = 1 AND judul_artikel LIKE '%$search%'")->result_array();
+            $renungan = $this->db->query("SELECT id_artikel, judul_artikel FROM artikel WHERE tipe_artikel = 'Renungan Harian' AND judul_artikel LIKE '%$search%'")->result_array();
         }
 
         $list = array();
@@ -130,7 +130,7 @@ class Artikel extends CI_Controller
 
         //config
         $config['base_url'] = base_url() . 'Artikel/' . $function;
-        $config['total_rows'] = $this->db->query("SELECT * FROM artikel JOIN tipe_artikel ON tipe_artikel.id_tipe_artikel = artikel.id_tipe_artikel WHERE tipe_artikel = '$tipe'")->num_rows();
+        $config['total_rows'] = $this->db->query("SELECT * FROM artikel WHERE tipe_artikel = '$tipe'")->num_rows();
         $config['per_page'] = 4; //10
         //  $config['num_links'] = 2;
 

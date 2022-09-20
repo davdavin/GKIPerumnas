@@ -21,13 +21,13 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a <?= $this->uri->segment(1) == 'Dashboard' || $this->uri->segment(1) == "" ? "class='nav-link active'" : "class='nav-link'" ?> href="<?php echo base_url() . 'Dashboard' ?>">
+                    <a <?= $this->uri->segment(1) == "Dashboard" || $this->uri->segment(1) == "" ? "class='nav-link active'" : "class='nav-link'" ?> href="<?php echo base_url() . 'Dashboard' ?>">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p> Dashboard </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a <?php if ($this->uri->segment(1) == 'Admin') {
+                    <a <?php if ($this->uri->segment(1) == "Admin") {
                             echo "class='nav-link active'";
                         } else {
                             echo "class='nav-link'";
@@ -60,7 +60,7 @@
           </a>
         </li> -->
                 <li class="nav-item">
-                    <a <?php if ($this->uri->segment(1) == 'Pendeta') {
+                    <a <?php if ($this->uri->segment(1) == "Pendeta") {
                             echo "class='nav-link active'";
                         } else {
                             echo "class='nav-link'";
@@ -81,7 +81,7 @@
             <p> Ruangan </p>
           </a>
         </li> -->
-                <li <?php if ($this->uri->segment(1) == 'keuangan') {
+                <li <?php if ($this->uri->segment(1) == "keuangan") {
                         echo "class='nav-item menu-open'";
                     } else {
                         echo "class='nav-item'";
@@ -99,7 +99,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a <?php if ($this->uri->segment(1) == "keuangan") {
+                            <a <?php if ($this->uri->segment(1) == "keuangan" && $this->uri->segment(2) == "") {
                                     echo "class='nav-link active'";
                                 } else {
                                     echo "class='nav-link'";
@@ -115,54 +115,25 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo base_url() . '' ?>">
+                            <a <?php if($this->uri->segment(1) == "keuangan" && $this->uri->segment(2) == "laporan") { echo "class='nav-link active'"; } else { echo "class='nav-link'"; } ?>  href="<?php echo base_url() . 'keuangan/laporan' ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Laporan</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li <?php if ($this->uri->segment(1) == 'mengelola_artikel') {
-                        echo "class='nav-item menu-open'";
-                    } else {
-                        echo "class='nav-item'";
-                    } ?>>
-                    <a <?php if ($this->uri->segment(1) == 'mengelola_artikel') {
+                <li class="nav-item">
+                    <a <?php if ($this->uri->segment(1) == "mengelola_artikel") {
                             echo "class='nav-link active'";
                         } else {
                             echo "class='nav-link'";
-                        } ?> href="#">
+                        } ?> href="<?php echo base_url() . 'mengelola_artikel' ?>">
                         <i class="nav-icon fas fa-newspaper"></i>
-                        <p>
-                            Artikel
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
+                        <p> Artikel </p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a <?php if ($this->uri->segment(1) == 'mengelola_artikel' && $this->uri->segment(2) == 'tambah' || $this->uri->segment(2) == 'edit' || $this->uri->segment(1) == 'mengelola_artikel' && $this->uri->segment(2) == '') {
-                                    echo "class='nav-link active'";
-                                } else {
-                                    echo "class='nav-link'";
-                                } ?> href="<?php echo base_url() . 'mengelola_artikel' ?>">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Kelola Artikel</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a <?php if ($this->uri->segment(2) == 'tipe') {
-                                    echo "class='nav-link active'";
-                                } else {
-                                    echo "class='nav-link'";
-                                } ?> href="<?php echo base_url() . 'mengelola_artikel/tipe' ?>">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Tipe Artikel</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
                 <li class="nav-item">
-                    <a <?php if ($this->uri->segment(1) == 'Dokumen') {
+                    <a <?php if ($this->uri->segment(1) == "Dokumen") {
                             echo "class='nav-link active'";
                         } else {
                             echo "class='nav-link'";
@@ -172,7 +143,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a <?php if ($this->uri->segment(1) == 'Konten') {
+                    <a <?php if ($this->uri->segment(1) == "Konten") {
                             echo "class='nav-link active'";
                         } else {
                             echo "class='nav-link'";
