@@ -37,7 +37,7 @@
               <tr>
                 <th>#</th>
                 <th>Kegiatan</th>
-                <th style="text-align: left;">Nominal</th>
+                <th style="text-align: left;">Total</th>
                 <th>Tanggal Masuk</th>
                 <th>Keterangan</th>
                 <th>Aksi</th>
@@ -58,7 +58,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form class="form-submit" action="<?php echo base_url() . 'keuangan/input_pencatatan'  ?>" method="post">
+          <form class="form-submit" action="<?php echo base_url() . 'keuangan/pencatatan'  ?>" method="post">
             <div class="modal-body">
               <div class="form-group">
                 <label>Kegiatan</label>
@@ -68,12 +68,12 @@
                 </div>
               </div>
               <div class="form-group">
-                <label>Nominal</label>
+                <label>Total</label>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text">Rp.</span>
                   </div>
-                  <input type="number" class="form-control" id="nominal" name="nominal" required>
+                  <input type="number" class="form-control" id="uang_masuk" name="uang_masuk" required>
                 </div>
               </div>
               <div class="form-group">
@@ -153,10 +153,10 @@
       "scrollX": true,
       "language": {
         "emptyTable": "Tidak ada data yang tersedia pada tabel ini",
-        "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
-        "infoEmpty": "Menampilkan 0 sampai 0 dari 0 entri",
+        "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+        "infoEmpty": "Menampilkan 0 sampai 0 dari 0 data",
         "infoFiltered": "(disaring dari _MAX_ entri keseluruhan)",
-        "lengthMenu": "Tampilkan _MENU_ entri",
+        "lengthMenu": "Tampilkan _MENU_ data",
         "loadingRecords": "Sedang memuat...",
         "processing": "Sedang memproses...",
         "search": "Cari:",
@@ -184,7 +184,7 @@
           "data": "kegiatan",
         },
         {
-          "data": "nominal",
+          "data": "uang_masuk",
           "className": "dt-body-right"
         },
         {
