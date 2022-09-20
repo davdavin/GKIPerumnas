@@ -1,13 +1,14 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+date_default_timezone_set('Asia/Jakarta');
+
 class Admin extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
 
-        date_default_timezone_set('Asia/Jakarta');
         $this->load->model(array('M_Admin'));
         $this->load->helper('url', 'form');
         $this->load->library('form_validation');
