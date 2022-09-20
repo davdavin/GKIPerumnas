@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+date_default_timezone_set('Asia/Jakarta');
+
 class Keuangan extends CI_Controller
 {
 
@@ -61,7 +63,6 @@ class Keuangan extends CI_Controller
 
         $saldo_tambah = $saldo + $uang_masuk;
 
-        date_default_timezone_set('Asia/Jakarta');
         $tanggal = date('Y-m-d H:i:s');
 
         $data_laporan = array(
