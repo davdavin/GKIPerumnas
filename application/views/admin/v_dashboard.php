@@ -69,11 +69,12 @@
           </div>
         <?php } ?>
         <!-- ./col -->
-        <?php foreach ($totalKeuangan as $saldo) { ?>
           <div class="col-lg-3 col-6">
             <div class="small-box bg-success">
               <div class="inner">
+                <?php foreach ($totalKeuangan as $saldo) { ?>
                 <h3><?php echo mata_uang_indo($saldo->total); ?></h3>
+                <?php } ?>
                 <p>Total Keuangan Gereja</p>
               </div>
               <div class="icon">
@@ -81,7 +82,6 @@
               </div>
             </div>
           </div>
-        <?php } ?>
         <?php foreach ($permintaanBaru as $jumlah) { ?>
           <div class="col-lg-3 col-6">
             <!-- small box -->
