@@ -57,8 +57,8 @@ class Keuangan extends CI_Controller
         $tanggal = date('Y-m-d H:i:s');
 
         $data = array(
-            'kegiatan' => $kegiatan, 'keterangan' => $keterangan, 'uang_masuk' => $uang_masuk, 'tanggal_terima' => $tanggal_masuk, 'tanggal_pencatatan' => $tanggal, 
-             'saldo_awal' => $saldo, 'saldo_akhir' => $saldo_tambah, 'is_debit' => '1'
+            'kegiatan' => $kegiatan, 'keterangan' => $keterangan, 'uang_masuk' => $uang_masuk, 'tanggal_terima' => $tanggal_masuk, 'tanggal_pencatatan' => $tanggal,
+            'saldo_awal' => $saldo, 'saldo_akhir' => $saldo_tambah, 'is_debit' => '1'
         );
 
         $this->M_Keuangan->insert_record($data, 'keuangan');
@@ -106,10 +106,10 @@ class Keuangan extends CI_Controller
         $tanggal = date('Y-m-d H:i:s');
 
         $data = array(
-            'kegiatan' => $kegiatan, 'keterangan' => $keterangan, 'uang_keluar' => $uang_keluar, 'tanggal_keluar' => $tanggal_keluar, 'tanggal_pencatatan' => $tanggal, 
-             'saldo_awal' => $saldo, 'saldo_akhir' => $saldo_berkurang, 'is_kredit' => '1'
+            'kegiatan' => $kegiatan, 'keterangan' => $keterangan, 'uang_keluar' => $uang_keluar, 'tanggal_keluar' => $tanggal_keluar, 'tanggal_pencatatan' => $tanggal,
+            'saldo_awal' => $saldo, 'saldo_akhir' => $saldo_berkurang, 'is_kredit' => '1'
         );
-      
+
         $this->M_Keuangan->insert_record($data, 'keuangan');
         $this->session->set_flashdata('sukses', 'Berhasil dicatat');
         redirect('keuangan/pengeluaran');
