@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2022 at 04:05 PM
+-- Generation Time: Sep 21, 2022 at 09:03 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -171,6 +171,35 @@ INSERT INTO `dokumen` (`id_dokumen`, `kode_dokumen`, `jenis_dokumen`, `dokumen`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `keuangan`
+--
+
+CREATE TABLE `keuangan` (
+  `id_keuangan` int(11) NOT NULL,
+  `kegiatan` varchar(50) NOT NULL,
+  `keterangan` varchar(200) NOT NULL,
+  `uang_masuk` int(11) DEFAULT NULL,
+  `uang_keluar` int(11) DEFAULT NULL,
+  `saldo_awal` int(11) NOT NULL,
+  `saldo_akhir` int(11) NOT NULL,
+  `tanggal_terima` date DEFAULT NULL,
+  `tanggal_keluar` date DEFAULT NULL,
+  `tanggal_pencatatan` datetime NOT NULL,
+  `is_debit` int(11) DEFAULT NULL,
+  `is_kredit` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `keuangan`
+--
+
+INSERT INTO `keuangan` (`id_keuangan`, `kegiatan`, `keterangan`, `uang_masuk`, `uang_keluar`, `saldo_awal`, `saldo_akhir`, `tanggal_terima`, `tanggal_keluar`, `tanggal_pencatatan`, `is_debit`, `is_kredit`) VALUES
+(3, 'Ibadah harian', 'Persembahan ibadah minggu tanggal 11 September 2022', 2000000, NULL, 0, 2000000, '2022-09-11', NULL, '2022-09-21 13:57:06', 1, NULL),
+(4, 'Non Ibadah', 'Sumbangan dari jemaat', 5000000, NULL, 2000000, 7000000, '2022-09-18', NULL, '2022-09-21 13:58:12', 1, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `konten_foto_ibadah`
 --
 
@@ -222,30 +251,6 @@ INSERT INTO `konten_slide` (`id_slide`, `judul_slide`, `deskripsi_slide`, `gamba
 -- --------------------------------------------------------
 
 --
--- Table structure for table `laporan_keuangan`
---
-
-CREATE TABLE `laporan_keuangan` (
-  `id_laporan_keuangan` int(11) NOT NULL,
-  `id_pemasukan` int(11) DEFAULT NULL,
-  `id_pengeluaran` int(11) DEFAULT NULL,
-  `saldo_awal` int(11) NOT NULL,
-  `saldo_akhir` int(11) NOT NULL,
-  `tanggal_perubahan` datetime NOT NULL,
-  `operation` varchar(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `laporan_keuangan`
---
-
-INSERT INTO `laporan_keuangan` (`id_laporan_keuangan`, `id_pemasukan`, `id_pengeluaran`, `saldo_awal`, `saldo_akhir`, `tanggal_perubahan`, `operation`) VALUES
-(1, 1, NULL, 0, 2000000, '2022-09-20 21:03:44', '+'),
-(2, 2, NULL, 2000000, 5000000, '2022-09-20 21:04:39', '+');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `level_user`
 --
 
@@ -264,28 +269,6 @@ INSERT INTO `level_user` (`id_level_user`, `level_user`) VALUES
 (3, 'Pendeta'),
 (4, 'Calon Pendeta'),
 (5, 'Bendahara');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pemasukan_keuangan`
---
-
-CREATE TABLE `pemasukan_keuangan` (
-  `id_pemasukan` int(11) NOT NULL,
-  `kegiatan` varchar(100) NOT NULL,
-  `uang_masuk` int(11) NOT NULL,
-  `tanggal_masuk` datetime NOT NULL,
-  `keterangan` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `pemasukan_keuangan`
---
-
-INSERT INTO `pemasukan_keuangan` (`id_pemasukan`, `kegiatan`, `uang_masuk`, `tanggal_masuk`, `keterangan`) VALUES
-(1, 'Ibadah Mingguan', 2000000, '2022-09-11 00:00:00', 'Persembahan ibadah tanggal 11 September 2022'),
-(2, 'Non ibadah', 3000000, '2022-09-15 00:00:00', 'Sumbangan dari jemaat');
 
 -- --------------------------------------------------------
 
@@ -382,7 +365,7 @@ INSERT INTO `user` (`id_user`, `id_level_user`, `nama_lengkap`, `username`, `pas
 (1, 1, 'Admin min', 'admin', '$2y$10$y2DQ4/TFFDm7A5.alm1c3OX93i.EgNjlnTAExsa38vHJhcttxODwC', 'contoh@example.com', 1, '2022-09-18 20:18:08', NULL, NULL),
 (2, 1, 'Christella', 'stella', '$2y$10$zWa0ie9.mG4qe98Ax2L9POR5eRm0orxzPgLQalCxdkd.tY035Cay6', 'stella@gmail.com', 1, '2022-09-18 20:13:20', NULL, NULL),
 (4, 5, 'Yohanes', 'yohanes', '$2y$10$G47i23zMHD/AHmAWCePEKOViFcJgfD1WWSAQCnMV/xHfZ4VYJEkpm', 'yohanes@gmail.com', 1, '2022-09-19 21:27:47', '2022-09-19 21:32:55', NULL),
-(5, 2, 'B', 'bbbbb', '$2y$10$rMmoMktv2U/oS9vqK7EpFu7f9/0Z14oAyrWMIOea/n1kwwJLi8K26', 'satusatu@gmail.com', 1, '2022-09-20 10:39:22', '2022-09-20 21:01:46', NULL);
+(5, 2, 'B', 'bbbbb', '$2y$10$rMmoMktv2U/oS9vqK7EpFu7f9/0Z14oAyrWMIOea/n1kwwJLi8K26', 'satusatu@gmail.com', 1, '2022-09-20 10:39:22', '2022-09-20 10:41:26', NULL);
 
 -- --------------------------------------------------------
 
@@ -447,6 +430,12 @@ ALTER TABLE `dokumen`
   ADD PRIMARY KEY (`id_dokumen`);
 
 --
+-- Indexes for table `keuangan`
+--
+ALTER TABLE `keuangan`
+  ADD PRIMARY KEY (`id_keuangan`);
+
+--
 -- Indexes for table `konten_foto_ibadah`
 --
 ALTER TABLE `konten_foto_ibadah`
@@ -459,22 +448,10 @@ ALTER TABLE `konten_slide`
   ADD PRIMARY KEY (`id_slide`);
 
 --
--- Indexes for table `laporan_keuangan`
---
-ALTER TABLE `laporan_keuangan`
-  ADD PRIMARY KEY (`id_laporan_keuangan`);
-
---
 -- Indexes for table `level_user`
 --
 ALTER TABLE `level_user`
   ADD PRIMARY KEY (`id_level_user`);
-
---
--- Indexes for table `pemasukan_keuangan`
---
-ALTER TABLE `pemasukan_keuangan`
-  ADD PRIMARY KEY (`id_pemasukan`);
 
 --
 -- Indexes for table `pendeta`
@@ -542,6 +519,12 @@ ALTER TABLE `dokumen`
   MODIFY `id_dokumen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `keuangan`
+--
+ALTER TABLE `keuangan`
+  MODIFY `id_keuangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `konten_foto_ibadah`
 --
 ALTER TABLE `konten_foto_ibadah`
@@ -554,22 +537,10 @@ ALTER TABLE `konten_slide`
   MODIFY `id_slide` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `laporan_keuangan`
---
-ALTER TABLE `laporan_keuangan`
-  MODIFY `id_laporan_keuangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT for table `level_user`
 --
 ALTER TABLE `level_user`
   MODIFY `id_level_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `pemasukan_keuangan`
---
-ALTER TABLE `pemasukan_keuangan`
-  MODIFY `id_pemasukan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `pendeta`

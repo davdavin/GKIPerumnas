@@ -109,13 +109,21 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo base_url() . '' ?>">
+                            <a <?php if ($this->uri->segment(1) == "keuangan" && $this->uri->segment(2) == "pengeluaran") {
+                                    echo "class='nav-link active'";
+                                } else {
+                                    echo "class='nav-link'";
+                                } ?> href="<?php echo base_url() . 'keuangan/pengeluaran' ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Uang Keluar</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a <?php if($this->uri->segment(1) == "keuangan" && $this->uri->segment(2) == "laporan") { echo "class='nav-link active'"; } else { echo "class='nav-link'"; } ?>  href="<?php echo base_url() . 'keuangan/laporan' ?>">
+                            <a <?php if ($this->uri->segment(1) == "keuangan" && $this->uri->segment(2) == "laporan") {
+                                    echo "class='nav-link active'";
+                                } else {
+                                    echo "class='nav-link'";
+                                } ?> href="<?php echo base_url() . 'keuangan/laporan' ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Laporan</p>
                             </a>
