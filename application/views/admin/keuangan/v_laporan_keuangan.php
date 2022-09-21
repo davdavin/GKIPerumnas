@@ -49,6 +49,86 @@
 
     <!-- /.container-fluid -->
   </section>
+  <?php $no = 0;
+  foreach ($laporan as $detail) {
+    $no++ ?>
+    <div class="modal fade" id="pemasukan<?php echo $detail->id_keuangan; ?>">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Detail Pemasukan</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <table class="table table-bordered table-striped">
+              <tr>
+                <th>Kegiatan</th>
+                <td><?php echo $detail->kegiatan ?></td>
+              </tr>
+              <tr>
+                <th>Tanggal Terima</th>
+                <td><?php echo tanggal_indonesia($detail->tanggal_terima); ?></td>
+              </tr>
+              <tr>
+                <th>Total</th>
+                <td><?php echo mata_uang_indo($detail->uang_masuk); ?> </td>
+              </tr>
+              <tr>
+                <th>Keterangan</th>
+                <td><?php echo $detail->keterangan; ?></td>
+              </tr>
+
+            </table>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+  <?php } ?>
+
+  <?php $no = 0;
+  foreach ($laporan as $detail) {
+    $no++ ?>
+    <div class="modal fade" id="pengeluaran<?php echo $detail->id_keuangan; ?>">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Detail Pengeluaran</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <table class="table table-bordered table-striped">
+              <tr>
+                <th>Kegiatan</th>
+                <td><?php echo $detail->kegiatan ?></td>
+              </tr>
+              <tr>
+                <th>Tanggal Keluar</th>
+                <td><?php echo tanggal_indonesia($detail->tanggal_keluar); ?></td>
+              </tr>
+              <tr>
+                <th>Total</th>
+                <td><?php echo mata_uang_indo($detail->uang_keluar); ?> </td>
+              </tr>
+              <tr>
+                <th>Keterangan</th>
+                <td><?php echo $detail->keterangan; ?></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+  <?php } ?>
   <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
@@ -146,19 +226,19 @@
         {
           "data": "saldo_akhir",
           "className": "dt-body-right"
-        }, {
-          data: null,
+        },
+        {
+          data: "id_keuangan",
           name: null,
           sortable: false,
-          render: function(type, data, row, meta) {
+          render: function(data, type, row, meta) {
             if (row.is_debit == "1") {
-              return `<a class="btn btn-primary btn-sm" href="<?php echo base_url() . '' ?>${row.id_keuangan}">
-                         <i class="fas fa-eye"></i> Detail
-                        </a>`;
+              return `<a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#pemasukan` + data + `">
+                <i class="fas fa-eye"></i> Detail </a>`;
             }
             if (row.is_kredit == "1") {
-              return `<a class="btn btn-primary btn-sm" href="<?php echo base_url() . '' ?>${row.id_keuangan}">
-                         <i class="fas fa-eye"></i> Details
+              return `<a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#pengeluaran` + data + `">
+                         <i class="fas fa-eye"></i> Detail
                         </a>`;
             }
 
