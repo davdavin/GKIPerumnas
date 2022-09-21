@@ -118,9 +118,10 @@ class Keuangan extends CI_Controller
     public function laporan()
     {
         $data['title'] = "Keuangan";
+        $data['laporan'] = $this->M_Keuangan->menampilkan_laporan()->result();
         $this->load->view('templates/header.php', $data);
         $this->load->view('templates/sidebar.php');
-        $this->load->view('admin/keuangan/v_laporan_keuangan.php');
+        $this->load->view('admin/keuangan/v_laporan_keuangan.php', $data);
     }
 
     public function lihat_laporan()
@@ -136,5 +137,14 @@ class Keuangan extends CI_Controller
         }
 
         echo json_encode($laporan_keuangan);
+    }
+
+    public function detail_pemasukan($id_keuangan)
+    {
+        $data['title'] = "Keuangan";
+        $data['laporan'] = $this->M_Keuangan->lihat_detail_pemasukan($id_keuangan)->result();
+        $this->load->view('templates/header.php', $data);
+        $this->load->view('templates/sidebar.php');
+        $this->load->view('admin/keuangan/');
     }
 }
