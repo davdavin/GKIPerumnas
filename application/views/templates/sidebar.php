@@ -75,12 +75,12 @@
                         <p> Wilayah </p>
                     </a>
                 </li>
-                <!--       <li class="nav-item">
-          <a href="<?php echo base_url() . 'Ruangan' ?>" class="nav-link">
-            <i class="nav-icon fas fa-door-open"></i>
-            <p> Ruangan </p>
-          </a>
-        </li> -->
+                <li class="nav-item">
+                    <a href="<?php echo base_url() . 'MengelolaRuangan' ?>" class="nav-link">
+                        <i class="nav-icon fas fa-door-open"></i>
+                        <p> Ruangan </p>
+                    </a>
+                </li>
                 <li <?php if ($this->uri->segment(1) == "keuangan") {
                         echo "class='nav-item menu-open'";
                     } else {

@@ -33,10 +33,10 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>Tanggal</th>
+                <th>Tanggal Pencatatan</th>
                 <th style="text-align: left;">Saldo Awal</th>
                 <th style="text-align: left;">Uang Masuk</th>
-                <!-- <th style="text-align: left;">Uang Keluar</th> -->
+                <th style="text-align: left;">Uang Keluar</th>
                 <th style="text-align: left;">Saldo Akhir</th>
                 <th>Aksi</th>
               </tr>
@@ -129,7 +129,7 @@
           }
         },
         {
-          "data": "tanggal_perubahan"
+          "data": "tanggal_pencatatan"
         },
         {
           "data": "saldo_awal",
@@ -140,6 +140,10 @@
           "className": "dt-body-right"
         },
         {
+          "data": "uang_keluar",
+          "className": "dt-body-right"
+        },
+        {
           "data": "saldo_akhir",
           "className": "dt-body-right"
         }, {
@@ -147,21 +151,17 @@
           name: null,
           sortable: false,
           render: function(type, data, row, meta) {
-            switch (row.operation) {
-              case "+":
-                return `<a class="btn btn-primary btn-sm" href="<?php echo base_url() . '' ?>${row.id_laporan_keuangan}">
+            if (row.is_debit == "1") {
+              return `<a class="btn btn-primary btn-sm" href="<?php echo base_url() . '' ?>${row.id_keuangan}">
                          <i class="fas fa-eye"></i> Detail
                         </a>`;
-                break;
-              case "-":
-                return `<a class="btn btn-primary btn-sm" href="<?php echo base_url() . '' ?>${row.id_laporan_keuangan}">
-                         <i class="fas fa-eye"></i> Detail
-                        </a>`;
-                break;
-              default:
-                return ``;
-                break;
             }
+            if (row.is_kredit == "1") {
+              return `<a class="btn btn-primary btn-sm" href="<?php echo base_url() . '' ?>${row.id_keuangan}">
+                         <i class="fas fa-eye"></i> Details
+                        </a>`;
+            }
+
           }
         }
       ]
