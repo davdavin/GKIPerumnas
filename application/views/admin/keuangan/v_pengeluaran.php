@@ -148,7 +148,7 @@
         $('#tabel_keuangan').DataTable({
             "responsive": true,
             "lengthChange": true,
-            "autoWidth": false, 
+            "autoWidth": false,
             "language": {
                 "emptyTable": "Tidak ada data yang tersedia pada tabel ini",
                 "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
