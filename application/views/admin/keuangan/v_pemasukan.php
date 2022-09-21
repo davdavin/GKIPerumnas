@@ -53,7 +53,7 @@
       <div class="modal-dialog modal-lg">
         <div class="modal-content" style="border-top: 10px solid #428bca;">
           <div class="modal-header">
-            <h4 class="modal-title">Input Pencatatan</h4>
+            <h4 class="modal-title">Pencatatan Pemasukan</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -84,8 +84,7 @@
               </div>
               <div class="form-group">
                 <label>Keterangan</label>
-                <input type="text" class="form-control" id="keterangan" name="keterangan" placeholder="Keterangan" required>
-                <!-- INFO ERROR -->
+                <textarea class="form-control" id="keterangan" name="keterangan"></textarea>
                 <div class="px-2 error_keterangan clear" style="display: none">
                 </div>
               </div>
@@ -147,10 +146,9 @@
 <script>
   $(document).ready(function() {
     $('#tabel_keuangan').DataTable({
-      /*   "responsive": true,
-         "lengthChange": true,
-         "autoWidth": false, */
-      "scrollX": true,
+      "responsive": true,
+      "lengthChange": true,
+      "autoWidth": false,
       "language": {
         "emptyTable": "Tidak ada data yang tersedia pada tabel ini",
         "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
@@ -170,7 +168,7 @@
         }
       },
       ajax: {
-        url: "<?php echo base_url() . 'keuangan/tampil_keuangan' ?>",
+        url: "<?php echo base_url() . 'keuangan/tampil_pemasukan' ?>",
         dataSrc: ""
       },
       columns: [{
@@ -188,7 +186,7 @@
           "className": "dt-body-right"
         },
         {
-          "data": "tanggal_masuk"
+          "data": "tanggal_terima"
         },
         {
           "data": "keterangan",
