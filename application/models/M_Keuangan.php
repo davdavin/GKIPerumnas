@@ -2,24 +2,29 @@
 class M_Keuangan extends CI_Model
 {
 
-    public function tampil()
+    public function menampilkan_pemasukan()
     {
-        return $this->db->query("SELECT * FROM pemasukan_keuangan");
+        return $this->db->query("SELECT id_keuangan, kegiatan, keterangan, uang_masuk, tanggal_terima, is_debit FROM keuangan WHERE is_debit = '1'");
     }
 
-    public function total_keuangan()
+    public function menampilkan_pengeluaran()
     {
-        return $this->db->query("SELECT sum(uang_masuk) as total FROM pemasukan_keuangan");
-    }
-
-    public function saldo_akhir()
-    {
-        return $this->db->query("SELECT saldo_akhir as saldo FROM laporan_keuangan ORDER BY id_laporan_keuangan DESC");
+        return $this->db->query("SELECT id_keuangan, kegiatan, keterangan, uang_keluar, tanggal_keluar, is_kredit FROM keuangan WHERE is_kredit = '1'");
     }
 
     public function menampilkan_laporan()
     {
-        return $this->db->query("SELECT * FROM laporan_keuangan INNER JOIN pemasukan_keuangan ON laporan_keuangan.id_pemasukan = pemasukan_keuangan.id_pemasukan ORDER BY id_laporan_keuangan DESC");
+        return $this->db->query("SELECT * FROM keuangan ORDER BY id_keuangan DESC");
+    }
+
+    public function total_keuangan()
+    {
+        return $this->db->query("SELECT saldo_akhir as total FROM keuangan ORDER BY id_keuangan DESC LIMIT 1");
+    }
+
+    public function saldo_akhir()
+    {
+        return $this->db->query("SELECT saldo_akhir as saldo FROM keuangan ORDER BY id_keuangan DESC LIMIT 1");
     }
 
     public function insert_record($data, $table)
