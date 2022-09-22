@@ -75,11 +75,43 @@
                         <p> Wilayah </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="<?php echo base_url() . 'MengelolaRuangan' ?>" class="nav-link">
+                <li <?php if ($this->uri->segment(1) == "mengelola_ruangan") {
+                        echo "class='nav-item menu-open'";
+                    } else {
+                        echo "class='nav-item'";
+                    } ?>>
+                    <a <?php if ($this->uri->segment(1) == "mengelola_ruangan") {
+                            echo "class='nav-link active'";
+                        } else {
+                            echo "class='nav-link'";
+                        } ?> href="<?php echo base_url() . 'mengelola_ruangan' ?>">
                         <i class="nav-icon fas fa-door-open"></i>
-                        <p> Ruangan </p>
+                        <p>
+                            Ruangan
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a <?php if ($this->uri->segment(1) == "mengelola_ruangan" && $this->uri->segment(2) == "") {
+                                    echo "class='nav-link active'";
+                                } else {
+                                    echo "class='nav-link'";
+                                } ?> href="<?php echo base_url() . 'mengelola_ruangan' ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Nama Ruangan</p>
+                            </a>
+                            <a <?php if ($this->uri->segment(1) == "mengelola_ruangan" && $this->uri->segment(2) == "tampil_peminjaman") {
+                                    echo "class='nav-link active'";
+                                } else {
+                                    echo "class='nav-link'";
+                                } ?> href="<?php echo base_url() . 'mengelola_ruangan/tampil_peminjaman' ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Peminjaman</p>
+                            </a>
+                        </li>
+                     
+                    </ul>
                 </li>
                 <li <?php if ($this->uri->segment(1) == "keuangan") {
                         echo "class='nav-item menu-open'";
