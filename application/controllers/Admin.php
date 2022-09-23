@@ -41,10 +41,11 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('nama_lengkap', 'Nama', 'trim|required');
         $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[15]|is_unique[user.username]');
         $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[5]|max_length[15]');
-        $this->form_validation->set_rules('email', 'Email', 'trim|required|is_unique[user.email_user]');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[user.email_user]');
         $this->form_validation->set_rules('level', 'Level', 'required');
 
         $this->form_validation->set_message('required', '{field} wajib diisi');
+        $this->form_validation->set_message('valid_email', '{field} harus valid');
         $this->form_validation->set_message('is_unique', '{field} sudah digunakan');
         $this->form_validation->set_message('min_length', '{field} minimal {param} karakter');
         $this->form_validation->set_message('max_length', '{field} maksimal {param} karakter');
