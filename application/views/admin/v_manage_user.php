@@ -122,7 +122,7 @@
 
               <div class="form-group">
                 <label>Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                <input type="text" class="form-control" id="email" name="email" placeholder="Email">
                 <!-- INFO ERROR -->
                 <div class="px-2 error_email clear" style="display: none">
                 </div>
@@ -143,7 +143,7 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary" id="tombolSimpan">Submit</button>
+              <button type="submit" class="btn btn-primary simpan">Submit</button>
             </div>
           </form>
         </div>
@@ -238,7 +238,7 @@
           "data": "username"
         },
         {
-          "data":"email_user"
+          "data": "email_user"
         },
         {
           "data": "level_user"
@@ -327,6 +327,14 @@
         url: $(this).attr('action'),
         type: "POST",
         data: $(this).serialize(),
+        beforeSend: function() {
+          $('.simpan').attr('disable', 'disabled');
+          $('.simpan').html('<i class="fa fa-spin fa-spinner"></i>');
+        },
+        complete: function() {
+          $('.simpan').removeAttr('disable');
+          $('.simpan').html('Tambah');
+        },
         success: function(respon) {
           var obj = $.parseJSON(respon);
           if (obj.sukses == false) {
