@@ -110,7 +110,7 @@
                                 <p>Peminjaman</p>
                             </a>
                         </li>
-                     
+
                     </ul>
                 </li>
                 <li <?php if ($this->uri->segment(1) == "keuangan") {
@@ -123,7 +123,7 @@
                         } else {
                             echo "class='nav-link'";
                         } ?> href="<?php echo base_url() . 'keuangan' ?>">
-                        <i class="nav-icon fas fa-wallet"></i>
+                        <i class="nav-icon fas fa-money-bill"></i>
                         <p>
                             Keuangan
                             <i class="right fas fa-angle-left"></i>
