@@ -56,6 +56,21 @@
       top: 0;
       width: 0px;
     }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+
+    .dt-body-right {
+      text-align: right;
+    }
   </style>
 </head>
 

@@ -12,7 +12,7 @@ class Konten extends CI_Controller
         }
 
         $this->load->model(array('M_Konten'));
-        $this->load->helper(array('form', 'url'));
+        $this->load->helper(array('form', 'url', 'file'));
     }
 
     public function index()
@@ -81,12 +81,10 @@ class Konten extends CI_Controller
                 $this->session->set_flashdata('gagal', 'Konten tidak berhasil diubah');
                 redirect('Konten');
             } else {
-                //      $gambar = $this->upload->data('file_name');
-
                 $data = array(
                     'judul_slide' => $judul_slide,
                     'deskripsi_slide' => $deskripsi_slide,
-                    'gambar_slide' => $gambar_baru
+                    'gambar_slide' => $this->upload->data('file_name')
                 );
 
                 @unlink('./resources/assets/img/slide/' . $gambar_lama); //untuk hapus gambar lama
