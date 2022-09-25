@@ -71,6 +71,11 @@ $route['mengelola_artikel/edit/(:num)'] = 'MengelolaArtikel/edit_artikel/$1';
 $route['mengelola_artikel/proses_edit'] = 'MengelolaArtikel/proses_edit_artikel';
 $route['mengelola_artikel/hapus/(:num)'] = 'MengelolaArtikel/hapus_artikel/$1';
 
+//mengelola ruangan
+$route['mengelola_ruangan'] = 'MengelolaRuangan';
+$route['mengelola_ruangan/tampil'] = 'MengelolaRuangan/tampil_ruangan';
+$route['mengelola_ruangan/tambah'] = 'MengelolaRuangan/tambah_ruangan';
+
 // dashboard admin
 /*$route['dashboard'] = 'Dashboard';
 
