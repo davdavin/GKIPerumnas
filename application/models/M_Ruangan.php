@@ -6,6 +6,10 @@ class M_Ruangan extends CI_Model
         return $this->db->query("SELECT * FROM ruangan");
     }
 
+    public function pilih_ruangan($id_ruangan) {
+        return $this->db->query("SELECT * FROM ruangan WHERE id_ruangan = '$id_ruangan'");
+    }
+ 
     public function insert_record($data, $table)
     {
         $this->db->insert($table, $data);
