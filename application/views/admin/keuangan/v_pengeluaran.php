@@ -40,7 +40,7 @@
                                 <th style="text-align: left;">Total</th>
                                 <th>Tanggal Keluar</th>
                                 <th>Keterangan</th>
-                                <th>Aksi</th>
+                                <!-- <th>Aksi</th> -->
                             </tr>
                         </thead>
                     </table>
@@ -146,6 +146,8 @@
 <script>
     $(document).ready(function() {
         $('#tabel_keuangan').DataTable({
+            dom: "<'row'<'col-md-3'l><'col-md-5'B><'col-md-4'f>>" +
+                "<'row'<'col-md-12'tr>>" + "<'row'<'col-md-5'i><'col-md-7'p>>",
             "responsive": true,
             "lengthChange": true,
             "autoWidth": false,
@@ -167,6 +169,36 @@
                     "previous": "Sebelumnya"
                 }
             },
+            "buttons": [{
+                    extend: 'pdfHtml5',
+                    //   className: 'btn-primary',
+                    orientation: 'potrait',
+                    pageSize: 'A4',
+                    title: 'Laporan Keuangan',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4]
+                    }
+                    //   download: 'open'
+                },
+                {
+                    extend: 'copyHtml5',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4]
+                    }
+                },
+                {
+                    extend: 'excelHtml5',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4]
+                    }
+                },
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4]
+                    }
+                }
+            ],
             ajax: {
                 url: "<?php echo base_url() . 'keuangan/lihat_pengeluaran' ?>",
                 dataSrc: ""
@@ -191,11 +223,7 @@
                 {
                     "data": "keterangan",
                     sortable: false
-                }, {
-                    data: null,
-                    name: null,
-                    sortable: false,
-                }
+                },
             ]
         });
 
