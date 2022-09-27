@@ -53,7 +53,8 @@ class Pendeta extends CI_Controller
 
         $this->load->library('upload', $config);
         if (!$this->upload->do_upload('foto')) {
-            echo "Upload Gagal";
+            $this->session->set_flashdata('gagal', 'Upload tidak berhasil');
+            redirect('Pendeta');
         } else {
             $foto = $this->upload->data('file_name');
 
@@ -122,7 +123,8 @@ class Pendeta extends CI_Controller
 
             $this->load->library('upload', $config);
             if (!$this->upload->do_upload('foto_baru')) {
-                echo "Upload Gagal";
+                $this->session->set_flashdata('gagal', 'Upload tidak berhasil');
+                redirect('Pendeta');
             } else {
                 $foto = $this->upload->data('file_name');
 
