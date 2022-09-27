@@ -305,6 +305,16 @@
       });
     }
 
+    const gagal = $('.gagal').data('flashdata');
+
+    if (gagal) {
+      Swal.fire({
+        title: 'Data Pendeta',
+        text: gagal,
+        icon: 'error'
+      });
+    }
+
   });
 
   /* $('.tm').on("change", function() {
