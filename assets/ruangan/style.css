@@ -40,48 +40,25 @@
   min-height: 250px;
 }
 
-.tag {
-  background: #cccccc;
-  border-radius: 50px;
-  font-size: 12px;
-  margin: 0;
-  color: #fff;
-  padding: 2px 10px;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-.tag-teal {
-  background-color: #47bcd4;
-}
-.tag-purple {
-  background-color: #5e76bf;
-}
-.tag-pink {
-  background-color: #cd5b9f;
-}
-
 .card-ruangan-body p {
-  font-size: 13px;
+  font-size: 18px;
   margin: 0 0 10px;
 }
-.user {
-  display: flex;
-  margin-top: auto;
+.btn-detail {
+	color: #fff;
+	background-color: #6499ff;
+	font-weight: 700;
+	padding: 10px 30px;
+	font-size: 15px;
+	border: none;
+  border-radius: 20px;
+	width: 100%;
 }
 
-.user #gambar-ruangan {
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
+.btn-detail:hover {
+  color: #fff;
+	background-color:  #428bca;
 }
-.user-info h5 {
-  margin: 0;
-}
-.user-info small {
-  color: #545d7a;
-}
-
 
 .mySlides {
     display: none; 
@@ -161,10 +138,10 @@
 }
 
 /* Fading animation */
-.fade {
+/*.fade {
   animation-name: fade;
   animation-duration: 1.5s;
-}
+} */
 
 @keyframes fade {
   from {opacity: .4} 
