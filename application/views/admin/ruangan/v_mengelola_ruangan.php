@@ -4,13 +4,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Keuangan</h1>
+                    <h1>Ruangan</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                        <li class="breadcrumb-item active">Keuangan</li>
-                        <li class="breadcrumb-item active">Pengeluaran</li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url() . 'Dashboard' ?>"><i class="fas fa-tachometer-alt"></i></a></li>
+                        <li class="breadcrumb-item active">Ruangan</li>
                     </ol>
                 </div>
             </div>
@@ -24,23 +23,22 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Pengeluaran</h3>
+                    <h3 class="card-title">Ruangan</h3>
                 </div>
 
                 <div class="card-body">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
-                        <i class="fas fa-plus"></i> Pencatatan
+                        <i class="fas fa-plus"></i> Ruangan
                     </button><br><br>
 
-                    <table id="tabel_keuangan" class="table table-bordered table-striped" style="width: 100%;">
+                    <table id="tabel_ruangan" class="table table-bordered table-striped" style="width: 100%;">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Kegiatan</th>
-                                <th style="text-align: left;">Total</th>
-                                <th>Tanggal Keluar</th>
-                                <th>Keterangan</th>
-                                <!-- <th>Aksi</th> -->
+                                <th>Ruangan</th>
+                                <th>Kapasitas</th>
+                                <th>Perlengkapan</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                     </table>
@@ -53,44 +51,49 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content" style="border-top: 10px solid #428bca;">
                     <div class="modal-header">
-                        <h4 class="modal-title">Pencatatan Pengeluaran</h4>
+                        <h4 class="modal-title">Input Ruangan</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form class="form-submit" action="<?php echo base_url() . 'keuangan/pencatatan_pengeluaran'  ?>" method="post">
+                    <form class="form-submit" action="<?php echo base_url() . 'mengelola_ruangan/tambah'  ?>" method="post" enctype="multipart/form-data">
                         <div class="modal-body">
                             <div class="form-group">
-                                <label>Kegiatan</label>
-                                <input type="text" class="form-control" id="kegiatan" name="kegiatan" placeholder="Kegiatan" required>
+                                <label>Nama Ruangan</label>
+                                <input type="text" class="form-control" id="nama_ruangan" name="nama_ruangan" placeholder="Nama">
                                 <!-- INFO ERROR -->
-                                <div class="px-2 error_kegiatan clear" style="display: none">
+                                <div class="px-2 error_nama clear" style="display: none">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>Total</label>
+                                <label>Kapasitas</label>
+                                <input type="number" class="form-control" id="kapasitas" name="kapasitas" placeholder="Kapasitas">
+                                <!-- INFO ERROR -->
+                                <div class="px-2 error_kapasitas clear" style="display: none">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Perlengkapan</label>
+                                <input type="text" class="form-control" id="perlengkapan" name="perlengkapan" placeholder="Perlengkapan">
+                                <!-- INFO ERROR -->
+                                <div class="px-2 error_perlengkapan clear" style="display: none">
+                                </div>
+                            </div>
+                            <!-- Foto -->
+                            <div class="form-group">
+                                <label>Input Foto</label>
                                 <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Rp.</span>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="foto" name="foto">
+                                        <label class="custom-file-label" for="foto">Pilih foto (Maks size 5MB)</label>
                                     </div>
-                                    <input type="number" class="form-control" id="uang_masuk" name="uang_keluar" required>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Tanggal Keluar</label>
-                                <input type="date" class="form-control" id="tanggal" name="tanggal_keluar" required>
-                                <div class="px-2 error_tanggal" style="display: none">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Keterangan</label>
-                                <textarea class="form-control" id="keterangan" name="keterangan"></textarea>
-                                <div class="px-2 error_keterangan clear" style="display: none">
+                                <div class="px-2 error_foto clear" style="display: none">
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" id="tombolSimpan">Submit</button>
+                            <button type="submit" class="btn btn-primary simpan" id="tombolSimpan">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -129,6 +132,8 @@
 <!-- InputMask -->
 <script src="<?php echo base_url(); ?>assets/plugins/moment/moment.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/inputmask/jquery.inputmask.min.js"></script>
+<!-- bs-custom-file-input -->
+<script src="<?php echo base_url(); ?>assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <!-- DataTables  & Plugins -->
 <script src="<?php echo base_url(); ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -145,9 +150,7 @@
 
 <script>
     $(document).ready(function() {
-        $('#tabel_keuangan').DataTable({
-            dom: "<'row'<'col-md-3'l><'col-md-5'B><'col-md-4'f>>" +
-                "<'row'<'col-md-12'tr>>" + "<'row'<'col-md-5'i><'col-md-7'p>>",
+        $('#tabel_ruangan').DataTable({
             "responsive": true,
             "lengthChange": true,
             "autoWidth": false,
@@ -169,38 +172,8 @@
                     "previous": "Sebelumnya"
                 }
             },
-            "buttons": [{
-                    extend: 'pdfHtml5',
-                    //   className: 'btn-primary',
-                    orientation: 'potrait',
-                    pageSize: 'A4',
-                    title: 'Laporan Keuangan',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4]
-                    }
-                    //   download: 'open'
-                },
-                {
-                    extend: 'copyHtml5',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4]
-                    }
-                },
-                {
-                    extend: 'excelHtml5',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4]
-                    }
-                },
-                {
-                    extend: 'print',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4]
-                    }
-                }
-            ],
             ajax: {
-                url: "<?php echo base_url() . 'keuangan/lihat_pengeluaran' ?>",
+                url: "<?php echo base_url() . 'mengelola_ruangan/tampil' ?>",
                 dataSrc: ""
             },
             columns: [{
@@ -211,23 +184,106 @@
                     }
                 },
                 {
-                    "data": "kegiatan",
+                    "data": "nama_ruangan"
                 },
                 {
-                    "data": "uang_keluar",
-                    "className": "dt-body-right"
+                    "data": "kapasitas"
                 },
                 {
-                    "data": "tanggal_keluar"
+                    "data": "perlengkapan"
                 },
                 {
-                    "data": "keterangan",
-                    sortable: false
-                },
+                    data: null,
+                    name: null,
+                    render: function(data, type, row, meta) {
+                        return ``;
+                    }
+                }
             ]
         });
 
+        function valid() {
+            $('.clear').hide();
+            $('#nama_ruangan').removeClass('is-invalid');
+            $('#kapasitas').removeClass('is-invalid');
+            $('#perlengkapan').removeClass('is-invalid');
+            $('#foto').removeClass('is-invalid');
+        }
+
+        $('.form-submit').submit(function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: $(this).attr('action'),
+                type: "POST",
+                dataType: "JSON",
+                data: new FormData(this),
+                contentType: false,
+                //cache: false,
+                processData: false,
+                beforeSend: function() {
+                    $('.simpan').attr('disable', 'disabled');
+                    $('.simpan').html('<i class="fa fa-spin fa-spinner"></i>');
+                },
+                complete: function() {
+                    $('.simpan').removeAttr('disable');
+                    $('.simpan').html('Tambah');
+                },
+                success: function(respon) {
+                    if (respon.sukses == false) {
+                        if (respon.error_nama) {
+                            $('#nama_ruangan').addClass('is-invalid');
+                            $('.error_nama').show();
+                            $('.error_nama').html(respon.error_nama);
+                            $('.error_nama').css("color", "red");
+                        } else {
+                            $('#nama_ruangan').removeClass('is-invalid');
+                            $('.error_nama').hide();
+                        }
+                        if (respon.error_kapasitas) {
+                            $('#kapasitas').addClass('is-invalid');
+                            $('.error_kapasitas').show();
+                            $('.error_kapasitas').html(respon.error_kapasitas);
+                            $('.error_kapasitas').css("color", "red");
+                        } else {
+                            $('#kapasitas').removeClass('is-invalid');
+                            $('.error_kapasitas').hide();
+                        }
+                        if (respon.error_perlengkapan) {
+                            $('#perlengkapan').addClass('is-invalid');
+                            $('.error_perlengkapan').show();
+                            $('.error_perlengkapan').html(respon.error_perlengkapan);
+                            $('.error_perlengkapan').css("color", "red");
+                        } else {
+                            $('#perlengkapan').removeClass('is-invalid');
+                            $('.error_perlengkapan').hide();
+                        }
+                        if (respon.error_foto) {
+                            $('#foto').addClass('is-invalid');
+                            $('.error_foto').show();
+                            $('.error_foto').html(respon.error_foto);
+                            $('.error_foto').css("color", "red");
+                        } else {
+                            $('#foto').removeClass('is-invalid');
+                            $('.error_foto').hide();
+                        }
+                    } else {
+                        valid();
+                        Swal.fire({
+                            title: 'Sukses',
+                            text: respon.sukses,
+                            icon: 'success',
+                        }).then((confirmed) => {
+                            window.location.reload();
+                        });
+                    }
+
+                }
+            });
+        });
+
         $('[data-mask]').inputmask();
+
+        bsCustomFileInput.init();
 
         const sukses = $('.sukses').data('flashdata');
         if (sukses) {
