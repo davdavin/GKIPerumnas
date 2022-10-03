@@ -13,6 +13,7 @@ class Pendeta extends CI_Controller
 
         $this->load->model(array('M_Pendeta'));
         $this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
     }
 
     public function index()
@@ -46,28 +47,61 @@ class Pendeta extends CI_Controller
         $tanggal_lahir_pendeta = $this->input->post('tanggal_lahir');
         $status_pendeta = $this->input->post('status');
 
-        //upload file
-        $config['upload_path'] = './resources/assets/img/pendeta/';
-        $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size'] = 100000; //100 MB
+        $this->form_validation->set_rules('nama_pendeta', 'Nama', 'trim|required');
+        $this->form_validation->set_rules('alamat_pendeta', 'Alamat', 'trim|required');
+        $this->form_validation->set_rules('nohp', 'No. Handphone', 'trim|required|min_length[9]|max_length[15]');
+        $this->form_validation->set_rules('email_pendeta', 'Email', 'trim|required|valid_email|is_unique[pendeta.email_pendeta]');
+        $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required');
+        $this->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'required');
+        $this->form_validation->set_rules('status', 'Status', 'required');
+        if (empty($_FILES['foto']['name'])) {
+            $this->form_validation->set_rules('foto', 'Foto', 'required');
+        }
 
-        $this->load->library('upload', $config);
-        if (!$this->upload->do_upload('foto')) {
-            $this->session->set_flashdata('gagal', 'Upload tidak berhasil');
-            redirect('Pendeta');
-        } else {
-            $foto = $this->upload->data('file_name');
+        $this->form_validation->set_message('required', '{field} wajib diisi');
+        $this->form_validation->set_message('valid_email', '{field} harus valid');
+        $this->form_validation->set_message('is_unique', '{field} sudah digunakan');
+        $this->form_validation->set_message('min_length', '{field} minimal {param} angka');
+        $this->form_validation->set_message('max_length', '{field} maksimal {param} angka');
 
-            $data = array(
-                'no_pendeta' => $no_pendeta, 'nama_lengkap_pendeta' => $nama_pendeta,
-                'alamat_pendeta' => $alamat_pendeta, 'nohp_pendeta' => $nohp_pendeta,
-                'email_pendeta' => $email_pendeta, 'jenis_kelamin_pendeta' => $jenis_kelamin_pendeta,
-                'tanggal_lahir_pendeta' => $tanggal_lahir_pendeta, 'foto_pendeta' => $foto, 'status_pendeta' => $status_pendeta
+        if ($this->form_validation->run() == FALSE) {
+            $respon = array(
+                'sukses' => false,
+                'error_nama' => form_error('nama_lengkap'),
+                'error_alamat' => form_error('alamat_pendeta'),
+                'error_nohp' => form_error('nohp'),
+                'error_email' => form_error('email_pendeta'),
+                'error_jenis_kelamin' => form_error('jenis_kelamin'),
+                'error_tanggal' => form_error('tanggal_lahir'),
+                'error_foto' => form_error('foto'),
+                'error_status' => form_error('status')
             );
+            echo json_encode($respon);
+        } else {
+            //upload file
+            $config['upload_path'] = './resources/assets/img/pendeta/';
+            $config['allowed_types'] = 'jpg|png';
+            $config['max_size'] = 100000; //100 MB
 
-            $this->M_Pendeta->insert_record($data, 'pendeta');
-            $this->session->set_flashdata('sukses', 'Data berhasil disimpan');
-            redirect('Pendeta');
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload('foto')) {
+                $respon['sukses'] = false;
+                $respon['error_foto'] = "Tidak berhasil upload file. Format file hanya jpg, png dan ukuran file maksimal 5MB";
+                echo json_encode($respon);
+            } else {
+                $foto = $this->upload->data('file_name');
+
+                $data = array(
+                    'no_pendeta' => $no_pendeta, 'nama_lengkap_pendeta' => $nama_pendeta,
+                    'alamat_pendeta' => $alamat_pendeta, 'nohp_pendeta' => $nohp_pendeta,
+                    'email_pendeta' => $email_pendeta, 'jenis_kelamin_pendeta' => $jenis_kelamin_pendeta,
+                    'tanggal_lahir_pendeta' => $tanggal_lahir_pendeta, 'foto_pendeta' => $foto, 'status_pendeta' => $status_pendeta
+                );
+
+                $this->M_Pendeta->insert_record($data, 'pendeta');
+                $respon['sukses'] = "Data berhasil disimpan";
+                echo json_encode($respon);
+            }
         }
     }
 
@@ -103,42 +137,75 @@ class Pendeta extends CI_Controller
         $foto_baru = $_FILES['foto_baru']['name'];
         $status_pendeta = $this->input->post('status');
 
-        $where = array('id_pendeta' => $id_pendeta);
+        $profil = $this->M_Pendeta->tampil_detail($id_pendeta)->row_array();
 
-        if ($foto_baru == "") {
-            $data = array(
-                'nama_lengkap_pendeta' => $nama_pendeta, 'alamat_pendeta' => $alamat_pendeta, 'nohp_pendeta' => $nohp_pendeta,
-                'email_pendeta' => $email_pendeta, 'jenis_kelamin_pendeta' => $jenis_kelamin_pendeta,
-                'tanggal_lahir_pendeta' => $tanggal_lahir_pendeta, 'foto_pendeta' => $foto_lama, 'status_pendeta' => $status_pendeta
+        $this->form_validation->set_rules('nama_pendeta', 'Nama', 'trim|required');
+        $this->form_validation->set_rules('alamat_pendeta', 'Alamat', 'trim|required');
+        $this->form_validation->set_rules('nohp', 'No. Handphone', 'trim|required|min_length[9]|max_length[15]');
+        if ($email_pendeta != $profil['email_pendeta']) {
+            $this->form_validation->set_rules('email_pendeta', 'Email', 'trim|required|valid_email|is_unique[pendeta.email_pendeta]');
+        }
+        $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required');
+        $this->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'required');
+        $this->form_validation->set_rules('status', 'Status', 'required');
+
+        $this->form_validation->set_message('required', '{field} wajib diisi');
+        $this->form_validation->set_message('valid_email', '{field} harus valid');
+        $this->form_validation->set_message('is_unique', '{field} sudah digunakan');
+        $this->form_validation->set_message('min_length', '{field} minimal {param} angka');
+        $this->form_validation->set_message('max_length', '{field} maksimal {param} angka');
+
+        if ($this->form_validation->run() == FALSE) {
+            $respon = array(
+                'sukses' => false,
+                'error_nama' => form_error('nama_lengkap'),
+                'error_alamat' => form_error('alamat_pendeta'),
+                'error_nohp' => form_error('nohp'),
+                'error_email' => form_error('email_pendeta'),
+                'error_jenis_kelamin' => form_error('jenis_kelamin'),
+                'error_tanggal' => form_error('tanggal_lahir'),
+                'error_status' => form_error('status')
             );
-
-            $this->M_Pendeta->update_record($where, $data, 'pendeta');
-            $this->session->set_flashdata('sukses', 'Data berhasil diubah');
-            redirect('Pendeta');
+            echo json_encode($respon);
         } else {
-            //upload file
-            $config['upload_path'] = './resources/assets/img/pendeta/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = 100000; //100 MB
+            $where = array('id_pendeta' => $id_pendeta);
 
-            $this->load->library('upload', $config);
-            if (!$this->upload->do_upload('foto_baru')) {
-                $this->session->set_flashdata('gagal', 'Upload tidak berhasil');
-                redirect('Pendeta');
-            } else {
-                $foto = $this->upload->data('file_name');
-
+            if ($foto_baru == "") {
                 $data = array(
                     'nama_lengkap_pendeta' => $nama_pendeta, 'alamat_pendeta' => $alamat_pendeta, 'nohp_pendeta' => $nohp_pendeta,
                     'email_pendeta' => $email_pendeta, 'jenis_kelamin_pendeta' => $jenis_kelamin_pendeta,
-                    'tanggal_lahir_pendeta' => $tanggal_lahir_pendeta, 'foto_pendeta' => $foto, 'status_pendeta' => $status_pendeta
+                    'tanggal_lahir_pendeta' => $tanggal_lahir_pendeta, 'foto_pendeta' => $foto_lama, 'status_pendeta' => $status_pendeta
                 );
 
-                @unlink('./resources/assets/img/pendeta/' . $foto_lama); //untuk hapus foto lama
-
                 $this->M_Pendeta->update_record($where, $data, 'pendeta');
-                $this->session->set_flashdata('sukses', 'Data berhasil diubah');
-                redirect('Pendeta');
+                $respon['sukses'] = "Data berhasil diubah";
+                echo json_encode($respon);
+            } else {
+                //upload file
+                $config['upload_path'] = './resources/assets/img/pendeta/';
+                $config['allowed_types'] = 'jpg|png';
+                $config['max_size'] = 100000; //100 MB
+
+                $this->load->library('upload', $config);
+                if (!$this->upload->do_upload('foto_baru')) {
+                    $respon['sukses'] = false;
+                    $respon['error_foto'] = "Tidak berhasil upload file. Format file hanya jpg, png dan ukuran file maksimal 5MB";
+                    echo json_encode($respon);
+                } else {
+                    $foto = $this->upload->data('file_name');
+
+                    $data = array(
+                        'nama_lengkap_pendeta' => $nama_pendeta, 'alamat_pendeta' => $alamat_pendeta, 'nohp_pendeta' => $nohp_pendeta,
+                        'email_pendeta' => $email_pendeta, 'jenis_kelamin_pendeta' => $jenis_kelamin_pendeta,
+                        'tanggal_lahir_pendeta' => $tanggal_lahir_pendeta, 'foto_pendeta' => $foto, 'status_pendeta' => $status_pendeta
+                    );
+
+                    @unlink('./resources/assets/img/pendeta/' . $foto_lama); //untuk hapus foto lama
+
+                    $this->M_Pendeta->update_record($where, $data, 'pendeta');
+                    $respon['sukses'] = "Data berhasil diubah";
+                    echo json_encode($respon);
+                }
             }
         }
     }

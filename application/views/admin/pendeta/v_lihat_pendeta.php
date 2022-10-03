@@ -62,46 +62,52 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form action="<?php echo base_url() . 'Pendeta/tambah_pendeta' ?>" method="post" enctype="multipart/form-data">
+          <form class="form-submit" action="<?php echo base_url() . 'Pendeta/tambah_pendeta' ?>" method="post" enctype="multipart/form-data">
             <div class="modal-body">
               <div class="form-group">
                 <label>Nama Lengkap Pendeta</label>
-                <input type="text" class="form-control" name="nama_pendeta" placeholder="Nama Pendeta" required>
+                <input type="text" class="form-control" name="nama_pendeta" placeholder="Nama Pendeta">
+                <div class="px-2 error_nama clear" style="display: none">
+                </div>
               </div>
               <div class="form-group">
                 <label>Alamat Pendeta</label>
-                <input type="text" class="form-control" name="alamat_pendeta" placeholder="Alamat Pendeta" required>
+                <input type="text" class="form-control" name="alamat_pendeta" placeholder="Alamat Pendeta">
+                <div class="px-2 error_alamat clear" style="display: none">
+                </div>
               </div>
 
               <!-- phone mask -->
               <div class="form-group">
                 <label>Nomor HP (Indonesia):</label>
-
-                <div class="input-group">
-                  <input type="text" class="form-control" data-inputmask='"mask": "089999999999[9][9][9]"' data-mask name="nohp" required>
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                  </div>
+                <input type="text" class="form-control" data-inputmask='"mask": "089999999999[9][9][9]"' data-mask name="nohp">
+                <div class="px-2 error_nohp clear" style="display: none">
                 </div>
               </div>
               <div class="form-group">
                 <label>Email Pendeta</label>
-                <input type="email" class="form-control" name="email_pendeta" placeholder="Email Pendeta" required>
+                <input type="email" class="form-control" name="email_pendeta" placeholder="Email Pendeta">
+                <div class="px-2 error_email clear" style="display: none">
+                </div>
               </div>
 
               <!-- jenis kelamin -->
               <div class="form-group">
                 <label>Jenis Kelamin</label>
-                <select class="form-control select2bs4" style="width: 100%;" name="jenis_kelamin" required>
+                <select class="form-control select2bs4" style="width: 100%;" name="jenis_kelamin">
                   <option selected disabled value>-- Pilih --</option>
                   <option value="Laki-laki">Laki-laki</option>
                   <option value="Perempuan">Perempuan</option>
                 </select>
+                <div class="px-2 error_jenis_kelamin clear" style="display: none">
+                </div>
               </div>
 
               <div class="form-group">
                 <label>Tanggal Lahir</label>
-                <input type="date" class="tm form-control" name="tanggal_lahir" id="tanggalLahir" required>
+                <input type="date" class="tm form-control" name="tanggal_lahir" id="tanggalLahir">
+                <div class="px-2 error_tanggal clear" style="display: none">
+                </div>
               </div>
 
               <!-- Foto -->
@@ -109,27 +115,31 @@
                 <label>File Input</label>
                 <div class="input-group">
                   <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="exampleInputFile" name="foto" required>
-                    <label class="custom-file-label" for="exampleInputFile">Pilih file (Maks size file 100 MB)</label>
+                    <input type="file" class="custom-file-input" id="exampleInputFile" name="foto">
+                    <label class="custom-file-label" for="exampleInputFile">Pilih file (Maks size 5 MB)</label>
                   </div>
                   <div class="input-group-append">
                     <span class="input-group-text">Upload</span>
                   </div>
+                </div>
+                <div class="px-2 error_foto clear" style="display: none">
                 </div>
               </div>
 
               <!-- status -->
               <div class="form-group">
                 <label>Status</label>
-                <select class="form-control select2bs4" style="width: 100%;" name="status" required>
+                <select class="form-control select2bs4" style="width: 100%;" name="status">
                   <option selected disabled value>Status</option>
                   <option value="1">Aktif</option>
                   <option value="0">Tidak Aktif</option>
                 </select>
+                <div class="px-2 error_status clear" style="display: none">
+                </div>
               </div>
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-primary simpan">Submit</button>
             </div>
           </form>
         </div>
@@ -198,12 +208,7 @@
 <script src="<?php echo base_url(); ?>assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 
 <script>
-  /* $(document).ready(function() {
-   
-
-  }); */
-
-  $(function() {
+  $(document).ready(function() {
     $('#tabel_pendeta').DataTable({
       "responsive": true,
       "lengthChange": true,
@@ -282,6 +287,8 @@
       });
     });
 
+
+
     $('[data-mask]').inputmask();
 
     bsCustomFileInput.init();
@@ -314,6 +321,98 @@
         icon: 'error'
       });
     }
+
+    $('.form-submit').submit(function(e) {
+      e.preventDefault();
+      $.ajax({
+        url: $(this).attr('action'),
+        type: "POST",
+        dataType: "JSON",
+        data: new FormData(this),
+        contentType: false,
+        //cache: false,
+        processData: false,
+        beforeSend: function() {
+          $('.simpan').attr('disable', 'disabled');
+          $('.simpan').html('<i class="fa fa-spin fa-spinner"></i>');
+        },
+        complete: function() {
+          $('.simpan').removeAttr('disable');
+          $('.simpan').html('Submit');
+        },
+        success: function(respon) {
+          if (respon.sukses == false) {
+            if (respon.error_nama) {
+              $('.error_nama').show();
+              $('.error_nama').html(respon.error_nama);
+              $('.error_nama').css("color", "red");
+            } else {
+              $('.error_nama').hide();
+            }
+            if (respon.error_alamat) {
+              $('.error_alamat').show();
+              $('.error_alamat').html(respon.error_alamat);
+              $('.error_alamat').css("color", "red");
+            } else {
+              $('.error_alamat').hide();
+            }
+            if (respon.error_nohp) {
+              $('#perlengkapan').addClass('is-invalid');
+              $('.error_nohp').show();
+              $('.error_nohp').html(respon.error_nohp);
+              $('.error_nohp').css("color", "red");
+            } else {
+              $('.error_nohp').hide();
+            }
+            if (respon.error_email) {
+              $('.error_email').show();
+              $('.error_email').html(respon.error_email);
+              $('.error_email').css("color", "red");
+            } else {
+              $('.error_email').hide();
+            }
+            if (respon.error_jenis_kelamin) {
+              $('.error_jenis_kelamin').show();
+              $('.error_jenis_kelamin').html(respon.error_jenis_kelamin);
+              $('.error_jenis_kelamin').css("color", "red");
+            } else {
+              $('.error_jenis_kelamin').hide();
+            }
+            if (respon.error_tanggal) {
+              $('.error_tanggal').show();
+              $('.error_tanggal').html(respon.error_tanggal);
+              $('.error_tanggal').css("color", "red");
+            } else {
+              $('.error_tanggal').hide();
+            }
+            if (respon.error_foto) {
+              $('.error_foto').show();
+              $('.error_foto').html(respon.error_foto);
+              $('.error_foto').css("color", "red");
+            } else {
+              $('.error_foto').hide();
+            }
+            if (respon.error_status) {
+              $('.error_status').show();
+              $('.error_status').html(respon.error_status);
+              $('.error_status').css("color", "red");
+            } else {
+              $('.error_status').hide();
+            }
+          } else {
+            $('.clear').hide();
+            Swal.fire({
+              title: 'Sukses',
+              text: respon.sukses,
+              icon: 'success',
+            }).then((confirmed) => {
+              window.location.reload();
+            });
+          }
+
+        }
+      });
+    });
 
   });
 
