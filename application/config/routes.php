@@ -56,6 +56,8 @@ $route['translate_uri_dashes'] = FALSE;
 //baca artikel
 $route['artikel/(:num)'] = 'Artikel/baca_artikel/$1';
 
+$route['booking/(:num)'] = 'Ruangan/booking_ruangan/$1';
+
 // login admin
 $route['login'] = 'Login_Admin';
 $route['login/verifikasi'] = 'Login_Admin/verifikasi';
@@ -75,6 +77,8 @@ $route['mengelola_artikel/hapus/(:num)'] = 'MengelolaArtikel/hapus_artikel/$1';
 $route['mengelola_ruangan'] = 'MengelolaRuangan';
 $route['mengelola_ruangan/tampil'] = 'MengelolaRuangan/tampil_ruangan';
 $route['mengelola_ruangan/tambah'] = 'MengelolaRuangan/tambah_ruangan';
+$route['mengelola_ruangan/peminjaman'] = 'MengelolaRuangan/lihat_peminjaman';
+$route['mengelola_ruangan/tampil_peminjaman'] = 'MengelolaRuangan/tampil_peminjaman';
 
 // dashboard admin
 /*$route['dashboard'] = 'Dashboard';

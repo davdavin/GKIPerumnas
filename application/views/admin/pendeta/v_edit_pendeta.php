@@ -26,7 +26,7 @@
       <!-- /.card-header -->
       <!-- form start -->
       <?php foreach ($pendetaEdit as $list_pendeta_edit) { ?>
-        <form method="post" action="<?php echo base_url() . 'Pendeta/proses_edit_pendeta' ?>" enctype="multipart/form-data">
+        <form class="form-submit" method="post" action="<?php echo base_url() . 'Pendeta/proses_edit_pendeta' ?>" enctype="multipart/form-data">
           <div class="card-body">
             <div class="row edit-center">
               <div class="col-sm-4">
@@ -40,26 +40,29 @@
                 </div>
                 <div class="form-group">
                   <label>Nama Pendeta</label>
-                  <input type="text" class="form-control" name="nama_pendeta" value="<?= $list_pendeta_edit->nama_lengkap_pendeta; ?>" required>
+                  <input type="text" class="form-control" name="nama_pendeta" value="<?= $list_pendeta_edit->nama_lengkap_pendeta; ?>">
+                  <div class="px-2 error_nama clear" style="display: none">
+                  </div>
                 </div>
                 <div class="form-group">
                   <label>Alamat Pendeta</label>
-                  <input type="text" class="form-control" name="alamat_pendeta" value="<?= $list_pendeta_edit->alamat_pendeta; ?>" required>
+                  <input type="text" class="form-control" name="alamat_pendeta" value="<?= $list_pendeta_edit->alamat_pendeta; ?>">
+                  <div class="px-2 error_alamat clear" style="display: none">
+                  </div>
                 </div>
 
                 <!-- phone mask -->
                 <div class="form-group">
                   <label>Nomor HP (Indonesia):</label>
-                  <div class="input-group">
-                    <input type="text" class="form-control" data-inputmask='"mask": "089999999999[9][9][9]"' data-mask name="nohp" value="<?= $list_pendeta_edit->nohp_pendeta; ?>" required>
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                    </div>
+                  <input type="text" class="form-control" data-inputmask='"mask": "089999999999[9][9][9]"' data-mask name="nohp" value="<?= $list_pendeta_edit->nohp_pendeta; ?>">
+                  <div class="px-2 error_nohp clear" style="display: none">
                   </div>
                 </div>
                 <div class="form-group">
                   <label>Email Pendeta</label>
-                  <input type="email" class="form-control" name="email_pendeta" value="<?= $list_pendeta_edit->email_pendeta; ?>" required>
+                  <input type="email" class="form-control" name="email_pendeta" value="<?= $list_pendeta_edit->email_pendeta; ?>">
+                  <div class="px-2 error_email clear" style="display: none">
+                  </div>
                 </div>
               </div>
 
@@ -67,7 +70,7 @@
                 <!-- jenis kelamin -->
                 <div class="form-group">
                   <label>Jenis Kelamin</label>
-                  <select class="form-control select2bs4" style="width: 100%;" name="jenis_kelamin" required>
+                  <select class="form-control select2bs4" style="width: 100%;" name="jenis_kelamin">
                     <?php if ($list_pendeta_edit->jenis_kelamin_pendeta == "Laki-laki") { ?>
                       <option value="<?php echo $list_pendeta_edit->jenis_kelamin_pendeta ?>" <?php echo "selected"; ?>>
                         <?php echo $list_pendeta_edit->jenis_kelamin_pendeta; ?>
@@ -82,18 +85,22 @@
                       </option>
                     <?php } ?>
                   </select>
+                  <div class="px-2 error_jenis_kelamin clear" style="display: none">
+                  </div>
                 </div>
 
                 <!-- Tanggal Lahir -->
                 <div class="form-group">
                   <label>Tanggal Lahir</label>
-                  <input type="date" class="tm form-control" name="tanggal_lahir" id="tanggalLahir" value="<?= $list_pendeta_edit->tanggal_lahir_pendeta; ?>" required>
+                  <input type="date" class="tm form-control" name="tanggal_lahir" id="tanggalLahir" value="<?= $list_pendeta_edit->tanggal_lahir_pendeta; ?>">
+                  <div class="px-2 error_tanggal clear" style="display: none">
+                  </div>
                 </div>
 
                 <!-- status -->
-                <div class="form-group">
+                <div class=" form-group">
                   <label>Status</label>
-                  <select class="form-control select2bs4" style="width: 100%;" name="status" required>
+                  <select class="form-control select2bs4" style="width: 100%;" name="status">
                     <?php if ($list_pendeta_edit->status_pendeta == 1) { ?>
                       <option value="<?php echo $list_pendeta_edit->status_pendeta ?>" <?php echo "selected"; ?>>
                         <?php echo 'Aktif'; ?>
@@ -108,6 +115,8 @@
                       </option>
                     <?php } ?>
                   </select>
+                  <div class="px-2 error_status clear" style="display: none">
+                  </div>
                 </div>
 
                 <!-- Foto -->
@@ -116,12 +125,14 @@
                   <input type="hidden" name="foto_lama" value="<?= $list_pendeta_edit->foto_pendeta ?>">
                   <img src="<?php echo base_url(); ?>resources/assets/img/pendeta/<?php echo $list_pendeta_edit->foto_pendeta; ?>" class="img-fluid" style="width: 200px; height: 200px;"><br><br>
                   <input type="file" name="foto_baru">
+                  <div class="px-2 error_foto clear" style="display: none">
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="card-footer">
-            <button type="submit" class="btn btn-primary tombol-ubah">Ubah</button>
+            <button type="submit" class="btn btn-primary simpan">Ubah</button>
           </div>
         </form>
 
@@ -199,6 +210,112 @@
         }
       });
 
+    });
+
+    $('.form-submit').submit(function(e) {
+      e.preventDefault();
+      Swal.fire({
+        title: 'Apakah anda yakin?',
+        icon: 'warning',
+        showCancelButton: true,
+        cancelButtonText: 'batal',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ubah Data'
+      }).then((result) => {
+        if (result.value) {
+          $.ajax({
+            url: $(this).attr('action'),
+            type: 'POST',
+            dataType: 'JSON',
+            data: new FormData(this),
+            contentType: false,
+            //  cache: false,
+            processData: false,
+            beforeSend: function() {
+              $('.simpan').html('<i class="fa fa-spin fa-spinner"></i>');
+              $('.simpan').attr('disabled', 'disabled');
+            },
+            complete: function() {
+              $('.simpan').removeAttr('disabled');
+              $('.simpan').html('Ubah');
+            },
+            success: function(respon) {
+              if (respon.sukses == false) {
+                if (respon.error_nama) {
+                  $('.error_nama').show();
+                  $('.error_nama').html(respon.error_nama);
+                  $('.error_nama').css("color", "red");
+                } else {
+                  $('.error_nama').hide();
+                }
+                if (respon.error_alamat) {
+                  $('.error_alamat').show();
+                  $('.error_alamat').html(respon.error_alamat);
+                  $('.error_alamat').css("color", "red");
+                } else {
+                  $('.error_alamat').hide();
+                }
+                if (respon.error_nohp) {
+                  $('#perlengkapan').addClass('is-invalid');
+                  $('.error_nohp').show();
+                  $('.error_nohp').html(respon.error_nohp);
+                  $('.error_nohp').css("color", "red");
+                } else {
+                  $('.error_nohp').hide();
+                }
+                if (respon.error_email) {
+                  $('.error_email').show();
+                  $('.error_email').html(respon.error_email);
+                  $('.error_email').css("color", "red");
+                } else {
+                  $('.error_email').hide();
+                }
+                if (respon.error_jenis_kelamin) {
+                  $('.error_jenis_kelamin').show();
+                  $('.error_jenis_kelamin').html(respon.error_jenis_kelamin);
+                  $('.error_jenis_kelamin').css("color", "red");
+                } else {
+                  $('.error_jenis_kelamin').hide();
+                }
+                if (respon.error_tanggal) {
+                  $('.error_tanggal').show();
+                  $('.error_tanggal').html(respon.error_tanggal);
+                  $('.error_tanggal').css("color", "red");
+                } else {
+                  $('.error_tanggal').hide();
+                }
+                if (respon.error_foto) {
+                  $('.error_foto').show();
+                  $('.error_foto').html(respon.error_foto);
+                  $('.error_foto').css("color", "red");
+                } else {
+                  $('.error_foto').hide();
+                }
+                if (respon.error_status) {
+                  $('.error_status').show();
+                  $('.error_status').html(respon.error_status);
+                  $('.error_status').css("color", "red");
+                } else {
+                  $('.error_status').hide();
+                }
+
+              } else {
+                $('.clear').hide();
+                Swal.fire({
+                  title: 'Sukses',
+                  text: respon.sukses,
+                  icon: 'success',
+                  showConfirmButton: false,
+                  timer: 1000,
+                }).then((confirmed) => {
+                  window.location.href = "<?php echo base_url() . 'Pendeta' ?>";
+                });
+              }
+            }
+          });
+        }
+      });
     });
   });
 </script>

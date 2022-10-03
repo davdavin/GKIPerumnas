@@ -101,11 +101,11 @@
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Nama Ruangan</p>
                             </a>
-                            <a <?php if ($this->uri->segment(1) == "mengelola_ruangan" && $this->uri->segment(2) == "tampil_peminjaman") {
+                            <a <?php if ($this->uri->segment(1) == "mengelola_ruangan" && $this->uri->segment(2) == "peminjaman") {
                                     echo "class='nav-link active'";
                                 } else {
                                     echo "class='nav-link'";
-                                } ?> href="<?php echo base_url() . 'mengelola_ruangan/tampil_peminjaman' ?>">
+                                } ?> href="<?php echo base_url() . 'mengelola_ruangan/peminjaman' ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Peminjaman</p>
                             </a>
