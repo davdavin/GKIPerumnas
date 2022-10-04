@@ -58,6 +58,9 @@ $route['artikel/(:num)'] = 'Artikel/baca_artikel/$1';
 
 $route['booking/(:num)'] = 'Ruangan/booking_ruangan/$1';
 
+//pengumpulan dokumen
+$route['pengumpulan'] = 'Pengumpulan_Dokumen';
+
 // login admin
 $route['login'] = 'Login_Admin';
 $route['login/verifikasi'] = 'Login_Admin/verifikasi';
@@ -79,6 +82,7 @@ $route['mengelola_ruangan/tampil'] = 'MengelolaRuangan/tampil_ruangan';
 $route['mengelola_ruangan/tambah'] = 'MengelolaRuangan/tambah_ruangan';
 $route['mengelola_ruangan/peminjaman'] = 'MengelolaRuangan/lihat_peminjaman';
 $route['mengelola_ruangan/tampil_peminjaman'] = 'MengelolaRuangan/tampil_peminjaman';
+$route['mengelola_ruangan/update_status'] = 'MengelolaRuangan/update_status';
 
 // dashboard admin
 /*$route['dashboard'] = 'Dashboard';
