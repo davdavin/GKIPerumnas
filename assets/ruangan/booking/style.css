@@ -1,6 +1,24 @@
 .section {
 	position: relative;
-	height: 100vh;
+	height: 150vh;
+}
+.pilihan {
+	overflow: hidden;
+}
+.input-pilihan {
+	float: left;
+	clear: none;
+}
+.label-pilihan {
+	float: left;
+	clear: none;
+	display: block;
+	padding: 0px 1em 0px 8px;
+}
+input[type=radio], input.radio {
+	float: left;
+	clear: none;
+	margin: 2px 0 0 2px;
 }
 
 .section .section-center {
@@ -33,7 +51,7 @@
 	top: 0px;
 	bottom: 0px;
 	width: 350px;
-	background-image: url('http://localhost/GKIPerumnas/assets/ruangan/booking/img/background.jpg');
+	background-image: url('http://localhost/GKIPerumnas/assets/ruangan/booking/background.jpg');
 	background-size: cover;
 	background-position: center;
 }
