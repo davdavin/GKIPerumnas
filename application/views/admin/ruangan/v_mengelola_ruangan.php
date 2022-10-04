@@ -74,7 +74,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Perlengkapan</label>
-                                <input type="text" class="form-control" id="perlengkapan" name="perlengkapan" placeholder="Perlengkapan">
+                                <textarea id="textArea" class="form-control" name="perlengkapan"></textarea>
                                 <!-- INFO ERROR -->
                                 <div class="px-2 error_perlengkapan clear" style="display: none">
                                 </div>
@@ -134,6 +134,9 @@
 <!-- InputMask -->
 <script src="<?php echo base_url(); ?>assets/plugins/moment/moment.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/inputmask/jquery.inputmask.min.js"></script>
+<!-- tinymce -->
+<script src="<?php echo base_url(); ?>resources/tinymce/tinymce.min.js"></script>
+<script src="<?php echo base_url(); ?>resources/tinymce/jquery.tinymce.min.js"></script>
 <!-- bs-custom-file-input -->
 <script src="<?php echo base_url(); ?>assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <!-- DataTables  & Plugins -->
@@ -212,11 +215,29 @@
                     data: null,
                     name: null,
                     render: function(data, type, row, meta) {
-                        return ``;
+                        return `<a class="btn btn-info btn-sm" href="<?php echo base_url() . 'mengelola_ruangan/edit/' ?>${row.id_ruangan}">
+                          <i class="fas fa-pencil-alt"></i> Edit
+                        </a>`;
                     }
                 }
             ]
         });
+
+
+        tinymce.init({
+            selector: '#textArea',
+            height: 200,
+            plugins: [
+                'advlist autolink lists preview',
+                'fullscreen',
+                'paste code wordcount'
+            ],
+            toolbar: 'undo redo | ' +
+                'bold italic backcolor | alignleft aligncenter ' +
+                'alignright alignjustify | bullist numlist outdent indent',
+            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+        });
+
 
         $('.form-submit').submit(function(e) {
             e.preventDefault();
@@ -288,7 +309,7 @@
         const sukses = $('.sukses').data('flashdata');
         if (sukses) {
             Swal.fire({
-                title: 'Pencatatan',
+                title: 'Ruangan',
                 text: sukses,
                 icon: 'success'
             });
@@ -298,7 +319,7 @@
 
         if (gagal) {
             Swal.fire({
-                title: 'Pencatatan',
+                title: 'Ruangan',
                 text: gagal,
                 icon: 'error'
             });

@@ -114,6 +114,77 @@ class MengelolaRuangan extends CI_Controller
         }
     }
 
+    public function edit_ruangan($id_ruangan)
+    {
+        $data['title'] = "Ruangan";
+        $data['edit_ruangan'] = $this->M_Ruangan->pilih_ruangan($id_ruangan)->result();
+        $this->load->view('templates/header.php', $data);
+        $this->load->view('templates/sidebar.php');
+        $this->load->view('admin/ruangan/v_edit_ruangan.php', $data);
+    }
+
+    public function proses_edit_ruangan()
+    {
+        $id_ruangan = $this->input->post('id_ruangan');
+        $nama = $this->input->post('nama_ruangan');
+        $kapasitas = $this->input->post('kapasitas');
+        $perlengkapan = $this->input->post('perlengkapan');
+        $foto_lama = $this->input->post('foto_lama');
+        $foto_baru = $_FILES['foto_baru']['name'];
+
+        $this->form_validation->set_rules('nama_ruangan', 'Nama', 'trim|required');
+        $this->form_validation->set_rules('perlengkapan', 'Perlengkapan', 'trim|required');
+        $this->form_validation->set_rules('kapasitas', 'Kapasitas', 'trim|required|greater_than[0]');
+
+        $this->form_validation->set_message('required', '{field} wajib diisi');
+        $this->form_validation->set_message('greater_than', 'Harus lebih dari 0');
+
+        if ($this->form_validation->run() == FALSE) {
+            $respon = array(
+                'sukses' => false,
+                'error_nama' => form_error('nama_ruangan'),
+                'error_kapasitas' => form_error('kapasitas'),
+                'error_perlengkapan' => form_error('perlengkapan')
+            );
+            echo json_encode($respon);
+        } else {
+            $where = array('id_ruangan' => $id_ruangan);
+
+            if ($foto_baru == "") {
+                $data = array(
+                    'nama_ruangan' => $nama, 'kapasitas' => $kapasitas, 'perlengkapan' => $perlengkapan, 'foto' => $foto_lama
+                );
+
+                $this->M_Ruangan->update_record($where, $data, 'ruangan');
+                $respon['sukses'] = "Data berhasil diubah";
+                echo json_encode($respon);
+            } else {
+                //upload file
+                $config['upload_path'] = './resources/assets/img/ruangan/';
+                $config['allowed_types'] = 'jpg|png';
+                $config['max_size'] = 5000; //5 MB
+
+                $this->load->library('upload', $config);
+                if (!$this->upload->do_upload('foto_baru')) {
+                    $respon['sukses'] = false;
+                    $respon['error_foto'] = "Tidak berhasil upload file. Format file hanya jpg, png dan ukuran file maksimal 5MB";
+                    echo json_encode($respon);
+                } else {
+                    $foto = $this->upload->data('file_name');
+
+                    $data = array(
+                        'nama_ruangan' => $nama, 'kapasitas' => $kapasitas, 'perlengkapan' => $perlengkapan, 'foto' => $foto
+                    );
+                    @unlink('./resources/assets/img/ruangan/' . $foto_lama); //untuk hapus foto lama
+
+                    $this->M_Ruangan->update_record($where, $data, 'ruangan');
+                    $respon['sukses'] = "Data berhasil diubah";
+                    echo json_encode($respon);
+                }
+            }
+        }
+    }
+
     public function lihat_peminjaman()
     {
         $data['title'] = "Ruangan";
