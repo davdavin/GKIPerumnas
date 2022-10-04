@@ -390,7 +390,7 @@
           <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
             <div class="icon"><i class="bx bx-upload"></i></div>
             <h4 class="title">Pengumpulan Formulir</h4>
-            <p class="description">Anda bisa kumpul form yang telah di isi <a href="<?php // echo base_url() . 'Pengumpulan_Dokumen' 
+            <p class="description">Anda bisa kumpul form yang telah di isi <a href="<?php echo base_url() . 'pengumpulan' 
                                                                                     ?>">disini</a></p>
           </div>
           <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
