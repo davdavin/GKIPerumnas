@@ -33,6 +33,7 @@ class MengelolaRuangan extends CI_Controller
 
     public function tambah_ruangan()
     {
+
         $nama = $this->input->post('nama_ruangan');
         $kapasitas = $this->input->post('kapasitas');
         $perlengkapan = $this->input->post('perlengkapan');
@@ -42,10 +43,12 @@ class MengelolaRuangan extends CI_Controller
         $this->form_validation->set_rules('perlengkapan', 'Perlengkapan', 'trim|required');
         $this->form_validation->set_rules('kapasitas', 'Kapasitas', 'trim|required|greater_than[0]');
         $requiredImage = 1;
+        //  for ($i = 1; $i <= $count; $i++) {
         if (empty($_FILES['foto']['name'])) {
             $this->form_validation->set_rules('foto', 'Foto', 'required');
             $requiredImage = 0;
         }
+        //   }
         $this->form_validation->set_message('required', '{field} wajib diisi');
         $this->form_validation->set_message('greater_than', 'Harus lebih dari 0');
 
@@ -80,8 +83,18 @@ class MengelolaRuangan extends CI_Controller
             );
 
             $this->M_Ruangan->insert_record($data, 'ruangan');
+
             $respon['sukses'] = "Berhasil ditambahkan";
             echo json_encode($respon);
+            //    $id_ruangan = $this->db->insert_id();
+            // for ($i = 1; $i <= $count; $i++) {
+            //     // $foto = $this->upload->data('file_name');
+            //     $detail = array(
+            //         'id_ruangan' => $id_ruangan, 'foto' => $_FILES['foto' . $count]['name']
+            //     );
+            //     $this->M_Ruangan->insert_record($detail, 'detail_ruangan');
+            // }
+
             /*   if (!$this->upload->do_upload('foto')) {
                 $respon = array(
                     'sukses' => false,
@@ -99,5 +112,32 @@ class MengelolaRuangan extends CI_Controller
                 echo json_encode($respon);
             } */
         }
+    }
+
+    public function lihat_peminjaman()
+    {
+        $data['title'] = "Ruangan";
+        $data['peminjaman'] = $this->M_Ruangan->informasi_peminjaman()->result();
+        $this->load->view('templates/header.php', $data);
+        $this->load->view('templates/sidebar.php');
+        $this->load->view('admin/ruangan/v_mengelola_peminjaman.php', $data);
+    }
+
+    public function tampil_peminjaman()
+    {
+        $peminjaman = $this->M_Ruangan->informasi_peminjaman()->result_array();
+        for ($i = 0; $i < count($peminjaman); $i++) {
+            $peminjaman[$i]['tanggal_booking'] = tanggal_indonesia($peminjaman[$i]['tanggal_booking']);
+        }
+        echo json_encode($peminjaman);
+    }
+
+    public function update_status()
+    {
+        $where = array('id_peminjaman' => $this->input->post('id'));
+        $data = array('status_peminjaman' => $this->input->post('status'));
+        $this->M_Ruangan->update_record($where, $data, 'peminjaman_ruangan');
+        $this->session->set_flashdata('sukses', 'Berhasil ubah status');
+        redirect('mengelola_ruangan/peminjaman');
     }
 }

@@ -275,6 +275,7 @@
                 return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_user}">
                           <i class="fas fa-pencil-alt"></i> Edit
                         </a>`;
+                break;
             }
           }
         }
