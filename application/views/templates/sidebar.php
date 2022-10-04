@@ -93,7 +93,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a <?php if ($this->uri->segment(1) == "mengelola_ruangan" && $this->uri->segment(2) == "") {
+                            <a <?php if ($this->uri->segment(1) == "mengelola_ruangan" && $this->uri->segment(2) == "" || $this->uri->segment(1) == "mengelola_ruangan" && $this->uri->segment(2) == "edit") {
                                     echo "class='nav-link active'";
                                 } else {
                                     echo "class='nav-link'";
