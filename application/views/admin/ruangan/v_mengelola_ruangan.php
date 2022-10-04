@@ -57,7 +57,7 @@
                         </button>
                     </div>
                     <form class="form-submit" action="<?php echo base_url() . 'mengelola_ruangan/tambah'  ?>" method="post" enctype="multipart/form-data">
-                        <div class="modal-body">
+                        <div class="modal-body" id="add">
                             <div class="form-group">
                                 <label>Nama Ruangan</label>
                                 <input type="text" class="form-control" id="nama_ruangan" name="nama_ruangan" placeholder="Nama">
@@ -80,6 +80,7 @@
                                 </div>
                             </div>
                             <!-- Foto -->
+                            <!-- <input type="hidden" id="count" name="count"> -->
                             <div class="form-group">
                                 <label>Input Foto</label>
                                 <div class="input-group">
@@ -93,6 +94,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
+                            <a type="button" class="btn btn-primary" onclick="addRow()">Add row</a>
                             <button type="submit" class="btn btn-primary simpan" id="tombolSimpan">Submit</button>
                         </div>
                     </form>
@@ -149,6 +151,20 @@
 <script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
 <script>
+    /*  let count = 1;
+
+    function addRow() {
+        if (count == 3) {
+            return false;
+        }
+        count++;
+        let html = `<div class="form-group"> <label>Input Foto</label> 
+                     <input type="file" class="form-control" id="foto" name="foto${count}"> 
+                    <div class="px-2 error_foto${count} clear" style="display: none"></div> </div>`;
+        //  document.getElementById("add").appendChild = html;
+        $('#add').append(html);
+        document.getElementById('count').value = count;
+    } */
     $(document).ready(function() {
         $('#tabel_ruangan').DataTable({
             "responsive": true,
@@ -202,14 +218,6 @@
             ]
         });
 
-        function valid() {
-            $('.clear').hide();
-            $('#nama_ruangan').removeClass('is-invalid');
-            $('#kapasitas').removeClass('is-invalid');
-            $('#perlengkapan').removeClass('is-invalid');
-            $('#foto').removeClass('is-invalid');
-        }
-
         $('.form-submit').submit(function(e) {
             e.preventDefault();
             $.ajax({
@@ -226,48 +234,40 @@
                 },
                 complete: function() {
                     $('.simpan').removeAttr('disable');
-                    $('.simpan').html('Tambah');
+                    $('.simpan').html('Submit');
                 },
                 success: function(respon) {
                     if (respon.sukses == false) {
                         if (respon.error_nama) {
-                            $('#nama_ruangan').addClass('is-invalid');
                             $('.error_nama').show();
                             $('.error_nama').html(respon.error_nama);
                             $('.error_nama').css("color", "red");
                         } else {
-                            $('#nama_ruangan').removeClass('is-invalid');
                             $('.error_nama').hide();
                         }
                         if (respon.error_kapasitas) {
-                            $('#kapasitas').addClass('is-invalid');
                             $('.error_kapasitas').show();
                             $('.error_kapasitas').html(respon.error_kapasitas);
                             $('.error_kapasitas').css("color", "red");
                         } else {
-                            $('#kapasitas').removeClass('is-invalid');
                             $('.error_kapasitas').hide();
                         }
                         if (respon.error_perlengkapan) {
-                            $('#perlengkapan').addClass('is-invalid');
                             $('.error_perlengkapan').show();
                             $('.error_perlengkapan').html(respon.error_perlengkapan);
                             $('.error_perlengkapan').css("color", "red");
                         } else {
-                            $('#perlengkapan').removeClass('is-invalid');
                             $('.error_perlengkapan').hide();
                         }
                         if (respon.error_foto) {
-                            $('#foto').addClass('is-invalid');
                             $('.error_foto').show();
                             $('.error_foto').html(respon.error_foto);
                             $('.error_foto').css("color", "red");
                         } else {
-                            $('#foto').removeClass('is-invalid');
                             $('.error_foto').hide();
                         }
                     } else {
-                        valid();
+                        $('.clear').hide();
                         Swal.fire({
                             title: 'Sukses',
                             text: respon.sukses,
