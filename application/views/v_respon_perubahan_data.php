@@ -56,6 +56,11 @@
                                     <label for="inputPekerjaan">Pekerjaan</label>
                                     <input type="text" class="form-control" id="inputPekerjaan" name="pekerjaan" value="<?= dekripsi_notifikasi($list_jemaat_edit->pekerjaan_baru) ?>" readonly>
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="inputPendidikan">Pendidikan</label>
+                                    <input type="text" class="form-control" id="inputPendidikan" name="pendidikan" value="<?= dekripsi_notifikasi($list_jemaat_edit->pendidikan_baru) ?>" readonly>
+                                </div>
                             </div>
                         <?php } ?>
                         </div>
