@@ -50,7 +50,8 @@ class Anggota_Jemaat extends CI_Controller
 
     public function masuk_anggota_jemaat()
     {
-        $no_anggota = $this->input->post('no_anggota');
+        $baris =  $this->M_Anggota_Jemaat->tampil()->num_rows();
+        $no_anggota = '0000' . $baris + 1;
         $nama_anggota = $this->input->post('nama_anggota');
         $alamat_anggota = $this->input->post('alamat_anggota');
         $nohp_anggota = $this->input->post('nohp');
@@ -223,11 +224,11 @@ class Anggota_Jemaat extends CI_Controller
         $email_anggota = $this->input->post('email_anggota');
         $alamat_anggota = $this->input->post('alamat_anggota');
         $pekerjaan_anggota = $this->input->post('pekerjaan');
+        $pendidikan_anggota = $this->input->post('pendidikan');
 
         $where = array(
             'no_anggota' => $no_anggota
         );
-
         if ($nohp_anggota != "-") {
             $nohp_baru = array('nohp_anggota' => $nohp_anggota);
             $this->M_Anggota_Jemaat->update_record($where, $nohp_baru, 'anggota_jemaat');
@@ -243,6 +244,10 @@ class Anggota_Jemaat extends CI_Controller
         if ($pekerjaan_anggota != "-") {
             $pekerjaan_baru = array('pekerjaan_anggota' => $pekerjaan_anggota);
             $this->M_Anggota_Jemaat->update_record($where, $pekerjaan_baru, 'anggota_jemaat');
+        }
+        if ($pendidikan_anggota != "-") {
+            $pendidikan_baru = array('pendidikan_anggota' => $pendidikan_anggota);
+            $this->M_Anggota_Jemaat->update_record($where, $pendidikan_baru, 'anggota_jemaat');
         }
         $where_permintaan = array(
             'id_permintaan' => $id_permintaan
