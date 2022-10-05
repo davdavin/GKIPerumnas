@@ -78,6 +78,16 @@
                     <div class="px-1 error_pekerjaan" style="display: none;"></div>
                 </div>
 
+                <div class="checkbox-request">
+                    <input type="checkbox" id="pendidikan"> <label for="pendidikan">Pendidikan</label>
+                    <input type="hidden" id="pilihPendidikan" name="pilihPendidikan">
+                </div>
+                <div id="gantiPendidikan" class="wrap-input-request" style="display: none;">
+                    <span class="label-input-request">Pekerjaan Baru</span>
+                    <input class="input-request" type="text" name="pendidikan" placeholder="Pendidikan baru anda" />
+                    <div class="px-1 error_pendidikan" style="display: none;"></div>
+                </div>
+
                 <!-- <div class="wrap-input-request validate-input" data-validate="Message is required">
                     <span class="label-input-request">Message</span>
                     <textarea class="input-request" name="message" placeholder="Your message here..."></textarea>
@@ -149,6 +159,16 @@
                     $("#gantiPekerjaan").hide();
                 }
             });
+            $("#pendidikan").click(function() {
+                var pendidikan = document.getElementById("pendidikan");
+                if (pendidikan.checked == true) {
+                    $("#pilihPendidikan").val("pilih");
+                    $("#gantiPendidikan").show();
+                } else {
+                    $("#pilihPendidikan").val("");
+                    $("#gantiPendidikan").hide();
+                }
+            });
 
             $('#submit-form').submit(function(e) {
                 e.preventDefault();
@@ -200,6 +220,13 @@
                                 $('.error_pekerjaan').css('color', 'red');
                             } else {
                                 $('.error_pekerjaan').hide();
+                            }
+                            if (respon.error_pendidikan) {
+                                $('.error_pendidikan').show();
+                                $('.error_pendidikan').html(respon.error_pendidikan);
+                                $('.error_pendidikan').css('color', 'red');
+                            } else {
+                                $('.error_pendidikan').hide();
                             }
                         } else {
                             Swal.fire({

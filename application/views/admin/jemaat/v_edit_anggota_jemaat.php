@@ -134,93 +134,45 @@
                   <input type="text" class="form-control" id="inputKelompokEtnis" name="kelompok_etnis" value="<?= $list_jemaat_edit->kelompok_etnis_anggota ?>" required>
                 </div>
 
-                <!-- Tanggal Lahir -->
                 <div class="form-group">
-                  <label>Tanggal Lahir</label>
-                  <div class="input-group date" id="tanggalLahir" data-target-input="nearest">
-                    <input type="text" class="form-control datetimepicker-input" data-target="#tanggalLahir" name="tanggal_lahir" value="<?= $list_jemaat_edit->tanggal_lahir_anggota ?>" required />
-                    <div class="input-group-append" data-target="#tanggalLahir" data-toggle="datetimepicker">
-                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                    </div>
-                  </div>
+                <label>Tanggal Lahir</label>
+                <input type="text" class="form-control" id="tanggal_lahir" name="tanggal_lahir" <?php if($list_jemaat_edit->tanggal_lahir_anggota == "0000-00-00") { echo 'placeholder="dd/mm/YYYY"'; } else { echo 'value="' . $list_jemaat_edit->tanggal_lahir_anggota . '"'; } ?>>
                 </div>
-
-                <!-- Tanggal Baptis -->
                 <div class="form-group">
                   <label>Tanggal Baptis</label>
-                  <div class="input-group date" id="tanggalBaptis" data-target-input="nearest">
-                    <input type="text" class="form-control datetimepicker-input" data-target="#tanggalBaptis" name="tanggal_baptis" value="<?= $list_jemaat_edit->tanggal_baptis_anggota ?>" />
-                    <div class="input-group-append" data-target="#tanggalBaptis" data-toggle="datetimepicker">
-                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                    </div>
-                  </div>
+                  <input type="text" class="form-control" id="tanggal_baptis" name="tanggal_baptis" <?php if($list_jemaat_edit->tanggal_baptis_anggota == "0000-00-00") { echo 'placeholder="dd/mm/YYYY"'; } else { echo 'value="' . $list_jemaat_edit->tanggal_baptis_anggota . '"'; } ?>>
                 </div>
 
-                <!-- Tanggal Sidi -->
                 <div class="form-group">
                   <label>Tanggal Sidi</label>
-                  <div class="input-group date" id="tanggalSidi" data-target-input="nearest">
-                    <input type="text" class="form-control datetimepicker-input" data-target="#tanggalSidi" name="tanggal_sidi" value="<?= $list_jemaat_edit->tanggal_sidi_anggota ?>" />
-                    <div class="input-group-append" data-target="#tanggalSidi" data-toggle="datetimepicker">
-                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                    </div>
-                  </div>
+                  <input type="text" class="form-control" id="tanggal_sidi" name="tanggal_sidi" <?php if($list_jemaat_edit->tanggal_sidi_anggota == "0000-00-00") { echo 'placeholder="dd/mm/YYYY"'; } else { echo 'value="' . $list_jemaat_edit->tanggal_sidi_anggota . '"'; } ?>>
                 </div>
 
-                <!-- Tanggal Atestasi Masuk -->
                 <div class="form-group">
                   <label>Tanggal Atestasi Masuk</label>
-                  <div class="input-group date" id="tanggalAM" data-target-input="nearest">
-                    <input type="text" class="form-control datetimepicker-input" data-target="#tanggalAM" name="tanggal_atestasi_masuk" value="<?= $list_jemaat_edit->tanggal_atestasi_masuk ?>" />
-                    <div class="input-group-append" data-target="#tanggalAM" data-toggle="datetimepicker">
-                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                    </div>
-                  </div>
+                  <input type="text" class="form-control" id="tanggal_atestasi_masuk" name="tanggal_atestasi_masuk" <?php if($list_jemaat_edit->tanggal_atestasi_masuk == "0000-00-00") { echo 'placeholder="dd/mm/YYYY"'; } else { echo 'value="' . $list_jemaat_edit->tanggal_atestasi_masuk . '"'; } ?>>
                 </div>
 
-                <!-- Tanggal Atestasi Keluar -->
                 <div class="form-group">
                   <label>Tanggal Atestasi Keluar</label>
-                  <div class="input-group date" id="tanggalAK" data-target-input="nearest">
-                    <input type="text" class="form-control datetimepicker-input" data-target="#tanggalAK" name="tanggal_atestasi_keluar" value="<?= $list_jemaat_edit->tanggal_atestasi_keluar ?>" />
-                    <div class="input-group-append" data-target="#tanggalAK" data-toggle="datetimepicker">
-                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                    </div>
-                  </div>
+                  <input type="text" class="form-control" id="tanggal_atestasi_keluar" name="tanggal_atestasi_keluar" <?php if($list_jemaat_edit->tanggal_atestasi_keluar == "0000-00-00") { echo 'placeholder="dd/mm/YYYY"'; } else { echo 'value="' . $list_jemaat_edit->tanggal_atestasi_keluar . '"'; } ?>>
                 </div>
 
-                <!-- Tanggal Meninggal-->
                 <div class="form-group">
                   <label>Tanggal Meninggal</label>
-                  <div class="input-group date" id="tanggalMeninggal" data-target-input="nearest">
-                    <input type="text" class="form-control datetimepicker-input" data-target="#tanggalMeninggal" name="tanggal_meninggal" value="<?= $list_jemaat_edit->tanggal_meninggal ?>" />
-                    <div class="input-group-append" data-target="#tanggalMeninggal" data-toggle="datetimepicker">
-                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                    </div>
-                  </div>
+                  <input type="text" class="form-control" id="tanggal_meninggal" name="tanggal_meninggal" <?php if($list_jemaat_edit->tanggal_meninggal == "0000-00-00") { echo 'placeholder="dd/mm/YYYY"'; } else { echo 'value="' . $list_jemaat_edit->tanggal_meninggal . '"'; } ?>>
                 </div>
 
-                <!-- Tanggal DKH -->
                 <div class="form-group">
                   <label>Tanggal DKH</label>
-                  <div class="input-group date" id="tanggalDKH" data-target-input="nearest">
-                    <input type="text" class="form-control datetimepicker-input" data-target="#tanggalDKH" name="tanggal_dkh" value="<?= $list_jemaat_edit->tanggal_dkh ?>" />
-                    <div class="input-group-append" data-target="#tanggalDKH" data-toggle="datetimepicker">
-                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                    </div>
-                  </div>
+                  <input type="text" class="form-control" id="tanggal_dkh" name="tanggal_dkh" <?php if($list_jemaat_edit->tanggal_dkh == "0000-00-00") { echo 'placeholder="dd/mm/YYYY"'; } else { echo 'value="' . $list_jemaat_edit->tanggal_dkh . '"'; } ?>>
                 </div>
 
-                <!-- Tanggal Ex DKH -->
                 <div class="form-group">
-                  <label>Tanggal ex DKH</label>
-                  <div class="input-group date" id="tanggalExDKH" data-target-input="nearest">
-                    <input type="text" class="form-control datetimepicker-input" data-target="#tanggalExDKH" name="tanggal_ex_dkh" value="<?= $list_jemaat_edit->tanggal_ex_dkh ?>" />
-                    <div class="input-group-append" data-target="#tanggalExDKH" data-toggle="datetimepicker">
-                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                    </div>
-                  </div>
+                  <label>Tanggal Ex DKH</label>
+                  <input type="text" class="form-control" id="tanggal_ex_dkh" name="tanggal_ex_dkh" <?php if($list_jemaat_edit->tanggal_ex_dkh == "0000-00-00") { echo 'placeholder="dd/mm/YYYY"'; } else { echo 'value="' . $list_jemaat_edit->tanggal_ex_dkh . '"'; } ?> >
                 </div>
+     
               <?php } ?>
               </div>
             </div>
@@ -251,9 +203,10 @@
 <script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- SweetAlert2 -->
 <script src="<?php echo base_url(); ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
-<!-- daterangepicker -->
+<!-- flatpickr -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://npmcdn.com/flatpickr/dist/l10n/id.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/moment/moment.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="<?php echo base_url(); ?>assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- overlayScrollbars -->
@@ -287,29 +240,68 @@
   $(function() {
     $('[data-mask]').inputmask()
     //Date picker
-    $('#tanggalLahir').datetimepicker({
-      format: 'YYYY-MM-DD'
+    $('#tanggal_lahir').flatpickr({
+      altInput: true,
+      //allowInput: true,
+      altFormat: "d/m/Y", //j F Y
+      dateFormat: "Y-m-d",
+      locale: "id"
     });
-    $('#tanggalBaptis').datetimepicker({
-      format: 'YYYY-MM-DD'
+
+    $('#tanggal_baptis').flatpickr({
+      altInput: true,
+      //allowInput: true,
+      altFormat: "d/m/Y", //j F Y
+      dateFormat: "Y-m-d",
+      locale: "id"
     });
-    $('#tanggalSidi').datetimepicker({
-      format: 'YYYY-MM-DD'
+
+    $('#tanggal_sidi').flatpickr({
+      altInput: true,
+      //allowInput: true,
+      altFormat: "d/m/Y", //j F Y
+      dateFormat: "Y-m-d",
+      locale: "id"
     });
-    $('#tanggalAM').datetimepicker({
-      format: 'YYYY-MM-DD'
+
+    $('#tanggal_atestasi_masuk').flatpickr({
+      altInput: true,
+      //allowInput: true,
+      altFormat: "d/m/Y", //j F Y
+      dateFormat: "Y-m-d",
+      locale: "id"
     });
-    $('#tanggalAK').datetimepicker({
-      format: 'YYYY-MM-DD'
+
+    $('#tanggal_atestasi_keluar').flatpickr({
+      altInput: true,
+      //allowInput: true,
+      altFormat: "d/m/Y", //j F Y
+      dateFormat: "Y-m-d",
+      locale: "id"
     });
-    $('#tanggalMeninggal').datetimepicker({
-      format: 'YYYY-MM-DD'
+
+    $('#tanggal_meninggal').flatpickr({
+      altInput: true,
+      //allowInput: true,
+      altFormat: "d/m/Y", //j F Y
+      dateFormat: "Y-m-d",
+      locale: "id"
     });
-    $('#tanggalDKH').datetimepicker({
-      format: 'YYYY-MM-DD'
+
+    $('#tanggal_dkh').flatpickr({
+      altInput: true,
+      //allowInput: true,
+      altFormat: "d/m/Y", //j F Y
+      dateFormat: "Y-m-d",
+      locale: "id"
     });
-    $('#tanggalExDKH').datetimepicker({
-      format: 'YYYY-MM-DD'
+
+    $('#tanggal_ex_dkh').flatpickr({
+      altInput: true,
+      //allowInput: true,
+      altFormat: "d/m/Y", //j F Y
+      dateFormat: "Y-m-d",
+      locale: "id"
     });
 
     $('.tombol-ubah').click(function(e) {

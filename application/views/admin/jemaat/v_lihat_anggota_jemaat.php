@@ -68,10 +68,6 @@
           <form action="<?php echo base_url() . 'Anggota_Jemaat/masuk_anggota_jemaat' ?>" method="post">
             <div class="modal-body">
               <div class="form-group">
-                <label for="inputNoAnggota">No Anggota</label>
-                <input type="number" class="form-control" id="inputNoAnggota" name="no_anggota" placeholder="No Anggota" required>
-              </div>
-              <div class="form-group">
                 <label>Nama Anggota</label>
                 <input type="text" class="form-control" name="nama_anggota" placeholder="Nama Lengkap Anggota" required>
               </div>
@@ -145,94 +141,45 @@
                 <input type="text" class="form-control" id="inputKelompokEtnis" name="kelompok_etnis" placeholder="Kelompok etnis" required>
               </div>
 
-              <!-- Tanggal Lahir -->
               <div class="form-group">
                 <label>Tanggal Lahir</label>
-                <div class="input-group date" id="tanggalLahir" data-target-input="nearest">
-                  <input type="text" class="form-control datetimepicker-input" data-target="#tanggalLahir" name="tanggal_lahir" placeholder="yyyy-mm-dd" required />
-                  <div class="input-group-append" data-target="#tanggalLahir" data-toggle="datetimepicker">
-                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                  </div>
-                </div>
+                <input type="text" class="form-control" id="tanggal_lahir" name="tanggal_lahir" placeholder="dd/mm/YYYY" required>
               </div>
-
-
-              <!-- Tanggal Lahir -->
               <div class="form-group">
                 <label>Tanggal Baptis</label>
-                <div class="input-group date" id="tanggalBaptis" data-target-input="nearest">
-                  <input type="text" class="form-control datetimepicker-input" data-target="#tanggalBaptis" name="tanggal_baptis" placeholder="yyyy-mm-dd" />
-                  <div class="input-group-append" data-target="#tanggalBaptis" data-toggle="datetimepicker">
-                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                  </div>
-                </div>
+                <input type="text" class="form-control" id="tanggal_baptis" name="tanggal_baptis" placeholder="dd/mm/YYYY" required>
               </div>
 
-              <!-- Tanggal Sidi -->
               <div class="form-group">
                 <label>Tanggal Sidi</label>
-                <div class="input-group date" id="tanggalSidi" data-target-input="nearest">
-                  <input type="text" class="form-control datetimepicker-input" data-target="#tanggalSidi" name="tanggal_sidi" placeholder="yyyy-mm-dd" />
-                  <div class="input-group-append" data-target="#tanggalSidi" data-toggle="datetimepicker">
-                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                  </div>
-                </div>
+                <input type="text" class="form-control" id="tanggal_sidi" name="tanggal_sidi" placeholder="dd/mm/YYYY" required>
               </div>
 
-              <!-- Tanggal Atestasi Masuk -->
               <div class="form-group">
                 <label>Tanggal Atestasi Masuk</label>
-                <div class="input-group date" id="tanggalAM" data-target-input="nearest">
-                  <input type="text" class="form-control datetimepicker-input" data-target="#tanggalAM" name="tanggal_atestasi_masuk" placeholder="yyyy-mm-dd" />
-                  <div class="input-group-append" data-target="#tanggalAM" data-toggle="datetimepicker">
-                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                  </div>
-                </div>
+                <input type="text" class="form-control" id="tanggal_atestasi_masuk" name="tanggal_atestasi_masuk" placeholder="dd/mm/YYYY" required>
               </div>
 
-              <!-- Tanggal Atestasi Keluar -->
               <div class="form-group">
                 <label>Tanggal Atestasi Keluar</label>
-                <div class="input-group date" id="tanggalAK" data-target-input="nearest">
-                  <input type="text" class="form-control datetimepicker-input" data-target="#tanggalAK" name="tanggal_atestasi_keluar" placeholder="yyyy-mm-dd" />
-                  <div class="input-group-append" data-target="#tanggalAK" data-toggle="datetimepicker">
-                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                  </div>
-                </div>
+                <input type="text" class="form-control" id="tanggal_atestasi_keluar" name="tanggal_atestasi_keluar" placeholder="dd/mm/YYYY" required>
               </div>
 
-              <!-- Tanggal Meninggal-->
               <div class="form-group">
                 <label>Tanggal Meninggal</label>
-                <div class="input-group date" id="tanggalMeninggal" data-target-input="nearest">
-                  <input type="text" class="form-control datetimepicker-input" data-target="#tanggalMeninggal" name="tanggal_meninggal" placeholder="yyyy-mm-dd" />
-                  <div class="input-group-append" data-target="#tanggalMeninggal" data-toggle="datetimepicker">
-                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                  </div>
-                </div>
+                <input type="text" class="form-control" id="tanggal_meninggal" name="tanggal_meninggal" placeholder="dd/mm/YYYY" required>
               </div>
 
-              <!-- Tanggal DKH -->
               <div class="form-group">
                 <label>Tanggal DKH</label>
-                <div class="input-group date" id="tanggalDKH" data-target-input="nearest">
-                  <input type="text" class="form-control datetimepicker-input" data-target="#tanggalDKH" name="tanggal_dkh" placeholder="yyyy-mm-dd" />
-                  <div class="input-group-append" data-target="#tanggalDKH" data-toggle="datetimepicker">
-                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                  </div>
-                </div>
+                <input type="text" class="form-control" id="tanggal_dkh" name="tanggal_dkh" placeholder="dd/mm/YYYY" required>
               </div>
 
-              <!-- Tanggal Ex DKH -->
               <div class="form-group">
-                <label>Tanggal ex DKH</label>
-                <div class="input-group date" id="tanggalExDKH" data-target-input="nearest">
-                  <input type="text" class="form-control datetimepicker-input" data-target="#tanggalExDKH" name="tanggal_ex_dkh" placeholder="yyyy-mm-dd" />
-                  <div class="input-group-append" data-target="#tanggalExDKH" data-toggle="datetimepicker">
-                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                  </div>
-                </div>
+                <label>Tanggal Ex DKH</label>
+                <input type="text" class="form-control" id="tanggal_ex_dkh" name="tanggal_ex_dkh" placeholder="dd/mm/YYYY" required>
               </div>
+
             </div>
             <div class="modal-footer">
               <button type="submit" onclick="loading()" class="btn btn-primary">Submit</button>
@@ -303,9 +250,10 @@
 <script src="<?php echo base_url(); ?>assets/plugins/select2/js/select2.full.min.js"></script>
 <!-- SweetAlert2 -->
 <script src="<?php echo base_url(); ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
-<!-- daterangepicker -->
+<!-- flatpickr -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://npmcdn.com/flatpickr/dist/l10n/id.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/moment/moment.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="<?php echo base_url(); ?>assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- overlayScrollbars -->
@@ -437,31 +385,69 @@
     });
 
     $('[data-mask]').inputmask();
-    //Date picker
-    $('#tanggalLahir').datetimepicker({
-      format: 'YYYY-MM-DD'
+  
+    $('#tanggal_lahir').flatpickr({
+      altInput: true,
+      //allowInput: true,
+      altFormat: "d/m/Y", //j F Y
+      dateFormat: "Y-m-d",
+      locale: "id"
     });
 
-    $('#tanggalBaptis').datetimepicker({
-      format: 'YYYY-MM-DD'
+    $('#tanggal_baptis').flatpickr({
+      altInput: true,
+      //allowInput: true,
+      altFormat: "d/m/Y", //j F Y
+      dateFormat: "Y-m-d",
+      locale: "id"
     });
-    $('#tanggalSidi').datetimepicker({
-      format: 'YYYY-MM-DD'
+
+    $('#tanggal_sidi').flatpickr({
+      altInput: true,
+      //allowInput: true,
+      altFormat: "d/m/Y", //j F Y
+      dateFormat: "Y-m-d",
+      locale: "id"
     });
-    $('#tanggalAM').datetimepicker({
-      format: 'YYYY-MM-DD'
+
+    $('#tanggal_atestasi_masuk').flatpickr({
+      altInput: true,
+      //allowInput: true,
+      altFormat: "d/m/Y", //j F Y
+      dateFormat: "Y-m-d",
+      locale: "id"
     });
-    $('#tanggalAK').datetimepicker({
-      format: 'YYYY-MM-DD'
+
+    $('#tanggal_atestasi_keluar').flatpickr({
+      altInput: true,
+      //allowInput: true,
+      altFormat: "d/m/Y", //j F Y
+      dateFormat: "Y-m-d",
+      locale: "id"
     });
-    $('#tanggalMeninggal').datetimepicker({
-      format: 'YYYY-MM-DD'
+
+    $('#tanggal_meninggal').flatpickr({
+      altInput: true,
+      //allowInput: true,
+      altFormat: "d/m/Y", //j F Y
+      dateFormat: "Y-m-d",
+      locale: "id"
     });
-    $('#tanggalDKH').datetimepicker({
-      format: 'YYYY-MM-DD'
+
+    $('#tanggal_dkh').flatpickr({
+      altInput: true,
+      //allowInput: true,
+      altFormat: "d/m/Y", //j F Y
+      dateFormat: "Y-m-d",
+      locale: "id"
     });
-    $('#tanggalExDKH').datetimepicker({
-      format: 'YYYY-MM-DD'
+
+    $('#tanggal_ex_dkh').flatpickr({
+      altInput: true,
+      //allowInput: true,
+      altFormat: "d/m/Y", //j F Y
+      dateFormat: "Y-m-d",
+      locale: "id"
     });
 
     $('.pilih-jemaat').select2({
