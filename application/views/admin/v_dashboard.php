@@ -69,34 +69,53 @@
           </div>
         <?php } ?>
         <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <div class="small-box bg-success">
-              <div class="inner">
-                <?php foreach ($totalKeuangan as $saldo) { ?>
+        <div class="col-lg-3 col-6">
+          <div class="small-box bg-success">
+            <div class="inner">
+              <?php foreach ($totalKeuangan as $saldo) { ?>
                 <h3><?php echo mata_uang_indo($saldo->total); ?></h3>
-                <?php } ?>
-                <p>Total Keuangan Gereja</p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-wallet"></i>
-              </div>
+              <?php } ?>
+              <p>Total Keuangan Gereja</p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-wallet"></i>
             </div>
           </div>
-        <?php foreach ($permintaanBaru as $jumlah) { ?>
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-teal">
-              <div class="inner">
-                <h3><?Php echo $jumlah->jumlahPermintaanBaru ?></h3>
-                <p>Permintaan Perubahan Data</p>
+        </div>
+        <?php if ($this->session->userdata('level_user') != 5) {
+          foreach ($permintaanBaru as $jumlah) { ?>
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-teal">
+                <div class="inner">
+                  <h3><?Php echo $jumlah->jumlahPermintaanBaru ?></h3>
+                  <p>Permintaan Perubahan Data</p>
+                </div>
+                <div class="icon">
+                  <i class="fas fa-map"></i>
+                </div>
+                <a href="<?php echo base_url() . 'Notifikasi' ?>" class="small-box-footer">Lihat lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
               </div>
-              <div class="icon">
-                <i class="fas fa-map"></i>
-              </div>
-              <a href="<?php echo base_url() . 'Notifikasi' ?>" class="small-box-footer">Lihat lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
             </div>
-          </div>
-        <?php } ?>
+        <?php }
+        } ?>
+        <?php if ($this->session->userdata('level_user') != 5) {
+          foreach ($peminjamanBaru as $jumlah) { ?>
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-teal">
+                <div class="inner">
+                  <h3><?Php echo $jumlah->jumlahPeminjamanBaru ?></h3>
+                  <p>Peminjaman Ruangan</p>
+                </div>
+                <div class="icon">
+                  <i class="fas fa-map"></i>
+                </div>
+                <a href="<?php echo base_url() . 'mengelola_ruangan/peminjaman' ?>" class="small-box-footer">Lihat lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+        <?php }
+        } ?>
       </div>
     </div><!-- /.container-fluid -->
 
