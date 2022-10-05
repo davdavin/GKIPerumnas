@@ -27,9 +27,11 @@
         </div>
 
         <div class="card-body">
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
-            <i class="fas fa-plus"></i> Tambah user
-          </button><br><br>
+          <?php if ($this->session->userdata('level_user') == 1 || $this->session->userdata('level_user') == 2) { ?>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
+              <i class="fas fa-plus"></i> Tambah user
+            </button><br><br>
+          <?php } ?>
 
           <table id="tabel_user" class="table table-bordered table-striped">
             <thead>
@@ -55,14 +57,33 @@
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h4 class="modal-title">Edit Status</h4>
+                    <h4 class="modal-title">Edit User</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
                   <div class="modal-body">
-                    <form action="<?php echo base_url() . 'User/proses_edit_status' ?>" method="post">
+                    <form action="<?php echo base_url() . 'User/proses_edit_user' ?>" method="post">
                       <input type="hidden" class="form-control" name="id" value="<?= $list_user->id_user; ?>">
+                      <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" class="form-control" id="nama" name="nama_lengkap" value="<?= $list_user->nama_lengkap ?>">
+                      </div>
+                      <div class="form-group">
+                        <label>Level</label>
+                        <select class="custom-select select2bs4" style="width: 100%;" id="level" name="level">
+                          <option selected disabled value>-- Pilih --</option>
+                          <?php foreach ($levelUser as $list_level) {
+                            if ($list_user->level_user == $list_level->level_user) { ?>
+                              <option value="<?php echo $list_level->id_level_user ?>" <?php echo "selected"; ?>>
+                                <?php echo $list_user->level_user ?>
+                              </option>
+                            <?php } else { ?>
+                              <option value="<?php echo $list_level->id_level_user ?>"><?php echo $list_level->level_user ?></option>
+                          <?php }
+                          } ?>
+                        </select>
+                      </div>
                       <div class="form-group">
                         <label>Status</label>
                         <select class="form-control select2bs4" style="width: 100%;" id="status" name="status" required>
@@ -264,17 +285,19 @@
           render: function(data, type, row, meta) {
             switch (row.status_user) {
               case "1":
-                return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_user}">
+                return `<?php if ($this->session->userdata('level_user') == 1 || $this->session->userdata('level_user') == 2) { ?><a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_user}">
                           <i class="fas fa-pencil-alt"></i> Edit
                         </a>
                         <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'uSER/hapus_user/' ?>${row.id_user}" data-toggle="tooltip" data-placement="bottom" title="Hapus DatA uSER">
                           <i class="fas fa-trash"></i> Hapus
-                        </a>`;
+                        </a>
+                        <?php } ?>`;
                 break;
               default:
-                return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_user}">
+                return `<?php if ($this->session->userdata('level_user') == 1 || $this->session->userdata('level_user') == 2) { ?> <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_user}">
                           <i class="fas fa-pencil-alt"></i> Edit
-                        </a>`;
+                        </a>
+                        <?php } ?>`;
                 break;
             }
           }
