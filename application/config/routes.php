@@ -66,6 +66,9 @@ $route['login'] = 'Login_Admin';
 $route['login/verifikasi'] = 'Login_Admin/verifikasi';
 $route['logout'] = 'Login_Admin/logout';
 
+//dashboard admin
+$route['admin/dashboard'] = 'Admin';
+
 //mengelola artikel
 $route['mengelola_artikel'] = 'MengelolaArtikel';
 $rotue['mengelola_artikel/tampil_artikel'] = 'MengelolaArtikel/tampil_artikel';
@@ -85,6 +88,7 @@ $route['mengelola_ruangan/proses_edit'] = 'MengelolaRuangan/proses_edit_ruangan'
 $route['mengelola_ruangan/peminjaman'] = 'MengelolaRuangan/lihat_peminjaman';
 $route['mengelola_ruangan/tampil_peminjaman'] = 'MengelolaRuangan/tampil_peminjaman';
 $route['mengelola_ruangan/update_status'] = 'MengelolaRuangan/update_status';
+$route['mengelola_ruangan/hapus/(:num)'] = 'MengelolaRuangan/hapus_peminjaman/$1';
 
 // dashboard admin
 /*$route['dashboard'] = 'Dashboard';
