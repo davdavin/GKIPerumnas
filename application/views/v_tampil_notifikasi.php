@@ -146,6 +146,17 @@
                            <p><?php echo $notif->pekerjaan_anggota; ?></p>
                          </div>
                        </div>
+                       <div class="row m-2">
+                         <div class="col-sm-4">
+                           <p class="text-bold">Pendidikan Baru</p>
+                         </div>
+                         <div class="col-sm-4">
+                           <p><?php echo dekripsi_notifikasi($notif->pendidikan_baru); ?></p>
+                         </div>
+                         <div class="col-sm-4">
+                           <p><?php echo $notif->pendidikan_anggota; ?></p>
+                         </div>
+                       </div>
 
                      </div>
                      <div class="card-footer">
