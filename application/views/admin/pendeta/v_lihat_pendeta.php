@@ -177,6 +177,7 @@
 <!-- flatpickr -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://npmcdn.com/flatpickr/dist/l10n/id.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/moment/moment.min.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="<?php echo base_url(); ?>assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- overlayScrollbars -->
@@ -294,7 +295,6 @@
     bsCustomFileInput.init();
 
     $('#tanggalLahir').flatpickr({
-      //   minDate: "today",
       altInput: true,
       //allowInput: true,
       altFormat: "d/m/Y", //j F Y
