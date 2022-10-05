@@ -28,9 +28,11 @@
         </div>
 
         <div class="card-body">
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
-            <i class="fas fa-plus"></i> Pencatatan
-          </button><br><br>
+          <?php if ($this->session->userdata('level_user') == 5) { ?>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
+              <i class="fas fa-plus"></i> Pencatatan
+            </button><br><br>
+          <?php } ?>
 
           <table id="tabel_keuangan" class="table table-bordered table-striped" style="width: 100%;">
             <thead>
