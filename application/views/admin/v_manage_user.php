@@ -31,7 +31,7 @@
             <i class="fas fa-plus"></i> Tambah user
           </button><br><br>
 
-          <table id="tabel_admin" class="table table-bordered table-striped">
+          <table id="tabel_user" class="table table-bordered table-striped">
             <thead>
               <tr>
                 <th>ID</th>
@@ -61,7 +61,7 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                    <form action="<?php echo base_url() . 'Admin/proses_edit_status' ?>" method="post">
+                    <form action="<?php echo base_url() . 'User/proses_edit_status' ?>" method="post">
                       <input type="hidden" class="form-control" name="id" value="<?= $list_user->id_user; ?>">
                       <div class="form-group">
                         <label>Status</label>
@@ -84,7 +84,7 @@
 
       </div>
     </div>
-    <!-- modal untuk menampilkan form input admin -->
+    <!-- modal untuk menampilkan form input user -->
     <div class="modal fade" id="modal-lg">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -94,7 +94,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form class="form-submit" action="<?php echo base_url() . 'Admin/tambah_user'  ?>" method="post">
+          <form class="form-submit" action="<?php echo base_url() . 'User/tambah_user'  ?>" method="post">
             <div class="modal-body">
               <div class="form-group">
                 <label>Nama Lengkap</label>
@@ -202,7 +202,7 @@
 
 <script>
   $(document).ready(function() {
-    $('#tabel_admin').DataTable({
+    $('#tabel_user').DataTable({
       "responsive": true,
       "lengthChange": true,
       "autoWidth": false,
@@ -225,7 +225,7 @@
         }
       },
       ajax: {
-        url: "<?php echo base_url() . 'Admin/tampil_user' ?>",
+        url: "<?php echo base_url() . 'User/tampil_user' ?>",
         dataSrc: ""
       },
       columns: [{
@@ -267,7 +267,7 @@
                 return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_user}">
                           <i class="fas fa-pencil-alt"></i> Edit
                         </a>
-                        <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'Admin/hapus_user/' ?>${row.id_user}" data-toggle="tooltip" data-placement="bottom" title="Hapus Data Admin">
+                        <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'uSER/hapus_user/' ?>${row.id_user}" data-toggle="tooltip" data-placement="bottom" title="Hapus DatA uSER">
                           <i class="fas fa-trash"></i> Hapus
                         </a>`;
                 break;
@@ -289,8 +289,7 @@
       const href = $(this).attr('href')
 
       Swal.fire({
-        title: 'Apakah anda yakin?',
-        text: 'Status data akan diubah menjadi tidak aktif',
+        title: 'Apakah anda yakin user ini akan dihapus?',
         icon: 'warning',
         showCancelButton: true,
         cancelButtonText: 'batal',
@@ -307,7 +306,7 @@
     const sukses = $('.sukses').data('flashdata');
     if (sukses) {
       Swal.fire({
-        title: 'Data Admin',
+        title: 'Data User',
         text: sukses,
         icon: 'success'
       });
@@ -404,7 +403,7 @@
 
     if (gagal) {
       Swal.fire({
-        title: 'Data Admin',
+        title: 'Data User',
         text: gagal,
         icon: 'error'
       });
