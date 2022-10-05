@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 04, 2022 at 12:46 PM
+-- Generation Time: Oct 05, 2022 at 02:29 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -59,20 +59,17 @@ CREATE TABLE `anggota_jemaat` (
 --
 
 INSERT INTO `anggota_jemaat` (`id_anggota`, `id_wilayah`, `no_anggota`, `username`, `password`, `nama_lengkap_anggota`, `alamat_anggota`, `nohp_anggota`, `email_anggota`, `jenis_kelamin_anggota`, `golongan_darah_anggota`, `status_anggota`, `pendidikan_anggota`, `pekerjaan_anggota`, `kelompok_etnis_anggota`, `tanggal_lahir_anggota`, `tanggal_baptis_anggota`, `tanggal_sidi_anggota`, `tanggal_atestasi_masuk`, `tanggal_atestasi_keluar`, `tanggal_meninggal`, `tanggal_dkh`, `tanggal_ex_dkh`, `status_akun`) VALUES
-(1, 1, '121212', 'brobro', '12345', 'Bro Philip', 'Jl. Apel', '088904040829', 'yoyoyoyo@gmail.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '2000-09-01', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1),
-(2, 5, '12981231', 'sinta', '$2y$10$OaGyotAVZYTK2QHNhr3GXuERLJPXu4tDEgMFM/pvQ5Abd4dNldp2G', 'Sinta', 'Jl. Apel ', '089283282121', 'contoh@example.com', 'Perempuan', 'A', 1, 'S1', 'Front End', 'Sunda', '2000-05-04', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1),
-(3, 1, '123213', '', '', 'Jesica', 'Jl. Buah Apel No.2 ', '088217231921', 'sisisis@example.com', 'Perempuan', 'A', 0, 'S1', 'Analis', 'Jawa', '1999-01-09', '2009-03-12', '2010-08-25', '2000-08-23', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
-(4, 2, '123212', 'michael', '$2y$10$yg9JNtgBv5la1YFfswPd2.9RpyyZNTCdVasf2I8o2veFjKAsm6ya2', 'Michael', 'Jl', '088217231921', 'sisisis@example.com', 'Laki-laki', 'A', 1, 'S1', 'Analis', 'Jawa', '1999-01-21', '2009-03-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1),
-(5, 6, '121232', '', '', 'Michele', 'Jl. Kemanisan', '082713281', 'sisisis@example.com', 'Perempuan', 'A', 0, 'S1', 'Karyawan', 'Jawa', '2003-01-09', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
-(6, 3, '21312', '', '', 'Christine', 'Jl. Buah Apel No.2 ', '088217231921', 'sisisis@example.com', 'Laki-laki', 'A', 1, 'S2', 'Analis', 'Bersatu', '2000-04-03', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
-(7, 4, '2135311', '', '', 'Joseph Wijaja', 'Jl. Apel ', '089283282121', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S2', 'Karyawan', 'Sunda', '2001-03-21', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
-(8, 3, '34232', '', '', 'Koko', 'Jl. Buah Apel No.2 ', '088217231921', 'sisisis@example.com', 'Laki-laki', 'A', 1, 'S2', 'Karyawan', 'Bersatu', '2000-05-01', '2022-03-11', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
-(9, 5, '213123', '', '', 'Markus', 'Jl. Buah Apel No.2 ', '088217231921', 'brobro@example.com', 'Laki-laki', 'A', 1, 'S1', 'Analis', 'Bersatu', '2001-01-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
-(10, 6, '123121', '', '', 'Jason', 'Jl Melati', '089182163281', 'jasjas@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1956-04-25', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
-(11, 6, '1321231', '', '', 'Christabele', 'Jl. Cengkeh Blok. A', '088721623712', 'kokoko@example.com', 'Perempuan', 'A', 1, 'S2', 'Karyawan', 'Jawa', '1999-02-03', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
-(12, 7, '12332', '', '', 'Yohanes', 'Jl. Mangga', '082042832322', 'yaooaosa@example.com', 'Laki-laki', 'A', 1, 'S2', 'Karyawan', 'Jawa', '2000-04-27', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
-(13, 5, '32112', '', '', 'Melisa', 'Jl. Cengkeh Blok. A', '082042832322', 'sisisis@example.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1999-08-18', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
-(14, 8, '421312', '', '', 'Tomo', 'Jl. Mangga', '088270120023', 'yaooaosa@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1999-07-29', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0);
+(1, 1, '00001', '', '', 'Christella', 'Jl Melati', '0808273262314', 'electronicdm10@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1999-10-05', '2017-10-06', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
+(2, 2, '00002', '', '', 'Sinta', 'Jl Melati', '0808273262314', 'electronicdm10@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1998-01-23', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
+(3, 3, '00003', '', '', 'Philip', 'Jl Melati', '089283282121', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '2000-12-16', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
+(4, 1, '00004', '', '', 'Bro', 'Jl. Apel ', '089283282121', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S2', 'Karyawan', 'Sunda', '1996-02-09', '2021-01-01', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
+(5, 8, '00005', '', '', 'Toni', 'Jl. Apel ', '0808273262314', 'vinvin@gmail.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '2000-09-16', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
+(6, 6, '00006', '', '', 'Marcelo', 'Jl. Apel ', '0808273262314', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1990-01-08', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
+(7, 7, '00007', '', '', 'Boy', 'Jl. Apel ', '089283282121', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1996-02-09', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
+(8, 4, '00008', '', '', 'Joseph', 'Jl. Apel ', '0808273262314', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1996-02-09', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
+(9, 2, '00009', '', '', 'Jack', 'Jl. Apel ', '0808273262314', 'brobro@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1990-10-21', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
+(10, 5, '000010', '', '', 'Yohanes', 'Jl. Apel ', '0808273262314', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1998-10-09', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
+(11, 5, '000011', '', '', 'Koko', 'Jl. Mangga', '088217231921', 'kokoko@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Jawa', '2000-10-01', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0);
 
 -- --------------------------------------------------------
 
@@ -289,8 +286,17 @@ CREATE TABLE `peminjaman_ruangan` (
   `tanggal_booking` date NOT NULL,
   `jam_mulai` time NOT NULL,
   `jam_selesai` time NOT NULL,
-  `status_peminjaman` varchar(20) NOT NULL
+  `status_peminjaman` varchar(20) NOT NULL,
+  `is_notif` tinyint(4) NOT NULL,
+  `is_deleted` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `peminjaman_ruangan`
+--
+
+INSERT INTO `peminjaman_ruangan` (`id_peminjaman`, `id_ruangan`, `no_anggota`, `nama_peminjam`, `email_peminjam`, `nohp_peminjam`, `keperluan`, `tanggal_booking`, `jam_mulai`, `jam_selesai`, `status_peminjaman`, `is_notif`, `is_deleted`) VALUES
+(1, 1, NULL, 'Kevin', 'satusatu@gmail.com', '089283282121', 'Seminar', '2022-10-09', '10:04:00', '15:00:00', 'SEDANG DIPROSES', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -339,8 +345,7 @@ CREATE TABLE `pengumpulan_dokumen` (
 --
 
 INSERT INTO `pengumpulan_dokumen` (`id_pengumpulan`, `id_dokumen`, `nama_lengkap_pengumpul`, `email_pengumpul`, `kumpul_dokumen`, `tanggal_kumpul`) VALUES
-(1, 1, 'Philip', 'philiplip@example.com', 'Konsultasi.pdf', '2021-12-10'),
-(2, 2, 'Philip lip', 'philihpip@example.com', 'Konsultasi1.pdf', '2021-12-10');
+(3, 3, 'tes', 'testes@example.com', 'tes.zip', '2022-10-05');
 
 -- --------------------------------------------------------
 
@@ -355,17 +360,11 @@ CREATE TABLE `permintaan_perubahan_data_jemaat` (
   `email_baru` varchar(255) DEFAULT NULL,
   `alamat_baru` varchar(255) DEFAULT NULL,
   `pekerjaan_baru` varchar(255) DEFAULT NULL,
+  `pendidikan_baru` varchar(255) DEFAULT NULL,
   `tanggal_permintaan` datetime NOT NULL,
   `is_notif` tinyint(4) NOT NULL,
   `is_updated` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `permintaan_perubahan_data_jemaat`
---
-
-INSERT INTO `permintaan_perubahan_data_jemaat` (`id_permintaan`, `id_anggota`, `nohp_baru`, `email_baru`, `alamat_baru`, `pekerjaan_baru`, `tanggal_permintaan`, `is_notif`, `is_updated`) VALUES
-(2, 1, 'aed508c96b27793a634173ea77af0d31754d285e47eb652358df4e3a7bf236b3e494f4b04336a4be17dfd3a9cb37ced0b4780d0e5203fced0b7b6aeece238672Fn8GpcaWXDUGz5251R+KuAH5B8vCHTBBbQnlkNmFjng=', NULL, NULL, NULL, '2022-09-27 08:45:27', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -386,7 +385,7 @@ CREATE TABLE `ruangan` (
 --
 
 INSERT INTO `ruangan` (`id_ruangan`, `nama_ruangan`, `kapasitas`, `perlengkapan`, `foto`) VALUES
-(1, 'Ibadah Umum', 5000, '<p>Lengkap</p>', 'ibadah-umum.jpg'),
+(1, 'Ibadah Umum', 5000, '<ul>\r\n<li>Proyektor</li>\r\n<li>AC</li>\r\n<li>Sound system</li>\r\n</ul>', 'ibadah-umum.jpg'),
 (2, 'Majelis', 30, '<ul>\r\n<li>Proyektor</li>\r\n<li>TV</li>\r\n<li>AC</li>\r\n<li>dll</li>\r\n</ul>', 'majelis.jpg'),
 (3, 'Sekolah Minggu 1', 30, '<ul>\r\n<li>Meja</li>\r\n<li>Kursi</li>\r\n<li>Papan Tulis</li>\r\n</ul>', 'sekolah-minggu-1.jpg'),
 (4, 'Sekolah Minggu 2', 30, '<ul>\r\n<li>Meja</li>\r\n<li>Kursi</li>\r\n<li>Papan Tulis</li>\r\n</ul>', 'sekolah-minggu-2.jpg'),
@@ -443,13 +442,13 @@ CREATE TABLE `wilayah` (
 
 INSERT INTO `wilayah` (`id_wilayah`, `kode_wilayah`, `koordinator_wilayah`, `nama_wilayah`) VALUES
 (1, 'WIL1', 1, 'Wilayah 1'),
-(2, 'WIL2', 4, 'Wilayah 2'),
-(3, 'WIL3', 6, 'Wilayah 3'),
-(4, 'WIL4', 7, 'Wilayah 4'),
-(5, 'WIL5', 9, 'Wilayah 5'),
-(6, 'WIL6', 5, 'Wilayah 6'),
-(7, 'WIL7', 12, 'Wilayah 7'),
-(8, 'WIL8', 14, 'Bajem Kutabumi');
+(2, 'WIL2', 2, 'Wilayah 2'),
+(3, 'WIL3', 3, 'Wilayah 3'),
+(4, 'WIL4', 8, 'Wilayah 4'),
+(5, 'WIL5', 11, 'Wilayah 5'),
+(6, 'WIL6', 6, 'Wilayah 6'),
+(7, 'WIL7', 7, 'Wilayah 7'),
+(8, 'WIL8', 5, 'Bajem Kutabumi');
 
 --
 -- Indexes for dumped tables
@@ -561,7 +560,7 @@ ALTER TABLE `wilayah`
 -- AUTO_INCREMENT for table `anggota_jemaat`
 --
 ALTER TABLE `anggota_jemaat`
-  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `artikel`
@@ -615,7 +614,7 @@ ALTER TABLE `level_user`
 -- AUTO_INCREMENT for table `peminjaman_ruangan`
 --
 ALTER TABLE `peminjaman_ruangan`
-  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `pendeta`
@@ -627,13 +626,13 @@ ALTER TABLE `pendeta`
 -- AUTO_INCREMENT for table `pengumpulan_dokumen`
 --
 ALTER TABLE `pengumpulan_dokumen`
-  MODIFY `id_pengumpulan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pengumpulan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `permintaan_perubahan_data_jemaat`
 --
 ALTER TABLE `permintaan_perubahan_data_jemaat`
-  MODIFY `id_permintaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_permintaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `ruangan`
