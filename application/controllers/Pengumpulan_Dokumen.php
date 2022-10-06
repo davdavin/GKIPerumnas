@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+date_default_timezone_set("Asia/Jakarta");
+
 class Pengumpulan_Dokumen extends CI_Controller
 {
     function __construct()
@@ -9,6 +11,7 @@ class Pengumpulan_Dokumen extends CI_Controller
 
         $this->load->model(array('M_Dokumen'));
         $this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
     }
 
     function index()
@@ -22,62 +25,53 @@ class Pengumpulan_Dokumen extends CI_Controller
         $nama_pengumpul = $this->input->post('nama_pengumpul');
         $email_pengumpul = $this->input->post('email_pengumpul');
         $id_dokumen = $this->input->post('id_dokumen');
-        date_default_timezone_set("Asia/Jakarta");
         $tanggal = date('Y-m-d');
 
-        //upload file
-        $config['upload_path'] = './pengumpulanDokumen/';
-        $config['allowed_types'] = 'pdf';
-        $config['max_size'] = 5000; //5 MB
+        $this->form_validation->set_rules('nama_pengumpul', 'Nama', 'trim|required');
+        $this->form_validation->set_rules('email_pengumpul', 'Email', 'trim|required|valid_email');
+        $this->form_validation->set_rules('id_dokumen', 'Jenis Dokumen', 'required');
+        if (empty($_FILES['dokumen']['name'])) {
+            $this->form_validation->set_rules('dokumen', 'File', 'required');
+        }
 
-        $this->load->library('upload', $config);
-        if (!$this->upload->do_upload('dokumen')) {
-            echo "Upload Gagal, pastikan ukuran file tidak melebihi ketentuan dan format file pdf";
-        } else {
-            $config = [
-                'mailtype'  => 'html',
-                'charset'   => 'utf-8',
-                'protocol'  => 'smtp',
-                'smtp_host' => 'smtp.gmail.com',
-                'smtp_user' => 'hery.uph@gmail.com',   // Email gmail
-                'smtp_pass'   => 'uph.123456',     // Password gmail
-                'smtp_crypto' => 'ssl',
-                'smtp_port'   => 465,
-                'crlf'    => "\r\n",
-                'newline' => "\r\n"
-            ];
+        $this->form_validation->set_message('required', '{field} wajib diisi');
+        $this->form_validation->set_message('valid_email', '{field} harus valid');
 
-            // Load library email dan konfigurasinya
-            $this->load->library('email');
-
-            $this->email->initialize($config);
-
-            // Email dan nama pengirim
-            $this->email->from('hery.uph@gmail.com', 'hery uph');
-            // Email penerima
-            $this->email->to($email_pengumpul);
-            // Subject
-            $this->email->subject('Halo');
-            // Isi
-            $this->email->message("Dokumen Anda sudah Kami Terima");
-
-            if ($this->email->send()) {
-                echo 'Sukses! Email terkirim.';
-            } else {
-                echo 'Error! email tidak dapat dikirim.';
-            }
-
-            $dokumen = $this->upload->data('file_name');
-            $data = array(
-                'id_dokumen' => $id_dokumen,
-                'nama_lengkap_pengumpul' => $nama_pengumpul,
-                'email_pengumpul' => $email_pengumpul,
-                'kumpul_dokumen' => $dokumen,
-                'tanggal_kumpul' => $tanggal
+        if ($this->form_validation->run() == FALSE) {
+            $respon = array(
+                'sukses' => false,
+                'error_nama' => form_error('nama_pengumpul'),
+                'error_email' => form_error('email_pengumpul'),
+                'error_jenis' => form_error('id_dokumen'),
+                'error_dokumen' => form_error('dokumen')
             );
+            echo json_encode($respon);
+        } else {
+            //upload file
+            $config['upload_path'] = './pengumpulanDokumen/';
+            $config['allowed_types'] = 'zip';
+            $config['max_size'] = 5000; //5 MB
 
-            $this->M_Dokumen->insert_record($data, 'pengumpulan_dokumen');
-            redirect('Home');
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload('dokumen')) {
+                $respon = array(
+                    'sukses' => false,
+                    'error_dokumen' => "Upload Gagal, pastikan ukuran file tidak melebihi ketentuan dan format file zip"
+                );
+                echo json_encode($respon);
+            } else {
+                $dokumen =  $this->upload->data('file_name');
+                $data = array(
+                    'id_dokumen' => $id_dokumen,
+                    'nama_lengkap_pengumpul' => $nama_pengumpul,
+                    'email_pengumpul' => $email_pengumpul,
+                    'kumpul_dokumen' => $dokumen,
+                    'tanggal_kumpul' => $tanggal
+                );
+                $this->M_Dokumen->insert_record($data, 'pengumpulan_dokumen');
+                $respon['sukses'] = "Pengumpulan berhasil";
+                echo json_encode($respon);
+            }
         }
     }
 }
