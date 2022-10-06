@@ -7,7 +7,7 @@
   <title>Pengumpulan Dokumen</title>
 
   <!-- Favicons -->
-  <link href="<?php echo base_url(); ?>resources/assets/img/logo.jpg" rel="icon">
+  <link href="<?php echo base_url(); ?>resources/assets/img/logo-GKI-tr.png" rel="icon">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -22,6 +22,13 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/adminlte.min.css">
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+
+  <style>
+    body {
+      padding: 50px;
+      background-color: #587187;
+    }
+  </style>
 </head>
 
 <body class="hold-transition">
@@ -33,22 +40,26 @@
         </div>
 
         <!-- form start -->
-        <form action="<?php echo base_url() . 'Pengumpulan_Dokumen/kumpul_dokumen' ?>" method="post" enctype="multipart/form-data" target="_blank">
+        <form class="form-submit" action="<?php echo base_url() . 'pengumpulan_dokumen/kumpul_dokumen' ?>" method="post" enctype="multipart/form-data">
           <div class="card-body">
             <div class="form-group">
               <label>Nama Lengkap</label>
-              <input type="text" class="form-control" name="nama_pengumpul" required>
+              <input type="text" class="form-control" name="nama_pengumpul">
+              <div class="px-2 error_nama clear" style="display: none">
+              </div>
             </div>
 
             <div class="form-group">
               <label>Email</label>
-              <input type="email" class="form-control" name="email_pengumpul" required>
+              <input type="email" class="form-control" name="email_pengumpul">
+              <div class="px-2 error_email clear" style="display: none">
+              </div>
             </div>
 
             <!-- Jenis Dokumen -->
             <div class="form-group">
               <label>Jenis Dokumen</label>
-              <select class="form-control select2bs4" style="width: 100%;" name="id_dokumen" required>
+              <select class="form-control select2bs4" style="width: 100%;" name="id_dokumen">
                 <option selected disabled value>Pilih Jenis Dokumen</option>
                 <?php foreach ($jenisDokumen as $list_jenis_dokumen) { ?>
                   <option value="<?php echo $list_jenis_dokumen->id_dokumen ?>">
@@ -56,23 +67,41 @@
                   </option>
                 <?php } ?>
               </select>
+              <div class="px-2 error_jenis clear" style="display: none">
+              </div>
             </div>
 
             <div class="form-group">
-              <label for="exampleInputFile">File input</label>
+              <label for="exampleInputFile">Input Dokumen</label>
               <div class="input-group">
                 <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="exampleInputFile" name="dokumen" required>
-                  <label class="custom-file-label" for="exampleInputFile">Pilih file (Maks size file 5 MB & format PDF)</label>
+                  <input type="file" class="custom-file-input" id="exampleInputFile" name="dokumen">
+                  <label class="custom-file-label" for="exampleInputFile">Maks file 5MB. Format zip.</label>
                 </div>
                 <div class="input-group-append">
                   <span class="input-group-text">Upload</span>
                 </div>
               </div>
+              <p class="text-red">*Formulir yang telah diisi digabung dengan lampiran yang diperlukan menjadi satu folder dan dibuat menjadi zip</p>
+              <div class="px-2 error_dokumen clear" style="display: none">
+              </div>
             </div>
+
+            <!-- <div class="form-group">
+              <label for="exampleInputFile">Input Lampiran</label>
+              <div class="input-group">
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="inputLampiran" name="lampiran" required>
+                  <label class="custom-file-label" for="inputLampiran">Pilih file (Maks size file 5 MB & format zip)</label>
+                </div>
+                <div class="input-group-append">
+                  <span class="input-group-text">Upload</span>
+                </div>
+              </div>
+            </div> -->
           </div>
           <div class="card-footer">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary simpan">Submit</button>
           </div>
         </form>
       </div>
@@ -90,16 +119,10 @@
   </script>
   <!-- Bootstrap 4 -->
   <script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- Sparkline -->
-  <script src="<?php echo base_url(); ?>assets/plugins/sparklines/sparkline.js"></script>
-  <!-- jQuery Knob Chart -->
-  <script src="<?php echo base_url(); ?>assets/plugins/jquery-knob/jquery.knob.min.js"></script>
-  <!-- Tempusdominus Bootstrap 4 -->
-  <script src="<?php echo base_url(); ?>assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+  <!-- SweetAlert2 -->
+  <script src="<?php echo base_url(); ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
   <!-- AdminLTE App -->
   <script src="<?php echo base_url(); ?>assets/dist/js/adminlte.js"></script>
-  <!-- AdminLTE for demo purposes -->
-  <script src="<?php echo base_url(); ?>assets/dist/js/demo.js"></script>
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <script src="<?php echo base_url(); ?>assets/dist/js/pages/dashboard.js"></script>
 
@@ -109,6 +132,70 @@
   <script>
     $(function() {
       bsCustomFileInput.init();
+
+      $('.form-submit').submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+          url: $(this).attr('action'),
+          type: "POST",
+          dataType: 'JSON',
+          data: new FormData(this),
+          contentType: false,
+          //cache: false,
+          processData: false,
+          beforeSend: function() {
+            $('.simpan').attr('disable', 'disabled');
+            $('.simpan').html('<i class="fa fa-spin fa-spinner"></i>');
+          },
+          complete: function() {
+            $('.simpan').removeAttr('disable');
+            $('.simpan').html('Submit');
+          },
+          success: function(respon) {
+            if (respon.sukses == false) {
+              if (respon.error_nama) {
+                $('.error_nama').show();
+                $('.error_nama').html(respon.error_nama);
+                $('.error_nama').css("color", "red");
+              } else {
+                $('.error_nama').hide();
+              }
+              if (respon.error_email) {
+                $('.error_email').show();
+                $('.error_email').html(respon.error_email);
+                $('.error_email').css("color", "red");
+              } else {
+                $('.error_email').hide();
+              }
+              if (respon.error_jenis) {
+                $('.error_jenis').show();
+                $('.error_jenis').html(respon.error_jenis);
+                $('.error_jenis').css("color", "red");
+              } else {
+                $('.error_jenis').hide();
+              }
+              if (respon.error_dokumen) {
+                $('.error_dokumen').show();
+                $('.error_dokumen').html(respon.error_dokumen);
+                $('.error_dokumen').css("color", "red");
+              } else {
+                $('.error_dokumen').hide();
+              }
+
+            } else {
+              $('.clear').hide();
+              Swal.fire({
+                title: 'Sukses',
+                text: respon.sukses,
+                icon: 'success',
+              }).then((confirmed) => {
+                window.location.reload();
+              });
+            }
+
+          }
+        });
+      });
     });
   </script>
 </body>
