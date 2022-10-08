@@ -78,7 +78,6 @@
               <p>Perlengkapan: </p>
               <p><?php echo $list->perlengkapan ?></p><br>
 
-              <!-- <a class="btn btn-detail" data-toggle="modal" data-target="#detail<?php echo $list->id_ruangan ?>">DETAIL</a> -->
               <a class="btn btn-primary btn-detail" href="<?php echo base_url() . 'booking/' . $list->id_ruangan ?>">BOOKING</a>
             </div>
           </div>
@@ -86,38 +85,6 @@
 
       </div>
     </div>
-    <?php $no = 0;
-    foreach ($ruangan as $list) {
-      $no++; ?>
-      <!-- modal untuk menampilkan form edit gambar -->
-      <div class="modal fade" id="detail<?php echo $list->id_ruangan ?>" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Ruangan <?php echo $list->nama_ruangan; ?></h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <div class="card-ruangan">
-                <img src="<?php echo base_url(); ?>resources/assets/img/ruangan/<?php echo $list->foto; ?>" class="img-fluid" alt="<?php echo $list->id_ruangan ?>" width="200" height="200">
-              </div>
-              <a class="btn btn-primary btn-block" href="<?php echo base_url() . 'booking/' . $list->id_ruangan ?>">BOOKING</a>
-
-              <?php $id_ruangan = $list->id_ruangan; ?>
-
-              <table id="info_booking<?php echo $id_ruangan ?>" class="table table-bordered table-striped" style="width: 100%;">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Tanggal</th>
-                  </tr>
-                </thead>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    <?php } ?>
   </main>
 
   <!-- ======= Footer ======= -->
@@ -153,70 +120,9 @@
   <script src="<?php echo base_url(); ?>resources/assets/vendor/purecounter/purecounter.js"></script>
   <script src="<?php echo base_url(); ?>resources/assets/vendor/swiper/swiper-bundle.min.js"></script>
 
-  <!-- DataTables  & Plugins -->
-  <script src="<?php echo base_url(); ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/plugins/jszip/jszip.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/plugins/pdfmake/pdfmake.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/plugins/pdfmake/vfs_fonts.js"></script>
-  <script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-
   <!-- Template Main JS File -->
   <script src="<?php echo base_url(); ?>resources/assets/js/main.js"></script>
 
-  <script src="<?php echo base_url(); ?>assets/ruangan/ruangan.js"></script>
-
-  <script>
-    $(document).ready(function() {
-      <?php for ($i = 1; $i <= $id_ruangan; $i++) { ?>
-        $('#info_booking<?php echo $i ?>').DataTable({
-          "responsive": true,
-          "autoWidth": false,
-          "paging": false,
-          "searching": false,
-          "language": {
-            "emptyTable": "Tidak ada data yang tersedia pada tabel ini",
-            "info": "",
-            "infoEmpty": "Menampilkan 0 sampai 0 dari 0 data",
-            "infoFiltered": "(disaring dari _MAX_ entri keseluruhan)",
-            "lengthMenu": "Tampilkan _MENU_ data",
-            "loadingRecords": "Sedang memuat...",
-            "processing": "Sedang memproses...",
-            "search": "Cari:",
-            "zeroRecords": "Tidak ditemukan data yang sesuai",
-            "thousands": "'",
-            "paginate": {
-              "first": "Pertama",
-              "last": "Terakhir",
-              "next": "Selanjutnya",
-              "previous": "Sebelumnya"
-            }
-          },
-          ajax: {
-            url: "<?php echo base_url() . 'ruangan/informasi_tanggal_booking/' . $id_ruangan ?>",
-            dataSrc: ""
-          },
-          columns: [{
-              data: null,
-              name: null,
-              render: function(data, type, row, meta) {
-                return meta.row + meta.settings._iDisplayStart + 1;
-              }
-            },
-            {
-              "data": "tanggal_booking"
-            }
-          ]
-        });
-      <?php } ?>
-    });
-  </script>
 </body>
 
 </html>

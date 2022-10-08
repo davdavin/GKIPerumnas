@@ -66,6 +66,10 @@ $route['login'] = 'Login_Admin';
 $route['login/verifikasi'] = 'Login_Admin/verifikasi';
 $route['logout'] = 'Login_Admin/logout';
 
+$route['forgot_password'] = 'Login_Admin/forgot_password';
+$route['change_password/(:any)'] = 'Login_Admin/change_password/$1';
+$route['proses_change_password'] = 'Login_Admin/proses_change_password';
+
 //dashboard admin
 $route['admin/dashboard'] = 'Admin';
 

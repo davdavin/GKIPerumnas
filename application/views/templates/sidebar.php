@@ -26,7 +26,7 @@
                         <p> Dashboard </p>
                     </a>
                 </li>
-                <?php if ($this->session->userdata('level_user') != 5) { ?>
+                <?php if ($this->session->userdata('level_user') != 3) { ?>
                     <li class="nav-item">
                         <a <?php if ($this->uri->segment(1) == "User") {
                                 echo "class='nav-link active'";
@@ -168,7 +168,7 @@
                         </li>
                     </ul>
                 </li>
-                <?php if ($this->session->userdata('level_user') != 5) { ?>
+                <?php if ($this->session->userdata('level_user') != 3) { ?>
                     <li class="nav-item">
                         <a <?php if ($this->uri->segment(1) == "mengelola_artikel") {
                                 echo "class='nav-link active'";
