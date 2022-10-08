@@ -285,7 +285,7 @@
           render: function(data, type, row, meta) {
             switch (row.status_user) {
               case "1":
-                return `<?php if ($this->session->userdata('level_user') == 1 || $this->session->userdata('level_user') == 2) { ?><a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_user}">
+                return `<?php if ($this->session->userdata('level_user') == 1) { ?><a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_user}">
                           <i class="fas fa-pencil-alt"></i> Edit
                         </a>
                         <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'uSER/hapus_user/' ?>${row.id_user}" data-toggle="tooltip" data-placement="bottom" title="Hapus DatA uSER">
@@ -294,7 +294,7 @@
                         <?php } ?>`;
                 break;
               default:
-                return `<?php if ($this->session->userdata('level_user') == 1 || $this->session->userdata('level_user') == 2) { ?> <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_user}">
+                return `<?php if ($this->session->userdata('level_user') == 1) { ?> <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_user}">
                           <i class="fas fa-pencil-alt"></i> Edit
                         </a>
                         <?php } ?>`;
