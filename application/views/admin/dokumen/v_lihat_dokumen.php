@@ -27,9 +27,11 @@
         </div>
 
         <div class="card-body">
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
-            <i class="fas fa-plus"></i> Tambah dokumen
-          </button><br><br>
+          <?php if ($this->session->userdata('level_user') == 1) { ?>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
+              <i class="fas fa-plus"></i> Tambah dokumen
+            </button><br><br>
+          <?php } ?>
 
           <table id="list_dokumen" class="table table-bordered table-striped">
             <thead>
@@ -50,49 +52,51 @@
         </div>
       </div>
 
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Tabel Pengumpulan Dokumen</h3>
-        </div>
+      <?php if ($this->session->userdata('level_user') == 1) { ?>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Tabel Pengumpulan Dokumen</h3>
+          </div>
 
-        <div class="card-body">
-          <table id="pengumpulan" class="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Nama Pengumpul</th>
-                <th>Email Pengumpul</th>
-                <th>Jenis Dokumen</th>
-                <th>File</th>
-                <th>Tanggal Kumpul</th>
-                <th>Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-              foreach ($pengumpulanDokumen as $list_pengumpulan_dokumen) { ?>
+          <div class="card-body">
+            <table id="pengumpulan" class="table table-bordered table-striped">
+              <thead>
                 <tr>
-                  <td><?php echo $list_pengumpulan_dokumen->id_pengumpulan ?></td>
-                  <td><?php echo $list_pengumpulan_dokumen->nama_lengkap_pengumpul ?></td>
-                  <td><?php echo $list_pengumpulan_dokumen->email_pengumpul ?></td>
-                  <td><?php echo $list_pengumpulan_dokumen->jenis_dokumen ?></td>
-                  <td><?php echo $list_pengumpulan_dokumen->kumpul_dokumen ?></td>
-                  <td><?php echo tanggal_indonesia($list_pengumpulan_dokumen->tanggal_kumpul); ?></td>
-                  <td>
-                    <a class="btn btn-primary btn-sm" href="<?php echo base_url() . 'pengumpulanDokumen/' . $list_pengumpulan_dokumen->kumpul_dokumen ?>" download>
-                      <i class="fas fa-download">
-                      </i>
-                      Unduh
-                    </a>
-                  </td>
+                  <th>ID</th>
+                  <th>Nama Pengumpul</th>
+                  <th>Email Pengumpul</th>
+                  <th>Jenis Dokumen</th>
+                  <th>File</th>
+                  <th>Tanggal Kumpul</th>
+                  <th>Aksi</th>
                 </tr>
-              <?php
-              } ?>
+              </thead>
+              <tbody>
+                <?php
+                foreach ($pengumpulanDokumen as $list_pengumpulan_dokumen) { ?>
+                  <tr>
+                    <td><?php echo $list_pengumpulan_dokumen->id_pengumpulan ?></td>
+                    <td><?php echo $list_pengumpulan_dokumen->nama_lengkap_pengumpul ?></td>
+                    <td><?php echo $list_pengumpulan_dokumen->email_pengumpul ?></td>
+                    <td><?php echo $list_pengumpulan_dokumen->jenis_dokumen ?></td>
+                    <td><?php echo $list_pengumpulan_dokumen->kumpul_dokumen ?></td>
+                    <td><?php echo tanggal_indonesia($list_pengumpulan_dokumen->tanggal_kumpul); ?></td>
+                    <td>
+                      <a class="btn btn-primary btn-sm" href="<?php echo base_url() . 'pengumpulanDokumen/' . $list_pengumpulan_dokumen->kumpul_dokumen ?>" download>
+                        <i class="fas fa-download">
+                        </i>
+                        Unduh
+                      </a>
+                    </td>
+                  </tr>
+                <?php
+                } ?>
 
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
+      <?php } ?>
     </div>
     <!-- modal untuk menampilkan form input dokumen -->
     <div class="modal fade" id="modal-lg">
@@ -230,7 +234,7 @@
           name: null,
           sortable: false,
           render: function(data, type, row, meta) {
-            return `<a class=" btn btn-primary btn-sm" href="<?php echo base_url() . 'uploadDokumen/' ?>${row.id_dokumen}" download>
+            return `<?php if ($this->session->userdata('level_user') == 1) { ?> <a class=" btn btn-primary btn-sm" href="<?php echo base_url() . 'uploadDokumen/' ?>${row.id_dokumen}" download>
                       <i class="fas fa-download">
                       </i>
                       Unduh
@@ -244,7 +248,8 @@
                       <i class="fas fa-trash">
                       </i>
                       Hapus
-                    </a>`
+                    </a>
+                    <?php } ?>`
           }
         }
       ]

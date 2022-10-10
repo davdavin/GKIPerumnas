@@ -28,42 +28,6 @@ class Wilayah extends CI_Controller
         echo json_encode($wilayah);
     }
 
-    public function nama_jemaat()
-    {
-        if (!isset($_POST['searchJemaat'])) {
-            $nama = $this->db->query("SELECT id_anggota, nama_lengkap_anggota, nama_wilayah FROM anggota_jemaat INNER JOIN wilayah ON anggota_jemaat.id_wilayah = Wilayah.id_wilayah")->result_array();
-        } else {
-            $search = strtolower($_POST['searchJemaat']);
-            $nama = $this->db->query("SELECT id_anggota, nama_lengkap_anggota, nama_wilayah FROM anggota_jemaat INNER JOIN wilayah ON anggota_jemaat.id_wilayah = Wilayah.id_wilayah WHERE nama_lengkap_anggota LIKE '%$search%'")->result_array();
-        }
-
-        $list = array();
-        for ($i = 0; $i < count($nama); $i++) {
-            $list[$i]['id'] = $nama[$i]['id_anggota'];
-            $list[$i]['text'] = $nama[$i]['nama_lengkap_anggota'] . ' - ' . $nama[$i]['nama_wilayah'];
-        }
-
-        echo json_encode($list);
-    }
-
-    public function tambah_wilayah()
-    {
-        $baris = $this->M_Wilayah->tampil()->num_rows();
-        $kode_wilayah = 'WIL' . $baris + 1;
-        $koordinator_wilayah = $this->input->post('id_jemaat');
-        $nama_wilayah = $this->input->post('nama_wilayah');
-
-        $data = array(
-            'kode_wilayah' => $kode_wilayah,
-            'koordinator_wilayah' => $koordinator_wilayah,
-            'nama_wilayah' => $nama_wilayah
-        );
-
-        $this->M_Wilayah->insert_record($data, 'wilayah');
-        $this->session->set_flashdata('sukses', 'Data berhasil disimpan');
-        redirect('Wilayah');
-    }
-
     public function edit_wilayah($id_wilayah)
     {
         $data['title'] = "Wilayah";
@@ -108,14 +72,6 @@ class Wilayah extends CI_Controller
 
         $this->M_Wilayah->update_record($where, $data, 'wilayah');
         $this->session->set_flashdata('sukses', 'Data berhasil diubah');
-        redirect('Wilayah');
-    }
-
-    public function hapus_wilayah($id_wilayah)
-    {
-        $where = array('id_wilayah' => $id_wilayah);
-        $this->M_Wilayah->delete_record($where, 'wilayah');
-        $this->session->set_flashdata('sukses', 'Data berhasil dihapus');
         redirect('Wilayah');
     }
 }

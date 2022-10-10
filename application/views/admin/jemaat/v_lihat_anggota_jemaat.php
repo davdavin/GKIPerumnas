@@ -26,13 +26,14 @@
           <h3 class="card-title">Tabel Data Anggota Jemaat</h3>
         </div>
         <div class="card-body">
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
-            <i class="fas fa-plus"></i> Tambah anggota jemaat
-          </button>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-akun-jemaat">
-            <!-- coba -->
+          <?php if ($this->session->userdata('level_user') == 1) { ?>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
+              <i class="fas fa-plus"></i> Tambah anggota jemaat
+            </button>
+          <?php } ?>
+          <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-akun-jemaat">
             <i class="mr-1 fas fa-plus"></i> Akun Jemaat
-          </button><br><br>
+          </button><br><br> -->
 
           <table id="list_anggota" class="table table-bordered table-striped">
             <thead>
@@ -338,27 +339,15 @@
           name: null,
           sortable: false,
           render: function(data, type, row, meta) {
-            switch (row.status_anggota) {
-              case "1":
-                return `<a class="btn btn-primary btn-sm" href="<?php echo base_url() . 'Anggota_Jemaat/lihat_detail_anggota/' ?>${row.id_anggota}">
+            return `<a class="btn btn-primary btn-sm" href="<?php echo base_url() . 'Anggota_Jemaat/lihat_detail_anggota/' ?>${row.id_anggota}">
                          <i class="fas fa-eye"></i> Detail
                         </a>
-                        <a class="btn btn-info btn-sm" href="<?php echo base_url() . 'Anggota_Jemaat/edit_anggota/' ?>${row.id_anggota}">
+                        <?php if ($this->session->userdata('level_user') == 1) { ?><a class="btn btn-info btn-sm" href="<?php echo base_url() . 'Anggota_Jemaat/edit_anggota/' ?>${row.id_anggota}">
                          <i class="fas fa-pencil-alt"></i> Edit
                         </a>
-                        <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'Anggota_Jemaat/hapus_anggota/' ?>${row.id_anggota}">
-                          <i class="fas fa-trash"></i> Hapus
-                        </a>`;
-                break;
-              default:
-                return `<a class="btn btn-primary btn-sm" href="<?php echo base_url() . 'Anggota_Jemaat/lihat_detail_anggota/' ?>${row.id_anggota}">
-                         <i class="fas fa-eye"></i> Detail
-                        </a>
-                        <a class="btn btn-info btn-sm" href="<?php echo base_url() . 'Anggota_Jemaat/edit_anggota/' ?>${row.id_anggota}">
-                         <i class="fas fa-pencil-alt"></i> Edit
-                        </a>`;
-                break;
-            }
+                        <?php } ?>`;
+
+
           }
         },
       ]
@@ -385,7 +374,7 @@
     });
 
     $('[data-mask]').inputmask();
-  
+
     $('#tanggal_lahir').flatpickr({
       altInput: true,
       //allowInput: true,

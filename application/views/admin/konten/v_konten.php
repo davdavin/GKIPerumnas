@@ -23,7 +23,7 @@
     <div class="container-fluid">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title"> Daftar Konten Slide</h3>
+          <h3 class="card-title"> Konten Slide</h3>
         </div>
 
         <div class="card-body">
@@ -34,7 +34,9 @@
                 <th>Judul Slide</th>
                 <th>Deskripsi</th>
                 <th>Gambar</th>
-                <th>Aksi</th>
+                <?php if ($this->session->userdata('level_user') == 1) { ?>
+                  <th>Aksi</th>
+                <?php } ?>
               </tr>
             </thead>
             <tbody>
@@ -46,39 +48,22 @@
 
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title"> Daftar Konten Foto Ibadah</h3>
+          <h3 class="card-title"> Konten Foto Ibadah</h3>
         </div>
 
         <div class="card-body">
-          <p>Foto ibadah yang ditampilkan pada momen tertentu seperti palma, paskah, natal </p>
           <table id="foto_ibadah" class="table table-bordered table-striped">
             <thead>
               <tr>
                 <th>ID</th>
                 <th>Momen</th>
                 <th>Foto</th>
-                <th>Aksi</th>
+                <?php if ($this->session->userdata('level_user') == 1) { ?>
+                  <th>Aksi</th>
+                <?php } ?>
               </tr>
             </thead>
             <tbody>
-              <!--        <?php
-                          /* foreach ($kontenFotoIbadah as $list_foto_ibadah) { ?>
-                <tr>
-                  <td><?php echo $list_foto_ibadah->id_foto_ibadah ?></td>
-                  <td><?php echo $list_foto_ibadah->momen ?></td>
-                  <td>
-                    <img src="<?php echo base_url(); ?>resources/assets/img/gallery/<?php echo $list_foto_ibadah->foto_ibadah; ?>" class="img-fluid" alt="fotoIbadah" width="200" height="200">
-                  </td>
-                  <td>
-                    <a class="btn bg-green btn-sm" data-toggle="modal" data-target="#edit_foto<?php echo $list_foto_ibadah->id_foto_ibadah; ?>">
-                      <i class="fas fa-image">
-                      </i>
-                      Lihat gambar
-                    </a>
-                  </td>
-                </tr>
-              <?php
-              }  */ ?> -->
             </tbody>
           </table>
         </div>
@@ -108,7 +93,7 @@
                     <label>Update Slide</label><br>
                     <div class="input-group">
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="fotoIbadah">
+                        <input type="file" class="custom-file-input" name="fotoIbadah" required>
                         <label class="custom-file-label" for="exampleInputFile">Pilih file (Maks size file 100 MB)</label>
                       </div>
                       <div class="input-group-append">
@@ -209,16 +194,17 @@
             return `<img src="<?php echo base_url(); ?>resources/assets/img/slide/${row.gambar_slide}" class="img-fluid" alt="` + data + `" width="200" height="200">`;
           }
         },
-        {
-          data: null,
-          name: null,
-          sortable: false,
-          render: function(data, type, row, meta) {
-            return `<a class="btn btn-info btn-sm" href="<?php echo base_url() . 'Konten/edit_tulisan/' ?>${row.id_slide}">
+        <?php if ($this->session->userdata('level_user') == 1) { ?> {
+            data: null,
+            name: null,
+            sortable: false,
+            render: function(data, type, row, meta) {
+              return `<a class="btn btn-info btn-sm" href="<?php echo base_url() . 'Konten/edit_tulisan/' ?>${row.id_slide}">
                     <i class="fas fa-pencil-alt"></i> Edit
                   </a>`;
+            }
           }
-        }
+        <?php } ?>
       ]
     });
 
@@ -245,18 +231,19 @@
             return `<img src="<?php echo base_url(); ?>resources/assets/img/gallery/${row.foto_ibadah}" class="img-fluid" alt="` + data + `" width="25%" height="25%">`;
           }
         },
-        {
-          data: null,
-          name: null,
-          sortable: false,
-          render: function(data, type, row, meta) {
-            return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit_foto${row.id_foto_ibadah}">
+        <?php if ($this->session->userdata('level_user') == 1) { ?> {
+            data: null,
+            name: null,
+            sortable: false,
+            render: function(data, type, row, meta) {
+              return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit_foto${row.id_foto_ibadah}">
                       <i class="fas fa-pencil-alt">
                       </i>
                       Edit
                     </a>`;
+            }
           }
-        }
+        <?php } ?>
       ]
     });
 
