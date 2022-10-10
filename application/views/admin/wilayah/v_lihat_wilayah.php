@@ -27,9 +27,6 @@
         </div>
 
         <div class="card-body">
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
-            <i class="fas fa-plus"></i> Tambah wilayah
-          </button><br><br>
 
           <table id="tabel_wilayah" class="table table-bordered table-striped">
             <thead>
@@ -38,7 +35,9 @@
                 <th>Kode Wilayah</th>
                 <th>Koordinator Wilayah</th>
                 <th>Nama Wilayah</th>
-                <th>Aksi</th>
+                <?php if ($this->session->userdata('level_user') == 1) { ?>
+                  <th>Aksi</th>
+                <?php } ?>
               </tr>
             </thead>
             <tbody>
@@ -172,76 +171,21 @@
         {
           "data": "nama_wilayah"
         },
-        {
-          "data": null,
-          name: null,
-          render: function(data, type, row, meta) {
-            return `<a class="btn btn-info btn-sm" href="<?php echo base_url() . 'Wilayah/edit_wilayah/' ?>${row.id_wilayah}">
+
+        <?php if ($this->session->userdata('level_user') == 1) { ?> {
+            "data": null,
+            name: null,
+            render: function(data, type, row, meta) {
+              return `<a class="btn btn-info btn-sm" href="<?php echo base_url() . 'Wilayah/edit_wilayah/' ?>${row.id_wilayah}">
                       <i class="fas fa-pencil-alt">
                       </i>
                       Edit
-                    </a>
-                    <a id="tombol-hapus" class="btn btn-danger btn-sm" href="<?php echo base_url() . 'Wilayah/hapus_wilayah/' ?>${row.id_wilayah}">
-                      <i class="fas fa-trash">
-                      </i>
-                      Hapus
                     </a>`;
+            }
           }
-        }
+        <?php } ?>
       ]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-
-    $(document).on('click', '#tombol-hapus', function(e) {
-      e.preventDefault(); //untuk stop link href yang awal
-      const href = $(this).attr('href');
-
-      Swal.fire({
-        title: 'Apakah anda yakin?',
-        text: 'Data wilayah akan dihapus secara permanen',
-        icon: 'warning',
-        showCancelButton: true,
-        cancelButtonText: 'batal',
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Hapus'
-      }).then((result) => {
-        if (result.value) { //ini sama aja kayak == TRUE
-          document.location.href = href;
-        }
-      });
-    });
-
-    $('.pilih-jemaat').select2({
-      placeholder: 'pilih',
-      //  minimumInputLength: 3,
-      ajax: {
-        url: "<?php echo base_url() . 'Wilayah/nama_jemaat' ?>",
-        type: 'POST',
-        dataType: 'JSON',
-        delay: 250,
-        data: function(params) {
-          return {
-            searchJemaat: params.term
-          };
-        },
-        processResults: function(data) {
-          return {
-            results: data,
-          };
-        },
-      },
-    });
-
-    const sukses = $('.sukses').data('flashdata');
-
-    if (sukses) {
-      Swal.fire({
-        title: 'Data Wilayah',
-        text: sukses,
-        icon: 'success'
-      });
-    }
-
 
   });
 </script>

@@ -27,9 +27,11 @@
                 </div>
 
                 <div class="card-body">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
-                        <i class="fas fa-plus"></i> Ruangan
-                    </button><br><br>
+                    <?php if ($this->session->userdata('level_user') == 1) { ?>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
+                            <i class="fas fa-plus"></i> Ruangan
+                        </button><br><br>
+                    <?php } ?>
 
                     <table id="tabel_ruangan" class="table table-bordered table-striped" style="width: 100%;">
                         <thead>
@@ -38,7 +40,10 @@
                                 <th>Ruangan</th>
                                 <th>Kapasitas</th>
                                 <th>Perlengkapan</th>
-                                <th>Aksi</th>
+                                <th>Foto</th>
+                                <?php if ($this->session->userdata('level_user') == 1) { ?>
+                                    <th>Aksi</th>
+                                <?php } ?>
                             </tr>
                         </thead>
                     </table>
@@ -212,14 +217,23 @@
                     "data": "perlengkapan"
                 },
                 {
-                    data: null,
+                    data: "foto",
                     name: null,
+                    sortable: false,
                     render: function(data, type, row, meta) {
-                        return `<a class="btn btn-info btn-sm" href="<?php echo base_url() . 'mengelola_ruangan/edit/' ?>${row.id_ruangan}">
+                        return `<img src="<?php echo base_url(); ?>resources/assets/img/ruangan/${row.foto}" class="img-fluid" alt="` + data + `" width="200" height="200">`;
+                    }
+                },
+                <?php if ($this->session->userdata('level_user') == 1) { ?> {
+                        data: null,
+                        name: null,
+                        render: function(data, type, row, meta) {
+                            return `<a class="btn btn-info btn-sm" href="<?php echo base_url() . 'mengelola_ruangan/edit/' ?>${row.id_ruangan}">
                           <i class="fas fa-pencil-alt"></i> Edit
                         </a>`;
+                        }
                     }
-                }
+                <?php } ?>
             ]
         });
 
