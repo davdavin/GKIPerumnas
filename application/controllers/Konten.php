@@ -100,7 +100,7 @@ class Konten extends CI_Controller
         }
     }
 
-    public function proses_edit_gambar()
+  /*  public function proses_edit_gambar()
     {
         $id_slide = $this->input->post('id_slide');
         $gambar_lama = $this->input->post('gambar_lama');
@@ -129,7 +129,7 @@ class Konten extends CI_Controller
             $respon['sukses'] = "Berhasil ganti foto";
             echo json_encode($respon);
         }
-    }
+    } */
 
     public function proses_edit_foto_ibadah()
     {
