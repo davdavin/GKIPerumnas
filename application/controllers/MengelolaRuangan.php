@@ -187,6 +187,7 @@ class MengelolaRuangan extends CI_Controller
 
     public function lihat_peminjaman()
     {
+        $this->M_Ruangan->ubah_status_notif();
         $data['title'] = "Ruangan";
         $data['peminjaman'] = $this->M_Ruangan->informasi_peminjaman()->result();
         $this->load->view('templates/header.php', $data);
@@ -209,6 +210,15 @@ class MengelolaRuangan extends CI_Controller
         $data = array('status_peminjaman' => $this->input->post('status'));
         $this->M_Ruangan->update_record($where, $data, 'peminjaman_ruangan');
         $this->session->set_flashdata('sukses', 'Berhasil ubah status');
+        redirect('mengelola_ruangan/peminjaman');
+    }
+
+    public function hapus_peminjaman($id_peminjaman)
+    {
+        $where = array('id_peminjaman' => $id_peminjaman);
+        $data = array('is_deleted' => '1');
+        $this->M_Ruangan->update_record($where, $data, 'peminjaman_ruangan');
+        $this->session->set_flashdata('sukses', 'Berhasil dihapus');
         redirect('mengelola_ruangan/peminjaman');
     }
 }
