@@ -15,8 +15,14 @@ class M_Wilayah extends CI_Model
 
     public function total_jemaat_di_wilayah()
     {
-        return $this->db->query("SELECT wilayah.nama_wilayah, count(anggota_jemaat.id_wilayah) as total FROM anggota_jemaat JOIN wilayah 
+        return $this->db->query("SELECT wilayah.nama_wilayah, count(anggota_jemaat.id_wilayah) as total FROM anggota_jemaat INNER JOIN wilayah 
                                     on anggota_jemaat.id_wilayah = wilayah.id_wilayah WHERE status_anggota = '1' GROUP BY nama_wilayah");
+    }
+
+    public function urutan_wilayah_terbanyak()
+    {
+        return $this->db->query("SELECT nama_wilayah, count(anggota_jemaat.id_anggota) as total FROM anggota_jemaat INNER JOIN wilayah ON anggota_jemaat.id_wilayah = wilayah.id_wilayah 
+                                WHERE status_anggota = '1' GROUP BY nama_wilayah ORDER BY count(anggota_jemaat.id_anggota) DESC");
     }
 
     public function insert_record($data, $table)
