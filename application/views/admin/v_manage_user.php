@@ -335,15 +335,6 @@
       });
     }
 
-    function valid() {
-      $('.clear').hide();
-      $('#nama').removeClass('is-invalid');
-      $('#username').removeClass('is-invalid');
-      $('#password').removeClass('is-invalid');
-      $('#email').removeClass('is-invalid');
-      $('#level').removeClass('is-invalid');
-    }
-
     $('.form-submit').submit(function(e) {
       e.preventDefault();
       $.ajax({
@@ -362,53 +353,43 @@
           var obj = $.parseJSON(respon);
           if (obj.sukses == false) {
             if (obj.error_nama) {
-              $('#nama').addClass('is-invalid');
               $('.error_nama').show();
               $('.error_nama').html(obj.error_nama);
               $('.error_nama').css("color", "red");
             } else {
-              $('#nama').removeClass('is-invalid');
               $('.error_nama').hide();
             }
             if (obj.error_username) {
-              $('#username').addClass('is-invalid');
               $('.error_username').show();
               $('.error_username').html(obj.error_username);
               $('.error_username').css("color", "red");
             } else {
-              $('#username').removeClass('is-invalid');
               $('.error_username').hide();
             }
             if (obj.error_password) {
-              $('#password').addClass('is-invalid');
               $('.error_password').show();
               $('.error_password').html(obj.error_password);
               $('.error_password').css("color", "red");
             } else {
-              $('#password').removeClass('is-invalid');
               $('.error_password').hide();
             }
             if (obj.error_email) {
-              $('#email').addClass('is-invalid');
               $('.error_email').show();
               $('.error_email').html(obj.error_email);
               $('.error_email').css("color", "red");
             } else {
-              $('#email').removeClass('is-invalid');
               $('.error_email').hide();
             }
             if (obj.error_level) {
-              $('#level').addClass('is-invalid');
               $('.error_level').show();
               $('.error_level').html(obj.error_level);
               $('.error_level').css("color", "red");
             } else {
-              $('#level').removeClass('is-invalid');
               $('.error_level').hide();
             }
 
           } else {
-            valid();
+            $('.clear').hide();
             Swal.fire({
               title: 'Sukses',
               text: obj.sukses,

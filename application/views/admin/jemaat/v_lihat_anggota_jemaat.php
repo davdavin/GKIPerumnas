@@ -29,7 +29,7 @@
           <?php if ($this->session->userdata('level_user') == 1) { ?>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
               <i class="fas fa-plus"></i> Tambah anggota jemaat
-            </button>
+            </button><br><br>
           <?php } ?>
           <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-akun-jemaat">
             <i class="mr-1 fas fa-plus"></i> Akun Jemaat
