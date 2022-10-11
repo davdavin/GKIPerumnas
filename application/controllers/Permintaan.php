@@ -101,22 +101,23 @@ class Permintaan extends CI_Controller
 
                 $ambil_id_anggota = $this->db->query("SELECT id_anggota, nama_lengkap_anggota, email_anggota FROM anggota_jemaat WHERE no_anggota = '$no_anggota'")->row_array();
 
+                $email_lama = $ambil_id_anggota['email_anggota'];
+
                 $data = array(
                     'id_anggota' => $ambil_id_anggota['id_anggota'], 'nohp_baru' => $nohp, 'email_baru' => $email,
                     'alamat_baru' => $alamat, 'pekerjaan_baru' => $pekerjaan, 'pendidikan_baru' => $pendidikan, 'tanggal_permintaan' => $tanggal, 'is_notif' => 0, 'is_updated' => 0
                 );
                 $this->M_Permintaan->insert_record($data, 'permintaan_perubahan_data_jemaat');
                 //masih coba
-                if($email == NULL) {
-                    $to = $ambil_id_anggota['email_enggota'];
-                }
-                if($email != NULL) {
+                if ($email == NULL) {
+                    $to = $email_lama;
+                } else if ($email != NULL) {
                     $to = $this->input->post('email');
                 }
                 $subject = "Berhasil kirim";
                 $headers = "MIME-Version: 1.0" . "\r\n";
                 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-                $headers .= "From: officehourcompany@gmail.com";
+                $headers .= "From: gerejagkiperumnass@gmail.com";
                 $message = "
 <html>
 <head>
