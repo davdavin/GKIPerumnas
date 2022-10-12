@@ -38,7 +38,7 @@
           <table id="list_anggota" class="table table-bordered table-striped">
             <thead>
               <tr>
-                <th>ID</th>
+                <th>No.</th>
                 <th>No Anggota</th>
                 <th>Nama Lengkap</th>
                 <th>Wilayah</th>
@@ -66,33 +66,34 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form action="<?php echo base_url() . 'Anggota_Jemaat/masuk_anggota_jemaat' ?>" method="post">
+          <form class="form-submit" action="<?php echo base_url() . 'Anggota_Jemaat/masuk_anggota_jemaat' ?>" method="post">
             <div class="modal-body">
               <div class="form-group">
-                <label>Nama Anggota</label>
-                <input type="text" class="form-control" name="nama_anggota" placeholder="Nama Lengkap Anggota" required>
+                <label>Nama Lengkap Anggota</label>
+                <input type="text" class="form-control" name="nama_anggota" placeholder="Nama Lengkap Anggota">
+                <div class="px-2 error_nama clear" style="display: none">
+                </div>
               </div>
               <div class="form-group">
                 <label>Alamat Anggota</label>
-                <input type="text" class="form-control" name="alamat_anggota" placeholder="Alamat Anggota" required>
+                <input type="text" class="form-control" name="alamat_anggota" placeholder="Alamat Anggota">
+                <div class="px-2 error_alamat clear" style="display: none">
+                </div>
               </div>
 
               <!-- phone mask -->
               <div class="form-group">
-                <label>Nomor HP (Indonesia):</label>
-                <div class="input-group">
-                  <input type="text" class="form-control" data-inputmask='"mask": "089999999999[9][9][9]"' data-mask name="nohp" required>
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                  </div>
+                <label>Nomor Handphone</label>
+                <input type="number" class="form-control" data-mask name="nohp" placeholder="No. Handphone">
+                <div class="px-2 error_nohp clear" style="display: none">
                 </div>
               </div>
 
               <!-- Wilayah -->
               <div class="form-group">
                 <label>Wilayah</label>
-                <select class="form-control select2bs4" style="width: 100%;" name="id_wilayah" required>
-                  <option selected disabled value>Pilih wilayah</option>
+                <select class="custom-select select2bs4" style="width: 100%;" name="id_wilayah">
+                  <option selected disabled value>-- Pilih --</option>
                   <?php foreach ($wilayah as $list_wilayah) { ?>
                     <option value="<?php echo $list_wilayah->id_wilayah ?>">
                       <?php echo $list_wilayah->nama_lengkap_anggota . ' - ' . $list_wilayah->nama_wilayah ?>
@@ -100,90 +101,122 @@
                   <?php
                   } ?>
                 </select>
+                <div class="px-2 error_wilayah clear" style="display: none">
+                </div>
               </div>
 
               <div class="form-group">
                 <label for="inputEmailAnggota">Email Anggota</label>
-                <input type="email" class="form-control" id="inputEmailAnggota" name="email_anggota" placeholder="Email Anggota" required>
+                <input type="email" class="form-control" id="inputEmailAnggota" name="email_anggota" placeholder="Email Anggota">
+                <div class="px-2 error_email clear" style="display: none">
+                </div>
               </div>
               <!-- jenis kelamin -->
               <div class="form-group">
                 <label>Jenis Kelamin</label>
-                <select class="form-control select2bs4" style="width: 100%;" name="jenis_kelamin" required>
-                  <option selected disabled value>Pilih jenis kelamin</option>
+                <select class="custom-select select2bs4" style="width: 100%;" name="jenis_kelamin">
+                  <option selected disabled value>-- Pilih --</option>
                   <option value="Laki-laki">Laki-laki</option>
                   <option value="Perempuan">Perempuan</option>
                 </select>
+                <div class="px-2 error_jenis_kelamin clear" style="display: none">
+                </div>
               </div>
 
               <div class="form-group">
                 <label for="inputGolonganDarah">Golongan Darah</label>
-                <input type="text" class="form-control" id="inputGolonganDarah" name="golongan_darah" placeholder="Golongan darah" required>
+                <input type="text" class="form-control" id="inputGolonganDarah" name="golongan_darah" placeholder="Golongan darah">
+                <div class="px-2 error_golongan_darah clear" style="display: none">
+                </div>
               </div>
               <!-- status -->
               <div class="form-group">
                 <label>Status</label>
-                <select class="form-control select2bs4" style="width: 100%;" name="status" required>
-                  <option selected disabled value>Status</option>
+                <select class="custom-select select2bs4" style="width: 100%;" name="status">
+                  <option selected disabled value>-- Pilih --</option>
                   <option value="1">Aktif</option>
                   <option value="0">Tidak Aktif</option>
                 </select>
+                <div class="px-2 error_status clear" style="display: none">
+                </div>
               </div>
               <div class="form-group">
                 <label for="inputPendidikan">Pendidikan</label>
-                <input type="text" class="form-control" id="inputPendidikan" name="pendidikan" placeholder="Pendidikan" required>
+                <input type="text" class="form-control" id="inputPendidikan" name="pendidikan" placeholder="Pendidikan">
+                <div class="px-2 error_pendidikan clear" style="display: none">
+                </div>
               </div>
               <div class="form-group">
                 <label for="inputPekerjaan">Pekerjaan</label>
-                <input type="text" class="form-control" id="inputPekerjaan" name="pekerjaan" placeholder="Pekerjaan" required>
+                <input type="text" class="form-control" id="inputPekerjaan" name="pekerjaan" placeholder="Pekerjaan">
+                <div class="px-2 error_pekerjaan clear" style="display: none">
+                </div>
               </div>
               <div class="form-group">
                 <label for="inputKelompokEtnis">Kelompok Etnis</label>
-                <input type="text" class="form-control" id="inputKelompokEtnis" name="kelompok_etnis" placeholder="Kelompok etnis" required>
+                <input type="text" class="form-control" id="inputKelompokEtnis" name="kelompok_etnis" placeholder="Kelompok etnis">
+                <div class="px-2 error_kelompok clear" style="display: none">
+                </div>
               </div>
 
               <div class="form-group">
                 <label>Tanggal Lahir</label>
-                <input type="text" class="form-control" id="tanggal_lahir" name="tanggal_lahir" placeholder="dd/mm/YYYY" required>
+                <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" placeholder="dd/mm/YYYY">
+                <div class="px-2 error_tanggal_lahir clear" style="display: none">
+                </div>
               </div>
               <div class="form-group">
                 <label>Tanggal Baptis</label>
-                <input type="text" class="form-control" id="tanggal_baptis" name="tanggal_baptis" placeholder="dd/mm/YYYY" required>
+                <input type="date" class="form-control" id="tanggal_baptis" name="tanggal_baptis" placeholder="dd/mm/YYYY">
+                <div class="px-2 error_tanggal_baptis clear" style="display: none">
+                </div>
               </div>
 
               <div class="form-group">
                 <label>Tanggal Sidi</label>
-                <input type="text" class="form-control" id="tanggal_sidi" name="tanggal_sidi" placeholder="dd/mm/YYYY" required>
+                <input type="date" class="form-control" id="tanggal_sidi" name="tanggal_sidi" placeholder="dd/mm/YYYY">
+                <div class="px-2 error_tanggal_sidi clear" style="display: none">
+                </div>
               </div>
 
               <div class="form-group">
                 <label>Tanggal Atestasi Masuk</label>
-                <input type="text" class="form-control" id="tanggal_atestasi_masuk" name="tanggal_atestasi_masuk" placeholder="dd/mm/YYYY" required>
+                <input type="date" class="form-control" id="tanggal_atestasi_masuk" name="tanggal_atestasi_masuk" placeholder="dd/mm/YYYY">
+                <div class="px-2 error_tanggal_atestasi_masuk clear" style="display: none">
+                </div>
               </div>
 
               <div class="form-group">
                 <label>Tanggal Atestasi Keluar</label>
-                <input type="text" class="form-control" id="tanggal_atestasi_keluar" name="tanggal_atestasi_keluar" placeholder="dd/mm/YYYY" required>
+                <input type="date" class="form-control" id="tanggal_atestasi_keluar" name="tanggal_atestasi_keluar" placeholder="dd/mm/YYYY">
+                <div class="px-2 error_tanggal_atestasi_keluar clear" style="display: none">
+                </div>
               </div>
 
               <div class="form-group">
                 <label>Tanggal Meninggal</label>
-                <input type="text" class="form-control" id="tanggal_meninggal" name="tanggal_meninggal" placeholder="dd/mm/YYYY" required>
+                <input type="date" class="form-control" id="tanggal_meninggal" name="tanggal_meninggal" placeholder="dd/mm/YYYY">
+                <div class="px-2 error_tanggal_meninggal clear" style="display: none">
+                </div>
               </div>
 
               <div class="form-group">
                 <label>Tanggal DKH</label>
-                <input type="text" class="form-control" id="tanggal_dkh" name="tanggal_dkh" placeholder="dd/mm/YYYY" required>
+                <input type="date" class="form-control" id="tanggal_dkh" name="tanggal_dkh" placeholder="dd/mm/YYYY">
+                <div class="px-2 error_tanggal_dkh clear" style="display: none">
+                </div>
               </div>
 
               <div class="form-group">
                 <label>Tanggal Ex DKH</label>
-                <input type="text" class="form-control" id="tanggal_ex_dkh" name="tanggal_ex_dkh" placeholder="dd/mm/YYYY" required>
+                <input type="date" class="form-control" id="tanggal_ex_dkh" name="tanggal_ex_dkh" placeholder="dd/mm/YYYY">
+                <div class="px-2 error_tanggal_ex_dkh clear" style="display: none">
+                </div>
               </div>
 
             </div>
             <div class="modal-footer">
-              <button type="submit" onclick="loading()" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-primary simpan">Submit</button>
             </div>
           </form>
         </div>
@@ -251,9 +284,6 @@
 <script src="<?php echo base_url(); ?>assets/plugins/select2/js/select2.full.min.js"></script>
 <!-- SweetAlert2 -->
 <script src="<?php echo base_url(); ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
-<!-- flatpickr -->
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://npmcdn.com/flatpickr/dist/l10n/id.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/moment/moment.min.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="<?php echo base_url(); ?>assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
@@ -280,28 +310,39 @@
 
 <!-- Page specific script -->
 <script>
-  /*   function loading() {
-      swal.fire({
-              title: 'Please Wait',
-              text: 'Submit jemaat',
-              icon: 'succes',
-              showConfirmButton: false,
-              timer: 2700,
-            });
-    }  */
   $(document).ready(function() {
     $('#list_anggota').DataTable({
       "responsive": true,
       "lengthChange": true,
       "autoWidth": false,
-      //  "processing": true,
-      //"severSide": true,
+      "language": {
+        "emptyTable": "Tidak ada data yang tersedia pada tabel ini",
+        "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+        "infoEmpty": "Menampilkan 0 sampai 0 dari 0 data",
+        "infoFiltered": "(disaring dari _MAX_ entri keseluruhan)",
+        "lengthMenu": "Tampilkan _MENU_ data",
+        "loadingRecords": "Sedang memuat...",
+        "processing": "Sedang memproses...",
+        "search": "Cari:",
+        "zeroRecords": "Tidak ditemukan data yang sesuai",
+        "thousands": "'",
+        "paginate": {
+          "first": "Pertama",
+          "last": "Terakhir",
+          "next": "Selanjutnya",
+          "previous": "Sebelumnya"
+        }
+      },
       ajax: {
         url: "<?php echo base_url() . 'Anggota_Jemaat/tampil_jemaat' ?>",
         dataSrc: ""
       },
       columns: [{
-          "data": "id_anggota"
+          data: null,
+          name: null,
+          render: function(data, type, row, meta) {
+            return meta.row + meta.settings._iDisplayStart + 1;
+          }
         },
         {
           "data": "no_anggota"
@@ -353,91 +394,8 @@
       ]
     });
 
-    $(document).on('click', '.tombol-hapus', function(e) {
-      e.preventDefault(); //untuk stop link href yang awal
-      const href = $(this).attr('href')
-
-      Swal.fire({
-        title: 'Apakah anda yakin?',
-        text: 'Status data akan diubah menjadi tidak aktif',
-        icon: 'warning',
-        showCancelButton: true,
-        cancelButtonText: 'batal',
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Ubah status'
-      }).then((result) => {
-        if (result.value) { //ini sama aja kayak == TRUE
-          document.location.href = href;
-        }
-      });
-    });
 
     $('[data-mask]').inputmask();
-
-    $('#tanggal_lahir').flatpickr({
-      altInput: true,
-      //allowInput: true,
-      altFormat: "d/m/Y", //j F Y
-      dateFormat: "Y-m-d",
-      locale: "id"
-    });
-
-    $('#tanggal_baptis').flatpickr({
-      altInput: true,
-      //allowInput: true,
-      altFormat: "d/m/Y", //j F Y
-      dateFormat: "Y-m-d",
-      locale: "id"
-    });
-
-    $('#tanggal_sidi').flatpickr({
-      altInput: true,
-      //allowInput: true,
-      altFormat: "d/m/Y", //j F Y
-      dateFormat: "Y-m-d",
-      locale: "id"
-    });
-
-    $('#tanggal_atestasi_masuk').flatpickr({
-      altInput: true,
-      //allowInput: true,
-      altFormat: "d/m/Y", //j F Y
-      dateFormat: "Y-m-d",
-      locale: "id"
-    });
-
-    $('#tanggal_atestasi_keluar').flatpickr({
-      altInput: true,
-      //allowInput: true,
-      altFormat: "d/m/Y", //j F Y
-      dateFormat: "Y-m-d",
-      locale: "id"
-    });
-
-    $('#tanggal_meninggal').flatpickr({
-      altInput: true,
-      //allowInput: true,
-      altFormat: "d/m/Y", //j F Y
-      dateFormat: "Y-m-d",
-      locale: "id"
-    });
-
-    $('#tanggal_dkh').flatpickr({
-      altInput: true,
-      //allowInput: true,
-      altFormat: "d/m/Y", //j F Y
-      dateFormat: "Y-m-d",
-      locale: "id"
-    });
-
-    $('#tanggal_ex_dkh').flatpickr({
-      altInput: true,
-      //allowInput: true,
-      altFormat: "d/m/Y", //j F Y
-      dateFormat: "Y-m-d",
-      locale: "id"
-    });
 
     $('.pilih-jemaat').select2({
       placeholder: 'pilih',
@@ -458,6 +416,173 @@
           };
         },
       },
+    });
+
+    $('.form-submit').submit(function(e) {
+      e.preventDefault();
+      $.ajax({
+        url: $(this).attr('action'),
+        type: "POST",
+        dataType: "JSON",
+        data: $(this).serialize(),
+        beforeSend: function() {
+          $('.simpan').attr('disable', 'disabled');
+          $('.simpan').html('<i class="fa fa-spin fa-spinner"></i>');
+        },
+        complete: function() {
+          $('.simpan').removeAttr('disable');
+          $('.simpan').html('Submit');
+        },
+        success: function(respon) {
+          if (respon.sukses == false) {
+            if (respon.error_nama) {
+              $('.error_nama').show();
+              $('.error_nama').html(respon.error_nama);
+              $('.error_nama').css("color", "red");
+            } else {
+              $('.error_nama').hide();
+            }
+            if (respon.error_alamat) {
+              $('.error_alamat').show();
+              $('.error_alamat').html(respon.error_alamat);
+              $('.error_alamat').css("color", "red");
+            } else {
+              $('.error_alamat').hide();
+            }
+            if (respon.error_nohp) {
+              $('#perlengkapan').addClass('is-invalid');
+              $('.error_nohp').show();
+              $('.error_nohp').html(respon.error_nohp);
+              $('.error_nohp').css("color", "red");
+            } else {
+              $('.error_nohp').hide();
+            }
+            if (respon.error_wilayah) {
+              $('.error_wilayah').show();
+              $('.error_wilayah').html(respon.error_wilayah);
+              $('.error_wilayah').css("color", "red");
+            } else {
+              $('.error_wilayah').hide();
+            }
+            if (respon.error_email) {
+              $('.error_email').show();
+              $('.error_email').html(respon.error_email);
+              $('.error_email').css("color", "red");
+            } else {
+              $('.error_email').hide();
+            }
+            if (respon.error_jenis_kelamin) {
+              $('.error_jenis_kelamin').show();
+              $('.error_jenis_kelamin').html(respon.error_jenis_kelamin);
+              $('.error_jenis_kelamin').css("color", "red");
+            } else {
+              $('.error_jenis_kelamin').hide();
+            }
+            if (respon.error_golongan_darah) {
+              $('.error_golongan_darah').show();
+              $('.error_golongan_darah').html(respon.error_golongan_darah);
+              $('.error_golongan_darah').css("color", "red");
+            } else {
+              $('.error_golongan_darah').hide();
+            }
+            if (respon.error_status) {
+              $('.error_status').show();
+              $('.error_status').html(respon.error_status);
+              $('.error_status').css("color", "red");
+            } else {
+              $('.error_status').hide();
+            }
+            if (respon.error_pendidikan) {
+              $('.error_pendidikan').show();
+              $('.error_pendidikan').html(respon.error_pendidikan);
+              $('.error_pendidikan').css("color", "red");
+            } else {
+              $('.error_pendidikan').hide();
+            }
+            if (respon.error_pekerjaan) {
+              $('.error_pekerjaan').show();
+              $('.error_pekerjaan').html(respon.error_pekerjaan);
+              $('.error_pekerjaan').css("color", "red");
+            } else {
+              $('.error_pekerjaan').hide();
+            }
+            if (respon.error_kelompok) {
+              $('.error_kelompok').show();
+              $('.error_kelompok').html(respon.error_kelompok);
+              $('.error_kelompok').css("color", "red");
+            } else {
+              $('.error_kelompok').hide();
+            }
+            if (respon.error_tanggal_lahir) {
+              $('.error_tanggal_lahir').show();
+              $('.error_tanggal_lahir').html(respon.error_tanggal_lahir);
+              $('.error_tanggal_lahir').css("color", "red");
+            } else {
+              $('.error_tanggal_lahir').hide();
+            }
+            if (respon.error_tanggal_baptis) {
+              $('.error_tanggal_baptis').show();
+              $('.error_tanggal_baptis').html(respon.error_tanggal_baptis);
+              $('.error_tanggal_baptis').css("color", "red");
+            } else {
+              $('.error_tanggal_baptis').hide();
+            }
+            if (respon.error_tanggal_sidi) {
+              $('.error_tanggal_sidi').show();
+              $('.error_tanggal_sidi').html(respon.error_tanggal_sidi);
+              $('.error_tanggal_sidi').css("color", "red");
+            } else {
+              $('.error_tanggal_sidi').hide();
+            }
+            if (respon.error_tanggal_atestasi_masuk) {
+              $('.error_tanggal_atestasi_masuk').show();
+              $('.error_tanggal_atestasi_masuk').html(respon.error_tanggal_atestasi_masuk);
+              $('.error_tanggal_atestasi_masuk').css("color", "red");
+            } else {
+              $('.error_tanggal_atestasi_masuk').hide();
+            }
+            if (respon.error_tanggal_atestasi_keluar) {
+              $('.error_tanggal_atestasi_keluar').show();
+              $('.error_tanggal_atestasi_keluar').html(respon.error_tanggal_atestasi_keluar);
+              $('.error_tanggal_atestasi_keluar').css("color", "red");
+            } else {
+              $('.error_tanggal_atestasi_keluar').hide();
+            }
+            if (respon.error_tanggal_meninggal) {
+              $('.error_tanggal_meninggal').show();
+              $('.error_tanggal_meninggal').html(respon.error_tanggal_meninggal);
+              $('.error_tanggal_meninggal').css("color", "red");
+            } else {
+              $('.error_tanggal_meninggal').hide();
+            }
+            if (respon.error_tanggal_dkh) {
+              $('.error_tanggal_dkh').show();
+              $('.error_tanggal_dkh').html(respon.error_tanggal_dkh);
+              $('.error_tanggal_dkh').css("color", "red");
+            } else {
+              $('.error_tanggal_dkh').hide();
+            }
+            if (respon.error_tanggal_ex_dkh) {
+              $('.error_tanggal_ex_dkh').show();
+              $('.error_tanggal_ex_dkh').html(respon.error_tanggal_ex_dkh);
+              $('.error_tanggal_ex_dkh').css("color", "red");
+            } else {
+              $('.error_tanggal_ex_dkh').hide();
+            }
+
+          } else {
+            $('.clear').hide();
+            Swal.fire({
+              title: 'Sukses',
+              text: respon.sukses,
+              icon: 'success',
+            }).then((confirmed) => {
+              window.location.reload();
+            });
+          }
+
+        }
+      });
     });
 
     $('.tambah-akun').submit(function(e) {

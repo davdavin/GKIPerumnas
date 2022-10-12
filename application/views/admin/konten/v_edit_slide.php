@@ -26,7 +26,7 @@
       <!-- /.card-header -->
       <!-- form start -->
       <?php foreach ($kontenSlide as $list_edit) { ?>
-        <form action="<?php echo base_url() . 'Konten/proses_edit_slide' ?>" method="post" enctype="multipart/form-data">
+        <form class="form-submit" action="<?php echo base_url() . 'Konten/proses_edit_slide' ?>" method="post" enctype="multipart/form-data">
           <div class="card-body">
             <div class="form-group">
               <label>ID</label>
@@ -34,21 +34,27 @@
             </div>
             <div class="form-group">
               <label>Judul</label>
-              <input type="text" class="form-control" name="judul_slide" value="<?= $list_edit->judul_slide; ?>" required>
+              <input type="text" class="form-control" name="judul_slide" value="<?= $list_edit->judul_slide; ?>">
+              <div class="px-2 error_judul clear" style="display: none">
+              </div>
             </div>
             <div class="form-group">
               <label>Deskripsi Singkat</label>
               <textarea id="textArea" class="form-control" name="deskripsi_slide"><?= $list_edit->deskripsi_slide; ?></textarea>
+              <div class="px-2 error_deskripsi clear" style="display: none">
+              </div>
             </div>
             <div class="form-group">
               <label>Foto</label><br>
               <input type="hidden" name="gambar_lama" value="<?= $list_edit->gambar_slide ?>">
               <img src="<?php echo base_url(); ?>resources/assets/img/slide/<?php echo $list_edit->gambar_slide; ?>" class="img-fluid" style="width: 50%;"><br><br>
               <input type="file" name="gambar_baru">
+              <div class="px-2 error_foto clear" style="display: none">
+              </div>
             </div>
           </div>
           <div class="card-footer">
-            <button type="submit" class="btn btn-primary tombol-ubah">Ubah</button>
+            <button type="submit" class="btn btn-primary simpan">Ubah</button>
           </div>
         </form>
       <?php } ?>
@@ -94,10 +100,6 @@
 
 <script>
   $(function() {
-    $('#tanggalPembuatan').datetimepicker({
-      format: 'YYYY-MM-DD'
-    });
-
     tinymce.init({
       selector: 'textarea#textArea',
       height: 200,
@@ -105,10 +107,8 @@
       content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
     });
 
-    $('.tombol-ubah').click(function(e) {
+    $('.form-submit').submit(function(e) {
       e.preventDefault();
-      const form = $(this).parents('form');
-
       Swal.fire({
         title: 'Apakah anda yakin?',
         icon: 'warning',
@@ -119,7 +119,57 @@
         confirmButtonText: 'Ubah Data'
       }).then((result) => {
         if (result.value) {
-          form.submit();
+          $.ajax({
+            url: $(this).attr('action'),
+            type: 'POST',
+            dataType: 'JSON',
+            data: new FormData(this),
+            contentType: false,
+            //  cache: false,
+            processData: false,
+            beforeSend: function() {
+              $('.simpan').html('<i class="fa fa-spin fa-spinner"></i>');
+              $('.simpan').attr('disabled', 'disabled');
+            },
+            complete: function() {
+              $('.simpan').removeAttr('disabled');
+              $('.simpan').html('Ubah');
+            },
+            success: function(respon) {
+              if (respon.sukses == false) {
+                if (respon.error_judul) {
+                  $('.error_judul').show();
+                  $('.error_judul').html(respon.error_judul);
+                  $('.error_judul').css("color", "red");
+                } else {
+                  $('.error_judul').hide();
+                }
+                if (respon.error_deskripsi) {
+                  $('.error_deskripsi').show();
+                  $('.error_deskripsi').html(respon.error_deskripsi);
+                  $('.error_deskripsi').css("color", "red");
+                } else {
+                  $('.error_deskripsi').hide();
+                }
+                if (respon.error_foto) {
+                  $('.error_foto').show();
+                  $('.error_foto').html(respon.error_foto);
+                  $('.error_foto').css("color", "red");
+                } else {
+                  $('.error_foto').hide();
+                }
+              } else {
+                $('.clear').hide();
+                Swal.fire({
+                  title: 'Sukses',
+                  text: respon.sukses,
+                  icon: 'success',
+                }).then((confirmed) => {
+                  window.location.href = "<?php echo base_url() . 'Konten' ?>";
+                });
+              }
+            }
+          });
         }
       });
     });

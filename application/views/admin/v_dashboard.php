@@ -204,45 +204,15 @@
           <!-- /.card-body-->
         </div>
       </section>
-
-      <section class="col-lg-4 connectedSortable">
-        <div class="card card-outline">
-          <div class="card-header bg-cyan">
-            <h3 class="card-title">
-              <i class="far fa-chart-bar"></i>
-              Total Jemaat Laki-laki & Perempuan
-            </h3>
-
-            <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                <i class="fas fa-minus text-white"></i>
-              </button>
-              <button type="button" class="btn btn-tool" data-card-widget="remove">
-                <i class="fas fa-times text-white"></i>
-              </button>
-            </div>
-          </div>
-          <div class="card-body">
-            <div class="container">
-              <canvas id="chart-jeniskelamin"></canvas>
-            </div>
-          </div>
-          <!-- /.card-body-->
-        </div>
-      </section>
-
-
+      <!-- /.content -->
     </div>
-  </section>
-  <!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
+    <!-- /.content-wrapper -->
 
-<!-- Control Sidebar -->
-<aside class="control-sidebar control-sidebar-dark">
-  <!-- Control sidebar content goes here -->
-</aside>
-<!-- /.control-sidebar -->
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
 
@@ -384,37 +354,6 @@
                     echo "'" . $status->total . "', ";
                   }
                 } ?>],
-
-      }]
-    },
-  });
-
-  var c = document.getElementById('chart-jeniskelamin').getContext('2d');
-  var chart = new Chart(c, {
-    type: 'pie',
-    data: {
-      labels: ['Laki-laki', 'Perempuan'],
-      datasets: [{
-        label: 'Total',
-        backgroundColor: [
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(255, 26, 104, 0.2)'
-        ],
-        borderColor: [
-          'rgba(75, 192, 192, 1)',
-          'rgba(255, 26, 104, 1)'
-        ],
-        borderWidth: 1,
-        data: [<?php if (count($totalLaki) > 0) {
-                  foreach ($totalLaki as $jeniskelamin) {
-                    echo "'" . $jeniskelamin->jumlahLakilaki . "'";
-                  }
-                } ?>, <?php if (count($totalPerempuan) > 0) {
-                        foreach ($totalPerempuan as $jeniskelamin) {
-                          echo "'" . $jeniskelamin->jumlahPerempuan . "', ";
-                        }
-                      } ?>],
-
       }]
     },
   });

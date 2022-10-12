@@ -35,7 +35,7 @@
           <table id="tabel_pendeta" class="table table-bordered table-striped">
             <thead>
               <tr>
-                <th>ID</th>
+                <th>No.</th>
                 <th>No Pendeta</th>
                 <th>Nama Lengkap</th>
                 <th>No Hp</th>
@@ -79,8 +79,8 @@
 
               <!-- phone mask -->
               <div class="form-group">
-                <label>Nomor HP (Indonesia):</label>
-                <input type="text" class="form-control" data-inputmask='"mask": "089999999999[9][9][9]"' data-mask name="nohp">
+                <label>Nomor Handphone</label>
+                <input type="text" class="form-control" data-mask name="nohp" placeholder="No. Handphone">
                 <div class="px-2 error_nohp clear" style="display: none">
                 </div>
               </div>
@@ -94,7 +94,7 @@
               <!-- jenis kelamin -->
               <div class="form-group">
                 <label>Jenis Kelamin</label>
-                <select class="form-control select2bs4" style="width: 100%;" name="jenis_kelamin">
+                <select class="custom-select select2bs4" style="width: 100%;" name="jenis_kelamin">
                   <option selected disabled value>-- Pilih --</option>
                   <option value="Laki-laki">Laki-laki</option>
                   <option value="Perempuan">Perempuan</option>
@@ -116,7 +116,7 @@
                 <div class="input-group">
                   <div class="custom-file">
                     <input type="file" class="custom-file-input" id="exampleInputFile" name="foto">
-                    <label class="custom-file-label" for="exampleInputFile">Pilih file (Maks size 5 MB)</label>
+                    <label class="custom-file-label" for="exampleInputFile">Pilih file</label>
                   </div>
                   <div class="input-group-append">
                     <span class="input-group-text">Upload</span>
@@ -174,9 +174,6 @@
 <script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- SweetAlert2 -->
 <script src="<?php echo base_url(); ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
-<!-- flatpickr -->
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://npmcdn.com/flatpickr/dist/l10n/id.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/moment/moment.min.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="<?php echo base_url(); ?>assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
@@ -214,12 +211,34 @@
       "responsive": true,
       "lengthChange": true,
       "autoWidth": false,
+      "language": {
+        "emptyTable": "Tidak ada data yang tersedia pada tabel ini",
+        "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+        "infoEmpty": "Menampilkan 0 sampai 0 dari 0 data",
+        "infoFiltered": "(disaring dari _MAX_ entri keseluruhan)",
+        "lengthMenu": "Tampilkan _MENU_ data",
+        "loadingRecords": "Sedang memuat...",
+        "processing": "Sedang memproses...",
+        "search": "Cari:",
+        "zeroRecords": "Tidak ditemukan data yang sesuai",
+        "thousands": "'",
+        "paginate": {
+          "first": "Pertama",
+          "last": "Terakhir",
+          "next": "Selanjutnya",
+          "previous": "Sebelumnya"
+        }
+      },
       ajax: {
         url: "<?php echo base_url() . 'Pendeta/tampil_pendeta' ?>",
         dataSrc: ""
       },
       columns: [{
-          "data": "id_pendeta"
+          data: null,
+          name: null,
+          render: function(data, type, row, meta) {
+            return meta.row + meta.settings._iDisplayStart + 1;
+          }
         },
         {
           "data": "no_pendeta"
@@ -253,54 +272,17 @@
           name: null,
           sortable: false,
           render: function(data, type, row, meta) {
-            switch (row.status_pendeta) {
-              case "1":
-                return `<a class="btn btn-primary btn-sm" href="<?php echo base_url('Pendeta/detail_pendeta') ?>/${row.id_pendeta}"><i class="fas fa-eye"></i> Detail</a>
-                          <a class="btn btn-info btn-sm" href="<?php echo base_url('Pendeta/edit_pendeta') ?>/${row.id_pendeta}"><i class="fas fa-pencil-alt"></i> Edit</a>
-                          <a id="tombol" class="btn btn-danger btn-sm" href="<?php echo base_url('Pendeta/hapus_pendeta') ?>/${row.id_pendeta}" ><i class="fas fa-trash"></i> Hapus </a>`;
-                break;
-              default:
-                return `<a class="btn btn-primary btn-sm" href="<?php echo base_url('Pendeta/detail_pendeta') ?>/${row.id_pendeta}"><i class="fas fa-eye"></i> Detail</a>
+            return `<a class="btn btn-primary btn-sm" href="<?php echo base_url('Pendeta/detail_pendeta') ?>/${row.id_pendeta}"><i class="fas fa-eye"></i> Detail</a>
                           <a class="btn btn-info btn-sm" href="<?php echo base_url('Pendeta/edit_pendeta') ?>/${row.id_pendeta}"><i class="fas fa-pencil-alt"></i> Edit</a>`;
-                break;
-            }
+
           }
         },
       ]
     });
 
-    $(document).on('click', '#tombol', function(e) {
-      e.preventDefault();
-      const href = $(this).attr('href');
-      Swal.fire({
-        title: 'Apakah anda yakin?',
-        text: 'Status data akan diubah menjadi tidak aktif',
-        icon: 'warning',
-        showCancelButton: true,
-        cancelButtonText: 'batal',
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Ubah status'
-      }).then((result) => {
-        if (result.value) {
-          document.location.href = href;
-        }
-      });
-    });
-
-
-
     $('[data-mask]').inputmask();
 
     bsCustomFileInput.init();
-
-    $('#tanggalLahir').flatpickr({
-      altInput: true,
-      //allowInput: true,
-      altFormat: "d/m/Y", //j F Y
-      dateFormat: "Y-m-d",
-      locale: "id"
-    });
 
     const sukses = $('.sukses').data('flashdata');
 
@@ -415,14 +397,6 @@
     });
 
   });
-
-  /* $('.tm').on("change", function() {
-     this.setAttribute(
-       "data-date",
-       moment(this.value, "YYYY-MM-DD")
-       .format(this.getAttribute("data-date-format"))
-     )
-   }).trigger("change"); */
 </script>
 
 </body>

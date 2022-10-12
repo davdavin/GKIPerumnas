@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 05, 2022 at 02:29 PM
+-- Generation Time: Oct 12, 2022 at 04:20 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -59,7 +59,7 @@ CREATE TABLE `anggota_jemaat` (
 --
 
 INSERT INTO `anggota_jemaat` (`id_anggota`, `id_wilayah`, `no_anggota`, `username`, `password`, `nama_lengkap_anggota`, `alamat_anggota`, `nohp_anggota`, `email_anggota`, `jenis_kelamin_anggota`, `golongan_darah_anggota`, `status_anggota`, `pendidikan_anggota`, `pekerjaan_anggota`, `kelompok_etnis_anggota`, `tanggal_lahir_anggota`, `tanggal_baptis_anggota`, `tanggal_sidi_anggota`, `tanggal_atestasi_masuk`, `tanggal_atestasi_keluar`, `tanggal_meninggal`, `tanggal_dkh`, `tanggal_ex_dkh`, `status_akun`) VALUES
-(1, 1, '00001', '', '', 'Christella', 'Jl Melati', '0808273262314', 'electronicdm10@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1999-10-05', '2017-10-06', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
+(1, 1, '00001', '', '', 'Christella', 'Jl Melati', '082042832322', 'electronicdm10@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1999-10-05', '2017-10-06', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
 (2, 2, '00002', '', '', 'Sinta', 'Jl Melati', '0808273262314', 'electronicdm10@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1998-01-23', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
 (3, 3, '00003', '', '', 'Philip', 'Jl Melati', '089283282121', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '2000-12-16', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
 (4, 1, '00004', '', '', 'Bro', 'Jl. Apel ', '089283282121', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S2', 'Karyawan', 'Sunda', '1996-02-09', '2021-01-01', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
@@ -69,7 +69,12 @@ INSERT INTO `anggota_jemaat` (`id_anggota`, `id_wilayah`, `no_anggota`, `usernam
 (8, 4, '00008', '', '', 'Joseph', 'Jl. Apel ', '0808273262314', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1996-02-09', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
 (9, 2, '00009', '', '', 'Jack', 'Jl. Apel ', '0808273262314', 'brobro@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1990-10-21', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
 (10, 5, '000010', '', '', 'Yohanes', 'Jl. Apel ', '0808273262314', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1998-10-09', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
-(11, 5, '000011', '', '', 'Koko', 'Jl. Mangga', '088217231921', 'kokoko@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Jawa', '2000-10-01', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0);
+(11, 5, '000011', '', '', 'Koko', 'Jl. Mangga', '088217231921', 'kokoko@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Jawa', '2000-10-01', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
+(12, 7, '000012', '', '', 'Bella', 'Jl. Buah Apel No.2 ', '088904040829', 'bellabella@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1994-10-22', '2010-08-21', '0000-00-00', '2008-07-16', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
+(13, 6, '000013', '', '', 'Josephine', 'Jl. Cengkeh Blok. A', '088904040829', 'josejose@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1995-07-12', '2012-11-22', '2022-07-21', '2000-10-18', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
+(14, 4, '000014', '', '', 'Maria', 'Jl. Mangga', '088904040829', 'marmar@example.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Jawa', '1996-11-05', '2008-02-12', '0000-00-00', '2000-10-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
+(15, 8, '000015', '', '', 'Brandon', 'Jl. Cengkeh Blok. AC', '088270120023', 'brandonbrandon@gmail.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Jawa', '1997-12-01', '2009-02-18', '2015-07-12', '2005-12-02', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
+(16, 3, '000016', '', '', 'Budi Boy', 'Jl. Anggur No. 2 Blok. AC', '088270120023', 'budibudi@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Jawa', '1967-12-08', '1975-04-12', '0000-00-00', '1975-01-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0);
 
 -- --------------------------------------------------------
 
@@ -103,54 +108,11 @@ INSERT INTO `artikel` (`id_artikel`, `judul_artikel`, `tipe_artikel`, `deskripsi
 -- --------------------------------------------------------
 
 --
--- Table structure for table `coba_ruangan`
---
-
-CREATE TABLE `coba_ruangan` (
-  `id_coba_ruangan` int(11) NOT NULL,
-  `nama_ruangan` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `coba_ruangan`
---
-
-INSERT INTO `coba_ruangan` (`id_coba_ruangan`, `nama_ruangan`) VALUES
-(1, 'rapat'),
-(2, 'meeting');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `detail_coba_ruangan`
---
-
-CREATE TABLE `detail_coba_ruangan` (
-  `id_detail_coba_ruangan` int(11) NOT NULL,
-  `id_coba_ruangan` int(11) NOT NULL,
-  `gambar` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `detail_coba_ruangan`
---
-
-INSERT INTO `detail_coba_ruangan` (`id_detail_coba_ruangan`, `id_coba_ruangan`, `gambar`) VALUES
-(1, 1, 'https://c0.wallpaperflare.com/preview/483/210/436/car-green-4x4-jeep.jpg'),
-(2, 1, 'https://www.newsbtc.com/wp-content/uploads/2020/06/mesut-kaya-LcCdl__-kO0-unsplash-scaled.jpg'),
-(3, 1, 'https://images6.alphacoders.com/312/thumb-1920-312773.jpg'),
-(4, 2, 'https://c0.wallpaperflare.com/preview/483/210/436/car-green-4x4-jeep.jpg\"'),
-(5, 1, 'https://www.newsbtc.com/wp-content/uploads/2020/06/mesut-kaya-LcCdl__-kO0-unsplash-scaled.jpg');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `dokumen`
 --
 
 CREATE TABLE `dokumen` (
   `id_dokumen` int(11) NOT NULL,
-  `kode_dokumen` varchar(20) NOT NULL,
   `jenis_dokumen` varchar(50) NOT NULL,
   `dokumen` varchar(50) NOT NULL,
   `keterangan` varchar(100) NOT NULL
@@ -160,11 +122,11 @@ CREATE TABLE `dokumen` (
 -- Dumping data for table `dokumen`
 --
 
-INSERT INTO `dokumen` (`id_dokumen`, `kode_dokumen`, `jenis_dokumen`, `dokumen`, `keterangan`) VALUES
-(1, 'DKM1', 'Formulir Persyaratan Pendaftaran Jemaat baru', 'Syarat_menjadi_anggota_jemaat.pdf', 'Syarat menjadi jemaat baru'),
-(2, 'DKM2', 'Formulir Permohonan Baptis Anak', 'Permohonan_Baptis_Anak.pdf', 'Permohonan untuk menerima baptis anak'),
-(3, 'DKM3', 'Formulir Katekisasi', 'Formulir-Katekisasi.pdf', 'Formulir ini diperlukan untuk jemaat yang akan menerima sidi'),
-(4, 'DKM4', 'Permohonan Sidi', 'Permohonan_Baptis-Sidi.pdf', 'Diperlukan untuk jemaat yang akan menerima sidi');
+INSERT INTO `dokumen` (`id_dokumen`, `jenis_dokumen`, `dokumen`, `keterangan`) VALUES
+(1, 'Formulir Persyaratan Pendaftaran Jemaat Baru', 'Syarat_menjadi_anggota_jemaat.pdf', 'Diperlukan unttuk pendaftaran jemaat baru'),
+(2, 'Formulir Permohonan Baptis Anak', 'Permohonan_Baptis_Anak.pdf', 'Permohonan untuk menerima baptis anak'),
+(3, 'Formulir Katekisasi', 'Formulir-Katekisasi.pdf', 'Formulir ini diperlukan untuk jemaat yang akan menerima sidi'),
+(4, 'Permohonan Sidi', 'Permohonan_Baptis-Sidi.pdf', 'Diperlukan untuk jemaat yang akan menerima sidi');
 
 -- --------------------------------------------------------
 
@@ -263,11 +225,9 @@ CREATE TABLE `level_user` (
 --
 
 INSERT INTO `level_user` (`id_level_user`, `level_user`) VALUES
-(1, 'Sekretaris Umum'),
-(2, 'Wakil Sekretaris Umum'),
-(3, 'Pendeta'),
-(4, 'Calon Pendeta'),
-(5, 'Bendahara');
+(1, 'Sekretariat'),
+(2, 'Pendeta'),
+(3, 'Bendahara');
 
 -- --------------------------------------------------------
 
@@ -296,7 +256,8 @@ CREATE TABLE `peminjaman_ruangan` (
 --
 
 INSERT INTO `peminjaman_ruangan` (`id_peminjaman`, `id_ruangan`, `no_anggota`, `nama_peminjam`, `email_peminjam`, `nohp_peminjam`, `keperluan`, `tanggal_booking`, `jam_mulai`, `jam_selesai`, `status_peminjaman`, `is_notif`, `is_deleted`) VALUES
-(1, 1, NULL, 'Kevin', 'satusatu@gmail.com', '089283282121', 'Seminar', '2022-10-09', '10:04:00', '15:00:00', 'SEDANG DIPROSES', 1, 0);
+(1, 1, NULL, 'Kevin', 'satusatu@gmail.com', '089283282121', 'Seminar', '2022-10-09', '10:04:00', '15:00:00', 'SELESAI', 1, 0),
+(2, 2, NULL, 'tes', 'sipsip@gmail.com', '088217231921', 'Seminar', '2022-10-06', '09:43:00', '12:46:00', 'PEMINJAMAN', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -345,7 +306,8 @@ CREATE TABLE `pengumpulan_dokumen` (
 --
 
 INSERT INTO `pengumpulan_dokumen` (`id_pengumpulan`, `id_dokumen`, `nama_lengkap_pengumpul`, `email_pengumpul`, `kumpul_dokumen`, `tanggal_kumpul`) VALUES
-(3, 3, 'tes', 'testes@example.com', 'tes.zip', '2022-10-05');
+(3, 3, 'tes', 'testes@example.com', 'tes.zip', '2022-10-05'),
+(4, 2, 'Test', 'jjjj@example.com', 'Tes2.zip', '2022-10-06');
 
 -- --------------------------------------------------------
 
@@ -366,6 +328,13 @@ CREATE TABLE `permintaan_perubahan_data_jemaat` (
   `is_updated` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `permintaan_perubahan_data_jemaat`
+--
+
+INSERT INTO `permintaan_perubahan_data_jemaat` (`id_permintaan`, `id_anggota`, `nohp_baru`, `email_baru`, `alamat_baru`, `pekerjaan_baru`, `pendidikan_baru`, `tanggal_permintaan`, `is_notif`, `is_updated`) VALUES
+(5, 1, '51c75403ef174d0495ff7b29b19ebd5f95312d5ec43574a3d9950abf980fc0d52fe11ca0286574c30fbf3aaae045eb0e7547bb601979845e39eb14cfd9b42f13pgPDLIh3C8e5WBPRlch0SyeNd6XIoYDjxp2J1eZPmkc=', NULL, NULL, NULL, NULL, '2022-10-06 11:32:38', 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -385,14 +354,11 @@ CREATE TABLE `ruangan` (
 --
 
 INSERT INTO `ruangan` (`id_ruangan`, `nama_ruangan`, `kapasitas`, `perlengkapan`, `foto`) VALUES
-(1, 'Ibadah Umum', 5000, '<ul>\r\n<li>Proyektor</li>\r\n<li>AC</li>\r\n<li>Sound system</li>\r\n</ul>', 'ibadah-umum.jpg'),
+(1, 'Ibadah Umum', 300, '<ul>\r\n<li>Proyektor</li>\r\n<li>AC</li>\r\n<li>Sound system</li>\r\n</ul>', 'ibadah-umum.jpg'),
 (2, 'Majelis', 30, '<ul>\r\n<li>Proyektor</li>\r\n<li>TV</li>\r\n<li>AC</li>\r\n<li>dll</li>\r\n</ul>', 'majelis.jpg'),
-(3, 'Sekolah Minggu 1', 30, '<ul>\r\n<li>Meja</li>\r\n<li>Kursi</li>\r\n<li>Papan Tulis</li>\r\n</ul>', 'sekolah-minggu-1.jpg'),
-(4, 'Sekolah Minggu 2', 30, '<ul>\r\n<li>Meja</li>\r\n<li>Kursi</li>\r\n<li>Papan Tulis</li>\r\n</ul>', 'sekolah-minggu-2.jpg'),
-(5, 'Sekolah Minggu 3', 30, '<ul>\r\n<li>Meja</li>\r\n<li>Kursi</li>\r\n<li>Papan Tulis</li>\r\n</ul>', 'sekolah-minggu-3.jpg'),
-(6, 'Aula', 200, '<ul>\r\n<li>2 Proyektor</li>\r\n<li>AC</li>\r\n<li>Perlengkapan sound system</li>\r\n</ul>', 'aula.jpg'),
-(7, 'Ruang Remaja', 30, '<ul>\r\n<li>Proyektor</li>\r\n<li>AC</li>\r\n<li>Papan tulis</li>\r\n</ul>', 'remaja.jpg'),
-(8, 'Ruang Dewasa', 30, '<ul>\r\n<li>TV</li>\r\n<li>AC</li>\r\n<li>Papan tulis</li>\r\n</ul>', 'dewasa.jpg');
+(3, 'Aula', 40, '<ul>\r\n<li>2 Proyektor</li>\r\n<li>AC</li>\r\n<li>Perlengkapan sound system</li>\r\n</ul>', 'aula.jpg'),
+(4, 'Ruang Remaja', 30, '<ul>\r\n<li>Proyektor</li>\r\n<li>AC</li>\r\n<li>Papan tulis</li>\r\n</ul>', 'remaja.jpg'),
+(5, 'Ruang Dewasa', 30, '<ul>\r\n<li>TV</li>\r\n<li>AC</li>\r\n<li>Papan tulis</li>\r\n</ul>', 'dewasa.jpg');
 
 -- --------------------------------------------------------
 
@@ -418,10 +384,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `id_level_user`, `nama_lengkap`, `username`, `password`, `email_user`, `status_user`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 'Admin min', 'admin', '$2y$10$y2DQ4/TFFDm7A5.alm1c3OX93i.EgNjlnTAExsa38vHJhcttxODwC', 'contoh@example.com', 1, '2022-09-18 20:18:08', '2022-10-04 15:02:08', NULL),
-(2, 1, 'Christella', 'stella', '$2y$10$zWa0ie9.mG4qe98Ax2L9POR5eRm0orxzPgLQalCxdkd.tY035Cay6', 'stella@gmail.com', 1, '2022-09-18 20:13:20', NULL, NULL),
-(4, 5, 'Yohanes', 'yohanes', '$2y$10$G47i23zMHD/AHmAWCePEKOViFcJgfD1WWSAQCnMV/xHfZ4VYJEkpm', 'yohanes@gmail.com', 1, '2022-09-19 21:27:47', '2022-09-19 21:32:55', NULL),
-(5, 2, 'B', 'bbbbb', '$2y$10$rMmoMktv2U/oS9vqK7EpFu7f9/0Z14oAyrWMIOea/n1kwwJLi8K26', 'satusatu@gmail.com', 1, '2022-09-20 10:39:22', '2022-09-20 10:41:26', NULL);
+(1, 1, 'Admin min', 'admin', '$2y$10$9KhGw19pT6w7zIjP2h/wD.zMBdQOU0GqqGb0i05wuJX4yvntK3TcG', 'contoh@example.com', 1, '2022-09-18 20:18:08', '2022-10-11 09:01:06', NULL),
+(2, 1, 'Christella', 'stella', '$2y$10$zWa0ie9.mG4qe98Ax2L9POR5eRm0orxzPgLQalCxdkd.tY035Cay6', 'stella@gmail.com', 1, '2022-09-18 20:13:20', '2022-10-05 21:12:29', NULL),
+(4, 3, 'Yohanes', 'yohanes', '$2y$10$G47i23zMHD/AHmAWCePEKOViFcJgfD1WWSAQCnMV/xHfZ4VYJEkpm', 'yohanes@gmail.com', 1, '2022-09-19 21:27:47', '2022-10-05 20:11:24', NULL),
+(5, 2, 'Bro', 'bbbbb', '$2y$10$rMmoMktv2U/oS9vqK7EpFu7f9/0Z14oAyrWMIOea/n1kwwJLi8K26', 'satusatu@gmail.com', 1, '2022-09-20 10:39:22', '2022-09-20 10:41:26', NULL);
 
 -- --------------------------------------------------------
 
@@ -465,19 +431,6 @@ ALTER TABLE `anggota_jemaat`
 --
 ALTER TABLE `artikel`
   ADD PRIMARY KEY (`id_artikel`);
-
---
--- Indexes for table `coba_ruangan`
---
-ALTER TABLE `coba_ruangan`
-  ADD PRIMARY KEY (`id_coba_ruangan`);
-
---
--- Indexes for table `detail_coba_ruangan`
---
-ALTER TABLE `detail_coba_ruangan`
-  ADD PRIMARY KEY (`id_detail_coba_ruangan`),
-  ADD KEY `FK_ID_COBA_RUANGAN` (`id_coba_ruangan`);
 
 --
 -- Indexes for table `dokumen`
@@ -560,7 +513,7 @@ ALTER TABLE `wilayah`
 -- AUTO_INCREMENT for table `anggota_jemaat`
 --
 ALTER TABLE `anggota_jemaat`
-  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `artikel`
@@ -569,22 +522,10 @@ ALTER TABLE `artikel`
   MODIFY `id_artikel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `coba_ruangan`
---
-ALTER TABLE `coba_ruangan`
-  MODIFY `id_coba_ruangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `detail_coba_ruangan`
---
-ALTER TABLE `detail_coba_ruangan`
-  MODIFY `id_detail_coba_ruangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
 -- AUTO_INCREMENT for table `dokumen`
 --
 ALTER TABLE `dokumen`
-  MODIFY `id_dokumen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_dokumen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `keuangan`
@@ -608,13 +549,13 @@ ALTER TABLE `konten_slide`
 -- AUTO_INCREMENT for table `level_user`
 --
 ALTER TABLE `level_user`
-  MODIFY `id_level_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_level_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `peminjaman_ruangan`
 --
 ALTER TABLE `peminjaman_ruangan`
-  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `pendeta`
@@ -626,19 +567,19 @@ ALTER TABLE `pendeta`
 -- AUTO_INCREMENT for table `pengumpulan_dokumen`
 --
 ALTER TABLE `pengumpulan_dokumen`
-  MODIFY `id_pengumpulan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pengumpulan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `permintaan_perubahan_data_jemaat`
 --
 ALTER TABLE `permintaan_perubahan_data_jemaat`
-  MODIFY `id_permintaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_permintaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `ruangan`
 --
 ALTER TABLE `ruangan`
-  MODIFY `id_ruangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_ruangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -655,12 +596,6 @@ ALTER TABLE `wilayah`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `detail_coba_ruangan`
---
-ALTER TABLE `detail_coba_ruangan`
-  ADD CONSTRAINT `FK_ID_COBA_RUANGAN` FOREIGN KEY (`id_coba_ruangan`) REFERENCES `coba_ruangan` (`id_coba_ruangan`);
 
 --
 -- Constraints for table `wilayah`

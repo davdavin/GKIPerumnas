@@ -36,7 +36,7 @@
                     <table id="tabel_ruangan" class="table table-bordered table-striped" style="width: 100%;">
                         <thead>
                             <tr>
-                                <th>#</th>
+                                <th>No.</th>
                                 <th>Ruangan</th>
                                 <th>Kapasitas</th>
                                 <th>Perlengkapan</th>

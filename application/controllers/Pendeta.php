@@ -47,10 +47,10 @@ class Pendeta extends CI_Controller
         $tanggal_lahir_pendeta = $this->input->post('tanggal_lahir');
         $status_pendeta = $this->input->post('status');
 
-        $this->form_validation->set_rules('nama_pendeta', 'Nama', 'trim|required');
-        $this->form_validation->set_rules('alamat_pendeta', 'Alamat', 'trim|required');
-        $this->form_validation->set_rules('nohp', 'No. Handphone', 'trim|required|min_length[9]|max_length[15]');
-        $this->form_validation->set_rules('email_pendeta', 'Email', 'trim|required|valid_email|is_unique[pendeta.email_pendeta]');
+        $this->form_validation->set_rules('nama_pendeta', 'Nama', 'required');
+        $this->form_validation->set_rules('alamat_pendeta', 'Alamat', 'required');
+        $this->form_validation->set_rules('nohp', 'No. Handphone', 'required|min_length[9]|max_length[15]');
+        $this->form_validation->set_rules('email_pendeta', 'Email', 'required|valid_email|is_unique[pendeta.email_pendeta]');
         $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required');
         $this->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'required');
         $this->form_validation->set_rules('status', 'Status', 'required');
@@ -208,14 +208,5 @@ class Pendeta extends CI_Controller
                 }
             }
         }
-    }
-
-    public function hapus_pendeta($id_pendeta)
-    {
-        $where = array('id_pendeta' => $id_pendeta);
-        $data = array('status_pendeta' => '0');
-        $this->M_Pendeta->update_record($where, $data, 'pendeta');
-        $this->session->set_flashdata('sukses', 'Berhasil ubah status menjadi tidak akitf');
-        redirect('Pendeta');
     }
 }

@@ -13,6 +13,7 @@ class Konten extends CI_Controller
 
         $this->load->model(array('M_Konten'));
         $this->load->helper(array('form', 'url', 'file'));
+        $this->load->library('form_validation');
     }
 
     public function index()
@@ -53,83 +54,61 @@ class Konten extends CI_Controller
         $gambar_lama = $this->input->post('gambar_lama');
         $gambar_baru = $_FILES['gambar_baru']['name'];
 
-        $where = array('id_slide' => $id_slide);
+        $this->form_validation->set_rules('judul_slide', 'Judul', 'required');
+        $this->form_validation->set_rules('deskripsi_slide', 'Dekripsi', 'required');
 
-        if ($gambar_baru == "") {
-            $data = array(
-                'judul_slide' => $judul_slide,
-                'deskripsi_slide' => $deskripsi_slide,
-                'gambar_slide' => $gambar_lama
+        $this->form_validation->set_message('required', '{field} wajib diisi');
+
+        if ($this->form_validation->run() == FALSE) {
+            $respon = array(
+                'sukses' => false,
+                'error_judul' => form_error('judul_slide'),
+                'error_deskripsi' => form_error('deskripsi_slide')
             );
-
-            $this->M_Konten->update_record($where, $data, 'konten_slide');
-            $this->session->set_flashdata('sukses', 'Konten berhasil diubah');
-            redirect('Konten');
+            echo json_encode($respon);
         } else {
-            //upload file
-            $config['upload_path'] = './resources/assets/img/slide/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = 100000; //100 MB
 
-            $this->load->library('upload', $config);
-            if (!$this->upload->do_upload('gambar_baru')) {
-                /*         $respon = array(
-                    'sukses' => false,
-                    'error_slide' => "Tidak berhasil upload. Perhatikan ukuran file dan tipe file"
-                );
-                echo json_encode($respon); */
-                $this->session->set_flashdata('gagal', 'Konten tidak berhasil diubah');
-                redirect('Konten');
-            } else {
+            $where = array('id_slide' => $id_slide);
+
+            if ($gambar_baru == "") {
                 $data = array(
                     'judul_slide' => $judul_slide,
                     'deskripsi_slide' => $deskripsi_slide,
-                    'gambar_slide' => $this->upload->data('file_name')
+                    'gambar_slide' => $gambar_lama
                 );
 
-                @unlink('./resources/assets/img/slide/' . $gambar_lama); //untuk hapus gambar lama
-
                 $this->M_Konten->update_record($where, $data, 'konten_slide');
-                $this->session->set_flashdata('sukses', 'Konten berhasil diubah');
-                redirect('Konten');
+                $respon['sukses'] = "Berhasil diubah";
+                echo json_encode($respon);
+            } else {
+                //upload file
+                $config['upload_path'] = './resources/assets/img/slide/';
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size'] = 100000; //100 MB
 
-                /*     $this->M_Konten->update_record($where, $data, 'konten_slide');
-                $respon['sukses'] = "Berhasil ganti foto";
-                echo json_encode($respon); */
+                $this->load->library('upload', $config);
+                if (!$this->upload->do_upload('gambar_baru')) {
+                    $respon = array(
+                        'sukses' => false,
+                        'error_foto' => "Tidak berhasil upload. Perhatikan ukuran file dan tipe file"
+                    );
+                    echo json_encode($respon);
+                } else {
+                    $data = array(
+                        'judul_slide' => $judul_slide,
+                        'deskripsi_slide' => $deskripsi_slide,
+                        'gambar_slide' => $this->upload->data('file_name')
+                    );
+
+                    @unlink('./resources/assets/img/slide/' . $gambar_lama); //untuk hapus gambar lama
+
+                    $this->M_Konten->update_record($where, $data, 'konten_slide');
+                    $respon['sukses'] = "Berhasil diubah";
+                    echo json_encode($respon);
+                }
             }
         }
     }
-
-  /*  public function proses_edit_gambar()
-    {
-        $id_slide = $this->input->post('id_slide');
-        $gambar_lama = $this->input->post('gambar_lama');
-        //upload file
-        $config['upload_path'] = './resources/assets/img/slide/';
-        $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size'] = 100000; //100 MB
-        $config['file_name'] = $_FILES['gambar']['name'];
-
-        $this->load->library('upload', $config);
-        if (!$this->upload->do_upload('gambar')) {
-            $respon = array(
-                'sukses' => false,
-                'error_slide' => "Tidak berhasil upload. Perhatikan ukuran file dan tipe file"
-            );
-            echo json_encode($respon);
-        } else {
-            $gambar = $this->upload->data('file_name');
-
-            $where = array('id_slide' => $id_slide);
-            $data = array('gambar_slide' => $gambar);
-
-            @unlink('./resources/assets/img/slide/' . $gambar_lama); //untuk hapus gambar lama
-
-            $this->M_Konten->update_record($where, $data, 'konten_slide');
-            $respon['sukses'] = "Berhasil ganti foto";
-            echo json_encode($respon);
-        }
-    } */
 
     public function proses_edit_foto_ibadah()
     {
@@ -144,8 +123,6 @@ class Konten extends CI_Controller
 
         $this->load->library('upload', $config);
         if (!$this->upload->do_upload('fotoIbadah')) {
-            // $this->session->set_flashdata('gagal', 'Upload gagal');
-            //redirect('Konten');
             $respon = array(
                 'sukses' => false,
                 'error_foto' => "Tidak berhasil upload. Perhatikan ukuran file dan tipe file"
@@ -159,8 +136,6 @@ class Konten extends CI_Controller
             @unlink('./resources/assets/img/gallery/' . $foto_lama); //untuk hapus foto lama
 
             $this->M_Konten->update_record($where, $data, 'konten_foto_ibadah');
-            // $this->session->set_flashdata('sukses', 'Foto berhasil diubah');
-            //edirect('Konten');
 
             $respon['sukses'] = "Berhasil ganti foto";
             echo json_encode($respon);

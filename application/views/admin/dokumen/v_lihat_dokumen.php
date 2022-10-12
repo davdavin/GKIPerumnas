@@ -36,7 +36,7 @@
           <table id="list_dokumen" class="table table-bordered table-striped">
             <thead>
               <tr>
-                <th>ID</th>
+                <th>No.</th>
                 <th>Jenis Dokumen</th>
                 <th>File</th>
                 <th>Keterangan</th>
@@ -61,7 +61,7 @@
             <table id="pengumpulan" class="table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th>ID</th>
+                  <th>No.</th>
                   <th>Nama Pengumpul</th>
                   <th>Email Pengumpul</th>
                   <th>Jenis Dokumen</th>
@@ -70,28 +70,6 @@
                   <th>Aksi</th>
                 </tr>
               </thead>
-              <tbody>
-                <?php
-                foreach ($pengumpulanDokumen as $list_pengumpulan_dokumen) { ?>
-                  <tr>
-                    <td><?php echo $list_pengumpulan_dokumen->id_pengumpulan ?></td>
-                    <td><?php echo $list_pengumpulan_dokumen->nama_lengkap_pengumpul ?></td>
-                    <td><?php echo $list_pengumpulan_dokumen->email_pengumpul ?></td>
-                    <td><?php echo $list_pengumpulan_dokumen->jenis_dokumen ?></td>
-                    <td><?php echo $list_pengumpulan_dokumen->kumpul_dokumen ?></td>
-                    <td><?php echo tanggal_indonesia($list_pengumpulan_dokumen->tanggal_kumpul); ?></td>
-                    <td>
-                      <a class="btn btn-primary btn-sm" href="<?php echo base_url() . 'pengumpulanDokumen/' . $list_pengumpulan_dokumen->kumpul_dokumen ?>" download>
-                        <i class="fas fa-download">
-                        </i>
-                        Unduh
-                      </a>
-                    </td>
-                  </tr>
-                <?php
-                } ?>
-
-              </tbody>
             </table>
           </div>
         </div>
@@ -232,7 +210,11 @@
         dataSrc: ""
       },
       columns: [{
-          data: "id_dokumen"
+          data: null,
+          name: null,
+          render: function(data, type, row, meta) {
+            return meta.row + meta.settings._iDisplayStart + 1;
+          }
         },
         {
           data: "jenis_dokumen"
@@ -276,9 +258,66 @@
     });
 
     $("#pengumpulan").DataTable({
-      "responsive": true,
-      "lengthChange": true,
-      "autoWidth": false
+      responsive: true,
+      lengthChange: true,
+      autoWidth: false,
+      "language": {
+        "emptyTable": "Tidak ada data yang tersedia pada tabel ini",
+        "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+        "infoEmpty": "Menampilkan 0 sampai 0 dari 0 data",
+        "infoFiltered": "(disaring dari _MAX_ entri keseluruhan)",
+        "lengthMenu": "Tampilkan _MENU_ data",
+        "loadingRecords": "Sedang memuat...",
+        "processing": "Sedang memproses...",
+        "search": "Cari:",
+        "zeroRecords": "Tidak ditemukan data yang sesuai",
+        "thousands": "'",
+        "paginate": {
+          "first": "Pertama",
+          "last": "Terakhir",
+          "next": "Selanjutnya",
+          "previous": "Sebelumnya"
+        }
+      },
+      ajax: {
+        url: "<?php echo base_url() . 'Dokumen/tampil_pengumpulan' ?>",
+        dataSrc: ""
+      },
+      columns: [{
+          data: null,
+          name: null,
+          render: function(data, type, row, meta) {
+            return meta.row + meta.settings._iDisplayStart + 1;
+          }
+        },
+        {
+          data: "nama_lengkap_pengumpul"
+        },
+        {
+          data: "email_pengumpul"
+        },
+        {
+          data: "jenis_dokumen"
+        },
+        {
+          data: "kumpul_dokumen"
+        },
+        {
+          data: "tanggal_kumpul"
+        },
+        {
+          data: null,
+          name: null,
+          sortable: false,
+          render: function(data, type, row, meta) {
+            return `<a class="btn btn-primary btn-sm" href="<?php echo base_url() . 'pengumpulanDokumen/' ?>${row.kumpul_dokumen}" download>
+                        <i class="fas fa-download">
+                        </i>
+                        Download
+                      </a>`
+          }
+        }
+      ]
     });
 
     bsCustomFileInput.init();

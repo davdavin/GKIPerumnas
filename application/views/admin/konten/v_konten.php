@@ -30,7 +30,7 @@
           <table id="konten_slide" class="table table-bordered table-striped">
             <thead>
               <tr>
-                <th>ID</th>
+                <th>No.</th>
                 <th>Judul Slide</th>
                 <th>Deskripsi</th>
                 <th>Gambar</th>
@@ -55,7 +55,7 @@
           <table id="foto_ibadah" class="table table-bordered table-striped">
             <thead>
               <tr>
-                <th>ID</th>
+                <th>No.</th>
                 <th>Momen</th>
                 <th>Foto</th>
                 <?php if ($this->session->userdata('level_user') == 1) { ?>
@@ -172,12 +172,34 @@
       "lengthChange": false,
       "autoWidth": false,
       "searching": false,
+      "language": {
+        "emptyTable": "Tidak ada data yang tersedia pada tabel ini",
+        "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+        "infoEmpty": "Menampilkan 0 sampai 0 dari 0 data",
+        "infoFiltered": "(disaring dari _MAX_ entri keseluruhan)",
+        "lengthMenu": "Tampilkan _MENU_ data",
+        "loadingRecords": "Sedang memuat...",
+        "processing": "Sedang memproses...",
+        "search": "Cari:",
+        "zeroRecords": "Tidak ditemukan data yang sesuai",
+        "thousands": "'",
+        "paginate": {
+          "first": "Pertama",
+          "last": "Terakhir",
+          "next": "Selanjutnya",
+          "previous": "Sebelumnya"
+        }
+      },
       ajax: {
         url: "<?php echo base_url() . 'Konten/tampil_slide' ?>",
         dataSrc: ""
       },
       columns: [{
-          "data": "id_slide"
+          data: null,
+          name: null,
+          render: function(data, type, row, meta) {
+            return meta.row + meta.settings._iDisplayStart + 1;
+          }
         },
         {
           "data": "judul_slide"
@@ -213,12 +235,34 @@
       "lengthChange": false,
       "autoWidth": false,
       "searching": false,
+      "language": {
+        "emptyTable": "Tidak ada data yang tersedia pada tabel ini",
+        "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+        "infoEmpty": "Menampilkan 0 sampai 0 dari 0 data",
+        "infoFiltered": "(disaring dari _MAX_ entri keseluruhan)",
+        "lengthMenu": "Tampilkan _MENU_ data",
+        "loadingRecords": "Sedang memuat...",
+        "processing": "Sedang memproses...",
+        "search": "Cari:",
+        "zeroRecords": "Tidak ditemukan data yang sesuai",
+        "thousands": "'",
+        "paginate": {
+          "first": "Pertama",
+          "last": "Terakhir",
+          "next": "Selanjutnya",
+          "previous": "Sebelumnya"
+        }
+      },
       ajax: {
         url: "<?php echo base_url() . 'Konten/tampil_foto_ibadah' ?>",
         dataSrc: ""
       },
       columns: [{
-          "data": "id_foto_ibadah"
+          data: null,
+          name: null,
+          render: function(data, type, row, meta) {
+            return meta.row + meta.settings._iDisplayStart + 1;
+          }
         },
         {
           "data": "momen"
