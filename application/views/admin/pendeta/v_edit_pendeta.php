@@ -53,8 +53,8 @@
 
                 <!-- phone mask -->
                 <div class="form-group">
-                  <label>Nomor HP (Indonesia):</label>
-                  <input type="text" class="form-control" data-inputmask='"mask": "089999999999[9][9][9]"' data-mask name="nohp" value="<?= $list_pendeta_edit->nohp_pendeta; ?>">
+                  <label>Nomor Handphone</label>
+                  <input type="text" class="form-control" data-mask name="nohp" value="<?= $list_pendeta_edit->nohp_pendeta; ?>">
                   <div class="px-2 error_nohp clear" style="display: none">
                   </div>
                 </div>
@@ -162,9 +162,6 @@
 <!-- daterangepicker -->
 <script src="<?php echo base_url(); ?>assets/plugins/moment/moment.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/daterangepicker/daterangepicker.js"></script>
-<!-- flatpickr -->
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://npmcdn.com/flatpickr/dist/l10n/id.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="<?php echo base_url(); ?>assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- overlayScrollbars -->
@@ -182,15 +179,6 @@
 <script>
   $(function() {
     $('[data-mask]').inputmask();
-
-    $('#tanggalLahir').flatpickr({
-      //   minDate: "today",
-      altInput: true,
-      //allowInput: true,
-      altFormat: "j F Y",
-      dateFormat: "Y-m-d",
-      locale: "id"
-    });
 
     $('.tombol-ubah').click(function(e) {
       e.preventDefault();
@@ -306,8 +294,6 @@
                   title: 'Sukses',
                   text: respon.sukses,
                   icon: 'success',
-                  showConfirmButton: false,
-                  timer: 1000,
                 }).then((confirmed) => {
                   window.location.href = "<?php echo base_url() . 'Pendeta' ?>";
                 });
