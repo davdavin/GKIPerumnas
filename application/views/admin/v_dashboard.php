@@ -82,40 +82,38 @@
             </div>
           </div>
         </div>
-        <?php if ($this->session->userdata('level_user') != 5) {
-          foreach ($permintaanBaru as $jumlah) { ?>
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-teal">
-                <div class="inner">
-                  <h3><?Php echo $jumlah->jumlahPermintaanBaru ?></h3>
-                  <p>Permintaan Perubahan Data</p>
-                </div>
-                <div class="icon">
-                  <i class="fas fa-map"></i>
-                </div>
-                <a href="<?php echo base_url() . 'Notifikasi' ?>" class="small-box-footer">Lihat lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
+        <?php
+        foreach ($permintaanBaru as $jumlah) { ?>
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-teal">
+              <div class="inner">
+                <h3><?Php echo $jumlah->jumlahPermintaanBaru ?></h3>
+                <p>Permintaan Perubahan Data</p>
               </div>
-            </div>
-        <?php }
-        } ?>
-        <?php if ($this->session->userdata('level_user') != 5) {
-          foreach ($peminjamanBaru as $jumlah) { ?>
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-teal">
-                <div class="inner">
-                  <h3><?Php echo $jumlah->jumlahPeminjamanBaru ?></h3>
-                  <p>Peminjaman Ruangan</p>
-                </div>
-                <div class="icon">
-                  <i class="fas fa-map"></i>
-                </div>
-                <a href="<?php echo base_url() . 'mengelola_ruangan/peminjaman' ?>" class="small-box-footer">Lihat lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
+              <div class="icon">
+                <i class="fas fa-map"></i>
               </div>
+              <a href="<?php echo base_url() . 'Notifikasi' ?>" class="small-box-footer">Lihat lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
             </div>
-        <?php }
-        } ?>
+          </div>
+        <?php } ?>
+        <?php
+        foreach ($peminjamanBaru as $jumlah) { ?>
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-teal">
+              <div class="inner">
+                <h3><?Php echo $jumlah->jumlahPeminjamanBaru ?></h3>
+                <p>Peminjaman Ruangan</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-map"></i>
+              </div>
+              <a href="<?php echo base_url() . 'mengelola_ruangan/peminjaman' ?>" class="small-box-footer">Lihat lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+        <?php  } ?>
       </div>
     </div><!-- /.container-fluid -->
 
@@ -172,6 +170,66 @@
         </div>
       </section>
 
+      <section class="col-lg-8 connectedSortable">
+        <div class="card card-outline">
+          <div class="card-header bg-cyan">
+            <h3 class="card-title">
+              <i class="far fa-chart-bar"></i>
+              Urutan Wilayah Dengan Jemaat Terbanyak
+            </h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus text-white"></i>
+              </button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times text-white"></i>
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <table class="table table-bordered table-striped text-center">
+              <tr>
+                <th>Nama Wilayah</th>
+                <th>Total Jemaat</th>
+              </tr>
+              <?php foreach ($urutanWilayah as $urutan) { ?>
+                <tr>
+                  <td><?php echo $urutan->nama_wilayah ?></td>
+                  <td><?php echo $urutan->total ?></td>
+                </tr>
+              <?php } ?>
+            </table>
+          </div>
+          <!-- /.card-body-->
+        </div>
+      </section>
+
+      <section class="col-lg-4 connectedSortable">
+        <div class="card card-outline">
+          <div class="card-header bg-cyan">
+            <h3 class="card-title">
+              <i class="far fa-chart-bar"></i>
+              Total Jemaat Laki-laki & Perempuan
+            </h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus text-white"></i>
+              </button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times text-white"></i>
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="container">
+              <canvas id="chart-jeniskelamin"></canvas>
+            </div>
+          </div>
+          <!-- /.card-body-->
+        </div>
+      </section>
 
 
     </div>
@@ -326,6 +384,36 @@
                     echo "'" . $status->total . "', ";
                   }
                 } ?>],
+
+      }]
+    },
+  });
+
+  var c = document.getElementById('chart-jeniskelamin').getContext('2d');
+  var chart = new Chart(c, {
+    type: 'pie',
+    data: {
+      labels: ['Laki-laki', 'Perempuan'],
+      datasets: [{
+        label: 'Total',
+        backgroundColor: [
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(255, 26, 104, 0.2)'
+        ],
+        borderColor: [
+          'rgba(75, 192, 192, 1)',
+          'rgba(255, 26, 104, 1)'
+        ],
+        borderWidth: 1,
+        data: [<?php if (count($totalLaki) > 0) {
+                  foreach ($totalLaki as $jeniskelamin) {
+                    echo "'" . $jeniskelamin->jumlahLakilaki . "'";
+                  }
+                } ?>, <?php if (count($totalPerempuan) > 0) {
+                        foreach ($totalPerempuan as $jeniskelamin) {
+                          echo "'" . $jeniskelamin->jumlahPerempuan . "', ";
+                        }
+                      } ?>],
 
       }]
     },
