@@ -32,7 +32,7 @@
           <table id="tabel_laporan" class="table table-bordered table-striped" style="width: 100%;">
             <thead>
               <tr>
-                <th>#</th>
+                <th>No.</th>
                 <th>Tanggal Pencatatan</th>
                 <th style="text-align: left;">Saldo Awal</th>
                 <th style="text-align: left;">Uang Masuk</th>

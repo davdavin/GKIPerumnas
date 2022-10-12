@@ -37,7 +37,7 @@
           <table id="tabel_keuangan" class="table table-bordered table-striped" style="width: 100%;">
             <thead>
               <tr>
-                <th>#</th>
+                <th>No.</th>
                 <th>Kegiatan</th>
                 <th style="text-align: left;">Total</th>
                 <th>Tanggal Masuk</th>
