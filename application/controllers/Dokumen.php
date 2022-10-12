@@ -32,6 +32,15 @@ class Dokumen extends CI_Controller
         echo json_encode($dokumen);
     }
 
+    public function tampil_pengumpulan()
+    {
+        $pengumpulan = $this->M_Dokumen->tampil_pengumpulan()->result_array();
+        for ($i = 0; $i < count($pengumpulan); $i++) {
+            $pengumpulan[$i]['tanggal_kumpul'] = tanggal_indonesia($pengumpulan[$i]['tanggal_kumpul']);
+        }
+        echo json_encode($pengumpulan);
+    }
+
     public function view_file($dokumen)
     {
         /*  $data = file_get_contents(base_url() . "dokumenFormulir/" . $dokumen);
