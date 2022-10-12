@@ -37,7 +37,6 @@
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Kode Dokumen</th>
                 <th>Jenis Dokumen</th>
                 <th>File</th>
                 <th>Keterangan</th>
@@ -109,32 +108,38 @@
             </button>
           </div>
 
-          <?php echo form_open_multipart('Dokumen/tambah_dokumen'); ?>
-          <div class="modal-body">
-            <div class="form-group">
-              <label for="jenisDokumen">Jenis dokumen</label>
-              <input type="text" class="form-control" id="jenisDokumen" name="jenis" required>
-            </div>
-            <div class="form-group">
-              <label for="exampleInputFile">File input</label>
-              <div class="input-group">
-                <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="exampleInputFile" name="dokumen" required>
-                  <label class="custom-file-label" for="exampleInputFile">Pilih file (Maks size file 5 MB & format PDF)</label>
+          <form class="form-submit" action="<?php echo base_url() . 'Dokumen/tambah_dokumen' ?>" method="post" enctype="multipart/form-data">
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="jenisDokumen">Jenis dokumen</label>
+                <input type="text" class="form-control" id="jenisDokumen" name="jenis" placeholder="Jenis dokumen">
+                <div class="px-2 error_jenis clear" style="display: none">
                 </div>
-                <div class="input-group-append">
-                  <span class="input-group-text">Upload</span>
+              </div>
+              <div class="form-group">
+                <label>File Input</label>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="exampleInputFile" name="dokumen">
+                    <label class="custom-file-label" for="exampleInputFile">Pilih file</label>
+                  </div>
+                  <div class="input-group-append">
+                    <span class="input-group-text">Upload</span>
+                  </div>
+                </div>
+                <div class="px-2 error_dokumen clear" style="display: none">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="keterangan">Keterangan</label>
+                <input type="text" class="form-control" id="keterangan" name="keterangan" placeholder="Keterangan">
+                <div class="px-2 error_keterangan clear" style="display: none">
                 </div>
               </div>
             </div>
-            <div class="form-group">
-              <label for="keterangan">Keterangan</label>
-              <input type="text" class="form-control" id="keterangan" name="keterangan" required>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Submit</button>
             </div>
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </div>
           </form>
         </div>
         <!-- /.modal-content -->
@@ -199,20 +204,35 @@
 
 <!-- Page specific script -->
 <script>
-  $(function() {
+  $(document).ready(function() {
     $("#list_dokumen").DataTable({
       responsive: true,
       lengthChange: true,
       autoWidth: false,
+      "language": {
+        "emptyTable": "Tidak ada data yang tersedia pada tabel ini",
+        "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+        "infoEmpty": "Menampilkan 0 sampai 0 dari 0 data",
+        "infoFiltered": "(disaring dari _MAX_ entri keseluruhan)",
+        "lengthMenu": "Tampilkan _MENU_ data",
+        "loadingRecords": "Sedang memuat...",
+        "processing": "Sedang memproses...",
+        "search": "Cari:",
+        "zeroRecords": "Tidak ditemukan data yang sesuai",
+        "thousands": "'",
+        "paginate": {
+          "first": "Pertama",
+          "last": "Terakhir",
+          "next": "Selanjutnya",
+          "previous": "Sebelumnya"
+        }
+      },
       ajax: {
         url: "<?php echo base_url() . 'Dokumen/tampil_dokumen' ?>",
         dataSrc: ""
       },
       columns: [{
           data: "id_dokumen"
-        },
-        {
-          data: "kode_dokumen"
         },
         {
           data: "jenis_dokumen"
@@ -283,26 +303,81 @@
       });
     }
 
-    $('.tombol-hapus').click(function(e) {
+    $(document).on('click', '.tombol-hapus', function(e) {
       e.preventDefault();
       const href = $(this).attr('href')
 
       Swal.fire({
-        title: 'Apakah anda yakin?',
-        text: 'Dokumen akan dihapus secara permanen',
+        title: 'Apakah anda yakin dokumen ini akan dihapus?',
         icon: 'warning',
         showCancelButton: true,
         cancelButtonText: 'batal',
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Hapus'
+        confirmButtonText: 'Ubah status'
       }).then((result) => {
         if (result.value) { //ini sama aja kayak == TRUE
           document.location.href = href;
         }
       });
-
     });
+
+    $('.form-submit').submit(function(e) {
+      e.preventDefault();
+      $.ajax({
+        url: $(this).attr('action'),
+        type: "POST",
+        dataType: "JSON",
+        data: new FormData(this),
+        contentType: false,
+        //cache: false,
+        processData: false,
+        beforeSend: function() {
+          $('.simpan').attr('disable', 'disabled');
+          $('.simpan').html('<i class="fa fa-spin fa-spinner"></i>');
+        },
+        complete: function() {
+          $('.simpan').removeAttr('disable');
+          $('.simpan').html('Submit');
+        },
+        success: function(respon) {
+          if (respon.sukses == false) {
+            if (respon.error_jenis) {
+              $('.error_jenis').show();
+              $('.error_jenis').html(respon.error_jenis);
+              $('.error_jenis').css("color", "red");
+            } else {
+              $('.error_jenis').hide();
+            }
+            if (respon.error_dokumen) {
+              $('.error_dokumen').show();
+              $('.error_dokumen').html(respon.error_dokumen);
+              $('.error_dokumen').css("color", "red");
+            } else {
+              $('.error_dokumen').hide();
+            }
+            if (respon.error_keterangan) {
+              $('.error_keterangan').show();
+              $('.error_keterangan').html(respon.error_keterangan);
+              $('.error_keterangan').css("color", "red");
+            } else {
+              $('.error_keterangan').hide();
+            }
+          } else {
+            $('.clear').hide();
+            Swal.fire({
+              title: 'Sukses',
+              text: respon.sukses,
+              icon: 'success',
+            }).then((confirmed) => {
+              window.location.reload();
+            });
+          }
+
+        }
+      });
+    });
+
   });
 </script>
 </body>

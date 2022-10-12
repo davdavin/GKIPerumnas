@@ -13,6 +13,7 @@ class Dokumen extends CI_Controller
 
         $this->load->model(array('M_Dokumen'));
         $this->load->helper(array('form', 'url', 'file'));
+        $this->load->library('form_validation');
     }
 
     public function index()
@@ -44,34 +45,51 @@ class Dokumen extends CI_Controller
 
     public function tambah_dokumen()
     {
-        $baris = $this->M_Dokumen->tampil()->num_rows();
-        $kode_dokumen = 'DKM' . $baris + 1;
         $jenis_dokumen = $this->input->post('jenis');
         $keterangan = $this->input->post('keterangan');
 
-        //upload file
-        $config['upload_path'] = './dokumenFormulir/';
-        $config['allowed_types'] = 'pdf';
-        $config['max_size'] = 5000; //5 MB
+        $this->form_validation->set_rules('jenis', 'Jenis', 'required|is_unique[dokumen.jenis_dokumen]');
+        $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
+        if (empty($_FILES['dokumen']['name'])) {
+            $this->form_validation->set_rules('dokumen', 'Dokumen', 'required');
+        }
 
-        $this->load->library('upload', $config);
+        $this->form_validation->set_message('required', '{field} wajib diisi');
+        $this->form_validation->set_message('is_unique', '{field} dokumen ini sudah ada');
 
-        if (!$this->upload->do_upload('dokumen')) {
-            $this->session->set_flashdata('gagal', 'Tidak berhasil upload file');
-            redirect('Dokumen');
-        } else {
-            $dokumen = $this->upload->data('file_name');
-
-            $data = array(
-                'kode_dokumen' => $kode_dokumen,
-                'jenis_dokumen' => $jenis_dokumen,
-                'dokumen' => $dokumen,
-                'keterangan' => $keterangan
+        if ($this->form_validation->run() == FALSE) {
+            $respon = array(
+                'sukses' => false,
+                'error_jenis' => form_error('jenis'),
+                'error_dokumen' => form_error('dokumen'),
+                'error_keterangan' => form_error('keterangan')
             );
+            echo json_encode($respon);
+        } else {
+            //upload file
+            $config['upload_path'] = './dokumenFormulir/';
+            $config['allowed_types'] = 'pdf';
+            $config['max_size'] = 5000; //5 MB
 
-            $this->M_Dokumen->insert_record($data, 'dokumen');
-            $this->session->set_flashdata('sukses', 'Data berhasil disimpan');
-            redirect('Dokumen');
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('dokumen')) {
+                $respon['sukses'] = false;
+                $respon['error_dokumen'] = "Tidak berhasil upload file. Format file hanya pdf dan ukuran file maksimal 5MB";
+                echo json_encode($respon);
+            } else {
+                $dokumen = $this->upload->data('file_name');
+
+                $data = array(
+                    'jenis_dokumen' => $jenis_dokumen,
+                    'dokumen' => $dokumen,
+                    'keterangan' => $keterangan
+                );
+
+                $this->M_Dokumen->insert_record($data, 'dokumen');
+                $respon['sukses'] = "Data berhasil disimpan";
+                echo json_encode($respon);
+            }
         }
     }
 
@@ -88,56 +106,77 @@ class Dokumen extends CI_Controller
     public function proses_edit_dokumen()
     {
         $id_dokumen = $this->input->post('id_dokumen');
-        $kode_dokumen = $this->input->post('kode_dokumen');
+        $jenis_dokumen_lama = $this->input->post('jenis_lama');
         $jenis_dokumen = $this->input->post('jenis');
         $keterangan = $this->input->post('keterangan');
         $dokumen_lama = $this->input->post('dokumen_lama');
 
-        $where = array('id_dokumen' => $id_dokumen);
+        if ($jenis_dokumen_lama != $jenis_dokumen) {
+            $this->form_validation->set_rules('jenis', 'Jenis', 'required|is_unique[dokumen.jenis_dokumen]');
+        }
+        $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
 
-        if ($_FILES['dokumen_baru']['name'] == "") {
-            $data = array(
-                'kode_dokumen' => $kode_dokumen,
-                'jenis_dokumen' => $jenis_dokumen,
-                'dokumen' => $dokumen_lama,
-                'keterangan' => $keterangan
+        $this->form_validation->set_message('required', '{field} wajib diisi');
+        $this->form_validation->set_message('is_unique', '{field} dokumen ini sudah ada');
+
+        if ($this->form_validation->run() == FALSE) {
+            $respon = array(
+                'sukses' => false,
+                'error_jenis' => form_error('jenis'),
+                'error_keterangan' => form_error('keterangan')
             );
-
-            $this->M_Dokumen->update_record($where, $data, 'dokumen');
-            $this->session->set_flashdata('sukses', 'Data berhasil diubah');
-            redirect('Dokumen');
+            echo json_encode($respon);
         } else {
-            //upload file
-            $config['upload_path'] = './dokumenFormulir/';
-            $config['allowed_types'] = 'pdf';
-            $config['max_size'] = 5000; //5 MB
 
-            $this->load->library('upload', $config);
+            $where = array('id_dokumen' => $id_dokumen);
 
-            if (!$this->upload->do_upload('dokumen_baru')) {
-                echo "Upload gagal, tolong periksa format dan size file";
-            } else {
-                $dokumen = $this->upload->data('file_name');
-
+            if ($_FILES['dokumen_baru']['name'] == "") {
                 $data = array(
-                    'kode_dokumen' => $kode_dokumen,
                     'jenis_dokumen' => $jenis_dokumen,
-                    'dokumen' => $dokumen,
+                    'dokumen' => $dokumen_lama,
                     'keterangan' => $keterangan
                 );
 
-                @unlink('./dokumenFormulir/' . $dokumen_lama);
-
                 $this->M_Dokumen->update_record($where, $data, 'dokumen');
-                $this->session->set_flashdata('sukses', 'Data berhasil diubah');
-                redirect('Dokumen');
+                $respon['sukses'] = "Data berhasil disimpan";
+                echo json_encode($respon);
+            } else {
+                //upload file
+                $config['upload_path'] = './dokumenFormulir/';
+                $config['allowed_types'] = 'pdf';
+                $config['max_size'] = 5000; //5 MB
+
+                $this->load->library('upload', $config);
+
+                if (!$this->upload->do_upload('dokumen_baru')) {
+                    $respon['sukses'] = false;
+                    $respon['error_dokumen'] = "Tidak berhasil upload file. Format file hanya pdf dan ukuran file maksimal 5MB";
+                    echo json_encode($respon);
+                } else {
+                    $dokumen = $this->upload->data('file_name');
+
+                    $data = array(
+                        'jenis_dokumen' => $jenis_dokumen,
+                        'dokumen' => $dokumen,
+                        'keterangan' => $keterangan
+                    );
+
+                    @unlink('./dokumenFormulir/' . $dokumen_lama);
+
+                    $this->M_Dokumen->update_record($where, $data, 'dokumen');
+                    $respon['sukses'] = "Data berhasil disimpan";
+                    echo json_encode($respon);
+                }
             }
         }
     }
 
     public function hapus_dokumen($id_dokumen)
     {
+        $dokumen = $this->db->query("SELECT dokumen FROM dokumen WHERE id_dokumen = '$id_dokumen'")->row_array();
         $where = array('id_dokumen' => $id_dokumen);
+
+        @unlink('./dokumenFormulir/' . $dokumen['dokumen']);
         $this->M_Dokumen->delete_record($where, 'dokumen');
         $this->session->set_flashdata('sukses', 'Formulir berhasil dihapus');
         redirect('Dokumen');
