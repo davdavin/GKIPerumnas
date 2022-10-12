@@ -67,8 +67,8 @@
           <li><a class="nav-link scrollto" href="#artikel">Artikel</a></li>
           <!--   <li><a class="nav-link scrollto" href="#warta">Warta</a></li> -->
           <li><a class="nav-link scrollto" href="#dokumen">Dokumen</a></li>
+          <li><a class="nav-link scrollto" href="<?php echo base_url() . 'Ruangan' ?>">Ruangan</a></li>
           <li><a class="nav-link scrollto" href="#contact">Kontak</a></li>
-          <a href="" class="get-started-btn scrollto">Login</a>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -188,10 +188,8 @@
           <div class="col-lg-3 col-md-6 text-center" data-aos="fade-up" data-aos-delay="400">
             <div class="count-box">
               <i class="bi bi-live-support" style="color: #46d1ff;"></i>
-              <span data-purecounter-start="0" data-purecounter-end="<?php // foreach ($ulangTahunJemaat as $jumlah_ulang_tahun) {
-                                                                      //    echo $jumlah_ulang_tahun->jumlahBerulangTahun;
+              <span data-purecounter-start="0" data-purecounter-end="<?php
                                                                       echo count($jemaatUlangTahun);
-                                                                      //  }; 
                                                                       ?>" data-purecounter-duration="1" class="purecounter"></span>
               <p type="button" data-bs-toggle="modal" data-bs-target="#ulangtahun" data-toggle="tooltip" title="Lihat lebih lengkap"> Jemaat yang berulang tahun </p>
             </div>
@@ -226,7 +224,7 @@
             <table class="table table-bordered table-hover">
               <thead>
                 <tr>
-                  <th>#</th>
+                  <th>No.</th>
                   <th>Nama</th>
                   <th>Wilayah</th>
                   <th>Tanggal Ulang Tahun</th>
@@ -390,7 +388,7 @@
           <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
             <div class="icon"><i class="bx bx-upload"></i></div>
             <h4 class="title">Pengumpulan Formulir</h4>
-            <p class="description">Anda bisa kumpul form yang telah di isi <a href="<?php echo base_url() . 'pengumpulan' 
+            <p class="description">Anda bisa kumpul form yang telah di isi <a href="<?php echo base_url() . 'pengumpulan'
                                                                                     ?>">disini</a></p>
           </div>
           <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
