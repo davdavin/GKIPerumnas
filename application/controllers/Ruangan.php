@@ -23,6 +23,8 @@ class Ruangan extends CI_Controller
         $peminjaman = $this->M_Ruangan->informasi_detail_peminjaman($id_ruangan)->result_array();
         for ($i = 0; $i < count($peminjaman); $i++) {
             $peminjaman[$i]['tanggal_booking'] = tanggal_indonesia($peminjaman[$i]['tanggal_booking']);
+            $peminjaman[$i]['jam_mulai'] = waktu($peminjaman[$i]['jam_mulai']);
+            $peminjaman[$i]['jam_selesai'] = waktu($peminjaman[$i]['jam_selesai']);
         }
         echo json_encode($peminjaman);
     }
@@ -37,7 +39,6 @@ class Ruangan extends CI_Controller
     public function proses_booking()
     {
         $id_ruangan = $this->input->post('id_ruangan');
-        $no_anggota = $this->input->post('no_anggota');
         $nama = $this->input->post('nama');
         $email = $this->input->post('email');
         $nohp = $this->input->post('nohp');
@@ -46,15 +47,23 @@ class Ruangan extends CI_Controller
         $jam_mulai = $this->input->post('jam_mulai');
         $jam_selesai = $this->input->post('jam_selesai');
 
-        if ($no_anggota == NULL) {
-            $no_anggota = NULL;
-        } else {
-            $no_anggota = $no_anggota;
+        $peminjaman = $this->db->query("SELECT tanggal_booking, jam_mulai, jam_selesai FROM peminjaman_ruangan WHERE id_ruangan = '$id_ruangan'")->result_array();
+
+        for ($i = 0; $i < count($peminjaman); $i++) {
+            $temp_jam_mulai_db = strtotime($peminjaman[$i]['jam_mulai']);
+            $temp_jam_selesai_db = strtotime($peminjaman[$i]['jam_selesai']);
+            if (strtotime($peminjaman[$i]['tanggal_booking']) == strtotime($tanggal_booking)) {
+
+                if ($temp_jam_mulai_db >= strtotime($jam_mulai) && $temp_jam_selesai_db <= strtotime($jam_selesai) || $temp_jam_mulai_db <= strtotime($jam_mulai) && $temp_jam_selesai_db <= strtotime($jam_selesai) && $temp_jam_selesai_db >= strtotime($jam_mulai) || $temp_jam_mulai_db >= strtotime($jam_mulai) && $temp_jam_selesai_db >= strtotime($jam_selesai) && $temp_jam_mulai_db <= strtotime($jam_selesai)  || $temp_jam_mulai_db <= strtotime($jam_mulai) && $temp_jam_selesai_db >= strtotime($jam_selesai)) {
+                    $this->session->set_flashdata('gagal', 'Tidak berhasil booking');
+                    redirect('booking/' . $id_ruangan);
+                }
+            }
         }
 
         $data = array(
-            'id_ruangan' => $id_ruangan, 'no_anggota' => $no_anggota, 'nama_peminjam' => $nama, 'email_peminjam' => $email, 'nohp_peminjam' => $nohp, 'keperluan' => $keperluan,
-            'tanggal_booking' => $tanggal_booking, 'jam_mulai' => $jam_mulai, 'jam_selesai' => $jam_selesai, 'status_peminjaman' => 'SEDANG DIPROSES'
+            'id_ruangan' => $id_ruangan, 'nama_peminjam' => $nama, 'email_peminjam' => $email, 'nohp_peminjam' => $nohp, 'keperluan' => $keperluan,
+            'tanggal_booking' => $tanggal_booking, 'jam_mulai' => $jam_mulai, 'jam_selesai' => $jam_selesai, 'status_peminjaman' => 'PEMINJAMAN', 'is_notif' => 0, 'is_deleted' => 0
         );
         $this->M_Ruangan->insert_record($data, 'peminjaman_ruangan');
         $this->session->set_flashdata('sukses', 'Berhasil booking');
