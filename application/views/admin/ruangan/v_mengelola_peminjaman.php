@@ -31,13 +31,15 @@
                     <table id="tabel_ruangan" class="table table-bordered table-striped" style="width: 100%;">
                         <thead>
                             <tr>
-                                <th>#</th>
+                                <th>No.</th>
                                 <th>Ruangan</th>
                                 <th>Nama</th>
                                 <th>Email</th>
                                 <th>Tanggal</th>
                                 <th>Status</th>
-                                <th>Aksi</th>
+                                <?php if ($this->session->userdata('level_user') == 1) { ?>
+                                    <th>Aksi</th>
+                                <?php } ?>
                             </tr>
                         </thead>
                     </table>
@@ -66,7 +68,9 @@
                                     <label>Status</label>
                                     <select class="form-control select2bs4" style="width: 100%;" id="status" name="status" required>
                                         <option selected disabled value>Status</option>
-                                        <option value="DITERIMA">DITERIMA</option>
+                                        <?php if (strtotime('today') >= strtotime($list->tanggal_booking)) { ?>
+                                            <option value="SELESAI">SELESAI</option>
+                                        <?php } ?>
                                     </select>
                                 </div>
                                 <button type="submit" class="btn btn-block btn-primary btn-sm">Submit</button>
@@ -175,33 +179,50 @@
                 {
                     "data": "status_peminjaman"
                 },
-                {
-                    data: null,
-                    name: null,
-                    render: function(data, type, row, meta) {
-                        switch (row.status_peminjaman) {
-                            case "SEDANG DIPROSES":
-                                return `<button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_peminjaman}" data-toggle="tooltip" data-placement="bottom" title="Konfirmasi Peminjaman">
+                <?php if ($this->session->userdata('level_user') == 1) { ?> {
+                        data: null,
+                        name: null,
+                        render: function(data, type, row, meta) {
+                            switch (row.status_peminjaman) {
+                                case "PEMINJAMAN":
+                                    return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_peminjaman}">
                                                         <i class="fas fa-pencil-alt">
                                                         </i>
                                                         Konfirmasi
-                                </button>`;
-                                break;
-                            case "DITERIMA":
-                                return `<button class="btn btn-info btn-sm" disabled>
-                                                        <i class="fas fa-pencil-alt">
-                                                        </i>
-                                                        Konfirmasi
-                                </button>`;
-                                break;
-                            default:
-                                return ``;
-                                break;
+                                        </a>`;
+                                    break;
+                                case "SELESAI":
+                                    return ` <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'mengelola_ruangan/hapus/' ?>${row.id_peminjaman}" data-toggle="tooltip" data-placement="bottom" title="Hapus Data Admin">
+                                        <i class="fas fa-trash"></i> Hapus
+                                        </a>`;
+                                    break;
+                                default:
+                                    return ``;
+                                    break;
+                            }
                         }
-
                     }
-                }
+                <?php } ?>
             ]
+        });
+
+        $(document).on('click', '.tombol-hapus', function(e) {
+            e.preventDefault();
+            const href = $(this).attr('href')
+
+            Swal.fire({
+                title: 'Apakah anda yakin baris ini akan dihapus?',
+                icon: 'warning',
+                showCancelButton: true,
+                cancelButtonText: 'batal',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Hapus'
+            }).then((result) => {
+                if (result.value) { //ini sama aja kayak == TRUE
+                    document.location.href = href;
+                }
+            });
         });
 
         const sukses = $('.sukses').data('flashdata');
