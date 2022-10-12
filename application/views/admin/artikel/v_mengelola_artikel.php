@@ -34,7 +34,7 @@
           <table id="tabel_artikel" class="table table-bordered table-striped">
             <thead>
               <tr>
-                <th>ID</th>
+                <th>No.</th>
                 <th>Judul</th>
                 <th>Tipe</th>
                 <th>Deskripsi Singkat</th>
@@ -106,12 +106,34 @@
       "responsive": true,
       "lengthChange": true,
       "autoWidth": false,
+      "language": {
+        "emptyTable": "Tidak ada data yang tersedia pada tabel ini",
+        "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+        "infoEmpty": "Menampilkan 0 sampai 0 dari 0 data",
+        "infoFiltered": "(disaring dari _MAX_ entri keseluruhan)",
+        "lengthMenu": "Tampilkan _MENU_ data",
+        "loadingRecords": "Sedang memuat...",
+        "processing": "Sedang memproses...",
+        "search": "Cari:",
+        "zeroRecords": "Tidak ditemukan data yang sesuai",
+        "thousands": "'",
+        "paginate": {
+          "first": "Pertama",
+          "last": "Terakhir",
+          "next": "Selanjutnya",
+          "previous": "Sebelumnya"
+        }
+      },
       ajax: {
         url: "<?php echo base_url() . 'MengelolaArtikel/tampil_artikel' ?>",
         dataSrc: ""
       },
       columns: [{
-          "data": "id_artikel"
+          data: null,
+          name: null,
+          render: function(data, type, row, meta) {
+            return meta.row + meta.settings._iDisplayStart + 1;
+          }
         },
         {
           "data": "judul_artikel"
