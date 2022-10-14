@@ -65,7 +65,7 @@ class Pengumpulan_Dokumen extends CI_Controller
                     'id_dokumen' => $id_dokumen,
                     'nama_lengkap_pengumpul' => $nama_pengumpul,
                     'email_pengumpul' => $email_pengumpul,
-                    'kumpul_dokumen' => $dokumen,
+                    'nama_dokumen' => $dokumen,
                     'tanggal_kumpul' => $tanggal
                 );
                 $this->M_Dokumen->insert_record($data, 'pengumpulan_dokumen');

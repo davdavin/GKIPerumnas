@@ -25,6 +25,7 @@ class Admin extends CI_Controller
         $data['permintaanBaru'] = $this->M_Permintaan->jumlah_permintaan_baru()->result();
         $data['peminjamanBaru'] = $this->M_Ruangan->jumlah_peminjaman_baru()->result();
         $data['urutanWilayah'] = $this->M_Wilayah->urutan_wilayah_terbanyak()->result();
+        $data['urutanRuangan'] = $this->M_Ruangan->urutan_peminjaman_ruangan_terbanyak()->result();
         $this->load->view('templates/header.php', $data);
         $this->load->view('templates/sidebar.php');
         $this->load->view('admin/v_dashboard.php', $data);

@@ -43,12 +43,7 @@ class Dokumen extends CI_Controller
 
     public function view_file($dokumen)
     {
-        /*  $data = file_get_contents(base_url() . "dokumenFormulir/" . $dokumen);
-        var_dump($data);
-        $this->output->set_output(file_get_contents(base_url() . 'dokumenFormulir/' . $dokumen)); */
-
-        $data['dokumen'] = $this->db->query("SELECT dokumen FROM dokumen WHERE dokumen = '$dokumen'")->row_array();
-        //   $this->load->view('templates/header.php');
+        $data['dokumen'] = $this->db->query("SELECT nama_dokumen FROM dokumen WHERE nama_dokumen = '$dokumen'")->row_array();
         $this->load->view('admin/dokumen/v_lihat_file.php', $data);
     }
 
@@ -91,7 +86,7 @@ class Dokumen extends CI_Controller
 
                 $data = array(
                     'jenis_dokumen' => $jenis_dokumen,
-                    'dokumen' => $dokumen,
+                    'nama_dokumen' => $dokumen,
                     'keterangan' => $keterangan
                 );
 
@@ -142,7 +137,7 @@ class Dokumen extends CI_Controller
             if ($_FILES['dokumen_baru']['name'] == "") {
                 $data = array(
                     'jenis_dokumen' => $jenis_dokumen,
-                    'dokumen' => $dokumen_lama,
+                    'nama_dokumen' => $dokumen_lama,
                     'keterangan' => $keterangan
                 );
 
@@ -166,7 +161,7 @@ class Dokumen extends CI_Controller
 
                     $data = array(
                         'jenis_dokumen' => $jenis_dokumen,
-                        'dokumen' => $dokumen,
+                        'nama_dokumen' => $dokumen,
                         'keterangan' => $keterangan
                     );
 
@@ -182,10 +177,10 @@ class Dokumen extends CI_Controller
 
     public function hapus_dokumen($id_dokumen)
     {
-        $dokumen = $this->db->query("SELECT dokumen FROM dokumen WHERE id_dokumen = '$id_dokumen'")->row_array();
+        $dokumen = $this->db->query("SELECT nama_dokumen FROM dokumen WHERE id_dokumen = '$id_dokumen'")->row_array();
         $where = array('id_dokumen' => $id_dokumen);
 
-        @unlink('./dokumenFormulir/' . $dokumen['dokumen']);
+        @unlink('./dokumenFormulir/' . $dokumen['nama_dokumen']);
         $this->M_Dokumen->delete_record($where, 'dokumen');
         $this->session->set_flashdata('sukses', 'Formulir berhasil dihapus');
         redirect('Dokumen');
