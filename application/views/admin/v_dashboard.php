@@ -204,6 +204,41 @@
           <!-- /.card-body-->
         </div>
       </section>
+
+      <section class="col-lg-8 connectedSortable">
+        <div class="card card-outline">
+          <div class="card-header bg-cyan">
+            <h3 class="card-title">
+              <i class="far fa-chart-bar"></i>
+              Urutan Ruangan Dengan Peminjaman Terbanyak
+            </h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus text-white"></i>
+              </button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times text-white"></i>
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <table class="table table-bordered table-striped text-center">
+              <tr>
+                <th>Ruangan</th>
+                <th>Total</th>
+              </tr>
+              <?php foreach ($urutanRuangan as $urutan) { ?>
+                <tr>
+                  <td><?php echo $urutan->nama_ruangan ?></td>
+                  <td><?php echo $urutan->total ?></td>
+                </tr>
+              <?php } ?>
+            </table>
+          </div>
+          <!-- /.card-body-->
+        </div>
+      </section>
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->

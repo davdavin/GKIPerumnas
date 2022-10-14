@@ -228,7 +228,7 @@
         const sukses = $('.sukses').data('flashdata');
         if (sukses) {
             Swal.fire({
-                title: 'Pencatatan',
+                title: 'Peminjaman',
                 text: sukses,
                 icon: 'success'
             });
@@ -238,7 +238,7 @@
 
         if (gagal) {
             Swal.fire({
-                title: 'Pencatatan',
+                title: 'Peminjaman',
                 text: gagal,
                 icon: 'error'
             });
