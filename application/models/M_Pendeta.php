@@ -4,20 +4,18 @@ class M_Pendeta extends CI_Model
 {
     public function tampil()
     {
-        $query = $this->db->query("SELECT * FROM pendeta");
-        return $query;
+        return $this->db->query("SELECT * FROM pendeta");
     }
 
     public function tampil_total_pendeta()
     {
-        $query = $this->db->query('SELECT count(id_pendeta) as jumlahPendeta FROM pendeta WHERE status_pendeta = 1');
-        return $query;
+        return $this->db->query("SELECT count(id_pendeta) as jumlahPendeta FROM pendeta WHERE status_pendeta = 'PENDETA AKTIF' OR status_pendeta = 'PENATUA AKTIF'");
     }
 
     //function ini untuk di controller home
     public function tampil_pendeta()
     {
-        return $this->db->query("SELECT nama_lengkap_pendeta, foto_pendeta FROM pendeta WHERE status_pendeta = 1");
+        return $this->db->query("SELECT nama_lengkap_pendeta, foto_pendeta FROM pendeta WHERE status_pendeta = 'PENDETA AKTIF' OR status_pendeta = 'PENATUA AKTIF'");
     }
 
     public function insert_record($data, $table)

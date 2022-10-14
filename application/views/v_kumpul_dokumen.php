@@ -86,19 +86,6 @@
               <div class="px-2 error_dokumen clear" style="display: none">
               </div>
             </div>
-
-            <!-- <div class="form-group">
-              <label for="exampleInputFile">Input Lampiran</label>
-              <div class="input-group">
-                <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="inputLampiran" name="lampiran" required>
-                  <label class="custom-file-label" for="inputLampiran">Pilih file (Maks size file 5 MB & format zip)</label>
-                </div>
-                <div class="input-group-append">
-                  <span class="input-group-text">Upload</span>
-                </div>
-              </div>
-            </div> -->
           </div>
           <div class="card-footer">
             <button type="submit" class="btn btn-primary simpan">Submit</button>
