@@ -96,7 +96,7 @@
                   <option selected disabled value>-- Pilih --</option>
                   <?php foreach ($wilayah as $list_wilayah) { ?>
                     <option value="<?php echo $list_wilayah->id_wilayah ?>">
-                      <?php echo $list_wilayah->nama_lengkap_anggota . ' - ' . $list_wilayah->nama_wilayah ?>
+                      <?php echo $list_wilayah->nama_wilayah ?>
                     </option>
                   <?php
                   } ?>

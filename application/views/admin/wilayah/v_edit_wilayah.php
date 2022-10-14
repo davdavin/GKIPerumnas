@@ -33,14 +33,10 @@
               <label>ID</label>
               <input type="text" class="form-control" name="id_wilayah" value="<?= $list_wilayah_edit->id_wilayah ?>" readonly>
             </div>
-            <div class="form-group">
-              <label>Kode Wilayah</label>
-              <input type="text" class="form-control" name="kode_wilayah" value="<?= $list_wilayah_edit->kode_wilayah ?>" readonly>
-            </div>
 
             <div class="form-group">
               <label>Koordinator Wilayah</label>
-              <select class="pilih-jemaat form-control" name="id_jemaat"></select>
+              <select class="pilih-jemaat form-control" name="koordinator_wilayah"></select>
             </div>
 
             <div class="form-group">
@@ -110,6 +106,22 @@
     $('.pilih-jemaat').select2({
       placeholder: '<?php echo $koordinator; ?>',
       //  minimumInputLength: 3,
+      language: {
+        inputTooShort: function(args) {
+          var chars = args.minimum - args.input.length;
+          if (chars == args.minimum) {
+            return "Masukan minimal " + chars + " atau lebih karakter";
+          } else {
+            return "Masukan " + chars + " huruf lagi";
+          }
+        },
+        searching: function() {
+          return "Mencari...";
+        },
+        noResults: function() {
+          return "Tidak ada data yang sesuai";
+        }
+      },
       ajax: {
         url: "<?php echo base_url() . 'Wilayah/nama_jemaat_per_wilayah/' . $id_wilayah ?>",
         type: 'POST',

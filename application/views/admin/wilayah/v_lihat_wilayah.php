@@ -27,13 +27,16 @@
         </div>
 
         <div class="card-body">
+          <?php if ($this->session->userdata('level_user') == 1) { ?>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
+              <i class="fas fa-plus"></i> Tambah wilayah
+            </button><br><br>
+          <?php } ?>
 
           <table id="tabel_wilayah" class="table table-bordered table-striped">
             <thead>
               <tr>
-                <th>ID</th>
-                <th>Kode Wilayah</th>
-                <th>Koordinator Wilayah</th>
+                <th>No.</th>
                 <th>Nama Wilayah</th>
                 <?php if ($this->session->userdata('level_user') == 1) { ?>
                   <th>Aksi</th>
@@ -60,11 +63,6 @@
 
           <form action="<?php echo base_url() . 'Wilayah/tambah_wilayah' ?>" method="post">
             <div class="modal-body">
-              <div class="form-group">
-                <label>Koordinator Wilayah</label>
-                <select class="pilih-jemaat form-control" name="id_jemaat"></select>
-              </div>
-
               <div class="form-group">
                 <label>Nama Wilayah</label>
                 <input type="text" class="form-control" name="nama_wilayah" required>
@@ -132,17 +130,28 @@
 <script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
 <script>
-  $(function() {
+  $(document).ready(function() {
+
+    const sukses = $('.sukses').data('flashdata');
+
+    if (sukses) {
+      Swal.fire({
+        title: 'Data Wilayah',
+        text: sukses,
+        icon: 'success'
+      });
+    }
+
     $("#tabel_wilayah").DataTable({
       "responsive": true,
       "lengthChange": true,
       "autoWidth": false,
       "language": {
         "emptyTable": "Tidak ada data yang tersedia pada tabel ini",
-        "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
-        "infoEmpty": "Menampilkan 0 sampai 0 dari 0 entri",
+        "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+        "infoEmpty": "Menampilkan 0 sampai 0 dari 0 data",
         "infoFiltered": "(disaring dari _MAX_ entri keseluruhan)",
-        "lengthMenu": "Tampilkan _MENU_ entri",
+        "lengthMenu": "Tampilkan _MENU_ data",
         "loadingRecords": "Sedang memuat...",
         "processing": "Sedang memproses...",
         "search": "Cari:",
@@ -160,32 +169,42 @@
         dataSrc: ""
       },
       columns: [{
-          "data": "id_wilayah"
-        },
-        {
-          "data": "kode_wilayah"
-        },
-        {
-          "data": "nama_lengkap_anggota"
+          data: null,
+          name: null,
+          render: function(data, type, row, meta) {
+            return meta.row + meta.settings._iDisplayStart + 1;
+          }
         },
         {
           "data": "nama_wilayah"
         },
 
         <?php if ($this->session->userdata('level_user') == 1) { ?> {
-            "data": null,
+            data: null,
             name: null,
             render: function(data, type, row, meta) {
-              return `<a class="btn btn-info btn-sm" href="<?php echo base_url() . 'Wilayah/edit_wilayah/' ?>${row.id_wilayah}">
+              switch (row.is_koordinator) {
+                case "1":
+                  return `<a class="btn btn-info btn-sm" href="<?php echo base_url() . 'Wilayah/edit_wilayah/' ?>${row.id_wilayah}">
                       <i class="fas fa-pencil-alt">
                       </i>
                       Edit
                     </a>`;
+                  break;
+                default:
+                  return `<a class="btn btn-info btn-sm" href="<?php echo base_url() . 'Wilayah/pilih_koordinator_wilayah/' ?>${row.id_wilayah}">
+                      <i class="fas fa-plus">
+                      </i>
+                      Koordinator
+                    </a>`;
+                  break;
+              }
+
             }
           }
         <?php } ?>
       ]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    });
 
   });
 </script>

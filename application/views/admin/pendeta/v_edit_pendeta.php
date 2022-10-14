@@ -101,15 +101,37 @@
                 <div class=" form-group">
                   <label>Status</label>
                   <select class="form-control select2bs4" style="width: 100%;" name="status">
-                    <?php if ($list_pendeta_edit->status_pendeta == 1) { ?>
+                    <?php if ($list_pendeta_edit->status_pendeta == "PENDETA AKTIF") { ?>
                       <option value="<?php echo $list_pendeta_edit->status_pendeta ?>" <?php echo "selected"; ?>>
-                        <?php echo 'Aktif'; ?>
+                        <?php echo 'Pendeta Aktif'; ?>
                       </option>
-                      <option value="0">Tidak Aktif</option>
+                      <option value="PENATUA AKTIF">Penatua Aktif</option>
+                      <option value="EMERITUS">Emeritus</option>
+                      <option value="TIDAK AKTIF">Tidak Aktif</option>
                     <?php } ?>
 
-                    <?php if ($list_pendeta_edit->status_pendeta == 0) { ?>
-                      <option value="1">Aktif</option>
+                    <?php if ($list_pendeta_edit->status_pendeta == "PENATUA AKTIF") { ?>
+                      <option value="PENDETA AKTIF">Pendeta Aktif</option>
+                      <option value="<?php echo $list_pendeta_edit->status_pendeta ?>" <?php echo "selected"; ?>>
+                        <?php echo 'Penatua Aktif' ?>
+                      </option>
+                      <option value="EMERITUS">Emeritus</option>
+                      <option value="TIDAK AKTIF">Tidak Aktif</option>
+                    <?php } ?>
+
+                    <?php if ($list_pendeta_edit->status_pendeta == "EMERITUS") { ?>
+                      <option value="PENDETA AKTIF">Pendeta Aktif</option>
+                      <option value="PENATUA AKTIF">Penatua Aktif</option>
+                      <option value="<?php echo $list_pendeta_edit->status_pendeta ?>" <?php echo "selected"; ?>>
+                        <?php echo 'Emeritus' ?>
+                      </option>
+                      <option value="TIDAK AKTIF">Tidak Aktif</option>
+                    <?php } ?>
+
+                    <?php if ($list_pendeta_edit->status_pendeta == "TIDAK AKTIF") { ?>
+                      <option value="PENDETA AKTIF">Pendeta Aktif</option>
+                      <option value="PENATUA AKTIF">Penatua Aktif</option>
+                      <option value="EMERITUS">Emeritus</option>
                       <option value="<?php echo $list_pendeta_edit->status_pendeta ?>" <?php echo "selected"; ?>>
                         <?php echo 'Tidak Aktif' ?>
                       </option>
