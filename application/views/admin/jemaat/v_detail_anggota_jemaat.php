@@ -47,7 +47,7 @@
                                     <h5> <strong> Koordinator - Nama Wilayah </strong> </h5>
                                     <p><?php foreach ($wilayah as $list_wilayah) {
                                             if ($list_wilayah->id_wilayah == $list_detail_jemaat->id_wilayah) {
-                                                echo $list_wilayah->nama_lengkap_anggota . " - " . $list_wilayah->nama_wilayah;
+                                                echo $list_wilayah->nama_wilayah;
                                             }
                                         }
                                         ?></p>

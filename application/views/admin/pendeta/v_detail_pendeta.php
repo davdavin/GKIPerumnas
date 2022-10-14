@@ -57,12 +57,7 @@
                   </p>
                   <h5> <strong> Status </strong> </h5>
                   <p>
-                    <?php if ($list_detail_pendeta->status_pendeta == 1) {
-                      echo 'Aktif';
-                    } else {
-                      echo 'Tidak Aktif';
-                    }
-                    ?>
+                   <?php echo $list_detail_pendeta->status_pendeta; ?>
                   </p>
                 </div>
               </div>

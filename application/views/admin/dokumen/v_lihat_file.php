@@ -7,7 +7,7 @@
     <title>View PDF</title>
 
     <!-- Favicons -->
-    <link href="<?php echo base_url(); ?>resources/assets/img/logo.jpg" rel="icon">
+    <link href="<?php echo base_url(); ?>resources/assets/img/logo-GKI-tr.png" rel="icon">
     <link rel="stylesheet" href="<?php echo base_url(); ?>resources/tambahanStyle.css">
 
 </head>
@@ -16,7 +16,7 @@
 
     <div class="card">
         <div class="row">
-            <iframe class="view-document" src="<?php echo base_url() .  'dokumenFormulir/' . $dokumen['dokumen'] ?>" title="test"></iframe>
+            <iframe class="view-document" src="<?php echo base_url() .  'dokumenFormulir/' . $dokumen['nama_dokumen'] ?>"></iframe>
         </div>
     </div>
 

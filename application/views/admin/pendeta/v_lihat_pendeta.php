@@ -131,8 +131,10 @@
                 <label>Status</label>
                 <select class="form-control select2bs4" style="width: 100%;" name="status">
                   <option selected disabled value>Status</option>
-                  <option value="1">Aktif</option>
-                  <option value="0">Tidak Aktif</option>
+                  <option value="PENDETA AKTIF">Pendeta Aktif</option>
+                  <option value="PENATUA AKTIF">Penatua Aktif</option>
+                  <option value="EMERITUS">Emeritus</option>
+                  <option value="TIDAK AKTIF">Tidak Aktif</option>
                 </select>
                 <div class="px-2 error_status clear" style="display: none">
                 </div>
@@ -253,19 +255,7 @@
           "data": "tanggal_lahir_pendeta"
         },
         {
-          data: null,
-          name: null,
-          sortable: true, //sort
-          render: function(data, type, row, meta) {
-            switch (row.status_pendeta) { //row.status_pendeta itu maksudnya status_pendeta di row ini 
-              case "1":
-                return `<span class="badge badge-success">Aktif</span>`;
-                break;
-              default:
-                return `<span class="badge badge-danger">Tidak Aktif</span>`;
-                break;
-            }
-          }
+        "data":"status_pendeta"
         },
         {
           data: null,

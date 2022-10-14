@@ -41,10 +41,10 @@
             </div>
             <div class="form-group">
               <label for="exampleInputFile">File</label>
-              <p>Dokumen saat ini: <a href="<?php echo base_url() . 'Dokumen/view_file/' . $list_dokumen_edit->dokumen ?>"><?= $list_dokumen_edit->dokumen ?></a></p>
+              <p>Dokumen saat ini: <a href="<?php echo base_url() . 'Dokumen/view_file/' . $list_dokumen_edit->nama_dokumen ?>"><?= $list_dokumen_edit->nama_dokumen ?></a></p>
               <div class="input-group">
                 <div class="custom-file">
-                  <input type="hidden" name="dokumen_lama" value="<?= $list_dokumen_edit->dokumen ?>">
+                  <input type="hidden" name="dokumen_lama" value="<?= $list_dokumen_edit->nama_dokumen ?>">
                   <input type="file" class="custom-file-input" id="exampleInputFile" name="dokumen_baru">
                   <label class="custom-file-label" for="exampleInputFile">Pilih file</label>
                 </div>

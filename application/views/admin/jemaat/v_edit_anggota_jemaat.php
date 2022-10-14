@@ -63,7 +63,7 @@
                       <option value="<?php echo $list_wilayah->id_wilayah ?>" <?php if ($list_wilayah->id_wilayah == $list_jemaat_edit->id_wilayah) {
                                                                                 echo "selected";
                                                                               } ?>>
-                        <?php echo $list_wilayah->nama_lengkap_anggota . " - " . $list_wilayah->nama_wilayah; ?>
+                        <?php echo $list_wilayah->nama_wilayah; ?>
                       </option>
                     <?php
                     } ?>
