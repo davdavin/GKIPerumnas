@@ -220,11 +220,11 @@
           data: "jenis_dokumen"
         },
         {
-          data: "dokumen",
+          data: "nama_dokumen",
           name: null,
           sortable: false,
           render: function(data, type, row, meta) {
-            return `<a href="<?php echo base_url() . 'Dokumen/view_file/' ?>${row.dokumen}" target="_blank">` + data + `</a>`;
+            return `<a href="<?php echo base_url() . 'Dokumen/view_file/' ?>${row.nama_dokumen}" target="_blank">` + data + `</a>`;
           }
         },
         {
@@ -239,7 +239,7 @@
             return `<?php if ($this->session->userdata('level_user') == 1) { ?> <a class=" btn btn-primary btn-sm" href="<?php echo base_url() . 'uploadDokumen/' ?>${row.id_dokumen}" download>
                       <i class="fas fa-download">
                       </i>
-                      Unduh
+                      Download
                     </a>
                     <a class="btn btn-info btn-sm" href="<?php echo base_url() . 'Dokumen/edit_dokumen/' ?>${row.id_dokumen}">
                       <i class="fas fa-pencil-alt">
@@ -300,7 +300,7 @@
           data: "jenis_dokumen"
         },
         {
-          data: "kumpul_dokumen"
+          data: "nama_dokumen"
         },
         {
           data: "tanggal_kumpul"
@@ -310,7 +310,7 @@
           name: null,
           sortable: false,
           render: function(data, type, row, meta) {
-            return `<a class="btn btn-primary btn-sm" href="<?php echo base_url() . 'pengumpulanDokumen/' ?>${row.kumpul_dokumen}" download>
+            return `<a class="btn btn-primary btn-sm" href="<?php echo base_url() . 'pengumpulanDokumen/' ?>${row.nama_dokumen}" download>
                         <i class="fas fa-download">
                         </i>
                         Download

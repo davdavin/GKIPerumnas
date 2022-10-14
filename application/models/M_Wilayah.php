@@ -4,8 +4,17 @@ class M_Wilayah extends CI_Model
 {
     public function tampil()
     {
-        $query = $this->db->query('SELECT * FROM wilayah JOIN anggota_jemaat ON anggota_jemaat.id_anggota = wilayah.koordinator_wilayah');
-        return $query;
+        return $this->db->query('SELECT * FROM wilayah');
+    }
+
+    public function pilih_wilayah($id_wilayah)
+    {
+        return $this->db->query("SELECT * FROM wilayah WHERE id_wilayah = '$id_wilayah'");
+    }
+
+    public function tampil_koordinator_wilayah()
+    {
+        return $this->db->query("SELECT wilayah.id_wilayah, nama_lengkap_anggota, nama_wilayah FROM wilayah JOIN detail_wilayah ON wilayah.id_wilayah = detail_wilayah.id_wilayah JOIN anggota_jemaat ON anggota_jemaat.id_anggota = detail_wilayah.koordinator_wilayah");
     }
     public function tampil_total_wilayah()
     {
@@ -32,7 +41,7 @@ class M_Wilayah extends CI_Model
 
     public function tampil_edit($id_wilayah)
     {
-        return $this->db->query("SELECT * FROM wilayah INNER JOIN anggota_jemaat ON anggota_jemaat.id_anggota = wilayah.koordinator_wilayah WHERE wilayah.id_wilayah = '$id_wilayah'");
+        return $this->db->query("SELECT wilayah.id_wilayah, nama_lengkap_anggota, nama_wilayah FROM wilayah JOIN detail_wilayah ON wilayah.id_wilayah = detail_wilayah.id_wilayah JOIN anggota_jemaat ON anggota_jemaat.id_anggota = detail_wilayah.koordinator_wilayah WHERE wilayah.id_wilayah = '$id_wilayah'");
     }
 
     public function update_record($where, $data, $table)
