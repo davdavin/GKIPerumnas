@@ -342,30 +342,6 @@
       </div>
     </section><!-- End Artikel Section -->
 
-    <!-- ======= Artikel Section ======= -->
-    <!--  <section id="warta" class="artikel section-bg">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Warta Jemaat</h2>
-        </div>
-
-        <div class="row  d-flex align-items-stretch">
-          <?php foreach ($warta as $list_warta) { ?>
-            <div class="col-lg-6 artikel-item" data-aos="fade-up">
-              <h4><a href="<?php echo base_url() . 'Artikel/baca_artikel/' . $list_warta->id_artikel; ?>"><?php echo $list_warta->judul_artikel ?> </a></h4>
-              <p><?php echo $list_warta->deskripsi_singkat ?></p>
-            </div>
-          <?php } ?>
-        </div>
-
-        <div class="seeMore">
-          <a href="<?php echo base_url() . 'Artikel/warta_jemaat' ?>" target="_blank"><button class="btn-effect-bg btn-seeMore">Lihat Semua</button></a>
-        </div>
-      </div>
-    </section> -->
-    <!-- End Artikel Section -->
-
     <!-- ======= Dokumen Section ======= -->
     <section id="dokumen" class="dokumen">
       <div class="container" data-aos="fade-up">
@@ -380,15 +356,15 @@
               <div class="icon"><i class="bx bx-file"></i></div>
               <h4 class="title"><?php echo $listFormPendaftaran->jenis_dokumen ?></h4>
               <p class="description">Anda bisa download
-                <a href="<?php echo base_url() . 'dokumenFormulir/' . $listFormPendaftaran->dokumen ?>" download>disini</a>
+                <a href="<?php echo base_url() . 'dokumenFormulir/' . $listFormPendaftaran->nama_dokumen ?>" download>disini</a>
               </p>
 
             </div>
           <?php }  ?>
           <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
             <div class="icon"><i class="bx bx-upload"></i></div>
-            <h4 class="title">Pengumpulan Formulir</h4>
-            <p class="description">Anda bisa kumpul form yang telah di isi <a href="<?php echo base_url() . 'pengumpulan'
+            <h4 class="title">Pengumpulan Dokumen</h4>
+            <p class="description">Anda bisa kumpul <a href="<?php echo base_url() . 'pengumpulan'
                                                                                     ?>">disini</a></p>
           </div>
           <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
