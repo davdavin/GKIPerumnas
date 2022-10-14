@@ -7,6 +7,11 @@ class M_Ruangan extends CI_Model
         return $this->db->query("SELECT * FROM ruangan");
     }
 
+    public function urutan_peminjaman_ruangan_terbanyak()
+    {
+        return $this->db->query("SELECT nama_ruangan, count(id_peminjaman) as total FROM peminjaman_ruangan INNER JOIN ruangan ON peminjaman_ruangan.id_ruangan = ruangan.id_ruangan GROUP BY nama_ruangan ORDER BY count(id_peminjaman) DESC");
+    }
+
     public function informasi_peminjaman()
     {
         return $this->db->query("SELECT * FROM peminjaman_ruangan INNER JOIN ruangan ON peminjaman_ruangan.id_ruangan = ruangan.id_ruangan WHERE is_deleted = 0");
@@ -14,7 +19,7 @@ class M_Ruangan extends CI_Model
 
     public function informasi_detail_peminjaman($id_ruangan)
     {
-        return $this->db->query("SELECT * FROM peminjaman_ruangan INNER JOIN ruangan ON peminjaman_ruangan.id_ruangan = ruangan.id_ruangan WHERE peminjaman_ruangan.id_ruangan = '$id_ruangan'");
+        return $this->db->query("SELECT * FROM peminjaman_ruangan INNER JOIN ruangan ON peminjaman_ruangan.id_ruangan = ruangan.id_ruangan WHERE peminjaman_ruangan.id_ruangan = '$id_ruangan' AND is_deleted = 0 AND status_peminjaman = 'PEMINJAMAN'");
     }
 
     public function pilih_ruangan($id_ruangan)
@@ -24,12 +29,7 @@ class M_Ruangan extends CI_Model
 
     public function jumlah_peminjaman_baru()
     {
-        return $this->db->query("SELECT count(is_notif) as jumlahPeminjamanBaru FROM peminjaman_ruangan WHERE is_notif = 0");
-    }
-
-    public function ubah_status_notif()
-    {
-        $this->db->query("UPDATE peminjaman_ruangan SET is_notif = 1");
+        return $this->db->query("SELECT count(id_peminjaman) as jumlahPeminjamanBaru FROM peminjaman_ruangan WHERE status_peminjaman = 'PEMINJAMAN'");
     }
 
     public function insert_record($data, $table)

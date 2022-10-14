@@ -91,7 +91,7 @@
                                 <div class="input-group">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="foto" name="foto">
-                                        <label class="custom-file-label" for="foto">Pilih foto (Maks size 5MB)</label>
+                                        <label class="custom-file-label" for="foto">Pilih foto</label>
                                     </div>
                                 </div>
                                 <div class="px-2 error_foto clear" style="display: none">
@@ -99,7 +99,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <a type="button" class="btn btn-primary" onclick="addRow()">Add row</a>
+                            <!-- <a type="button" class="btn btn-primary" onclick="addRow()">Add row</a> -->
                             <button type="submit" class="btn btn-primary simpan" id="tombolSimpan">Submit</button>
                         </div>
                     </form>
