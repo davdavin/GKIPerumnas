@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+date_default_timezone_set('Asia/Jakarta');
+
 class Konten extends CI_Controller
 {
     public function __construct()
@@ -68,6 +70,7 @@ class Konten extends CI_Controller
             echo json_encode($respon);
         } else {
 
+            $tanggal = date('Y-m-d H:i:s');
             $where = array('id_slide' => $id_slide);
 
             if ($gambar_baru == "") {
@@ -83,8 +86,8 @@ class Konten extends CI_Controller
             } else {
                 //upload file
                 $config['upload_path'] = './resources/assets/img/slide/';
-                $config['allowed_types'] = 'gif|jpg|png';
-                $config['max_size'] = 100000; //100 MB
+                $config['allowed_types'] = 'jpeg|jpg|png';
+                $config['max_size'] = 5000; //5 MB
 
                 $this->load->library('upload', $config);
                 if (!$this->upload->do_upload('gambar_baru')) {
@@ -97,7 +100,8 @@ class Konten extends CI_Controller
                     $data = array(
                         'judul_slide' => $judul_slide,
                         'deskripsi_slide' => $deskripsi_slide,
-                        'gambar_slide' => $this->upload->data('file_name')
+                        'gambar_slide' => $this->upload->data('file_name'),
+                        'updated_at' => $tanggal
                     );
 
                     @unlink('./resources/assets/img/slide/' . $gambar_lama); //untuk hapus gambar lama
@@ -118,8 +122,8 @@ class Konten extends CI_Controller
 
         //upload file
         $config['upload_path'] = './resources/assets/img/gallery/';
-        $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size'] = 100000; //100 MB 
+        $config['allowed_types'] = 'jpeg|jpg|png';
+        $config['max_size'] = 5000; //5 MB
 
         $this->load->library('upload', $config);
         if (!$this->upload->do_upload('fotoIbadah')) {
@@ -129,9 +133,10 @@ class Konten extends CI_Controller
             );
             echo json_encode($respon);
         } else {
+            $tanggal = date('Y-m-d H:i:s');
             $foto = $this->upload->data('file_name');
             $where = array('id_foto_ibadah' => $id_foto_ibadah);
-            $data = array('foto_ibadah' => $foto);
+            $data = array('foto_ibadah' => $foto, 'updated_at' => $tanggal);
 
             @unlink('./resources/assets/img/gallery/' . $foto_lama); //untuk hapus foto lama
 

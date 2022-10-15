@@ -8,8 +8,8 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-            <li class="breadcrumb-item active">Konten</li>
+            <li class="breadcrumb-item active"><a href="<?php echo base_url() . 'admin/dashboard' ?>">Dashboard</a></li>
+            <li class="breadcrumb-item active"><a href="<?php echo base_url() . 'Konten' ?>">Konten</a></li>
             <li class="breadcrumb-item active">Edit</li>
           </ol>
         </div>
@@ -48,7 +48,12 @@
               <label>Foto</label><br>
               <input type="hidden" name="gambar_lama" value="<?= $list_edit->gambar_slide ?>">
               <img src="<?php echo base_url(); ?>resources/assets/img/slide/<?php echo $list_edit->gambar_slide; ?>" class="img-fluid" style="width: 50%;"><br><br>
-              <input type="file" name="gambar_baru">
+              <div class="input-group">
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" name="gambar_baru">
+                      <label class="custom-file-label" for="foto">Pilih foto</label>
+                    </div>
+                </div>
               <div class="px-2 error_foto clear" style="display: none">
               </div>
             </div>
@@ -79,6 +84,8 @@
 <script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- SweetAlert2 -->
 <script src="<?php echo base_url(); ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- bs-custom-file-input -->
+<script src="<?php echo base_url(); ?>assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <!-- daterangepicker -->
 <script src="<?php echo base_url(); ?>assets/plugins/moment/moment.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/daterangepicker/daterangepicker.js"></script>
@@ -99,7 +106,8 @@
 <script src="<?php echo base_url(); ?>resources/tinymce/jquery.tinymce.min.js"></script>
 
 <script>
-  $(function() {
+  $(document).ready(function() {
+    bsCustomFileInput.init();
     tinymce.init({
       selector: 'textarea#textArea',
       height: 200,
