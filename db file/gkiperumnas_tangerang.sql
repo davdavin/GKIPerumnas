@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2022 at 06:24 AM
+-- Generation Time: Oct 15, 2022 at 11:27 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -190,23 +190,24 @@ INSERT INTO `keuangan` (`id_keuangan`, `kegiatan`, `keterangan`, `uang_masuk`, `
 CREATE TABLE `konten_foto_ibadah` (
   `id_foto_ibadah` int(11) NOT NULL,
   `momen` varchar(20) NOT NULL,
-  `foto_ibadah` varchar(100) NOT NULL
+  `foto_ibadah` varchar(100) NOT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `konten_foto_ibadah`
 --
 
-INSERT INTO `konten_foto_ibadah` (`id_foto_ibadah`, `momen`, `foto_ibadah`) VALUES
-(1, 'natal', 'natal1.jpg'),
-(2, 'palmarum', 'palmarum1.jpg'),
-(3, 'natal', 'natal2.jpg'),
-(4, 'paskah', 'paskah1.jpg'),
-(5, 'palmarum', 'palmarum2.jpg'),
-(6, 'natal', 'natal3.jpg'),
-(7, 'paskah', 'paskah2.jpg'),
-(8, 'paskah', 'paskah3.jpg'),
-(9, 'palmarum', 'palmarum3.jpg');
+INSERT INTO `konten_foto_ibadah` (`id_foto_ibadah`, `momen`, `foto_ibadah`, `updated_at`) VALUES
+(1, 'natal', 'natal1.jpg', '2022-10-15 16:20:24'),
+(2, 'palmarum', 'palmarum1.jpg', NULL),
+(3, 'natal', 'natal2.jpg', NULL),
+(4, 'paskah', 'paskah1.jpg', NULL),
+(5, 'palmarum', 'palmarum2.jpg', NULL),
+(6, 'natal', 'natal3.jpg', NULL),
+(7, 'paskah', 'paskah2.jpg', NULL),
+(8, 'paskah', 'paskah3.jpg', NULL),
+(9, 'palmarum', 'palmarum3.jpg', NULL);
 
 -- --------------------------------------------------------
 
@@ -217,20 +218,21 @@ INSERT INTO `konten_foto_ibadah` (`id_foto_ibadah`, `momen`, `foto_ibadah`) VALU
 CREATE TABLE `konten_slide` (
   `id_slide` int(11) NOT NULL,
   `judul_slide` varchar(50) NOT NULL,
-  `deskripsi_slide` varchar(100) NOT NULL,
-  `gambar_slide` varchar(100) NOT NULL
+  `deskripsi_slide` varchar(500) NOT NULL,
+  `gambar_slide` varchar(100) NOT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `konten_slide`
 --
 
-INSERT INTO `konten_slide` (`id_slide`, `judul_slide`, `deskripsi_slide`, `gambar_slide`) VALUES
-(1, 'Selamat Datang', '<p>Sebab di mana dua atau tiga orang berkumpul dalam nama-Ku,<br />di situ Aku ada di tengah-tengah ', 'GedungUtama.jpg'),
-(2, 'Paduan Suara', '<p>Biarlah segala yang bernafas memuji Tuhan! Haleluya! - Mzm 150:6</p>', 'Choir.jpg'),
-(3, 'Sekolah Minggu', '<p>Ketika Yesus melihat hal itu, Ia marah dan berkata kepada mereka: \"Biarkan anak-anak itu datang k', 'AnakSekolahMinggu.jpg'),
-(4, 'Lanjut Usia', '<p>Sampai masa tuamu Aku tetap Dia dan sampai masa putih rambutmu Aku menggendong kamu.<br />Aku tel', 'Lansia.png'),
-(5, 'Ibadah Raya', '<p>Karena itu, saudara-saudara, demi kemurahan Allah aku menasihatkan kamu,<br />supaya kamu mempers', 'ibadah-raya2.png');
+INSERT INTO `konten_slide` (`id_slide`, `judul_slide`, `deskripsi_slide`, `gambar_slide`, `updated_at`) VALUES
+(1, 'Selamat Datang', '<p>Sebab di mana dua atau tiga orang berkumpul dalam nama-Ku,<br />di situ Aku ada di tengah-tengah ', 'GedungUtama.jpg', NULL),
+(2, 'Paduan Suara', '<p>Biarlah segala yang bernafas memuji Tuhan! Haleluya! - Mzm 150:6</p>', 'Choir.jpg', NULL),
+(3, 'Sekolah Minggu', '<p>Ketika Yesus melihat hal itu, Ia marah dan berkata kepada mereka: \"Biarkan anak-anak itu datang kepada-Ku, jangan menghalang-halangi mereka, sebab orang-orang yang seperti itulah yang empunya Keraj', 'AnakSekolahMinggu.jpg', '2022-10-15 16:18:42'),
+(4, 'Lanjut Usia', '<p>Sampai masa tuamu Aku tetap Dia dan sampai masa putih rambutmu Aku menggendong kamu.<br />Aku tel', 'Lansia.png', NULL),
+(5, 'Ibadah Raya', '<p>Karena itu, saudara-saudara, demi kemurahan Allah aku menasihatkan kamu,<br />supaya kamu mempers', 'ibadah-raya2.png', NULL);
 
 -- --------------------------------------------------------
 
@@ -270,6 +272,8 @@ CREATE TABLE `peminjaman_ruangan` (
   `jam_mulai` time NOT NULL,
   `jam_selesai` time NOT NULL,
   `status_peminjaman` varchar(20) NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
   `is_deleted` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -277,11 +281,10 @@ CREATE TABLE `peminjaman_ruangan` (
 -- Dumping data for table `peminjaman_ruangan`
 --
 
-INSERT INTO `peminjaman_ruangan` (`id_peminjaman`, `id_ruangan`, `nama_peminjam`, `email_peminjam`, `nohp_peminjam`, `keperluan`, `tanggal_booking`, `jam_mulai`, `jam_selesai`, `status_peminjaman`, `is_deleted`) VALUES
-(1, 1, 'Kevin', 'satusatu@gmail.com', '089283282121', 'Seminar', '2022-10-09', '10:04:00', '15:00:00', 'SELESAI', 0),
-(2, 2, 'tes', 'sipsip@gmail.com', '088217231921', 'Seminar', '2022-10-06', '09:43:00', '12:46:00', 'SELESAI', 0),
-(9, 2, 'Budi', 'budibudi@gmail.com', '088904040829', 'Seminar', '2022-10-14', '12:20:00', '13:22:00', 'PEMINJAMAN', 0),
-(11, 2, 'Yoyo', 'sipsip@gmail.com', '088217231921', 'Seminar', '2022-10-14', '14:00:00', '14:25:00', 'PEMINJAMAN', 0);
+INSERT INTO `peminjaman_ruangan` (`id_peminjaman`, `id_ruangan`, `nama_peminjam`, `email_peminjam`, `nohp_peminjam`, `keperluan`, `tanggal_booking`, `jam_mulai`, `jam_selesai`, `status_peminjaman`, `updated_at`, `deleted_at`, `is_deleted`) VALUES
+(1, 2, 'Budi', 'budibudi@gmail.com', '088904040829', 'Seminar', '2022-10-14', '12:20:00', '13:22:00', 'SELESAI', '2022-10-15 14:35:49', NULL, 0),
+(2, 2, 'Yoyo', 'sipsip@gmail.com', '088217231921', 'Seminar', '2022-10-14', '14:00:00', '14:25:00', 'SELESAI', '2022-10-15 14:54:10', NULL, 0),
+(3, 1, 'Kevin', 'satusatu@gmail.com', '0808273262314', 'Seminar', '2022-10-22', '10:00:00', '18:00:00', 'PEMINJAMAN', NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -370,19 +373,21 @@ CREATE TABLE `ruangan` (
   `nama_ruangan` varchar(50) NOT NULL,
   `kapasitas` int(11) NOT NULL,
   `perlengkapan` varchar(200) NOT NULL,
-  `foto` varchar(100) NOT NULL
+  `foto` varchar(100) NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `ruangan`
 --
 
-INSERT INTO `ruangan` (`id_ruangan`, `nama_ruangan`, `kapasitas`, `perlengkapan`, `foto`) VALUES
-(1, 'Ibadah Umum', 300, '<ul>\r\n<li>Proyektor</li>\r\n<li>AC</li>\r\n<li>Sound system</li>\r\n</ul>', 'ibadah-umum.jpg'),
-(2, 'Majelis', 30, '<ul>\r\n<li>Proyektor</li>\r\n<li>TV</li>\r\n<li>AC</li>\r\n</ul>', 'majelis.jpg'),
-(3, 'Aula', 40, '<ul>\r\n<li>2 Proyektor</li>\r\n<li>AC</li>\r\n<li>Perlengkapan sound system</li>\r\n</ul>', 'aula.jpg'),
-(4, 'Ruang Remaja', 30, '<ul>\r\n<li>Proyektor</li>\r\n<li>AC</li>\r\n<li>Papan tulis</li>\r\n</ul>', 'remaja.jpg'),
-(5, 'Ruang Dewasa', 30, '<ul>\r\n<li>TV</li>\r\n<li>AC</li>\r\n<li>Papan tulis</li>\r\n</ul>', 'dewasa.jpg');
+INSERT INTO `ruangan` (`id_ruangan`, `nama_ruangan`, `kapasitas`, `perlengkapan`, `foto`, `created_at`, `updated_at`) VALUES
+(1, 'Ibadah Umum', 300, '<ul>\r\n<li>Proyektor</li>\r\n<li>AC</li>\r\n<li>Perlengkapan Sound system</li>\r\n</ul>', 'ibadah-umum.jpg', '2022-09-08 14:59:55', '2022-10-15 15:14:29'),
+(2, 'Majelis', 30, '<ul>\r\n<li>Proyektor</li>\r\n<li>TV</li>\r\n<li>AC</li>\r\n</ul>', 'majelis.jpg', '2022-09-08 15:00:02', NULL),
+(3, 'Aula', 40, '<ul>\r\n<li>2 Proyektor</li>\r\n<li>AC</li>\r\n<li>Perlengkapan sound system</li>\r\n</ul>', 'aula.jpg', '2022-09-08 15:00:06', NULL),
+(4, 'Ruang Remaja', 30, '<ul>\r\n<li>Proyektor</li>\r\n<li>AC</li>\r\n<li>Papan tulis</li>\r\n</ul>', 'remaja.jpg', '2022-09-09 15:00:30', NULL),
+(5, 'Ruang Dewasa', 30, '<ul>\r\n<li>TV</li>\r\n<li>AC</li>\r\n<li>Papan tulis</li>\r\n</ul>', 'dewasa.jpg', '2022-09-09 15:00:36', NULL);
 
 -- --------------------------------------------------------
 
@@ -591,7 +596,7 @@ ALTER TABLE `level_user`
 -- AUTO_INCREMENT for table `peminjaman_ruangan`
 --
 ALTER TABLE `peminjaman_ruangan`
-  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `pendeta`
