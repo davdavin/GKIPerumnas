@@ -94,7 +94,9 @@
               <div class="icon">
                 <i class="fas fa-map"></i>
               </div>
-              <a href="<?php echo base_url() . 'Notifikasi' ?>" class="small-box-footer">Lihat lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
+              <?php if ($this->session->userdata('level_user') == 2) { ?>
+                <a href="<?php echo base_url() . 'Notifikasi' ?>" class="small-box-footer">Lihat lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
+              <?php } ?>
             </div>
           </div>
         <?php } ?>

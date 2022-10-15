@@ -27,9 +27,11 @@
         </div>
 
         <div class="card-body">
-          <a href="<?php echo base_url() . 'mengelola_artikel/tambah' ?>"><button type="button" class="btn btn-primary">
-              <i class="fas fa-plus"></i> Tambah artikel
-            </button></a><br><br>
+          <?php if ($this->session->userdata('level_user') == 2 || $this->session->userdata('level_user') == 3) { ?>
+            <a href="<?php echo base_url() . 'mengelola_artikel/tambah' ?>"><button type="button" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Tambah artikel
+              </button></a><br><br>
+          <?php } ?>
 
           <table id="tabel_artikel" class="table table-bordered table-striped">
             <thead>
@@ -38,7 +40,9 @@
                 <th>Judul</th>
                 <th>Tipe</th>
                 <th>Deskripsi Singkat</th>
-                <th>Aksi</th>
+                <?php if ($this->session->userdata('level_user') == 2 || $this->session->userdata('level_user') == 3) { ?>
+                  <th>Aksi</th>
+                <?php } ?>
               </tr>
             </thead>
           </table>
@@ -144,12 +148,12 @@
         {
           "data": "deskripsi_singkat"
         },
-        {
-          data: null,
-          name: null,
-          sortable: false,
-          render: function(data, type, row, meta) {
-            return `<a class="btn btn-info btn-sm" href="<?php echo base_url() . 'mengelola_artikel/edit/' ?>${row.id_artikel}">
+        <?php if ($this->session->userdata('level_user') == 2 || $this->session->userdata('level_user') == 3) { ?> {
+            data: null,
+            name: null,
+            sortable: false,
+            render: function(data, type, row, meta) {
+              return `<a class="btn btn-info btn-sm" href="<?php echo base_url() . 'mengelola_artikel/edit/' ?>${row.id_artikel}">
                       <i class="fas fa-pencil-alt">
                       </i>
                       Edit
@@ -159,8 +163,9 @@
                       </i>
                       Hapus
                     </a>`;
-          }
-        },
+            }
+          },
+        <?php } ?>
       ]
     });
 

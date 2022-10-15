@@ -187,7 +187,6 @@ class MengelolaRuangan extends CI_Controller
 
     public function lihat_peminjaman()
     {
-        $this->M_Ruangan->ubah_status_notif();
         $data['title'] = "Ruangan";
         $data['peminjaman'] = $this->M_Ruangan->informasi_peminjaman()->result();
         $this->load->view('templates/header.php', $data);

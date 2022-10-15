@@ -27,7 +27,7 @@
         </div>
 
         <div class="card-body">
-          <?php if ($this->session->userdata('level_user') == 1) { ?>
+          <?php if ($this->session->userdata('level_user') == 2) { ?>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
               <i class="fas fa-plus"></i> Tambah dokumen
             </button><br><br>
@@ -40,7 +40,9 @@
                 <th>Jenis Dokumen</th>
                 <th>File</th>
                 <th>Keterangan</th>
-                <th>Aksi</th>
+                <?php if ($this->session->userdata('level_user') == 2) { ?>
+                  <th>Aksi</th>
+                <?php } ?>
               </tr>
             </thead>
             <tbody>
@@ -51,29 +53,29 @@
         </div>
       </div>
 
-      <?php if ($this->session->userdata('level_user') == 1) { ?>
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Tabel Pengumpulan Dokumen</h3>
-          </div>
-
-          <div class="card-body">
-            <table id="pengumpulan" class="table table-bordered table-striped">
-              <thead>
-                <tr>
-                  <th>No.</th>
-                  <th>Nama Pengumpul</th>
-                  <th>Email Pengumpul</th>
-                  <th>Jenis Dokumen</th>
-                  <th>File</th>
-                  <th>Tanggal Kumpul</th>
-                  <th>Aksi</th>
-                </tr>
-              </thead>
-            </table>
-          </div>
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Tabel Pengumpulan Dokumen</h3>
         </div>
-      <?php } ?>
+
+        <div class="card-body">
+          <table id="pengumpulan" class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>Nama Pengumpul</th>
+                <th>Email Pengumpul</th>
+                <th>Jenis Dokumen</th>
+                <th>File</th>
+                <th>Tanggal Kumpul</th>
+                <?php if ($this->session->userdata('level_user') == 2 || $this->session->userdata('level_user') == 3) { ?>
+                  <th>Aksi</th>
+                <?php } ?>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
     </div>
     <!-- modal untuk menampilkan form input dokumen -->
     <div class="modal fade" id="modal-lg">
@@ -236,7 +238,7 @@
           name: null,
           sortable: false,
           render: function(data, type, row, meta) {
-            return `<?php if ($this->session->userdata('level_user') == 1) { ?> <a class=" btn btn-primary btn-sm" href="<?php echo base_url() . 'uploadDokumen/' ?>${row.id_dokumen}" download>
+            return `<?php if ($this->session->userdata('level_user') == 2) { ?> <a class=" btn btn-primary btn-sm" href="<?php echo base_url() . 'uploadDokumen/' ?>${row.id_dokumen}" download>
                       <i class="fas fa-download">
                       </i>
                       Download
@@ -305,18 +307,19 @@
         {
           data: "tanggal_kumpul"
         },
-        {
-          data: null,
-          name: null,
-          sortable: false,
-          render: function(data, type, row, meta) {
-            return `<a class="btn btn-primary btn-sm" href="<?php echo base_url() . 'pengumpulanDokumen/' ?>${row.nama_dokumen}" download>
+        <?php if ($this->session->userdata('level_user') == 2 || $this->session->userdata('level_user') == 3) { ?> {
+            data: null,
+            name: null,
+            sortable: false,
+            render: function(data, type, row, meta) {
+              return `<a class="btn btn-primary btn-sm" href="<?php echo base_url() . 'pengumpulanDokumen/' ?>${row.nama_dokumen}" download>
                         <i class="fas fa-download">
                         </i>
                         Download
                       </a>`
+            }
           }
-        }
+        <?php } ?>
       ]
     });
 

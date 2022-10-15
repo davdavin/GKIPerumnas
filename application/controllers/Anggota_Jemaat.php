@@ -18,7 +18,6 @@ class Anggota_Jemaat extends CI_Controller
 
     public function index()
     {
-        //  $data['jemaat'] = $this->M_Anggota_Jemaat->tampil()->result();
         $data['title'] = "Jemaat";
         $data['wilayah'] = $this->M_Wilayah->tampil()->result();
         $this->load->view('templates/header.php', $data);

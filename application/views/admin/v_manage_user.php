@@ -27,11 +27,9 @@
         </div>
 
         <div class="card-body">
-          <?php if ($this->session->userdata('level_user') == 1 || $this->session->userdata('level_user') == 2) { ?>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
-              <i class="fas fa-plus"></i> Tambah user
-            </button><br><br>
-          <?php } ?>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
+            <i class="fas fa-plus"></i> Tambah user
+          </button><br><br>
 
           <table id="tabel_user" class="table table-bordered table-striped">
             <thead>
@@ -289,19 +287,17 @@
           render: function(data, type, row, meta) {
             switch (row.status_user) {
               case "1":
-                return `<?php if ($this->session->userdata('level_user') == 1) { ?><a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_user}">
+                return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_user}">
                           <i class="fas fa-pencil-alt"></i> Edit
                         </a>
-                        <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'uSER/hapus_user/' ?>${row.id_user}" data-toggle="tooltip" data-placement="bottom" title="Hapus DatA uSER">
+                        <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'user/hapus_user/' ?>${row.id_user}">
                           <i class="fas fa-trash"></i> Hapus
-                        </a>
-                        <?php } ?>`;
+                        </a>`;
                 break;
               default:
-                return `<?php if ($this->session->userdata('level_user') == 1) { ?> <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_user}">
+                return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_user}">
                           <i class="fas fa-pencil-alt"></i> Edit
-                        </a>
-                        <?php } ?>`;
+                        </a>`;
                 break;
             }
           }
@@ -322,7 +318,7 @@
         cancelButtonText: 'batal',
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Ubah status'
+        confirmButtonText: 'Hapus'
       }).then((result) => {
         if (result.value) { //ini sama aja kayak == TRUE
           document.location.href = href;

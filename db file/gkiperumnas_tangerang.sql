@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 12, 2022 at 04:20 PM
+-- Generation Time: Oct 15, 2022 at 06:24 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -30,15 +30,13 @@ SET time_zone = "+00:00";
 CREATE TABLE `anggota_jemaat` (
   `id_anggota` int(11) NOT NULL,
   `id_wilayah` int(11) NOT NULL,
-  `no_anggota` varchar(100) NOT NULL,
-  `username` varchar(25) NOT NULL,
-  `password` char(255) NOT NULL,
-  `nama_lengkap_anggota` text NOT NULL,
-  `alamat_anggota` varchar(50) NOT NULL,
-  `nohp_anggota` varchar(15) NOT NULL,
+  `no_anggota` varchar(50) NOT NULL,
+  `nama_lengkap_anggota` varchar(100) NOT NULL,
+  `alamat_anggota` varchar(100) NOT NULL,
+  `nohp_anggota` varchar(30) NOT NULL,
   `email_anggota` varchar(50) NOT NULL,
   `jenis_kelamin_anggota` varchar(20) NOT NULL,
-  `golongan_darah_anggota` varchar(5) NOT NULL,
+  `golongan_darah_anggota` varchar(20) NOT NULL,
   `status_anggota` tinyint(4) NOT NULL,
   `pendidikan_anggota` varchar(50) NOT NULL,
   `pekerjaan_anggota` varchar(50) NOT NULL,
@@ -50,31 +48,30 @@ CREATE TABLE `anggota_jemaat` (
   `tanggal_atestasi_keluar` date DEFAULT NULL,
   `tanggal_meninggal` date DEFAULT NULL,
   `tanggal_dkh` date DEFAULT NULL,
-  `tanggal_ex_dkh` date DEFAULT NULL,
-  `status_akun` tinyint(4) NOT NULL
+  `tanggal_ex_dkh` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `anggota_jemaat`
 --
 
-INSERT INTO `anggota_jemaat` (`id_anggota`, `id_wilayah`, `no_anggota`, `username`, `password`, `nama_lengkap_anggota`, `alamat_anggota`, `nohp_anggota`, `email_anggota`, `jenis_kelamin_anggota`, `golongan_darah_anggota`, `status_anggota`, `pendidikan_anggota`, `pekerjaan_anggota`, `kelompok_etnis_anggota`, `tanggal_lahir_anggota`, `tanggal_baptis_anggota`, `tanggal_sidi_anggota`, `tanggal_atestasi_masuk`, `tanggal_atestasi_keluar`, `tanggal_meninggal`, `tanggal_dkh`, `tanggal_ex_dkh`, `status_akun`) VALUES
-(1, 1, '00001', '', '', 'Christella', 'Jl Melati', '082042832322', 'electronicdm10@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1999-10-05', '2017-10-06', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
-(2, 2, '00002', '', '', 'Sinta', 'Jl Melati', '0808273262314', 'electronicdm10@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1998-01-23', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
-(3, 3, '00003', '', '', 'Philip', 'Jl Melati', '089283282121', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '2000-12-16', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
-(4, 1, '00004', '', '', 'Bro', 'Jl. Apel ', '089283282121', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S2', 'Karyawan', 'Sunda', '1996-02-09', '2021-01-01', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
-(5, 8, '00005', '', '', 'Toni', 'Jl. Apel ', '0808273262314', 'vinvin@gmail.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '2000-09-16', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
-(6, 6, '00006', '', '', 'Marcelo', 'Jl. Apel ', '0808273262314', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1990-01-08', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
-(7, 7, '00007', '', '', 'Boy', 'Jl. Apel ', '089283282121', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1996-02-09', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
-(8, 4, '00008', '', '', 'Joseph', 'Jl. Apel ', '0808273262314', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1996-02-09', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
-(9, 2, '00009', '', '', 'Jack', 'Jl. Apel ', '0808273262314', 'brobro@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1990-10-21', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
-(10, 5, '000010', '', '', 'Yohanes', 'Jl. Apel ', '0808273262314', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1998-10-09', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
-(11, 5, '000011', '', '', 'Koko', 'Jl. Mangga', '088217231921', 'kokoko@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Jawa', '2000-10-01', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
-(12, 7, '000012', '', '', 'Bella', 'Jl. Buah Apel No.2 ', '088904040829', 'bellabella@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1994-10-22', '2010-08-21', '0000-00-00', '2008-07-16', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
-(13, 6, '000013', '', '', 'Josephine', 'Jl. Cengkeh Blok. A', '088904040829', 'josejose@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1995-07-12', '2012-11-22', '2022-07-21', '2000-10-18', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
-(14, 4, '000014', '', '', 'Maria', 'Jl. Mangga', '088904040829', 'marmar@example.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Jawa', '1996-11-05', '2008-02-12', '0000-00-00', '2000-10-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
-(15, 8, '000015', '', '', 'Brandon', 'Jl. Cengkeh Blok. AC', '088270120023', 'brandonbrandon@gmail.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Jawa', '1997-12-01', '2009-02-18', '2015-07-12', '2005-12-02', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
-(16, 3, '000016', '', '', 'Budi Boy', 'Jl. Anggur No. 2 Blok. AC', '088270120023', 'budibudi@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Jawa', '1967-12-08', '1975-04-12', '0000-00-00', '1975-01-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0);
+INSERT INTO `anggota_jemaat` (`id_anggota`, `id_wilayah`, `no_anggota`, `nama_lengkap_anggota`, `alamat_anggota`, `nohp_anggota`, `email_anggota`, `jenis_kelamin_anggota`, `golongan_darah_anggota`, `status_anggota`, `pendidikan_anggota`, `pekerjaan_anggota`, `kelompok_etnis_anggota`, `tanggal_lahir_anggota`, `tanggal_baptis_anggota`, `tanggal_sidi_anggota`, `tanggal_atestasi_masuk`, `tanggal_atestasi_keluar`, `tanggal_meninggal`, `tanggal_dkh`, `tanggal_ex_dkh`) VALUES
+(1, 1, '00001', 'Christella', 'Jl Melati', '082042832322', 'electronicdm10@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1999-10-05', '2017-10-06', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
+(2, 2, '00002', 'Sinta', 'Jl Melati', '0808273262314', 'electronicdm10@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1998-01-23', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
+(3, 3, '00003', 'Philip', 'Jl Melati', '089283282121', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '2000-12-16', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
+(4, 1, '00004', 'Bro', 'Jl. Apel ', '089283282121', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S2', 'Karyawan', 'Sunda', '1996-02-09', '2021-01-01', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
+(5, 8, '00005', 'Toni', 'Jl. Apel ', '0808273262314', 'vinvin@gmail.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '2000-09-16', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
+(6, 6, '00006', 'Marcelo', 'Jl. Apel ', '0808273262314', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1990-01-08', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
+(7, 7, '00007', 'Boy', 'Jl. Apel ', '089283282121', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1996-02-09', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
+(8, 4, '00008', 'Joseph', 'Jl. Apel ', '0808273262314', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1996-02-09', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
+(9, 2, '00009', 'Jack', 'Jl. Apel ', '0808273262314', 'brobro@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1990-10-21', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
+(10, 5, '000010', 'Yohanes', 'Jl. Apel ', '0808273262314', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1998-10-09', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
+(11, 5, '000011', 'Koko', 'Jl. Mangga', '088217231921', 'kokoko@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Jawa', '2000-10-01', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
+(12, 7, '000012', 'Bella', 'Jl. Buah Apel No.2 ', '088904040829', 'bellabella@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1994-10-22', '2010-08-21', '0000-00-00', '2008-07-16', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
+(13, 6, '000013', 'Josephine', 'Jl. Cengkeh Blok. A', '088904040829', 'josejose@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1995-07-12', '2012-11-22', '2022-07-21', '2000-10-18', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
+(14, 4, '000014', 'Maria', 'Jl. Mangga', '088904040829', 'marmar@example.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Jawa', '1996-11-05', '2008-02-12', '0000-00-00', '2000-10-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
+(15, 8, '000015', 'Brandon', 'Jl. Cengkeh Blok. AC', '088270120023', 'brandonbrandon@gmail.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Jawa', '1997-12-01', '2009-02-18', '2015-07-12', '2005-12-02', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
+(16, 3, '000016', 'Budi Boy', 'Jl. Anggur No. 2 Blok. AC', '088270120023', 'budibudi@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Jawa', '1967-12-08', '1975-04-12', '0000-00-00', '1975-01-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -86,9 +83,9 @@ CREATE TABLE `artikel` (
   `id_artikel` int(11) NOT NULL,
   `judul_artikel` varchar(50) NOT NULL,
   `tipe_artikel` varchar(25) NOT NULL,
-  `deskripsi_singkat` text NOT NULL,
+  `deskripsi_singkat` varchar(100) NOT NULL,
   `isi` text DEFAULT NULL,
-  `file` varchar(50) DEFAULT NULL,
+  `file` varchar(100) DEFAULT NULL,
   `tanggal_pembuatan` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -98,12 +95,38 @@ CREATE TABLE `artikel` (
 
 INSERT INTO `artikel` (`id_artikel`, `judul_artikel`, `tipe_artikel`, `deskripsi_singkat`, `isi`, `file`, `tanggal_pembuatan`) VALUES
 (1, 'KELUARGA YANG HIDUP DALAM PEMULIHAN', 'Renungan Harian', 'Markus 10 : 17 - 31', '<p><span style=\"font-weight: 400;\">Seringkali kita berpikir bahwa pemulihan atau penyembuhan adalah sebuah pencapaian dalam hidup beriman. Sederhananya karena saya sudah menjadi Kristen yang baik maka saya mendapatkan Anugerah pemulihan itu. Lalu kalau saya Kristen yang tidak baik maka yang terjadi sebaliknya. Pada dasarnya kita tahu bahwa karya Allah tidak bergerak seperti itu, Karya Allah bukan honor berbuat baik atau pahala.&nbsp;</span></p>\r\n<p><span style=\"font-weight: 400;\">Tetapi Karya Allah adalah Anugerah&hellip;. Anugerah berarti bicara sesuatu yang dianugerahkan (diberikan) secara cuma-cuma. Lalu apa standart orang yang layak mendapatkan Anugerah, jawabnya kesetiaan.&nbsp;</span></p>\r\n<p><span style=\"font-weight: 400;\">Kesetiaan untuk hidup dalam Rancangan-Nya, kesetiaan mengikuti ajaran-Nya. Mengalami Anugerah adalah mau setia dalam rancangan Allah. Itulah mengapa Yesus berkata:</span></p>\r\n<p><em><span style=\"font-weight: 400;\">\"Hanya satu lagi kekuranganmu: pergilah, juallah apa yang kaumiliki dan berikanlah itu kepada orang-orang miskin, maka engkau akan beroleh harta di sorga, kemudian datanglah ke mari dan ikutlah Aku.\" (Mar 10:21).</span></em></p>\r\n<p><span style=\"font-weight: 400;\">Dan respon sang anak muda itu adalah kecewa dan sedih karena banyak hartanya. Response kesedihan itu tentu saja karena sang anak muda merasa rencana Allah tak sesuai dengan rancangannya. kita selalu ingin rancangan Allah sesuai dengan kita, dan tak jarang memaksakannya. Hal yang sama mungkin kita paksa kan juga kepada anggota keluarga kita.</span></p>\r\n<p><span style=\"font-weight: 400;\">Orang tua memaksakan rancangan nya pada anaknya, suami pada istrinya, dst. Padahal rancangan kita belum tentu rancangan Allah atas hidup mereka. Itulah mengapa Yesus berkata sukarlah memang untuk masuk kerajaan Allah (ay .24). Karena masuk kerajaan Allah berarti menemukan dan menghidupi rancangan Allah atas keluarga kita.&nbsp;</span></p>\r\n<p><span style=\"font-weight: 400;\">Jadi dapat disimpulkan pemulihan adalah proses perjalanan dalam menghidupi rancangan, Mengikuti rancangan Nya berarti mau melakukan kehendak Nya, setia pada ketetapan Nya, dan bersedia berkarya bagi sesama.</span></p>\r\n<p>&nbsp;</p>\r\n<p style=\"text-align: center;\"><strong><em>Jadikanlah Rancangan-Rancangan Allah sebagai yang terutama maka kita akan merasakan Pemulihan-Nya.</em></strong></p>', NULL, '2022-02-01'),
-(2, 'Sejarah Singkat GKI Perumnas', 'Artikel Lainnya', 'GKI Perumnas awalnya terbentuk dari beberapa keluarga Kristen yang berdomisili di daerah Perumnas 1 dan 2.', '<p style=\"text-align: justify; line-height: 1.4;\"><span style=\"font-family: helvetica, arial, sans-serif; font-size: 12pt;\">GKI Perumnas awalnya terbentuk dari beberapa keluarga Kristen yang berdomisili di daerah Perumnas 1 dan 2. Yang sering kali bertemu dalam perjalanan menuju ke GKI Sutopo atau perjalanan pulang ke rumah dengan menaiki kendaraan angkutan kota. Dari perkenalan beberapa keluarga yang sama-sama beribadah di GKI Sutopo, akhirnya terbentuklah paduan suara wilayah Perumnas yang seringkali berlatih di rumah keluarga Andreas atau Totok Suroto. Setelah paduan suara wilayah rutin berlatih akhirnya mulailah dibentuk sekolah minggu bagi anak-anak. Juga dilaksanakan perayaan natal dan paskah untuk anak-anak sekolah minggu dengan menggunakan gedung sekolah SMP 5. Ketika kegiatan sekolah Minggu sudah mulai rutin barulah kemudian dibentuk KRT (Kebaktian Rumah Tangga) di beberapa rumah anggota Jemaat. Dan ketika KRT sudah mulai rutin akhirnya disepakati untuk membuat pos Jemaat sekitar tahun 1985an. Setelah melalui proses yang panjgan menjadi bakal Jemaat akhirnya didewasakan menjadi jemaat yang ke-75 pada tanggal 31 Oktober 1995.</span></p>', NULL, '2021-12-08'),
+(2, 'Sejarah Singkat GKI Perumnas', 'Artikel Lainnya', 'GKI Perumnas awalnya terbentuk dari beberapa keluarga Kristen yang berdomisili di daerah Perumnas 1 ', '<p style=\"text-align: justify; line-height: 1.4;\"><span style=\"font-family: helvetica, arial, sans-serif; font-size: 12pt;\">GKI Perumnas awalnya terbentuk dari beberapa keluarga Kristen yang berdomisili di daerah Perumnas 1 dan 2. Yang sering kali bertemu dalam perjalanan menuju ke GKI Sutopo atau perjalanan pulang ke rumah dengan menaiki kendaraan angkutan kota. Dari perkenalan beberapa keluarga yang sama-sama beribadah di GKI Sutopo, akhirnya terbentuklah paduan suara wilayah Perumnas yang seringkali berlatih di rumah keluarga Andreas atau Totok Suroto. Setelah paduan suara wilayah rutin berlatih akhirnya mulailah dibentuk sekolah minggu bagi anak-anak. Juga dilaksanakan perayaan natal dan paskah untuk anak-anak sekolah minggu dengan menggunakan gedung sekolah SMP 5. Ketika kegiatan sekolah Minggu sudah mulai rutin barulah kemudian dibentuk KRT (Kebaktian Rumah Tangga) di beberapa rumah anggota Jemaat. Dan ketika KRT sudah mulai rutin akhirnya disepakati untuk membuat pos Jemaat sekitar tahun 1985an. Setelah melalui proses yang panjgan menjadi bakal Jemaat akhirnya didewasakan menjadi jemaat yang ke-75 pada tanggal 31 Oktober 1995.</span></p>', NULL, '2021-12-08'),
 (4, 'Test1', 'Renungan Harian', 'okoke', '<p>Oke</p>', NULL, '2022-05-09'),
 (5, 'Test2', 'Renungan Harian', 'lalalal', '<p>Tess</p>', NULL, '2022-05-09'),
 (6, 'Test Yu', 'Renungan Harian', 'sa', '<p>sa</p>', NULL, '2022-06-28'),
 (10, 'Test Test', 'Renungan Harian', 'Test Lagi', '<p>Oke</p>', NULL, '2022-09-20'),
 (11, 'Test Warta', 'Warta Jemaat', 'Test test', NULL, '12677144Konsultasi1.pdf', '2022-09-07');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `detail_wilayah`
+--
+
+CREATE TABLE `detail_wilayah` (
+  `id_detail_wilayah` int(11) NOT NULL,
+  `id_wilayah` int(11) NOT NULL,
+  `koordinator_wilayah` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `detail_wilayah`
+--
+
+INSERT INTO `detail_wilayah` (`id_detail_wilayah`, `id_wilayah`, `koordinator_wilayah`) VALUES
+(1, 1, 1),
+(2, 2, 2),
+(3, 3, 3),
+(4, 4, 8),
+(5, 5, 11),
+(6, 6, 6),
+(7, 7, 12),
+(8, 8, 5);
 
 -- --------------------------------------------------------
 
@@ -114,7 +137,7 @@ INSERT INTO `artikel` (`id_artikel`, `judul_artikel`, `tipe_artikel`, `deskripsi
 CREATE TABLE `dokumen` (
   `id_dokumen` int(11) NOT NULL,
   `jenis_dokumen` varchar(50) NOT NULL,
-  `dokumen` varchar(50) NOT NULL,
+  `nama_dokumen` varchar(100) NOT NULL,
   `keterangan` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -122,7 +145,7 @@ CREATE TABLE `dokumen` (
 -- Dumping data for table `dokumen`
 --
 
-INSERT INTO `dokumen` (`id_dokumen`, `jenis_dokumen`, `dokumen`, `keterangan`) VALUES
+INSERT INTO `dokumen` (`id_dokumen`, `jenis_dokumen`, `nama_dokumen`, `keterangan`) VALUES
 (1, 'Formulir Persyaratan Pendaftaran Jemaat Baru', 'Syarat_menjadi_anggota_jemaat.pdf', 'Diperlukan unttuk pendaftaran jemaat baru'),
 (2, 'Formulir Permohonan Baptis Anak', 'Permohonan_Baptis_Anak.pdf', 'Permohonan untuk menerima baptis anak'),
 (3, 'Formulir Katekisasi', 'Formulir-Katekisasi.pdf', 'Formulir ini diperlukan untuk jemaat yang akan menerima sidi'),
@@ -137,7 +160,7 @@ INSERT INTO `dokumen` (`id_dokumen`, `jenis_dokumen`, `dokumen`, `keterangan`) V
 CREATE TABLE `keuangan` (
   `id_keuangan` int(11) NOT NULL,
   `kegiatan` varchar(50) NOT NULL,
-  `keterangan` varchar(200) NOT NULL,
+  `keterangan` varchar(100) NOT NULL,
   `uang_masuk` int(11) DEFAULT NULL,
   `uang_keluar` int(11) DEFAULT NULL,
   `saldo_awal` int(11) NOT NULL,
@@ -145,8 +168,8 @@ CREATE TABLE `keuangan` (
   `tanggal_terima` date DEFAULT NULL,
   `tanggal_keluar` date DEFAULT NULL,
   `tanggal_pencatatan` datetime NOT NULL,
-  `is_debit` int(11) DEFAULT NULL,
-  `is_kredit` int(11) DEFAULT NULL
+  `is_debit` tinyint(4) DEFAULT NULL,
+  `is_kredit` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -167,7 +190,7 @@ INSERT INTO `keuangan` (`id_keuangan`, `kegiatan`, `keterangan`, `uang_masuk`, `
 CREATE TABLE `konten_foto_ibadah` (
   `id_foto_ibadah` int(11) NOT NULL,
   `momen` varchar(20) NOT NULL,
-  `foto_ibadah` varchar(50) NOT NULL
+  `foto_ibadah` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -193,9 +216,9 @@ INSERT INTO `konten_foto_ibadah` (`id_foto_ibadah`, `momen`, `foto_ibadah`) VALU
 
 CREATE TABLE `konten_slide` (
   `id_slide` int(11) NOT NULL,
-  `judul_slide` text NOT NULL,
-  `deskripsi_slide` text NOT NULL,
-  `gambar_slide` varchar(50) NOT NULL
+  `judul_slide` varchar(50) NOT NULL,
+  `deskripsi_slide` varchar(100) NOT NULL,
+  `gambar_slide` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -203,11 +226,11 @@ CREATE TABLE `konten_slide` (
 --
 
 INSERT INTO `konten_slide` (`id_slide`, `judul_slide`, `deskripsi_slide`, `gambar_slide`) VALUES
-(1, 'Selamat Datang', '<p>Sebab di mana dua atau tiga orang berkumpul dalam nama-Ku,<br />di situ Aku ada di tengah-tengah mereka - Mat 18:20</p>', 'GedungUtama.jpg'),
+(1, 'Selamat Datang', '<p>Sebab di mana dua atau tiga orang berkumpul dalam nama-Ku,<br />di situ Aku ada di tengah-tengah ', 'GedungUtama.jpg'),
 (2, 'Paduan Suara', '<p>Biarlah segala yang bernafas memuji Tuhan! Haleluya! - Mzm 150:6</p>', 'Choir.jpg'),
-(3, 'Sekolah Minggu', '<p>Ketika Yesus melihat hal itu, Ia marah dan berkata kepada mereka: \"Biarkan anak-anak itu datang kepada-Ku, jangan mengahalang-hlangi mereka, sebab orang-orang yang seperti itulah yang empunya Kerajaan Allah.\" - Mrk 10:14</p>', 'AnakSekolahMinggu.jpg'),
-(4, 'Lanjut Usia', '<p>Sampai masa tuamu Aku tetap Dia dan sampai masa putih rambutmu Aku menggendong kamu.<br />Aku telah melakukannya dan mau menanggung kamu terus;<br />Aku mau memikul kamu dan menyelamatkan kamu - Yes 46:4</p>', 'Lansia.png'),
-(5, 'Ibadah Raya', '<p>Karena itu, saudara-saudara, demi kemurahan Allah aku menasihatkan kamu,<br />supaya kamu mempersembahkan tubuhmu sebagai persembahan yang hidup,<br />yang kudus dan yang berkenan kepada Allah: itu adalah ibadahmu yang sejati - Rm 12:1</p>', 'ibadah-raya2.png');
+(3, 'Sekolah Minggu', '<p>Ketika Yesus melihat hal itu, Ia marah dan berkata kepada mereka: \"Biarkan anak-anak itu datang k', 'AnakSekolahMinggu.jpg'),
+(4, 'Lanjut Usia', '<p>Sampai masa tuamu Aku tetap Dia dan sampai masa putih rambutmu Aku menggendong kamu.<br />Aku tel', 'Lansia.png'),
+(5, 'Ibadah Raya', '<p>Karena itu, saudara-saudara, demi kemurahan Allah aku menasihatkan kamu,<br />supaya kamu mempers', 'ibadah-raya2.png');
 
 -- --------------------------------------------------------
 
@@ -225,9 +248,10 @@ CREATE TABLE `level_user` (
 --
 
 INSERT INTO `level_user` (`id_level_user`, `level_user`) VALUES
-(1, 'Sekretariat'),
-(2, 'Pendeta'),
-(3, 'Bendahara');
+(1, 'Admin'),
+(2, 'Sekretariat'),
+(3, 'Pendeta'),
+(4, 'Bendahara');
 
 -- --------------------------------------------------------
 
@@ -238,16 +262,14 @@ INSERT INTO `level_user` (`id_level_user`, `level_user`) VALUES
 CREATE TABLE `peminjaman_ruangan` (
   `id_peminjaman` int(11) NOT NULL,
   `id_ruangan` int(11) NOT NULL,
-  `no_anggota` varchar(100) DEFAULT NULL,
-  `nama_peminjam` varchar(50) NOT NULL,
+  `nama_peminjam` varchar(100) NOT NULL,
   `email_peminjam` varchar(50) NOT NULL,
-  `nohp_peminjam` varchar(15) NOT NULL,
+  `nohp_peminjam` varchar(30) NOT NULL,
   `keperluan` varchar(100) NOT NULL,
   `tanggal_booking` date NOT NULL,
   `jam_mulai` time NOT NULL,
   `jam_selesai` time NOT NULL,
   `status_peminjaman` varchar(20) NOT NULL,
-  `is_notif` tinyint(4) NOT NULL,
   `is_deleted` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -255,9 +277,11 @@ CREATE TABLE `peminjaman_ruangan` (
 -- Dumping data for table `peminjaman_ruangan`
 --
 
-INSERT INTO `peminjaman_ruangan` (`id_peminjaman`, `id_ruangan`, `no_anggota`, `nama_peminjam`, `email_peminjam`, `nohp_peminjam`, `keperluan`, `tanggal_booking`, `jam_mulai`, `jam_selesai`, `status_peminjaman`, `is_notif`, `is_deleted`) VALUES
-(1, 1, NULL, 'Kevin', 'satusatu@gmail.com', '089283282121', 'Seminar', '2022-10-09', '10:04:00', '15:00:00', 'SELESAI', 1, 0),
-(2, 2, NULL, 'tes', 'sipsip@gmail.com', '088217231921', 'Seminar', '2022-10-06', '09:43:00', '12:46:00', 'PEMINJAMAN', 1, 0);
+INSERT INTO `peminjaman_ruangan` (`id_peminjaman`, `id_ruangan`, `nama_peminjam`, `email_peminjam`, `nohp_peminjam`, `keperluan`, `tanggal_booking`, `jam_mulai`, `jam_selesai`, `status_peminjaman`, `is_deleted`) VALUES
+(1, 1, 'Kevin', 'satusatu@gmail.com', '089283282121', 'Seminar', '2022-10-09', '10:04:00', '15:00:00', 'SELESAI', 0),
+(2, 2, 'tes', 'sipsip@gmail.com', '088217231921', 'Seminar', '2022-10-06', '09:43:00', '12:46:00', 'SELESAI', 0),
+(9, 2, 'Budi', 'budibudi@gmail.com', '088904040829', 'Seminar', '2022-10-14', '12:20:00', '13:22:00', 'PEMINJAMAN', 0),
+(11, 2, 'Yoyo', 'sipsip@gmail.com', '088217231921', 'Seminar', '2022-10-14', '14:00:00', '14:25:00', 'PEMINJAMAN', 0);
 
 -- --------------------------------------------------------
 
@@ -267,15 +291,15 @@ INSERT INTO `peminjaman_ruangan` (`id_peminjaman`, `id_ruangan`, `no_anggota`, `
 
 CREATE TABLE `pendeta` (
   `id_pendeta` int(11) NOT NULL,
-  `no_pendeta` varchar(20) NOT NULL,
-  `nama_lengkap_pendeta` text NOT NULL,
-  `alamat_pendeta` varchar(50) NOT NULL,
-  `nohp_pendeta` varchar(15) NOT NULL,
+  `no_pendeta` varchar(50) NOT NULL,
+  `nama_lengkap_pendeta` varchar(100) NOT NULL,
+  `alamat_pendeta` varchar(100) NOT NULL,
+  `nohp_pendeta` varchar(30) NOT NULL,
   `email_pendeta` varchar(50) NOT NULL,
   `jenis_kelamin_pendeta` varchar(20) NOT NULL,
   `tanggal_lahir_pendeta` date NOT NULL,
-  `foto_pendeta` varchar(50) NOT NULL,
-  `status_pendeta` tinyint(4) NOT NULL
+  `foto_pendeta` varchar(100) NOT NULL,
+  `status_pendeta` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -283,8 +307,8 @@ CREATE TABLE `pendeta` (
 --
 
 INSERT INTO `pendeta` (`id_pendeta`, `no_pendeta`, `nama_lengkap_pendeta`, `alamat_pendeta`, `nohp_pendeta`, `email_pendeta`, `jenis_kelamin_pendeta`, `tanggal_lahir_pendeta`, `foto_pendeta`, `status_pendeta`) VALUES
-(1, '00001', 'Pdt. Suryatie Ambarsari', 'Jl. Anggur No. 3 Blok. A', '082732623142', 'pendeta001@example.com', 'Perempuan', '1978-12-01', 'GembalaGereja1.jpg', 1),
-(2, '00002', 'Pnt. Irving BNW Gultom', 'Jl. Rumah Apel', '088270120023', 'nama@example.com', 'Laki-laki', '1989-12-14', 'GembalaGereja2.jpg', 1);
+(1, '00001', 'Pdt. Suryatie Ambarsari', 'Jl. Anggur No. 3 Blok. A', '082732623142', 'pendeta001@example.com', 'Perempuan', '1978-12-01', 'GembalaGereja1.jpg', 'PENDETA AKTIF'),
+(2, '00002', 'Pnt. Irving BNW Gultom', 'Jl. Rumah Apel', '088270120023', 'nama@example.com', 'Laki-laki', '1989-12-14', 'GembalaGereja2.jpg', 'PENDETA AKTIF');
 
 -- --------------------------------------------------------
 
@@ -295,9 +319,9 @@ INSERT INTO `pendeta` (`id_pendeta`, `no_pendeta`, `nama_lengkap_pendeta`, `alam
 CREATE TABLE `pengumpulan_dokumen` (
   `id_pengumpulan` int(11) NOT NULL,
   `id_dokumen` int(11) NOT NULL,
-  `nama_lengkap_pengumpul` text NOT NULL,
+  `nama_lengkap_pengumpul` varchar(100) NOT NULL,
   `email_pengumpul` varchar(50) NOT NULL,
-  `kumpul_dokumen` varchar(100) NOT NULL,
+  `nama_dokumen` varchar(100) NOT NULL,
   `tanggal_kumpul` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -305,7 +329,7 @@ CREATE TABLE `pengumpulan_dokumen` (
 -- Dumping data for table `pengumpulan_dokumen`
 --
 
-INSERT INTO `pengumpulan_dokumen` (`id_pengumpulan`, `id_dokumen`, `nama_lengkap_pengumpul`, `email_pengumpul`, `kumpul_dokumen`, `tanggal_kumpul`) VALUES
+INSERT INTO `pengumpulan_dokumen` (`id_pengumpulan`, `id_dokumen`, `nama_lengkap_pengumpul`, `email_pengumpul`, `nama_dokumen`, `tanggal_kumpul`) VALUES
 (3, 3, 'tes', 'testes@example.com', 'tes.zip', '2022-10-05'),
 (4, 2, 'Test', 'jjjj@example.com', 'Tes2.zip', '2022-10-06');
 
@@ -355,7 +379,7 @@ CREATE TABLE `ruangan` (
 
 INSERT INTO `ruangan` (`id_ruangan`, `nama_ruangan`, `kapasitas`, `perlengkapan`, `foto`) VALUES
 (1, 'Ibadah Umum', 300, '<ul>\r\n<li>Proyektor</li>\r\n<li>AC</li>\r\n<li>Sound system</li>\r\n</ul>', 'ibadah-umum.jpg'),
-(2, 'Majelis', 30, '<ul>\r\n<li>Proyektor</li>\r\n<li>TV</li>\r\n<li>AC</li>\r\n<li>dll</li>\r\n</ul>', 'majelis.jpg'),
+(2, 'Majelis', 30, '<ul>\r\n<li>Proyektor</li>\r\n<li>TV</li>\r\n<li>AC</li>\r\n</ul>', 'majelis.jpg'),
 (3, 'Aula', 40, '<ul>\r\n<li>2 Proyektor</li>\r\n<li>AC</li>\r\n<li>Perlengkapan sound system</li>\r\n</ul>', 'aula.jpg'),
 (4, 'Ruang Remaja', 30, '<ul>\r\n<li>Proyektor</li>\r\n<li>AC</li>\r\n<li>Papan tulis</li>\r\n</ul>', 'remaja.jpg'),
 (5, 'Ruang Dewasa', 30, '<ul>\r\n<li>TV</li>\r\n<li>AC</li>\r\n<li>Papan tulis</li>\r\n</ul>', 'dewasa.jpg');
@@ -385,9 +409,10 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `id_level_user`, `nama_lengkap`, `username`, `password`, `email_user`, `status_user`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 1, 'Admin min', 'admin', '$2y$10$9KhGw19pT6w7zIjP2h/wD.zMBdQOU0GqqGb0i05wuJX4yvntK3TcG', 'contoh@example.com', 1, '2022-09-18 20:18:08', '2022-10-11 09:01:06', NULL),
-(2, 1, 'Christella', 'stella', '$2y$10$zWa0ie9.mG4qe98Ax2L9POR5eRm0orxzPgLQalCxdkd.tY035Cay6', 'stella@gmail.com', 1, '2022-09-18 20:13:20', '2022-10-05 21:12:29', NULL),
+(2, 1, 'Christella', 'stella', '$2y$10$zWa0ie9.mG4qe98Ax2L9POR5eRm0orxzPgLQalCxdkd.tY035Cay6', 'stella@gmail.com', 1, '2022-09-18 20:13:20', '2022-10-15 11:16:34', NULL),
 (4, 3, 'Yohanes', 'yohanes', '$2y$10$G47i23zMHD/AHmAWCePEKOViFcJgfD1WWSAQCnMV/xHfZ4VYJEkpm', 'yohanes@gmail.com', 1, '2022-09-19 21:27:47', '2022-10-05 20:11:24', NULL),
-(5, 2, 'Bro', 'bbbbb', '$2y$10$rMmoMktv2U/oS9vqK7EpFu7f9/0Z14oAyrWMIOea/n1kwwJLi8K26', 'satusatu@gmail.com', 1, '2022-09-20 10:39:22', '2022-09-20 10:41:26', NULL);
+(5, 2, 'Bro', 'sekretariat', '$2y$10$rMmoMktv2U/oS9vqK7EpFu7f9/0Z14oAyrWMIOea/n1kwwJLi8K26', 'satusatu@gmail.com', 1, '2022-09-20 10:39:22', '2022-09-20 10:41:26', NULL),
+(6, 4, 'markus', 'markus', '$2y$10$SfzDnadVBTS4xmGtd15CruLdbqipmX/eEWi1NQ/O7/56J/evkdCky', 'electronicdm10@gmail.com', 1, '2022-10-15 11:09:39', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -397,24 +422,23 @@ INSERT INTO `user` (`id_user`, `id_level_user`, `nama_lengkap`, `username`, `pas
 
 CREATE TABLE `wilayah` (
   `id_wilayah` int(11) NOT NULL,
-  `kode_wilayah` varchar(20) NOT NULL,
-  `koordinator_wilayah` int(11) NOT NULL,
-  `nama_wilayah` varchar(50) NOT NULL
+  `nama_wilayah` varchar(50) NOT NULL,
+  `is_koordinator` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `wilayah`
 --
 
-INSERT INTO `wilayah` (`id_wilayah`, `kode_wilayah`, `koordinator_wilayah`, `nama_wilayah`) VALUES
-(1, 'WIL1', 1, 'Wilayah 1'),
-(2, 'WIL2', 2, 'Wilayah 2'),
-(3, 'WIL3', 3, 'Wilayah 3'),
-(4, 'WIL4', 8, 'Wilayah 4'),
-(5, 'WIL5', 11, 'Wilayah 5'),
-(6, 'WIL6', 6, 'Wilayah 6'),
-(7, 'WIL7', 7, 'Wilayah 7'),
-(8, 'WIL8', 5, 'Bajem Kutabumi');
+INSERT INTO `wilayah` (`id_wilayah`, `nama_wilayah`, `is_koordinator`) VALUES
+(1, 'Wilayah 1', 1),
+(2, 'Wilayah 2', 1),
+(3, 'Wilayah 3', 1),
+(4, 'Wilayah 4', 1),
+(5, 'Wilayah 5', 1),
+(6, 'Wilayah 6', 1),
+(7, 'Wilayah 7', 1),
+(8, 'Bajem Kutabumi', 1);
 
 --
 -- Indexes for dumped tables
@@ -431,6 +455,13 @@ ALTER TABLE `anggota_jemaat`
 --
 ALTER TABLE `artikel`
   ADD PRIMARY KEY (`id_artikel`);
+
+--
+-- Indexes for table `detail_wilayah`
+--
+ALTER TABLE `detail_wilayah`
+  ADD PRIMARY KEY (`id_detail_wilayah`),
+  ADD KEY `FK_ID_Anggota_Jemaat` (`koordinator_wilayah`);
 
 --
 -- Indexes for table `dokumen`
@@ -502,8 +533,7 @@ ALTER TABLE `user`
 -- Indexes for table `wilayah`
 --
 ALTER TABLE `wilayah`
-  ADD PRIMARY KEY (`id_wilayah`),
-  ADD KEY `FK_ID_Anggota_Jemaat` (`koordinator_wilayah`);
+  ADD PRIMARY KEY (`id_wilayah`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -513,13 +543,19 @@ ALTER TABLE `wilayah`
 -- AUTO_INCREMENT for table `anggota_jemaat`
 --
 ALTER TABLE `anggota_jemaat`
-  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `artikel`
 --
 ALTER TABLE `artikel`
   MODIFY `id_artikel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `detail_wilayah`
+--
+ALTER TABLE `detail_wilayah`
+  MODIFY `id_detail_wilayah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `dokumen`
@@ -549,13 +585,13 @@ ALTER TABLE `konten_slide`
 -- AUTO_INCREMENT for table `level_user`
 --
 ALTER TABLE `level_user`
-  MODIFY `id_level_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_level_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `peminjaman_ruangan`
 --
 ALTER TABLE `peminjaman_ruangan`
-  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `pendeta`
@@ -585,22 +621,22 @@ ALTER TABLE `ruangan`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `wilayah`
 --
 ALTER TABLE `wilayah`
-  MODIFY `id_wilayah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_wilayah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `wilayah`
+-- Constraints for table `detail_wilayah`
 --
-ALTER TABLE `wilayah`
+ALTER TABLE `detail_wilayah`
   ADD CONSTRAINT `FK_ID_Anggota_Jemaat` FOREIGN KEY (`koordinator_wilayah`) REFERENCES `anggota_jemaat` (`id_anggota`);
 COMMIT;
 

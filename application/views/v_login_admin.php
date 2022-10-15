@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/adminlte.min.css">
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 
   <style>
     body {
@@ -33,14 +35,24 @@
     </div>
 
     <!-- Alert jika username atau password salah-->
-    <?php if ($this->session->has_userdata('info')) { ?>
+    <?php if ($this->session->has_userdata('gagal')) { ?>
       <div class="alert alert-danger alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h5><i class="icon fas fa-ban"></i>Alert!</h5>
-        <?php echo $this->session->flashdata('info'); ?>
+        <?php echo $this->session->flashdata('gagal'); ?>
       </div>
-    <?php unset($_SESSION['info']);
+    <?php unset($_SESSION['gagal']);
     } ?>
+
+    <?php if ($this->session->has_userdata('sukses')) { ?>
+      <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fas fa-check"></i>Alert!</h5>
+        <?php echo $this->session->flashdata('sukses'); ?>
+      </div>
+    <?php unset($_SESSION['sukses']);
+    } ?>
+
     <div class="card">
       <div class="card-body login-card-body">
         <p class="login-box-msg">Sign in</p>
@@ -64,10 +76,38 @@
           </div>
           <div class="row">
             <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-          </div>
+          </div><br>
+
+          <a class="text-blue" type="button" data-toggle="modal" data-target="#modalForgot">
+            Forgot Password
+          </a>
         </form>
       </div>
       <!-- /.login-card-body -->
+    </div>
+
+    <div class="modal fade" id="modalForgot">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Masukan Email</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="<?php echo base_url() . 'forgot_password' ?>" method="post" class="form-forget">
+              <div class="form-group">
+                <input type="text" class="form-control" name="email" placeholder="email anda" required>
+                <p class="p-2 error_email"></p>
+              </div>
+              <button type="submit" class="btn btn-block btn-primary btn-sm simpan">Submit</button>
+            </form>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
     </div>
   </div>
   <!-- /.login-box -->
@@ -76,8 +116,33 @@
   <script src="<?php echo base_url(); ?>assets//plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- SweetAlert2 -->
+  <script src="<?php echo base_url(); ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
   <!-- AdminLTE App -->
   <script src="<?php echo base_url(); ?>assets/dist/js/adminlte.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      const sukses = $('.sukses').data('flashdata');
+      if (sukses) {
+        Swal.fire({
+          title: 'Data User',
+          text: sukses,
+          icon: 'success'
+        });
+      }
+
+      const gagal = $('.gagal').data('flashdata');
+
+      if (gagal) {
+        Swal.fire({
+          title: 'Data User',
+          text: gagal,
+          icon: 'error'
+        });
+      }
+    });
+  </script>
 </body>
 
 </html>

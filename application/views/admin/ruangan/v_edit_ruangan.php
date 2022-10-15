@@ -8,7 +8,7 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+            <li class="breadcrumb-item"><a href="<?php echo base_url() . 'Dashboard' ?>"><i class="fas fa-home"></i></a></li>
             <li class="breadcrumb-item active">Ruangan</li>
             <li class="breadcrumb-item active">Edit</li>
           </ol>

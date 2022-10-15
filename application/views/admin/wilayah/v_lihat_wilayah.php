@@ -27,7 +27,7 @@
         </div>
 
         <div class="card-body">
-          <?php if ($this->session->userdata('level_user') == 1) { ?>
+          <?php if ($this->session->userdata('level_user') == 2) { ?>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
               <i class="fas fa-plus"></i> Tambah wilayah
             </button><br><br>
@@ -179,7 +179,7 @@
           "data": "nama_wilayah"
         },
 
-        <?php if ($this->session->userdata('level_user') == 1) { ?> {
+        <?php if ($this->session->userdata('level_user') == 2) { ?> {
             data: null,
             name: null,
             render: function(data, type, row, meta) {
