@@ -37,7 +37,7 @@
                                 <th>Email</th>
                                 <th>Tanggal</th>
                                 <th>Status</th>
-                                <?php if ($this->session->userdata('level_user') == 1) { ?>
+                                <?php if ($this->session->userdata('level_user') == 2) { ?>
                                     <th>Aksi</th>
                                 <?php } ?>
                             </tr>
@@ -179,7 +179,7 @@
                 {
                     "data": "status_peminjaman"
                 },
-                <?php if ($this->session->userdata('level_user') == 1) { ?> {
+                <?php if ($this->session->userdata('level_user') == 2) { ?> {
                         data: null,
                         name: null,
                         render: function(data, type, row, meta) {

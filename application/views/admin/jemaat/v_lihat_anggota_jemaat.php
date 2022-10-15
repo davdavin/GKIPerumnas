@@ -26,7 +26,7 @@
           <h3 class="card-title">Tabel Data Anggota Jemaat</h3>
         </div>
         <div class="card-body">
-          <?php if ($this->session->userdata('level_user') == 1) { ?>
+          <?php if ($this->session->userdata('level_user') == 2) { ?>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
               <i class="fas fa-plus"></i> Tambah anggota jemaat
             </button><br><br>
@@ -383,7 +383,7 @@
             return `<a class="btn btn-primary btn-sm" href="<?php echo base_url() . 'Anggota_Jemaat/lihat_detail_anggota/' ?>${row.id_anggota}">
                          <i class="fas fa-eye"></i> Detail
                         </a>
-                        <?php if ($this->session->userdata('level_user') == 1) { ?><a class="btn btn-info btn-sm" href="<?php echo base_url() . 'Anggota_Jemaat/edit_anggota/' ?>${row.id_anggota}">
+                        <?php if ($this->session->userdata('level_user') == 2) { ?><a class="btn btn-info btn-sm" href="<?php echo base_url() . 'Anggota_Jemaat/edit_anggota/' ?>${row.id_anggota}">
                          <i class="fas fa-pencil-alt"></i> Edit
                         </a>
                         <?php } ?>`;
@@ -641,27 +641,6 @@
         icon: 'success'
       });
     }
-
-    /* $('.tombol-hapus').click(function(e) {
-       e.preventDefault(); //untuk stop link href yang awal
-       const href = $(this).attr('href')
-
-       Swal.fire({
-         title: 'Apakah anda yakin?',
-         text: 'Status data akan diubah menjadi tidak aktif',
-         icon: 'warning',
-         showCancelButton: true,
-         cancelButtonText: 'batal',
-         confirmButtonColor: '#3085d6',
-         cancelButtonColor: '#d33',
-         confirmButtonText: 'Ubah status'
-       }).then((result) => {
-         if (result.value) { //ini sama aja kayak == TRUE
-           document.location.href = href;
-         }
-       });
-
-     }); */
 
   });
 </script>

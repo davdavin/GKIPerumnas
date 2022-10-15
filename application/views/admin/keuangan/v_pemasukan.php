@@ -28,7 +28,7 @@
         </div>
 
         <div class="card-body">
-          <?php if ($this->session->userdata('level_user') == 3) { ?>
+          <?php if ($this->session->userdata('level_user') == 4) { ?>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
               <i class="fas fa-plus"></i> Pencatatan
             </button><br><br>

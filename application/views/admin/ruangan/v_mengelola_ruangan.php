@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="card-body">
-                    <?php if ($this->session->userdata('level_user') == 1) { ?>
+                    <?php if ($this->session->userdata('level_user') == 2) { ?>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
                             <i class="fas fa-plus"></i> Ruangan
                         </button><br><br>
@@ -41,7 +41,7 @@
                                 <th>Kapasitas</th>
                                 <th>Perlengkapan</th>
                                 <th>Foto</th>
-                                <?php if ($this->session->userdata('level_user') == 1) { ?>
+                                <?php if ($this->session->userdata('level_user') == 2) { ?>
                                     <th>Aksi</th>
                                 <?php } ?>
                             </tr>
@@ -224,7 +224,7 @@
                         return `<img src="<?php echo base_url(); ?>resources/assets/img/ruangan/${row.foto}" class="img-fluid" alt="` + data + `" width="200" height="200">`;
                     }
                 },
-                <?php if ($this->session->userdata('level_user') == 1) { ?> {
+                <?php if ($this->session->userdata('level_user') == 2) { ?> {
                         data: null,
                         name: null,
                         render: function(data, type, row, meta) {

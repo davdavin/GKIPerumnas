@@ -28,9 +28,11 @@
         </div>
 
         <div class="card-body">
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
-            <i class="fas fa-plus"></i> Tambah pendeta
-          </button><br><br>
+          <?php if ($this->session->userdata('level_user') == 2) { ?>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
+              <i class="fas fa-plus"></i> Tambah pendeta
+            </button><br><br>
+          <?php } ?>
 
           <table id="tabel_pendeta" class="table table-bordered table-striped">
             <thead>
@@ -41,7 +43,9 @@
                 <th>No Hp</th>
                 <th>Tanggal Lahir</th>
                 <th>Status</th>
-                <th>Aksi</th>
+                <?php if ($this->session->userdata('level_user') == 2) { ?>
+                  <th>Aksi</th>
+                <?php } ?>
               </tr>
             </thead>
             <tbody>
@@ -255,18 +259,19 @@
           "data": "tanggal_lahir_pendeta"
         },
         {
-        "data":"status_pendeta"
+          "data": "status_pendeta"
         },
-        {
-          data: null,
-          name: null,
-          sortable: false,
-          render: function(data, type, row, meta) {
-            return `<a class="btn btn-primary btn-sm" href="<?php echo base_url('Pendeta/detail_pendeta') ?>/${row.id_pendeta}"><i class="fas fa-eye"></i> Detail</a>
+        <?php if ($this->session->userdata('level_user') == 2) { ?> {
+            data: null,
+            name: null,
+            sortable: false,
+            render: function(data, type, row, meta) {
+              return `<a class="btn btn-primary btn-sm" href="<?php echo base_url('Pendeta/detail_pendeta') ?>/${row.id_pendeta}"><i class="fas fa-eye"></i> Detail</a>
                           <a class="btn btn-info btn-sm" href="<?php echo base_url('Pendeta/edit_pendeta') ?>/${row.id_pendeta}"><i class="fas fa-pencil-alt"></i> Edit</a>`;
 
-          }
-        },
+            }
+          },
+        <?php } ?>
       ]
     });
 

@@ -20,13 +20,15 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <?php if ($this->session->userdata('level_user') != 3) { ?>
+                <?php if ($this->session->userdata('level_user') != 4) { ?>
                     <li class="nav-item">
                         <a <?= $this->uri->segment(1) == "admin" || $this->uri->segment(1) == "" ? "class='nav-link active'" : "class='nav-link'" ?> href="<?php echo base_url() . 'admin/dashboard' ?>">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p> Dashboard </p>
                         </a>
                     </li>
+                <?php } ?>
+                <?php if ($this->session->userdata('level_user') == 1) { ?>
                     <li class="nav-item">
                         <a <?php if ($this->uri->segment(1) == "User") {
                                 echo "class='nav-link active'";
@@ -38,6 +40,8 @@
                             <p> User </p>
                         </a>
                     </li>
+                <?php } ?>
+                <?php if ($this->session->userdata('level_user') != 4) { ?>
                     <li class="nav-item">
                         <a <?php if ($this->uri->segment(1) == "Anggota_Jemaat") {
                                 echo "class='nav-link active'";
@@ -48,18 +52,6 @@
                             <p> Anggota Jemaat </p>
                         </a>
                     </li>
-                    <!--     <li class="nav-item">
-          <a href="<?php echo base_url() . 'BaptisAnak' ?>" class="nav-link">
-            <i class="nav-icon fas fa-user-friends"></i>
-            <p> Baptis Anak </p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="<?php echo base_url() . 'Sidi' ?>" class="nav-link">
-            <i class="nav-icon fas fa-user-friends"></i>
-            <p> Sidi </p>
-          </a>
-        </li> -->
                     <li class="nav-item">
                         <a <?php if ($this->uri->segment(1) == "Pendeta") {
                                 echo "class='nav-link active'";
@@ -168,7 +160,7 @@
                         </li>
                     </ul>
                 </li>
-                <?php if ($this->session->userdata('level_user') != 3) { ?>
+                <?php if ($this->session->userdata('level_user') != 4) { ?>
                     <li class="nav-item">
                         <a <?php if ($this->uri->segment(1) == "mengelola_artikel") {
                                 echo "class='nav-link active'";
@@ -206,30 +198,6 @@
                         <p> Logout </p>
                     </a>
                 </li>
-
-                <!--     <li class="nav-item">
-                    <a class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
-                        <p>
-                            Akun
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a class="nav-link">
-                                <i class="nav-icon fas fa-key"></i>
-                                <p>Ubah Password</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?php echo base_url() . 'logout' ?>" class="nav-link">
-                                <i class="nav-icon fas fa-sign-out-alt"></i>
-                                <p> Logout </p>
-                            </a>
-                        </li>
-                    </ul>
-                </li> -->
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
