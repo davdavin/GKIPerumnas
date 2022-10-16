@@ -8,8 +8,8 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item active"><a href="<?php echo base_url() . 'admin/dashboard' ?>">Dashboard</a></li>
-            <li class="breadcrumb-item active"><a href="<?php echo base_url() . 'Konten' ?>">Konten</a></li>
+            <li class="breadcrumb-item"><a href="<?php echo base_url() . 'admin/dashboard' ?>">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="<?php echo base_url() . 'Konten' ?>">Konten</a></li>
             <li class="breadcrumb-item active">Edit</li>
           </ol>
         </div>
@@ -49,11 +49,11 @@
               <input type="hidden" name="gambar_lama" value="<?= $list_edit->gambar_slide ?>">
               <img src="<?php echo base_url(); ?>resources/assets/img/slide/<?php echo $list_edit->gambar_slide; ?>" class="img-fluid" style="width: 50%;"><br><br>
               <div class="input-group">
-                    <div class="custom-file">
-                      <input type="file" class="custom-file-input" name="gambar_baru">
-                      <label class="custom-file-label" for="foto">Pilih foto</label>
-                    </div>
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" name="gambar_baru">
+                  <label class="custom-file-label" for="foto">Pilih foto (Maks ukuran 5MB)</label>
                 </div>
+              </div>
               <div class="px-2 error_foto clear" style="display: none">
               </div>
             </div>
