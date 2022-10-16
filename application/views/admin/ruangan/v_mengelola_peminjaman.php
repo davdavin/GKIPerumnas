@@ -8,8 +8,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?php echo base_url() . 'Dashboard' ?>"><i class="fas fa-tachometer-alt"></i></a></li>
-                        <li class="breadcrumb-item active">Ruangan</li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url() . 'admin/dashboard' ?>">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url() . 'mengelola_ruangan' ?>">Ruangan</a></li>
                         <li class="breadcrumb-item active">Peminjaman</li>
                     </ol>
                 </div>
@@ -28,6 +28,10 @@
                 </div>
 
                 <div class="card-body">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
+                        <i class="fas fa-plus"></i> Peminjaman
+                    </button><br><br>
+
                     <table id="tabel_ruangan" class="table table-bordered table-striped" style="width: 100%;">
                         <thead>
                             <tr>
@@ -48,6 +52,76 @@
             </div>
         </div>
 
+        <div class="modal fade" id="modal-lg">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content" style="border-top: 10px solid #428bca;">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Input Peminjaman</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form class="form-submit" action="<?php echo base_url() . 'mengelola_ruangan/proses_peminjaman'  ?>" method="post" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Ruangan</label>
+                                <select class="pilih-ruangan form-control" name="id_ruangan" required></select>
+                                <div class="px-2 error_ruangan" style="display: none"></div>
+                            </div>
+                            <div class="form-group">
+                                <span class="form-label">Nama</span>
+                                <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama peminjam" required>
+                                <div class="px-2 error_nama clear" style="display: none">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <span class="form-label">Email</span>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email peminjam" required>
+                                <div class="px-2 error_email clear" style="display: none">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <span class="form-label">No. Handphone</span>
+                                <input type="number" class="form-control" id="nohp" name="nohp" placeholder="No. Handphone peminjam" required>
+                                <div class="px-2 error_nohp clear" style="display: none">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <span class="form-label">Keperluan</span>
+                                <input type="text" class="form-control" id="keperluan" name="keperluan" placeholder="Keperluan" required>
+                                <div class="px-2 error_keperluan clear" style="display: none">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <span class="form-label">Tanggal</span>
+                                <input type="date" class="form-control" id="tanggal_booking" name="tanggal_booking" placeholder="dd/mm/YYYY" required>
+                                <div class="px-2 error_tanggal clear" style="display: none">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <span class="form-label">Jam Mulai</span>
+                                <input type="time" class="form-control" id="jam_mulai" name="jam_mulai" required>
+                                <div class="px-2 error_jam_mulai clear" style="display: none">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <span class="form-label">Jam Selesai</span>
+                                <input type="time" class="form-control" id="jam_selesai" name="jam_selesai" required>
+                                <div class="px-2 error_jam_selesai clear" style="display: none">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <!-- <a type="button" class="btn btn-primary" onclick="addRow()">Add row</a> -->
+                            <button type="submit" class="btn btn-primary simpan" id="tombolSimpan">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+
         <?php $no = 0;
         foreach ($peminjaman as $list) {
             $no++; ?>
@@ -64,15 +138,28 @@
                         <div class="modal-body">
                             <form action="<?php echo base_url() . 'mengelola_ruangan/update_status' ?>" method="post">
                                 <input type="hidden" class="form-control" name="id" value="<?= $list->id_peminjaman; ?>">
+                                <input type="hidden" class="form-control" name="nama_peminjam" value="<?= $list->nama_peminjam; ?>">
+                                <input type="hidden" class="form-control" name="email_peminjam" value="<?= $list->email_peminjam; ?>">
+
                                 <div class="form-group">
                                     <label>Status</label>
-                                    <select class="form-control select2bs4" style="width: 100%;" id="status" name="status" required>
-                                        <option selected disabled value>Status</option>
+                                    <select class="custom-select status" style="width: 100%;" name="status" id="status" onchange="enter()" required>
+                                        <option selected disabled value>-- Pilih --</option>
+                                        <?php if ($list->status_peminjaman == "SEDANG DIPROSES") { ?>
+                                            <option value="DITERIMA">DITERIMA</option>
+                                            <option value="DITOLAK">DITOLAK</option>
+                                        <?php } ?>
                                         <?php if (strtotime('today') >= strtotime($list->tanggal_booking)) { ?>
                                             <option value="SELESAI">SELESAI</option>
                                         <?php } ?>
                                     </select>
                                 </div>
+                                <div class="form-group" id="pesan" style="display: none;">
+                                    <label>Pesan</label><br>
+                                    <textarea name="pesan" style="width: 100%;" required></textarea>
+                                </div>
+
+
                                 <button type="submit" class="btn btn-block btn-primary btn-sm">Submit</button>
                             </form>
                         </div>
@@ -91,6 +178,7 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
+<script src="<?php echo base_url(); ?>jquery-3.4.1.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="<?php echo base_url(); ?>assets/plugins/jquery-ui/jquery-ui.min.js"></script>
@@ -102,6 +190,8 @@
 <script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- SweetAlert2 -->
 <script src="<?php echo base_url(); ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- Select2 -->
+<script src="<?php echo base_url(); ?>assets/plugins/select2/js/select2.full.min.js"></script>
 <!-- overlayScrollbars -->
 <script src="<?php echo base_url(); ?>assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
@@ -130,7 +220,21 @@
 <script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
 <script>
+    //       var status = document.getElementById("status");
+    function enter() {
+        let a = document.getElementById("status").value;
+        alert(a);
+        if (target == "DTIERIMA" || target == "DITOLAK") {
+            $("#pesan").show();
+
+        } else {
+            $("#pesan").hide();
+            $("#pesan").val('');
+        }
+    }
+
     $(document).ready(function() {
+
         $('#tabel_ruangan').DataTable({
             "responsive": true,
             "lengthChange": true,
@@ -184,11 +288,23 @@
                         name: null,
                         render: function(data, type, row, meta) {
                             switch (row.status_peminjaman) {
-                                case "PEMINJAMAN":
+                                case "SEDANG DIPROSES":
                                     return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_peminjaman}">
                                                         <i class="fas fa-pencil-alt">
                                                         </i>
                                                         Konfirmasi
+                                        </a>`;
+                                    break;
+                                case "DITERIMA":
+                                    return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_peminjaman}">
+                                                        <i class="fas fa-pencil-alt">
+                                                        </i>
+                                                        Konfirmasi
+                                        </a>`;
+                                    break;
+                                case "DITOLAK":
+                                    return ` <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'mengelola_ruangan/hapus/' ?>${row.id_peminjaman}" data-toggle="tooltip" data-placement="bottom" title="Hapus Data Admin">
+                                        <i class="fas fa-trash"></i> Hapus
                                         </a>`;
                                     break;
                                 case "SELESAI":
@@ -204,6 +320,42 @@
                     }
                 <?php } ?>
             ]
+        });
+
+        $('.pilih-ruangan').select2({
+            placeholder: 'pilih',
+            language: {
+                inputTooShort: function(args) {
+                    var chars = args.minimum - args.input.length;
+                    if (chars == args.minimum) {
+                        return "Masukan minimal " + chars + " atau lebih karakter";
+                    } else {
+                        return "Masukan " + chars + " huruf lagi";
+                    }
+                },
+                searching: function() {
+                    return "Mencari...";
+                },
+                noResults: function() {
+                    return "Tidak ada data yang sesuai";
+                }
+            },
+            ajax: {
+                url: "<?php echo base_url() . 'MengelolaRuangan/pilih_ruangan' ?>",
+                type: 'POST',
+                dataType: 'JSON',
+                delay: 250,
+                data: function(params) {
+                    return {
+                        searchJemaat: params.term
+                    };
+                },
+                processResults: function(data) {
+                    return {
+                        results: data,
+                    };
+                },
+            },
         });
 
         $(document).on('click', '.tombol-hapus', function(e) {
@@ -243,6 +395,94 @@
                 icon: 'error'
             });
         }
+
+        $('.form-submit').submit(function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: $(this).attr('action'),
+                type: "POST",
+                dataType: "JSON",
+                data: $(this).serialize(),
+                beforeSend: function() {
+                    $('.simpan').attr('disable', 'disabled');
+                    $('.simpan').html('<i class="fa fa-spin fa-spinner"></i>');
+                },
+                complete: function() {
+                    $('.simpan').removeAttr('disable');
+                    $('.simpan').html('Submit');
+                },
+                success: function(respon) {
+                    if (respon.sukses == false) {
+                        if (respon.error_nama) {
+                            $('.error_nama').show();
+                            $('.error_nama').html(respon.error_nama);
+                            $('.error_nama').css("color", "red");
+                        } else {
+                            $('.error_nama').hide();
+                        }
+                        if (respon.error_email) {
+                            $('.error_email').show();
+                            $('.error_email').html(respon.error_email);
+                            $('.error_email').css("color", "red");
+                        } else {
+                            $('.error_email').hide();
+                        }
+                        if (respon.error_nohp) {
+                            $('.error_nohp').show();
+                            $('.error_nohp').html(respon.error_nohp);
+                            $('.error_nohp').css("color", "red");
+                        } else {
+                            $('.error_nohp').hide();
+                        }
+                        if (respon.error_keperluan) {
+                            $('.error_keperluan').show();
+                            $('.error_keperluan').html(respon.error_keperluan);
+                            $('.error_keperluan').css("color", "red");
+                        } else {
+                            $('.error_keperluan').hide();
+                        }
+                        if (respon.error_tanggal) {
+                            $('.error_tanggal').show();
+                            $('.error_tanggal').html(respon.error_tanggal);
+                            $('.error_tanggal').css("color", "red");
+                        } else {
+                            $('.error_tanggal').hide();
+                        }
+                        if (respon.error_jam_mulai) {
+                            $('.error_jam_mulai').show();
+                            $('.error_jam_mulai').html(respon.error_jam_mulai);
+                            $('.error_jam_mulai').css("color", "red");
+                        } else {
+                            $('.error_jam_mulai').hide();
+                        }
+                        if (respon.error_jam_selesai) {
+                            $('.error_jam_selesai').show();
+                            $('.error_jam_selesai').html(respon.error_jam_selesai);
+                            $('.error_jam_selesai').css("color", "red");
+                        } else {
+                            $('.error_jam_selesai').hide();
+                        }
+                        if (respon.error_booking) {
+                            Swal.fire({
+                                title: 'Peminjaman',
+                                text: respon.error_booking,
+                                icon: 'error'
+                            });
+                        }
+                    } else {
+                        $('.clear').hide();
+                        Swal.fire({
+                            title: 'Sukses',
+                            text: respon.sukses,
+                            icon: 'success',
+                        }).then((confirmed) => {
+                            window.location.reload();
+                        });
+                    }
+
+                }
+            });
+        });
     });
 </script>
 
