@@ -8,14 +8,14 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-              <?php if($this->session->userdata('level_user') == 4) { ?>
-                    <li class="breadcrumb-item active"><a href="<?php echo base_url() . 'keuangan'?>">Keuangan</a></li>
-                    <li class="breadcrumb-item active">Pengeluaran</li>
-              <?php } else { ?>
-                    <li class="breadcrumb-item"><a href="<?php echo base_url() . 'admin/dashboard' ?>">Dashboard</a></li>
-                    <li class="breadcrumb-item active"><a href="<?php echo base_url() . 'keuangan'?>">Keuangan</a></li>
-                    <li class="breadcrumb-item active">Pengeluaran</li>
-             <?php } ?>
+            <?php if ($this->session->userdata('level_user') == 4) { ?>
+              <li class="breadcrumb-item"><a href="<?php echo base_url() . 'keuangan' ?>">Keuangan</a></li>
+              <li class="breadcrumb-item active">Laporan</li>
+            <?php } else { ?>
+              <li class="breadcrumb-item"><a href="<?php echo base_url() . 'admin/dashboard' ?>">Dashboard</a></li>
+              <li class="breadcrumb-item"><a href="<?php echo base_url() . 'keuangan' ?>">Keuangan</a></li>
+              <li class="breadcrumb-item active">Laporan</li>
+            <?php } ?>
           </ol>
         </div>
       </div>
@@ -182,7 +182,7 @@
     $('#tabel_laporan').DataTable({
       dom: "<'row'<'col-md-3'l><'col-md-5'B><'col-md-4'f>>" +
         "<'row'<'col-md-12'tr>>" + "<'row'<'col-md-5'i><'col-md-7'p>>",
-        "responsive": true,
+      "responsive": true,
       "lengthChange": true,
       "autoWidth": false,
       "language": {

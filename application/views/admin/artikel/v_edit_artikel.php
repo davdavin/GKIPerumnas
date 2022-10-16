@@ -8,8 +8,8 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-            <li class="breadcrumb-item active">Artikel</li>
+            <li class="breadcrumb-item"><a href="<?php echo base_url() . 'admin/dashboard' ?>">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="<?php echo base_url() . 'mengelola_artikel' ?>">Artikel</a></li>
             <li class="breadcrumb-item active">Edit</li>
           </ol>
         </div>
@@ -40,38 +40,38 @@
               <input type="hidden" name="tipe_artikel" value="<?= $detail->tipe_artikel ?>">
               <select class="form-control select2bs4" style="width: 100%;" disabled>
                 <option selected disabled value>-- Pilih --</option>
-               <?php if($detail->tipe_artikel == "Renungan Harian") { ?>
-                <option value="<?php echo $detail->tipe_artikel?>" <?php echo "selected"; ?>>
-                        <?php echo $detail->tipe_artikel ?>
-                </option>
-                <option value="Warta Jemaat">Warta Jemaat</option>
-                <option value="Doa Harian">Doa Harian</option>
-                <option value="Warta Jemaat">Artikel Lainnya</option>
-              <?php } ?>
-               <?php if($detail->tipe_artikel == "Warta Jemaat") { ?>
-                <option value="Renungan Harian">Renungan Harian</option>
-                <option value="<?php echo $detail->tipe_artikel?>" <?php echo "selected"; ?>>
-                        <?php echo $detail->tipe_artikel ?>
-                </option>
-                <option value="Doa Harian">Doa Harian</option>
-                <option value="Artikel Lainnya">Artikel Lainnya</option>
-              <?php } ?>
-              <?php if($detail->tipe_artikel == "Doa Harian") { ?>
-                <option value="Renungan Harian">Renungan Harian</option>
-                <option value="Warta Jemaat">Warta Jemaat</option>
-                <option value="<?php echo $detail->tipe_artikel?>" <?php echo "selected"; ?>>
-                        <?php echo $detail->tipe_artikel ?>
-                </option>
-                <option value="Artikel Lainnya">Artikel Lainnya</option>
-              <?php } ?>
-              <?php if($detail->tipe_artikel == "Artikel Lainnya") { ?>
-                <option value="Renungan Harian">Renungan Harian</option>
-                <option value="Warta Jemaat">Warta Jemaat</option>
-                <option value="Doa Harian">Doa Harian</option>
-                <option value="<?php echo $detail->tipe_artikel?>" <?php echo "selected"; ?>>
-                        <?php echo $detail->tipe_artikel ?>
-                </option>
-              <?php } ?>
+                <?php if ($detail->tipe_artikel == "Renungan Harian") { ?>
+                  <option value="<?php echo $detail->tipe_artikel ?>" <?php echo "selected"; ?>>
+                    <?php echo $detail->tipe_artikel ?>
+                  </option>
+                  <option value="Warta Jemaat">Warta Jemaat</option>
+                  <option value="Doa Harian">Doa Harian</option>
+                  <option value="Warta Jemaat">Artikel Lainnya</option>
+                <?php } ?>
+                <?php if ($detail->tipe_artikel == "Warta Jemaat") { ?>
+                  <option value="Renungan Harian">Renungan Harian</option>
+                  <option value="<?php echo $detail->tipe_artikel ?>" <?php echo "selected"; ?>>
+                    <?php echo $detail->tipe_artikel ?>
+                  </option>
+                  <option value="Doa Harian">Doa Harian</option>
+                  <option value="Artikel Lainnya">Artikel Lainnya</option>
+                <?php } ?>
+                <?php if ($detail->tipe_artikel == "Doa Harian") { ?>
+                  <option value="Renungan Harian">Renungan Harian</option>
+                  <option value="Warta Jemaat">Warta Jemaat</option>
+                  <option value="<?php echo $detail->tipe_artikel ?>" <?php echo "selected"; ?>>
+                    <?php echo $detail->tipe_artikel ?>
+                  </option>
+                  <option value="Artikel Lainnya">Artikel Lainnya</option>
+                <?php } ?>
+                <?php if ($detail->tipe_artikel == "Artikel Lainnya") { ?>
+                  <option value="Renungan Harian">Renungan Harian</option>
+                  <option value="Warta Jemaat">Warta Jemaat</option>
+                  <option value="Doa Harian">Doa Harian</option>
+                  <option value="<?php echo $detail->tipe_artikel ?>" <?php echo "selected"; ?>>
+                    <?php echo $detail->tipe_artikel ?>
+                  </option>
+                <?php } ?>
               </select>
               <div class="p-2 is-invalid error_tipe clear" style="display: none">
               </div>

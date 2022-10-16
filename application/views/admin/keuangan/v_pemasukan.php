@@ -8,14 +8,14 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-              <?php if($this->session->userdata('level_user') == 4) { ?>
-                    <li class="breadcrumb-item active"><a href="<?php echo base_url() . 'keuangan'?>">Keuangan</a></li>
-                    <li class="breadcrumb-item active">Pengeluaran</li>
-              <?php } else { ?>
-                    <li class="breadcrumb-item"><a href="<?php echo base_url() . 'admin/dashboard' ?>">Dashboard</a></li>
-                    <li class="breadcrumb-item active"><a href="<?php echo base_url() . 'keuangan'?>">Keuangan</a></li>
-                    <li class="breadcrumb-item active">Pengeluaran</li>
-               <?php } ?>
+            <?php if ($this->session->userdata('level_user') == 4) { ?>
+              <li class="breadcrumb-item active">Keuangan</li>
+              <li class="breadcrumb-item active">Pemasukan</li>
+            <?php } else { ?>
+              <li class="breadcrumb-item"><a href="<?php echo base_url() . 'admin/dashboard' ?>">Dashboard</a></li>
+              <li class="breadcrumb-item active">Keuangan</li>
+              <li class="breadcrumb-item active">Pemasukan</li>
+            <?php } ?>
           </ol>
         </div>
       </div>
