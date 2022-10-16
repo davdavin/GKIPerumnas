@@ -8,8 +8,8 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item active"><a href="<?php echo base_url() . 'admin/dashboard' ?>">Dashboard</a></li>
-            <li class="breadcrumb-item active"><a href="<?php echo base_url() . 'Konten' ?>">Konten</a></li>
+            <li class="breadcrumb-item"><a href="<?php echo base_url() . 'admin/dashboard' ?>">Dashboard</a></li>
+            <li class="breadcrumb-item active">Konten</li>
           </ol>
         </div>
       </div>
@@ -91,12 +91,12 @@
                     <input type="hidden" class="form-control" name="id_foto_ibadah" value="<?= $list_foto_ibadah->id_foto_ibadah ?>">
                     <input type="hidden" class="form-control" name="foto_lama" value="<?= $list_foto_ibadah->foto_ibadah  ?>">
                     <label>Update Slide</label><br>
-                      <div class="input-group">
-                          <div class="custom-file">
-                              <input type="file" class="custom-file-input" id="foto" name="fotoIbadah" required>
-                              <label class="custom-file-label" for="foto">Pilih foto</label>
-                          </div>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="foto" name="fotoIbadah" required>
+                        <label class="custom-file-label" for="foto">Pilih foto (Maks ukuran 5MB)</label>
                       </div>
+                    </div>
                     <div class="p-2 error_upload clear" style="display:none"></div>
                   </div>
                   <div class="modal-footer">
