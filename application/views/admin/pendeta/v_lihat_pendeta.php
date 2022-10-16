@@ -120,7 +120,7 @@
                 <div class="input-group">
                   <div class="custom-file">
                     <input type="file" class="custom-file-input" id="exampleInputFile" name="foto">
-                    <label class="custom-file-label" for="exampleInputFile">Pilih file</label>
+                    <label class="custom-file-label" for="exampleInputFile">Pilih file (Maksimal 5MB)</label>
                   </div>
                   <div class="input-group-append">
                     <span class="input-group-text">Upload</span>

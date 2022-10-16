@@ -51,7 +51,7 @@
               <div class="input-group">
                 <div class="custom-file">
                   <input type="file" class="custom-file-input" name="gambar_baru">
-                  <label class="custom-file-label" for="foto">Pilih foto (Maks ukuran 5MB)</label>
+                  <label class="custom-file-label" for="foto">Pilih foto (Maksimal 5MB)</label>
                 </div>
               </div>
               <div class="px-2 error_foto clear" style="display: none">

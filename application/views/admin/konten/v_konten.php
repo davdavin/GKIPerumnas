@@ -94,7 +94,7 @@
                     <div class="input-group">
                       <div class="custom-file">
                         <input type="file" class="custom-file-input" id="foto" name="fotoIbadah" required>
-                        <label class="custom-file-label" for="foto">Pilih foto (Maks ukuran 5MB)</label>
+                        <label class="custom-file-label" for="foto">Pilih foto (Maksimal 5MB)</label>
                       </div>
                     </div>
                     <div class="p-2 error_upload clear" style="display:none"></div>
