@@ -19,7 +19,7 @@ class M_Ruangan extends CI_Model
 
     public function informasi_detail_peminjaman($id_ruangan)
     {
-        return $this->db->query("SELECT * FROM peminjaman_ruangan INNER JOIN ruangan ON peminjaman_ruangan.id_ruangan = ruangan.id_ruangan WHERE peminjaman_ruangan.id_ruangan = '$id_ruangan' AND is_deleted = 0 AND status_peminjaman = 'PEMINJAMAN'");
+        return $this->db->query("SELECT * FROM peminjaman_ruangan INNER JOIN ruangan ON peminjaman_ruangan.id_ruangan = ruangan.id_ruangan WHERE peminjaman_ruangan.id_ruangan = '$id_ruangan' AND is_deleted = 0 AND status_peminjaman != 'SELESAI'");
     }
 
     public function pilih_ruangan($id_ruangan)
@@ -29,7 +29,7 @@ class M_Ruangan extends CI_Model
 
     public function jumlah_peminjaman_baru()
     {
-        return $this->db->query("SELECT count(id_peminjaman) as jumlahPeminjamanBaru FROM peminjaman_ruangan WHERE status_peminjaman = 'PEMINJAMAN'");
+        return $this->db->query("SELECT count(id_peminjaman) as jumlahPeminjamanBaru FROM peminjaman_ruangan WHERE status_peminjaman = 'SEDANG DIPROSES' OR status_peminjaman = 'DITERIMA'");
     }
 
     public function insert_record($data, $table)
