@@ -46,7 +46,7 @@
                 <div class="custom-file">
                   <input type="hidden" name="dokumen_lama" value="<?= $list_dokumen_edit->nama_dokumen ?>">
                   <input type="file" class="custom-file-input" id="exampleInputFile" name="dokumen_baru">
-                  <label class="custom-file-label" for="exampleInputFile">Pilih file</label>
+                  <label class="custom-file-label" for="exampleInputFile">Pilih file (Maksimal 5MB)</label>
                 </div>
                 <div class="input-group-append">
                   <span class="input-group-text">Upload</span>
