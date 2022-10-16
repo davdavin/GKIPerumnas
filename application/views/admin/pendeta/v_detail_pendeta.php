@@ -8,8 +8,8 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-            <li class="breadcrumb-item active">Pendeta</li>
+            <li class="breadcrumb-item"><a href="<?php echo base_url() . 'admin/dashboard' ?>">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="<?php echo base_url() . 'Pendeta' ?>">Pendeta</a></li>
             <li class="breadcrumb-item active">Detail</li>
           </ol>
         </div>
@@ -57,7 +57,7 @@
                   </p>
                   <h5> <strong> Status </strong> </h5>
                   <p>
-                   <?php echo $list_detail_pendeta->status_pendeta; ?>
+                    <?php echo $list_detail_pendeta->status_pendeta; ?>
                   </p>
                 </div>
               </div>

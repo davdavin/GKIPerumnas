@@ -81,7 +81,7 @@ class Pendeta extends CI_Controller
             //upload file
             $config['upload_path'] = './resources/assets/img/pendeta/';
             $config['allowed_types'] = 'jpg|png';
-            $config['max_size'] = 100000; //100 MB
+            $config['max_size'] = 5000; //5 MB
 
             $this->load->library('upload', $config);
             if (!$this->upload->do_upload('foto')) {
@@ -184,7 +184,7 @@ class Pendeta extends CI_Controller
                 //upload file
                 $config['upload_path'] = './resources/assets/img/pendeta/';
                 $config['allowed_types'] = 'jpg|png';
-                $config['max_size'] = 100000; //100 MB
+                $config['max_size'] = 5000; //5 MB
 
                 $this->load->library('upload', $config);
                 if (!$this->upload->do_upload('foto_baru')) {
