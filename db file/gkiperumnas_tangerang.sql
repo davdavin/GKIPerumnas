@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2022 at 11:27 AM
+-- Generation Time: Oct 17, 2022 at 10:47 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -32,6 +32,8 @@ CREATE TABLE `anggota_jemaat` (
   `id_wilayah` int(11) NOT NULL,
   `no_anggota` varchar(50) NOT NULL,
   `nama_lengkap_anggota` varchar(100) NOT NULL,
+  `username` varchar(25) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `alamat_anggota` varchar(100) NOT NULL,
   `nohp_anggota` varchar(30) NOT NULL,
   `email_anggota` varchar(50) NOT NULL,
@@ -48,30 +50,31 @@ CREATE TABLE `anggota_jemaat` (
   `tanggal_atestasi_keluar` date DEFAULT NULL,
   `tanggal_meninggal` date DEFAULT NULL,
   `tanggal_dkh` date DEFAULT NULL,
-  `tanggal_ex_dkh` date DEFAULT NULL
+  `tanggal_ex_dkh` date DEFAULT NULL,
+  `status_akun` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `anggota_jemaat`
 --
 
-INSERT INTO `anggota_jemaat` (`id_anggota`, `id_wilayah`, `no_anggota`, `nama_lengkap_anggota`, `alamat_anggota`, `nohp_anggota`, `email_anggota`, `jenis_kelamin_anggota`, `golongan_darah_anggota`, `status_anggota`, `pendidikan_anggota`, `pekerjaan_anggota`, `kelompok_etnis_anggota`, `tanggal_lahir_anggota`, `tanggal_baptis_anggota`, `tanggal_sidi_anggota`, `tanggal_atestasi_masuk`, `tanggal_atestasi_keluar`, `tanggal_meninggal`, `tanggal_dkh`, `tanggal_ex_dkh`) VALUES
-(1, 1, '00001', 'Christella', 'Jl Melati', '082042832322', 'electronicdm10@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1999-10-05', '2017-10-06', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
-(2, 2, '00002', 'Sinta', 'Jl Melati', '0808273262314', 'electronicdm10@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1998-01-23', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
-(3, 3, '00003', 'Philip', 'Jl Melati', '089283282121', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '2000-12-16', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
-(4, 1, '00004', 'Bro', 'Jl. Apel ', '089283282121', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S2', 'Karyawan', 'Sunda', '1996-02-09', '2021-01-01', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
-(5, 8, '00005', 'Toni', 'Jl. Apel ', '0808273262314', 'vinvin@gmail.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '2000-09-16', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
-(6, 6, '00006', 'Marcelo', 'Jl. Apel ', '0808273262314', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1990-01-08', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
-(7, 7, '00007', 'Boy', 'Jl. Apel ', '089283282121', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1996-02-09', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
-(8, 4, '00008', 'Joseph', 'Jl. Apel ', '0808273262314', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1996-02-09', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
-(9, 2, '00009', 'Jack', 'Jl. Apel ', '0808273262314', 'brobro@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1990-10-21', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
-(10, 5, '000010', 'Yohanes', 'Jl. Apel ', '0808273262314', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1998-10-09', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
-(11, 5, '000011', 'Koko', 'Jl. Mangga', '088217231921', 'kokoko@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Jawa', '2000-10-01', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
-(12, 7, '000012', 'Bella', 'Jl. Buah Apel No.2 ', '088904040829', 'bellabella@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1994-10-22', '2010-08-21', '0000-00-00', '2008-07-16', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
-(13, 6, '000013', 'Josephine', 'Jl. Cengkeh Blok. A', '088904040829', 'josejose@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1995-07-12', '2012-11-22', '2022-07-21', '2000-10-18', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
-(14, 4, '000014', 'Maria', 'Jl. Mangga', '088904040829', 'marmar@example.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Jawa', '1996-11-05', '2008-02-12', '0000-00-00', '2000-10-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
-(15, 8, '000015', 'Brandon', 'Jl. Cengkeh Blok. AC', '088270120023', 'brandonbrandon@gmail.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Jawa', '1997-12-01', '2009-02-18', '2015-07-12', '2005-12-02', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
-(16, 3, '000016', 'Budi Boy', 'Jl. Anggur No. 2 Blok. AC', '088270120023', 'budibudi@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Jawa', '1967-12-08', '1975-04-12', '0000-00-00', '1975-01-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00');
+INSERT INTO `anggota_jemaat` (`id_anggota`, `id_wilayah`, `no_anggota`, `nama_lengkap_anggota`, `username`, `password`, `alamat_anggota`, `nohp_anggota`, `email_anggota`, `jenis_kelamin_anggota`, `golongan_darah_anggota`, `status_anggota`, `pendidikan_anggota`, `pekerjaan_anggota`, `kelompok_etnis_anggota`, `tanggal_lahir_anggota`, `tanggal_baptis_anggota`, `tanggal_sidi_anggota`, `tanggal_atestasi_masuk`, `tanggal_atestasi_keluar`, `tanggal_meninggal`, `tanggal_dkh`, `tanggal_ex_dkh`, `status_akun`) VALUES
+(1, 1, '00001', 'Christella', 'christella', '$2y$10$SOfH1.hcJVQ/ZTEVD5FAFu9FcRz9BUAQU9T69r0DH.CM5cvsV2ws6', 'Jl Melati No. 2', '082042832322', 'electronicdm10@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1999-10-05', '2017-10-06', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1),
+(2, 2, '00002', 'Sinta', '', '', 'Jl Melati', '0808273262314', 'projectwebdua@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1998-01-23', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
+(3, 3, '00003', 'Philip', '', '', 'Jl Melati', '089283282121', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '2000-12-16', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
+(4, 1, '00004', 'Bro', '', '', 'Jl. Apel ', '089283282121', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S2', 'Karyawan', 'Sunda', '1996-02-09', '2021-01-01', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
+(5, 8, '00005', 'Toni', '', '', 'Jl. Apel ', '0808273262314', 'vinvin@gmail.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '2000-09-16', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
+(6, 6, '00006', 'Marcelo', '', '', 'Jl. Apel ', '0808273262314', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1990-01-08', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
+(7, 7, '00007', 'Boy', '', '', 'Jl. Apel ', '089283282121', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1996-02-09', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
+(8, 4, '00008', 'Joseph', '', '', 'Jl. Apel ', '0808273262314', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1996-02-09', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
+(9, 2, '00009', 'Jack', '', '', 'Jl. Apel ', '0808273262314', 'brobro@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1990-10-21', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
+(10, 5, '000010', 'Yohanes', '', '', 'Jl. Apel ', '0808273262314', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1998-10-09', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
+(11, 5, '000011', 'Koko', '', '', 'Jl. Mangga', '088217231921', 'kokoko@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Jawa', '2000-10-01', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
+(12, 7, '000012', 'Bella', '', '', 'Jl. Buah Apel No.2 ', '088904040829', 'bellabella@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1994-10-22', '2010-08-21', '0000-00-00', '2008-07-16', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
+(13, 6, '000013', 'Josephine', '', '', 'Jl. Cengkeh Blok. A', '088904040829', 'josejose@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1995-07-12', '2012-11-22', '2022-07-21', '2000-10-18', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
+(14, 4, '000014', 'Maria', '', '', 'Jl. Mangga', '088904040829', 'marmar@example.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Jawa', '1996-11-05', '2008-02-12', '0000-00-00', '2000-10-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
+(15, 8, '000015', 'Brandon', '', '', 'Jl. Cengkeh Blok. AC', '088270120023', 'brandonbrandon@gmail.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Jawa', '1997-12-01', '2009-02-18', '2015-07-12', '2005-12-02', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0),
+(16, 3, '000016', 'Budi Boy', '', '', 'Jl. Anggur No. 2 Blok. AC', '088270120023', 'budibudi@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Jawa', '1967-12-08', '1975-04-12', '0000-00-00', '1975-01-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 0);
 
 -- --------------------------------------------------------
 
@@ -264,9 +267,7 @@ INSERT INTO `level_user` (`id_level_user`, `level_user`) VALUES
 CREATE TABLE `peminjaman_ruangan` (
   `id_peminjaman` int(11) NOT NULL,
   `id_ruangan` int(11) NOT NULL,
-  `nama_peminjam` varchar(100) NOT NULL,
-  `email_peminjam` varchar(50) NOT NULL,
-  `nohp_peminjam` varchar(30) NOT NULL,
+  `id_anggota` int(11) NOT NULL,
   `keperluan` varchar(100) NOT NULL,
   `tanggal_booking` date NOT NULL,
   `jam_mulai` time NOT NULL,
@@ -281,10 +282,10 @@ CREATE TABLE `peminjaman_ruangan` (
 -- Dumping data for table `peminjaman_ruangan`
 --
 
-INSERT INTO `peminjaman_ruangan` (`id_peminjaman`, `id_ruangan`, `nama_peminjam`, `email_peminjam`, `nohp_peminjam`, `keperluan`, `tanggal_booking`, `jam_mulai`, `jam_selesai`, `status_peminjaman`, `updated_at`, `deleted_at`, `is_deleted`) VALUES
-(1, 2, 'Budi', 'budibudi@gmail.com', '088904040829', 'Seminar', '2022-10-14', '12:20:00', '13:22:00', 'SELESAI', '2022-10-15 14:35:49', NULL, 0),
-(2, 2, 'Yoyo', 'sipsip@gmail.com', '088217231921', 'Seminar', '2022-10-14', '14:00:00', '14:25:00', 'SELESAI', '2022-10-15 14:54:10', NULL, 0),
-(3, 1, 'Kevin', 'satusatu@gmail.com', '0808273262314', 'Seminar', '2022-10-22', '10:00:00', '18:00:00', 'PEMINJAMAN', NULL, NULL, 0);
+INSERT INTO `peminjaman_ruangan` (`id_peminjaman`, `id_ruangan`, `id_anggota`, `keperluan`, `tanggal_booking`, `jam_mulai`, `jam_selesai`, `status_peminjaman`, `updated_at`, `deleted_at`, `is_deleted`) VALUES
+(20, 2, 1, 'Seminar', '2022-10-18', '12:00:00', '14:00:00', 'DITERIMA', '2022-10-17 14:16:14', NULL, 0),
+(21, 3, 3, 'rapat', '2022-10-18', '12:00:00', '17:00:00', 'SEDANG DIPROSES', NULL, NULL, 0),
+(22, 3, 2, 'rapat', '2022-10-20', '12:21:00', '15:00:00', 'SEDANG DIPROSES', NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -415,7 +416,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id_user`, `id_level_user`, `nama_lengkap`, `username`, `password`, `email_user`, `status_user`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 1, 'Admin min', 'admin', '$2y$10$9KhGw19pT6w7zIjP2h/wD.zMBdQOU0GqqGb0i05wuJX4yvntK3TcG', 'contoh@example.com', 1, '2022-09-18 20:18:08', '2022-10-11 09:01:06', NULL),
 (2, 1, 'Christella', 'stella', '$2y$10$zWa0ie9.mG4qe98Ax2L9POR5eRm0orxzPgLQalCxdkd.tY035Cay6', 'stella@gmail.com', 1, '2022-09-18 20:13:20', '2022-10-15 11:16:34', NULL),
-(4, 3, 'Yohanes', 'yohanes', '$2y$10$G47i23zMHD/AHmAWCePEKOViFcJgfD1WWSAQCnMV/xHfZ4VYJEkpm', 'yohanes@gmail.com', 1, '2022-09-19 21:27:47', '2022-10-05 20:11:24', NULL),
+(4, 3, 'Yohanes', 'yohanes', '$2y$10$jpLepgnYa5lmDmSm3I2fWe7guZ55EmtDxM4vLiAxQjSQFFcutZVc6', 'yohanes@gmail.com', 1, '2022-09-19 21:27:47', '2022-10-16 16:00:11', NULL),
 (5, 2, 'Bro', 'sekretariat', '$2y$10$rMmoMktv2U/oS9vqK7EpFu7f9/0Z14oAyrWMIOea/n1kwwJLi8K26', 'satusatu@gmail.com', 1, '2022-09-20 10:39:22', '2022-09-20 10:41:26', NULL),
 (6, 4, 'markus', 'markus', '$2y$10$SfzDnadVBTS4xmGtd15CruLdbqipmX/eEWi1NQ/O7/56J/evkdCky', 'electronicdm10@gmail.com', 1, '2022-10-15 11:09:39', NULL, NULL);
 
@@ -443,7 +444,8 @@ INSERT INTO `wilayah` (`id_wilayah`, `nama_wilayah`, `is_koordinator`) VALUES
 (5, 'Wilayah 5', 1),
 (6, 'Wilayah 6', 1),
 (7, 'Wilayah 7', 1),
-(8, 'Bajem Kutabumi', 1);
+(8, 'Bajem Kutabumi', 1),
+(9, 'Wilayah 9', 0);
 
 --
 -- Indexes for dumped tables
@@ -596,7 +598,7 @@ ALTER TABLE `level_user`
 -- AUTO_INCREMENT for table `peminjaman_ruangan`
 --
 ALTER TABLE `peminjaman_ruangan`
-  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `pendeta`
