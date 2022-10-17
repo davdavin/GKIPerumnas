@@ -84,13 +84,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo base_url() . 'Profil/update_profil/' . $this->session->userdata('username') ?>" class="nav-link active">
+                            <a href="<?php echo base_url() . 'Profil/update_profil' ?>" class="nav-link active">
                                 <i class="nav-icon fas fa-pencil-alt"></i>
                                 <p> Update </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo base_url() . 'Profil/update_password/' . $this->session->userdata('username') ?>" class="nav-link">
+                            <a href="<?php echo base_url() . 'Profil/update_password' ?>" class="nav-link">
                                 <i class="nav-icon fas fa-pencil-alt"></i>
                                 <p> Ubah Password </p>
                             </a>
@@ -111,7 +111,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?php echo base_url() . 'Ruangan/list_peminjaman/' . $this->session->userdata('username'); ?>" class="nav-link">
+                                    <a href="<?php echo base_url() . 'Ruangan/list_peminjaman' ?>" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Peminjaman</p>
                                     </a>
