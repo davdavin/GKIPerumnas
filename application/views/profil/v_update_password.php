@@ -95,8 +95,31 @@
                                 <p> Ubah Password </p>
                             </a>
                         </li>
-                       <li class="nav-item">
-                            <a href="<?php echo base_url() . 'Login/logout' 
+                        <li class="nav-item">
+                            <a href="<?php echo base_url() . 'Ruangan/list_ruangan' ?>" class="nav-link">
+                                <i class="nav-icon fas fa-door-open"></i>
+                                <p>
+                                    Ruangan
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?php echo base_url() . 'Ruangan/list_ruangan' ?>" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Ruangan</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?php echo base_url() . 'Ruangan/list_peminjaman/' . $this->session->userdata('username'); ?>" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Peminjaman</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?php echo base_url() . 'login/logout'
                                         ?>" class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
                                 <p> Logout </p>
@@ -116,7 +139,7 @@
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="<?php echo base_url() . 'Profil'?>">Informasi</a></li>
+                                <li class="breadcrumb-item"><a href="<?php echo base_url() . 'Profil' ?>">Informasi</a></li>
                                 <li class="breadcrumb-item active">Update Password</li>
                             </ol>
                         </div>
@@ -127,10 +150,10 @@
             <!-- Main content -->
             <section class="content">
                 <div class="card card-primary">
-                      <!-- form start -->
+                    <!-- form start -->
                     <form class="form-change" action="<?php echo base_url() . 'Profil/proses_update_password' ?>" method="post">
                         <div class="card-body box-profile">
-                  
+
                             <div class="form-group">
                                 <label>Password Lama</label>
                                 <input type="password" class="form-control" name="currentpass">
@@ -153,12 +176,12 @@
                                 </div>
                             </div>
                         </div>
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Ubah</button>
-                            </div>
-                    </form>     
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Ubah</button>
+                        </div>
+                    </form>
                 </div>
-               
+
                 <!-- /.container-fluid -->
             </section>
         </div>
@@ -203,57 +226,57 @@
                     confirmButtonText: 'Ubah Data'
                 }).then((result) => {
                     if (result.value) {
-                    $.ajax({
-                        url: $(this).attr('action'),
-                        type: 'POST',
-                        dataType: 'JSON',
-                        data: new FormData(this),
-                        contentType: false,
-                        //  cache: false,
-                        processData: false,
-                        beforeSend: function() {
-                        $('.simpan').html('<i class="fa fa-spin fa-spinner"></i>');
-                        $('.simpan').attr('disabled', 'disabled');
-                        },
-                        complete: function() {
-                        $('.simpan').removeAttr('disabled');
-                        $('.simpan').html('Ubah');
-                        },
-                        success: function(respon) {
-                        if (respon.sukses == false) {
-                            if (respon.error_currentpass) {
-                                $('.error_currentpass').show();
-                                $('.error_currentpass').html(respon.error_currentpass);
-                                $('.error_currentpass').css("color", "red");
-                            } else {
-                                $('.error_currentpass').hide();
-                            }
-                            if (respon.error_newpass) {
-                                $('.error_newpass').show();
-                                $('.error_newpass').html(respon.error_newpass);
-                                $('.error_newpass').css("color", "red");
-                            } else {
-                                $('.error_newpass').hide();
-                            }
-                            if (respon.error_retype) {
-                                $('.error_retype').show();
-                                $('.error_retype').html(respon.error_retype);
-                                $('.error_retype').css("color", "red");
-                            } else {
-                                $('.error_retype').hide();
-                            }
+                        $.ajax({
+                            url: $(this).attr('action'),
+                            type: 'POST',
+                            dataType: 'JSON',
+                            data: new FormData(this),
+                            contentType: false,
+                            //  cache: false,
+                            processData: false,
+                            beforeSend: function() {
+                                $('.simpan').html('<i class="fa fa-spin fa-spinner"></i>');
+                                $('.simpan').attr('disabled', 'disabled');
+                            },
+                            complete: function() {
+                                $('.simpan').removeAttr('disabled');
+                                $('.simpan').html('Ubah');
+                            },
+                            success: function(respon) {
+                                if (respon.sukses == false) {
+                                    if (respon.error_currentpass) {
+                                        $('.error_currentpass').show();
+                                        $('.error_currentpass').html(respon.error_currentpass);
+                                        $('.error_currentpass').css("color", "red");
+                                    } else {
+                                        $('.error_currentpass').hide();
+                                    }
+                                    if (respon.error_newpass) {
+                                        $('.error_newpass').show();
+                                        $('.error_newpass').html(respon.error_newpass);
+                                        $('.error_newpass').css("color", "red");
+                                    } else {
+                                        $('.error_newpass').hide();
+                                    }
+                                    if (respon.error_retype) {
+                                        $('.error_retype').show();
+                                        $('.error_retype').html(respon.error_retype);
+                                        $('.error_retype').css("color", "red");
+                                    } else {
+                                        $('.error_retype').hide();
+                                    }
 
-                        } else {
-                            Swal.fire({
-                                title: 'Sukses',
-                                text: respon.sukses,
-                                icon: 'success',
-                            }).then((confirmed) => {
-                                window.location.reload();
-                            });
-                        }
-                        }
-                    });
+                                } else {
+                                    Swal.fire({
+                                        title: 'Sukses',
+                                        text: respon.sukses,
+                                        icon: 'success',
+                                    }).then((confirmed) => {
+                                        window.location.reload();
+                                    });
+                                }
+                            }
+                        });
                     }
                 });
             });

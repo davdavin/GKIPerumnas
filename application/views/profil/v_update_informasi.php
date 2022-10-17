@@ -95,8 +95,31 @@
                                 <p> Ubah Password </p>
                             </a>
                         </li>
-                       <li class="nav-item">
-                            <a href="<?php echo base_url() . 'Login/logout' 
+                        <li class="nav-item">
+                            <a href="<?php echo base_url() . 'Ruangan/list_ruangan' ?>" class="nav-link">
+                                <i class="nav-icon fas fa-door-open"></i>
+                                <p>
+                                    Ruangan
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?php echo base_url() . 'Ruangan/list_ruangan' ?>" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Ruangan</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?php echo base_url() . 'Ruangan/list_peminjaman/' . $this->session->userdata('username'); ?>" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Peminjaman</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?php echo base_url() . 'login/logout'
                                         ?>" class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
                                 <p> Logout </p>
@@ -116,7 +139,7 @@
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="<?php echo base_url() . 'Profil'?>">Informasi</a></li>
+                                <li class="breadcrumb-item"><a href="<?php echo base_url() . 'Profil' ?>">Informasi</a></li>
                                 <li class="breadcrumb-item active">Update</li>
                             </ol>
                         </div>
@@ -134,7 +157,7 @@
                                 <div class="row edit-center">
                                     <div class="col-sm-5">
                                         <input type="hidden" class="form-control" id="inputNoAnggota" name="no_anggota" value="<?= $list_jemaat_edit->no_anggota ?>" readonly>
-                                       <div class="form-group">
+                                        <div class="form-group">
                                             <label for="inputUsername">Username</label>
                                             <input type="hidden" name="username_sekarang" value="<?= $list_jemaat_edit->username ?>">
                                             <input type="text" class="form-control" id="inputUsername" name="username" value="<?= $list_jemaat_edit->username ?>">
@@ -232,79 +255,79 @@
                     confirmButtonText: 'Ubah Data'
                 }).then((result) => {
                     if (result.value) {
-                    $.ajax({
-                        url: $(this).attr('action'),
-                        type: 'POST',
-                        dataType: 'JSON',
-                        data: new FormData(this),
-                        contentType: false,
-                        //  cache: false,
-                        processData: false,
-                        beforeSend: function() {
-                        $('.simpan').html('<i class="fa fa-spin fa-spinner"></i>');
-                        $('.simpan').attr('disabled', 'disabled');
-                        },
-                        complete: function() {
-                        $('.simpan').removeAttr('disabled');
-                        $('.simpan').html('Ubah');
-                        },
-                        success: function(respon) {
-                        if (respon.sukses == false) {
-                            if (respon.error_username) {
-                            $('.error_username').show();
-                            $('.error_username').html(respon.error_username);
-                            $('.error_username').css("color", "red");
-                            } else {
-                            $('.error_username').hide();
+                        $.ajax({
+                            url: $(this).attr('action'),
+                            type: 'POST',
+                            dataType: 'JSON',
+                            data: new FormData(this),
+                            contentType: false,
+                            //  cache: false,
+                            processData: false,
+                            beforeSend: function() {
+                                $('.simpan').html('<i class="fa fa-spin fa-spinner"></i>');
+                                $('.simpan').attr('disabled', 'disabled');
+                            },
+                            complete: function() {
+                                $('.simpan').removeAttr('disabled');
+                                $('.simpan').html('Ubah');
+                            },
+                            success: function(respon) {
+                                if (respon.sukses == false) {
+                                    if (respon.error_username) {
+                                        $('.error_username').show();
+                                        $('.error_username').html(respon.error_username);
+                                        $('.error_username').css("color", "red");
+                                    } else {
+                                        $('.error_username').hide();
+                                    }
+                                    if (respon.error_alamat) {
+                                        $('.error_alamat').show();
+                                        $('.error_alamat').html(respon.error_alamat);
+                                        $('.error_alamat').css("color", "red");
+                                    } else {
+                                        $('.error_alamat').hide();
+                                    }
+                                    if (respon.error_nohp) {
+                                        $('#perlengkapan').addClass('is-invalid');
+                                        $('.error_nohp').show();
+                                        $('.error_nohp').html(respon.error_nohp);
+                                        $('.error_nohp').css("color", "red");
+                                    } else {
+                                        $('.error_nohp').hide();
+                                    }
+                                    if (respon.error_email) {
+                                        $('.error_email').show();
+                                        $('.error_email').html(respon.error_email);
+                                        $('.error_email').css("color", "red");
+                                    } else {
+                                        $('.error_email').hide();
+                                    }
+                                    if (respon.error_pendidikan) {
+                                        $('.error_pendidikan').show();
+                                        $('.error_pendidikan').html(respon.error_pendidikan);
+                                        $('.error_pendidikan').css("color", "red");
+                                    } else {
+                                        $('.error_pendidikan').hide();
+                                    }
+                                    if (respon.error_pekerjaan) {
+                                        $('.error_pekerjaan').show();
+                                        $('.error_pekerjaan').html(respon.error_pekerjaan);
+                                        $('.error_pekerjaan').css("color", "red");
+                                    } else {
+                                        $('.error_pekerjaan').hide();
+                                    }
+                                } else {
+                                    $('.clear').hide();
+                                    Swal.fire({
+                                        title: 'Sukses',
+                                        text: respon.sukses,
+                                        icon: 'success',
+                                    }).then((confirmed) => {
+                                        window.location.href = "<?php echo base_url() . 'Profil' ?>";
+                                    });
+                                }
                             }
-                            if (respon.error_alamat) {
-                            $('.error_alamat').show();
-                            $('.error_alamat').html(respon.error_alamat);
-                            $('.error_alamat').css("color", "red");
-                            } else {
-                            $('.error_alamat').hide();
-                            }
-                            if (respon.error_nohp) {
-                            $('#perlengkapan').addClass('is-invalid');
-                            $('.error_nohp').show();
-                            $('.error_nohp').html(respon.error_nohp);
-                            $('.error_nohp').css("color", "red");
-                            } else {
-                            $('.error_nohp').hide();
-                            }
-                            if (respon.error_email) {
-                            $('.error_email').show();
-                            $('.error_email').html(respon.error_email);
-                            $('.error_email').css("color", "red");
-                            } else {
-                            $('.error_email').hide();
-                            }
-                            if (respon.error_pendidikan) {
-                            $('.error_pendidikan').show();
-                            $('.error_pendidikan').html(respon.error_pendidikan);
-                            $('.error_pendidikan').css("color", "red");
-                            } else {
-                            $('.error_pendidikan').hide();
-                            }
-                            if (respon.error_pekerjaan) {
-                            $('.error_pekerjaan').show();
-                            $('.error_pekerjaan').html(respon.error_pekerjaan);
-                            $('.error_pekerjaan').css("color", "red");
-                            } else {
-                            $('.error_pekerjaan').hide();
-                            }
-                        } else {
-                            $('.clear').hide();
-                            Swal.fire({
-                            title: 'Sukses',
-                            text: respon.sukses,
-                            icon: 'success',
-                            }).then((confirmed) => {
-                            window.location.href = "<?php echo base_url() . 'Profil' ?>";
-                            });
-                        }
-                        }
-                    });
+                        });
                     }
                 });
             });

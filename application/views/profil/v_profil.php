@@ -101,13 +101,36 @@
                                 <p> Ubah Password </p>
                             </a>
                         </li>
-                       <li class="nav-item">
-                            <a href="<?php echo base_url() . 'Login/logout' 
+                        <li class="nav-item">
+                            <a href="<?php echo base_url() . 'Ruangan/list_ruangan' ?>" class="nav-link">
+                                <i class="nav-icon fas fa-door-open"></i>
+                                <p>
+                                    Ruangan
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?php echo base_url() . 'Ruangan/list_ruangan' ?>" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Ruangan</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?php echo base_url() . 'Ruangan/list_peminjaman/' . $this->session->userdata('username'); ?>" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Peminjaman</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?php echo base_url() . 'login/logout'
                                         ?>" class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
                                 <p> Logout </p>
                             </a>
-                        </li> 
+                        </li>
                     </ul>
                 </nav>
             </div>
