@@ -23,14 +23,16 @@ class Profil extends CI_Controller
         $this->load->view('profil/v_profil.php', $data);
     }
 
-    public function update_profil($username)
+    public function update_profil()
     {
+        $username = $this->session->userdata('username');
         $data['detail'] = $this->M_Profil->tampil_informasi($username)->result();
         $data['wilayah'] = $this->M_Wilayah->tampil()->result();
         $this->load->view('profil/v_update_informasi.php', $data);
     }
 
-    public function proses_update() {
+    public function proses_update()
+    {
         $no_anggota = $this->input->post('no_anggota');
         $username_sekarang = $this->input->post('username_sekarang');
         $username = $this->input->post('username');
@@ -41,12 +43,12 @@ class Profil extends CI_Controller
         $pendidikan_anggota = $this->input->post('pendidikan');
         $pekerjaan_anggota = $this->input->post('pekerjaan');
 
-        if($username != $username_sekarang) {
+        if ($username != $username_sekarang) {
             $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[15]|is_unique[anggota_jemaat.username]');
         }
         $this->form_validation->set_rules('alamat_anggota', 'Alamat', 'required');
         $this->form_validation->set_rules('nohp', 'No. Handphone', 'required|min_length[9]|max_length[15]');
-        if($email_anggota != $email_sekarang) {
+        if ($email_anggota != $email_sekarang) {
             $this->form_validation->set_rules('email_anggota', 'Email', 'required|valid_email|is_unique[anggota_jemaat.email_anggota]');
         }
         $this->form_validation->set_rules('pendidikan', 'Pendidikan', 'required');
@@ -74,12 +76,12 @@ class Profil extends CI_Controller
 
             $data = array(
                 'username' => $username, 'alamat_anggota' => $alamat_anggota, 'nohp_anggota' => $nohp_anggota, 'email_anggota' => $email_anggota,
-                'pendidikan_anggota' => $pendidikan_anggota, 'pekerjaan_anggota' => $pekerjaan_anggota  
+                'pendidikan_anggota' => $pendidikan_anggota, 'pekerjaan_anggota' => $pekerjaan_anggota
             );
 
             $this->M_Profil->update_record($where, $data, 'anggota_jemaat');
 
-            if($username != $username_sekarang) {
+            if ($username != $username_sekarang) {
                 $session = array(
                     'username' => $username
                 );
@@ -87,16 +89,18 @@ class Profil extends CI_Controller
             }
             $respon['sukses'] = "Data berhasil diubah";
             echo json_encode($respon);
-      //      $this->session->set_flashdata('sukses', 'Data berhasil diubah');
-        //    redirect('Profil');
+            //      $this->session->set_flashdata('sukses', 'Data berhasil diubah');
+            //    redirect('Profil');
         }
     }
 
-    public function update_password($username) {
+    public function update_password()
+    {
         $this->load->view('profil/v_update_password.php');
     }
 
-    public function proses_update_password() {
+    public function proses_update_password()
+    {
         $id = $this->session->userdata('id');
         $pass_lama = $this->input->post('currentpass');
         $pass_baru = $this->input->post('newpass');
