@@ -7,7 +7,7 @@ class Profil extends CI_Controller
     {
         parent::__construct();
 
-        if ($this->session->userdata('status') != "login") {
+        if ($this->session->userdata('status_jemaat') != "login") {
             redirect('login/jemaat');
         }
         $this->load->model(array('M_Profil', 'M_Wilayah'));

@@ -7,14 +7,14 @@ class Login extends CI_Controller
     {
         parent::__construct();
 
-        $this->load->model(array('M_Admin', 'M_Profil'));
+        $this->load->model(array('M_Profil'));
         $this->load->helper('url', 'form');
         $this->load->library('form_validation');
     }
 
     function index()
     {
-        $this->load->view('auth/v_login.php');
+        $this->load->view('auth/jemaat/v_login.php');
     }
 
     function validasi()
@@ -42,15 +42,13 @@ class Login extends CI_Controller
 
             $cek_login = $this->M_Profil->cek_login('anggota_jemaat', $where)->row_array();
 
-            //            $cek_login = $this->M_Admin->cek_login('admin', $where)->row_array();
-
             if ($cek_login) {
                 if ($cek_login['status_akun'] == 1) { //$cek_login['status_akun'] == 1
                     if (password_verify($password, $cek_login['password'])) {
                         $session = array(
                             'id' => $cek_login['id_anggota'],
                             'username' => $cek_login['username'],
-                            'status' => "login",
+                            'status_jemaat' => "login",
                         );
                         $this->session->set_userdata($session);
                         $respon['sukses'] = "Berhasil Login";
@@ -82,6 +80,6 @@ class Login extends CI_Controller
     function logout()
     {
         $this->session->sess_destroy();
-        redirect('Login');
+        redirect('login/jemaat');
     }
 }
