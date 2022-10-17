@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Profil - Jemaat</title>
+    <title> Jemaat | Update</title>
 
     <!-- Favicons -->
     <link href="<?php echo base_url(); ?>resources/assets/img/logo-GKI-tr.png" rel="icon">
@@ -58,21 +58,11 @@
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
+                <li class="nav-item">
+                    <a class="nav-link">
                         <span class="mr-2 float-left text-muted"><?php echo $this->session->userdata('username'); ?></span>
                         <i class="far fa-user-circle fa-2x"></i>
-                        <span class="ml-1 float-right"><i class="fas fa-caret-down fa-sm"></i></span> <!-- far fa-angle-down -->
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-user mr-2"></i> Profil
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="<?php echo base_url() . 'Login/logout' ?>" class="dropdown-item">
-                            <i class="fas fa-sign-out-alt mr-2"></i> Logout
-                        </a>
-                    </div>
                 </li>
             </ul>
         </nav>
@@ -99,13 +89,19 @@
                                 <p> Update </p>
                             </a>
                         </li>
-                        <!--   <li class="nav-item">
-                            <a href="<?php // echo base_url() . 'Login/logout' 
+                        <li class="nav-item">
+                            <a href="<?php echo base_url() . 'Profil/update_password/' . $this->session->userdata('username') ?>" class="nav-link">
+                                <i class="nav-icon fas fa-pencil-alt"></i>
+                                <p> Ubah Password </p>
+                            </a>
+                        </li>
+                       <li class="nav-item">
+                            <a href="<?php echo base_url() . 'Login/logout' 
                                         ?>" class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
                                 <p> Logout </p>
                             </a>
-                        </li> -->
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -118,6 +114,12 @@
                         <div class="col-sm-6">
                             <h1>Update</h1>
                         </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="<?php echo base_url() . 'Profil'?>">Informasi</a></li>
+                                <li class="breadcrumb-item active">Update</li>
+                            </ol>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -127,80 +129,51 @@
                 <div class="card card-primary">
                     <!-- form start -->
                     <?php foreach ($detail as $list_jemaat_edit) { ?>
-                        <form method="post" action="<?php echo base_url() . 'Profil/proses_update' ?>">
+                        <form class="form-submit" method="post" action="<?php echo base_url() . 'Profil/proses_update' ?>">
                             <div class="card-body">
                                 <div class="row edit-center">
                                     <div class="col-sm-5">
-                                        <div class="form-group">
-                                            <label for="inputNoAnggota">No Anggota</label>
-                                            <input type="number" class="form-control" id="inputNoAnggota" name="no_anggota" value="<?= $list_jemaat_edit->no_anggota ?>" readonly>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Nama Anggota</label>
-                                            <input type="text" class="form-control" name="nama_anggota" value="<?= $list_jemaat_edit->nama_lengkap_anggota ?>" required>
+                                        <input type="hidden" class="form-control" id="inputNoAnggota" name="no_anggota" value="<?= $list_jemaat_edit->no_anggota ?>" readonly>
+                                       <div class="form-group">
+                                            <label for="inputUsername">Username</label>
+                                            <input type="hidden" name="username_sekarang" value="<?= $list_jemaat_edit->username ?>">
+                                            <input type="text" class="form-control" id="inputUsername" name="username" value="<?= $list_jemaat_edit->username ?>">
+                                            <div class="px-2 error_username clear" style="display: none">
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label>Alamat Anggota</label>
-                                            <input type="text" class="form-control" name="alamat_anggota" value="<?= $list_jemaat_edit->alamat_anggota ?>" required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>Nomor HP (Indonesia):</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" data-inputmask='"mask": "089999999999[9][9][9]"' data-mask name="nohp" value="<?= $list_jemaat_edit->nohp_anggota ?>" required>
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                                </div>
+                                            <input type="text" class="form-control" name="alamat_anggota" value="<?= $list_jemaat_edit->alamat_anggota ?>">
+                                            <div class="px-2 error_alamat clear" style="display: none">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Wilayah</label>
-                                            <select class="form-control select2bs4" style="width: 100%;" name="id_wilayah" required>
-                                                <option selected="selected" disabled>Pilih wilayah</option>
-                                                <?php foreach ($wilayah as $list_wilayah) { ?>
-                                                    <option value="<?php echo $list_wilayah->id_wilayah ?>" <?php if ($list_wilayah->id_wilayah == $list_jemaat_edit->id_wilayah) {
-                                                                                                                echo "selected";
-                                                                                                            } ?>>
-                                                        <?php echo $list_wilayah->nama_lengkap_anggota . " - " . $list_wilayah->nama_wilayah; ?>
-                                                    </option>
-                                                <?php
-                                                } ?>
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="inputEmailAnggota">Email Anggota</label>
-                                            <input type="email" class="form-control" id="inputEmailAnggota" name="email_anggota" value="<?= $list_jemaat_edit->email_anggota ?>" required>
+                                            <label>Nomor Handphone:</label>
+                                            <input type="text" class="form-control" name="nohp" value="<?= $list_jemaat_edit->nohp_anggota ?>">
+                                            <div class="px-2 error_nohp clear" style="display: none">
+                                            </div>
                                         </div>
                                     </div>
-
                                     <div class="col-sm-5">
                                         <div class="form-group">
-                                            <label for="inputGolonganDarah">Golongan Darah</label>
-                                            <input type="text" class="form-control" id="inputGolonganDarah" name="golongan_darah" value="<?= $list_jemaat_edit->golongan_darah_anggota ?>" required>
+                                            <label for="inputEmailAnggota">Email Anggota</label>
+                                            <input type="hidden" name="email_sekarang" value="<?= $list_jemaat_edit->email_anggota ?>">
+                                            <input type="email" class="form-control" id="inputEmailAnggota" name="email_anggota" value="<?= $list_jemaat_edit->email_anggota ?>">
+                                            <div class="px-2 error_email clear" style="display: none">
+                                            </div>
                                         </div>
-                                        
                                         <div class="form-group">
                                             <label for="inputPendidikan">Pendidikan</label>
-                                            <input type="text" class="form-control" id="inputPendidikan" name="pendidikan" value="<?= $list_jemaat_edit->pendidikan_anggota ?>" required>
+                                            <input type="text" class="form-control" id="inputPendidikan" name="pendidikan" value="<?= $list_jemaat_edit->pendidikan_anggota ?>">
+                                            <div class="px-2 error_pendidikan clear" style="display: none">
+                                            </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="inputPekerjaan">Pekerjaan</label>
-                                            <input type="text" class="form-control" id="inputPekerjaan" name="pekerjaan" value="<?= $list_jemaat_edit->pekerjaan_anggota ?>" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputKelompokEtnis">Kelompok Etnis</label>
-                                            <input type="text" class="form-control" id="inputKelompokEtnis" name="kelompok_etnis" value="<?= $list_jemaat_edit->kelompok_etnis_anggota ?>" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Tanggal Lahir</label>
-                                            <div class="input-group date" id="tanggalLahir" data-target-input="nearest">
-                                                <input type="text" class="form-control datetimepicker-input" data-target="#tanggalLahir" name="tanggal_lahir" value="<?= $list_jemaat_edit->tanggal_lahir_anggota ?>" required />
-                                                <div class="input-group-append" data-target="#tanggalLahir" data-toggle="datetimepicker">
-                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                                </div>
+                                            <input type="text" class="form-control" id="inputPekerjaan" name="pekerjaan" value="<?= $list_jemaat_edit->pekerjaan_anggota ?>">
+                                            <div class="px-2 error_pekerjaan clear" style="display: none">
                                             </div>
                                         </div>
                                     <?php } ?>
@@ -208,7 +181,7 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary tombol-ubah">Ubah</button>
+                                <button type="submit" class="btn btn-primary">Ubah</button>
                             </div>
 
                         </form>
@@ -245,37 +218,10 @@
 
     <script>
         $(function() {
-            $('[data-mask]').inputmask()
-            //Date picker
-            $('#tanggalLahir').datetimepicker({
-                format: 'YYYY-MM-DD'
-            });
-            $('#tanggalBaptis').datetimepicker({
-                format: 'YYYY-MM-DD'
-            });
-            $('#tanggalSidi').datetimepicker({
-                format: 'YYYY-MM-DD'
-            });
-            $('#tanggalAM').datetimepicker({
-                format: 'YYYY-MM-DD'
-            });
-            $('#tanggalAK').datetimepicker({
-                format: 'YYYY-MM-DD'
-            });
-            $('#tanggalMeninggal').datetimepicker({
-                format: 'YYYY-MM-DD'
-            });
-            $('#tanggalDKH').datetimepicker({
-                format: 'YYYY-MM-DD'
-            });
-            $('#tanggalExDKH').datetimepicker({
-                format: 'YYYY-MM-DD'
-            });
+            $('[data-mask]').inputmask();
 
-            $('.tombol-ubah').click(function(e) {
+            $('.form-submit').submit(function(e) {
                 e.preventDefault();
-                const form = $(this).parents('form');
-
                 Swal.fire({
                     title: 'Apakah anda yakin?',
                     icon: 'warning',
@@ -286,10 +232,81 @@
                     confirmButtonText: 'Ubah Data'
                 }).then((result) => {
                     if (result.value) {
-                        form.submit();
+                    $.ajax({
+                        url: $(this).attr('action'),
+                        type: 'POST',
+                        dataType: 'JSON',
+                        data: new FormData(this),
+                        contentType: false,
+                        //  cache: false,
+                        processData: false,
+                        beforeSend: function() {
+                        $('.simpan').html('<i class="fa fa-spin fa-spinner"></i>');
+                        $('.simpan').attr('disabled', 'disabled');
+                        },
+                        complete: function() {
+                        $('.simpan').removeAttr('disabled');
+                        $('.simpan').html('Ubah');
+                        },
+                        success: function(respon) {
+                        if (respon.sukses == false) {
+                            if (respon.error_username) {
+                            $('.error_username').show();
+                            $('.error_username').html(respon.error_username);
+                            $('.error_username').css("color", "red");
+                            } else {
+                            $('.error_username').hide();
+                            }
+                            if (respon.error_alamat) {
+                            $('.error_alamat').show();
+                            $('.error_alamat').html(respon.error_alamat);
+                            $('.error_alamat').css("color", "red");
+                            } else {
+                            $('.error_alamat').hide();
+                            }
+                            if (respon.error_nohp) {
+                            $('#perlengkapan').addClass('is-invalid');
+                            $('.error_nohp').show();
+                            $('.error_nohp').html(respon.error_nohp);
+                            $('.error_nohp').css("color", "red");
+                            } else {
+                            $('.error_nohp').hide();
+                            }
+                            if (respon.error_email) {
+                            $('.error_email').show();
+                            $('.error_email').html(respon.error_email);
+                            $('.error_email').css("color", "red");
+                            } else {
+                            $('.error_email').hide();
+                            }
+                            if (respon.error_pendidikan) {
+                            $('.error_pendidikan').show();
+                            $('.error_pendidikan').html(respon.error_pendidikan);
+                            $('.error_pendidikan').css("color", "red");
+                            } else {
+                            $('.error_pendidikan').hide();
+                            }
+                            if (respon.error_pekerjaan) {
+                            $('.error_pekerjaan').show();
+                            $('.error_pekerjaan').html(respon.error_pekerjaan);
+                            $('.error_pekerjaan').css("color", "red");
+                            } else {
+                            $('.error_pekerjaan').hide();
+                            }
+                        } else {
+                            $('.clear').hide();
+                            Swal.fire({
+                            title: 'Sukses',
+                            text: respon.sukses,
+                            icon: 'success',
+                            }).then((confirmed) => {
+                            window.location.href = "<?php echo base_url() . 'Profil' ?>";
+                            });
+                        }
+                        }
+                    });
                     }
                 });
-
             });
         });
     </script>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Profil - Jemaat</title>
+    <title>Jemaat | Informasi</title>
 
     <!-- Favicons -->
     <link href="<?php echo base_url(); ?>resources/assets/img/logo-GKI-tr.png" rel="icon">
@@ -95,13 +95,19 @@
                                 <p> Update </p>
                             </a>
                         </li>
-                        <!--   <li class="nav-item">
-                            <a href="<?php // echo base_url() . 'Login/logout' 
+                        <li class="nav-item">
+                            <a href="<?php echo base_url() . 'Profil/update_password/' . $this->session->userdata('username') ?>" class="nav-link">
+                                <i class="nav-icon fas fa-pencil-alt"></i>
+                                <p> Ubah Password </p>
+                            </a>
+                        </li>
+                       <li class="nav-item">
+                            <a href="<?php echo base_url() . 'Login/logout' 
                                         ?>" class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
                                 <p> Logout </p>
                             </a>
-                        </li> -->
+                        </li> 
                     </ul>
                 </nav>
             </div>
@@ -112,7 +118,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Profil</h1>
+                            <h1>Informasi</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item active">Informasi</li>
+                            </ol>
                         </div>
                     </div>
                 </div>
@@ -145,10 +156,10 @@
                                             <p><?php echo $list_detail_jemaat->alamat_anggota; ?></p>
                                             <h5> <strong> No Hp </strong> </h5>
                                             <p><?php echo $list_detail_jemaat->nohp_anggota; ?></p>
-                                            <h5> <strong> Koordinator - Nama Wilayah </strong> </h5>
+                                            <h5> <strong> Wilayah </strong> </h5>
                                             <p><?php foreach ($wilayah as $list_wilayah) {
                                                     if ($list_wilayah->id_wilayah == $list_detail_jemaat->id_wilayah) {
-                                                        echo $list_wilayah->nama_lengkap_anggota . " - " . $list_wilayah->nama_wilayah;
+                                                        echo $list_wilayah->nama_wilayah;
                                                     }
                                                 }
                                                 ?></p>
@@ -275,18 +286,18 @@
     <!-- AdminLTE for demo purposes -->
     <script src="<?php echo base_url(); ?>assets/dist/js/demo.js"></script>
 
-    <script> 
-    $(function() {
-        const sukses = $('.sukses').data('flashdata');
+    <script>
+        $(function() {
+            const sukses = $('.sukses').data('flashdata');
 
-        if (sukses) {
-        Swal.fire({
-            title: 'Data Jemaat',
-            text: sukses,
-            icon: 'success'
+            if (sukses) {
+                Swal.fire({
+                    title: 'Data Jemaat',
+                    text: sukses,
+                    icon: 'success'
+                });
+            }
         });
-        }
-    });
     </script>
 
 </body>
