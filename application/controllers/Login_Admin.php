@@ -13,7 +13,7 @@ class Login_Admin extends CI_Controller
 
   function index()
   {
-    $this->load->view('v_login_admin.php');
+    $this->load->view('auth/admin/v_login_admin.php');
   }
 
   function verifikasi()
@@ -216,7 +216,7 @@ class Login_Admin extends CI_Controller
   function change_password($email)
   {
     $data['email'] = $email;
-    $this->load->view('auth/v_change_password.php', $data);
+    $this->load->view('auth/admin/v_change_password.php', $data);
   }
 
   function proses_change_password()
@@ -224,15 +224,21 @@ class Login_Admin extends CI_Controller
     $email_link = $this->input->post('email_dari_link');
     $email = $this->input->post('email');
     $password = $this->input->post('password');
+    $retype = $this->input->post('retype_password');
 
     if (md5($email) == $email_link) {
-      $where = array('email_user' => $email);
+      if ($password == $retype) {
+        $where = array('email_user' => $email);
 
-      $tanggal = date('Y-m-d H:i:s');
-      $data = array('password' => password_hash($password, PASSWORD_DEFAULT), 'updated_at' => $tanggal, 'deleted_at' => NULL);
-      $this->M_User->update_record($where, $data, 'user');
-      $this->session->set_flashdata('sukses', 'Berhasil ubah password');
-      redirect('login');
+        $tanggal = date('Y-m-d H:i:s');
+        $data = array('password' => password_hash($password, PASSWORD_DEFAULT), 'updated_at' => $tanggal, 'deleted_at' => NULL);
+        $this->M_User->update_record($where, $data, 'user');
+        $this->session->set_flashdata('sukses', 'Berhasil ubah password');
+        redirect('login');
+      } else {
+        $this->session->set_flashdata('gagal', 'Password tidak sama');
+        redirect('change_password/' . $email_link);
+      }
     } else {
       $this->session->set_flashdata('gagal', 'Email tidak sesuai');
       redirect('change_password/' . $email_link);
