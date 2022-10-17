@@ -53,6 +53,9 @@ $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+$route['login/jemaat'] = 'Login';
+$route['login/logout'] = 'Login/logout';
+
 //baca artikel
 $route['artikel/(:num)'] = 'Artikel/baca_artikel/$1';
 

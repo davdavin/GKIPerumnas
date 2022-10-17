@@ -38,6 +38,12 @@
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
+
+    <style> 
+    .swal2-popup {
+        font-size: 1.7rem;
+    }
+    </style>
 </head>
 
 <body>
@@ -52,22 +58,18 @@
                             <div class="form-header">
                                 <h2>Reservasi</h2>
                             </div>
-                            <!-- <div class="pilihan">
-                                <div class="input-pilihan">
-                                    <input type="radio" class="radio" name="pilihan" value="jemaat_gki" id="jemaat"><label for="jemaat" class="label-pilihan">Jemaat GKI</label>
-                                    <input type="radio" class="radio" name="pilihan" value="bukan_jemaat_gki" id="orang_luar"><label for="orang_luar" class="label-pilihan">Luar Jemaat GKI</label>
-                                </div>
-                            </div> -->
                             <div class="form-group">
                                 <span class="form-label">Ruangan</span>
                                 <input type="hidden" name="id_ruangan" value="<?php echo $ruangan['id_ruangan']; ?>">
                                 <input type="text" class="form-control" value="<?php echo $ruangan['nama_ruangan']; ?>" readonly>
                             </div>
-                            <!-- <div class="form-group" id="namanama" style="display: none;">
-                                <span class="form-label">No. Anggota</span>
-                                <input type="number" class="form-control" id="no_anggota" name="no_anggota" placeholder="No. anggota anda">
-                            </div> -->
                             <div class="form-group">
+                                <span class="form-label">No. Anggota</span>
+                                <input type="number" class="form-control" id="nama" name="no_anggota" placeholder="No. anggota anda">
+                                <div class="px-2 error_noanggota clear" style="display: none">
+                                </div>
+                            </div>
+                            <!-- <div class="form-group">
                                 <span class="form-label">Nama</span>
                                 <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama anda" required>
                                 <div class="px-2 error_nama clear" style="display: none">
@@ -84,32 +86,28 @@
                                 <input type="number" class="form-control" id="nohp" name="nohp" placeholder="No. Handphone anda" required>
                                 <div class="px-2 error_nohp clear" style="display: none">
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="form-group">
                                 <span class="form-label">Keperluan</span>
-                                <input type="text" class="form-control" id="keperluan" name="keperluan" placeholder="Keperluan" required>
+                                <input type="text" class="form-control" id="keperluan" name="keperluan" placeholder="Keperluan">
                                 <div class="px-2 error_keperluan clear" style="display: none">
                                 </div>
                             </div>
-                            <!-- <div class="form-group">
-                                <span class="form-label">Tanggal</span>
-                                <input type="date" class="form-control" id="tanggal_booking" name="tanggal_booking" placeholder="dd/mm/YYYY" required>
-                            </div> -->
                             <div class="form-group">
                                 <span class="form-label">Tanggal</span>
-                                <input type="date" class="form-control" id="tanggal_booking" name="tanggal_booking" placeholder="dd/mm/YYYY" required>
+                                <input type="date" class="form-control" id="tanggal_booking" name="tanggal_booking" placeholder="dd/mm/YYYY">
                                 <div class="px-2 error_tanggal clear" style="display: none">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <span class="form-label">Jam Mulai</span>
-                                <input type="time" class="form-control" id="jam_mulai" name="jam_mulai" required>
+                                <input type="time" class="form-control" id="jam_mulai" name="jam_mulai">
                                 <div class="px-2 error_jam_mulai clear" style="display: none">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <span class="form-label">Jam Selesai</span>
-                                <input type="time" class="form-control" id="jam_selesai" name="jam_selesai" required>
+                                <input type="time" class="form-control" id="jam_selesai" name="jam_selesai">
                                 <div class="px-2 error_jam_selesai clear" style="display: none">
                                 </div>
                             </div>
@@ -183,14 +181,6 @@
                 });
             }
 
-            $(document).on('change', '.radio', function() {
-                if (document.getElementById('jemaat').checked) {
-                    $('#namanama').show();
-                } else if (document.getElementById('orang_luar').checked) {
-                    $('#namanama').hide();
-                    $('#no_anggota').val('');
-                }
-            });
             $('#info_booking').DataTable({
                 "responsive": true,
                 "autoWidth": false,
@@ -245,11 +235,12 @@
                 locale: "id",
             });
 
-            /*      $('.form-submit').submit(function(e) {
+            $('.form-submit').submit(function(e) {
                       e.preventDefault();
                       $.ajax({
                           url: $(this).attr('action'),
                           type: "POST",
+                          dataType: "JSON",
                           data: $(this).serialize(),
                           beforeSend: function() {
                               $('.simpan').attr('disable', 'disabled');
@@ -257,65 +248,56 @@
                           },
                           complete: function() {
                               $('.simpan').removeAttr('disable');
-                              $('.simpan').html('Tambah');
+                              $('.simpan').html('Book Now');
                           },
                           success: function(respon) {
-                              var obj = $.parseJSON(respon);
-                              if (obj.sukses == false) {
-                                  if (obj.error_nama) {
-                                      $('.error_nama').show();
-                                      $('.error_nama').html(obj.error_nama);
-                                      $('.error_nama').css("color", "red");
+                              if (respon.sukses == false) {
+                                  if (respon.error_noanggota) {
+                                      $('.error_noanggota').show();
+                                      $('.error_noanggota').html(respon.error_noanggota);
+                                      $('.error_noanggota').css("color", "red");
                                   } else {
-                                      $('.error_nama').hide();
+                                      $('.error_noanggota').hide();
                                   }
-                                  if (obj.error_email) {
-                                      $('.error_email').show();
-                                      $('.error_email').html(obj.error_email);
-                                      $('.error_email').css("color", "red");
-                                  } else {
-                                      $('.error_email').hide();
-                                  }
-                                  if (obj.error_nohp) {
-                                      $('.error_nohp').show();
-                                      $('.error_nohp').html(obj.error_nohp);
-                                      $('.error_nohp').css("color", "red");
-                                  } else {
-                                      $('.error_nohp').hide();
-                                  }
-                                  if (obj.error_keperluan) {
+                                  if (respon.error_keperluan) {
                                       $('.error_keperluan').show();
-                                      $('.error_keperluan').html(obj.error_keperluan);
+                                      $('.error_keperluan').html(respon.error_keperluan);
                                       $('.error_keperluan').css("color", "red");
                                   } else {
                                       $('.error_keperluan').hide();
                                   }
-                                  if (obj.error_tanggal) {
+                                  if (respon.error_tanggal) {
                                       $('.error_tanggal').show();
-                                      $('.error_tanggal').html(obj.error_tanggal);
+                                      $('.error_tanggal').html(respon.error_tanggal);
                                       $('.error_tanggal').css("color", "red");
                                   } else {
                                       $('.error_tanggal').hide();
                                   }
-                                  if (obj.error_jam_mulai) {
+                                  if (respon.error_jam_mulai) {
                                       $('.error_jam_mulai').show();
-                                      $('.error_jam_mulai').html(obj.error_jam_mulai);
+                                      $('.error_jam_mulai').html(respon.error_jam_mulai);
                                       $('.error_jam_mulai').css("color", "red");
                                   } else {
                                       $('.error_jam_mulai').hide();
                                   }
-                                  if (obj.error_jam_selesai) {
+                                  if (respon.error_jam_selesai) {
                                       $('.error_jam_selesai').show();
-                                      $('.error_jam_selesai').html(obj.error_jam_selesai);
+                                      $('.error_jam_selesai').html(respon.error_jam_selesai);
                                       $('.error_jam_selesai').css("color", "red");
                                   } else {
                                       $('.error_jam_selesai').hide();
                                   }
+                                     if (respon.error_booking) {
+                                        Swal.fire({
+                                            text: respon.error_booking,
+                                            icon: 'error'
+                                        });
+                                    }
                               } else {
                                   $('.clear').hide();
                                   Swal.fire({
                                       title: 'Sukses',
-                                      text: obj.sukses,
+                                      text: respon.sukses,
                                       icon: 'success',
                                   }).then((confirmed) => {
                                       window.location.reload();
@@ -324,7 +306,7 @@
 
                           }
                       });
-                  }); */
+                  });
         });
     </script>
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
