@@ -28,7 +28,7 @@ class M_Ruangan extends CI_Model
 
     public function detail_peminjaman_oleh_jemaat($id_anggota)
     {
-        return $this->db->query("SELECT id_peminjaman, peminjaman_ruangan.id_ruangan, nama_ruangan, nama_lengkap_anggota, keperluan, tanggal_booking, jam_mulai, jam_selesai, status_peminjaman 
+        return $this->db->query("SELECT id_peminjaman, peminjaman_ruangan.id_ruangan, nama_ruangan, nama_lengkap_anggota, keperluan, tanggal_booking, jam_mulai, jam_selesai, status_peminjaman, pesan 
                                 FROM peminjaman_ruangan JOIN ruangan ON peminjaman_ruangan.id_ruangan = ruangan.id_ruangan JOIN anggota_jemaat ON peminjaman_ruangan.id_anggota = anggota_jemaat.id_anggota WHERE is_deleted = 0 AND peminjaman_ruangan.id_anggota = '$id_anggota'");
     }
 

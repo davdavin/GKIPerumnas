@@ -128,8 +128,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo base_url() . 'login/logout'
-                                        ?>" class="nav-link">
+                            <a href="<?php echo base_url() . 'login/jemaat/logout' ?>" class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
                                 <p> Logout </p>
                             </a>
