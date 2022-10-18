@@ -3,7 +3,7 @@ class M_Anggota_Jemaat extends CI_Model
 {
     public function tampil()
     {
-        $query = $this->db->query("SELECT * FROM anggota_jemaat INNER JOIN wilayah ON anggota_jemaat.id_wilayah = wilayah.id_wilayah");
+        $query = $this->db->query("SELECT * FROM anggota_jemaat JOIN wilayah ON anggota_jemaat.id_wilayah = wilayah.id_wilayah");
         return $query;
     }
 

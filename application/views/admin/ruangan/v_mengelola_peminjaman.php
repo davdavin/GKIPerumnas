@@ -138,8 +138,8 @@
                         <div class="modal-body">
                             <form action="<?php echo base_url() . 'mengelola_ruangan/update_status' ?>" method="post">
                                 <input type="hidden" class="form-control" name="id" value="<?= $list->id_peminjaman; ?>">
-                                <input type="hidden" class="form-control" name="nama_peminjam" value="<?= $list->nama_peminjam; ?>">
-                                <input type="hidden" class="form-control" name="email_peminjam" value="<?= $list->email_peminjam; ?>">
+                                <input type="hidden" class="form-control" name="nama_peminjam" value="<?= $list->nama_lengkap_anggota; ?>">
+                                <input type="hidden" class="form-control" name="email_peminjam" value="<?= $list->email_anggota; ?>">
 
                                 <div class="form-group">
                                     <label>Status</label>
@@ -154,7 +154,7 @@
                                         <?php } ?>
                                     </select>
                                 </div>
-                                <div class="form-group" id="pesan" style="display: none;">
+                                <div class="form-group" id="pesan">
                                     <label>Pesan</label><br>
                                     <textarea name="pesan" style="width: 100%;" required></textarea>
                                 </div>
@@ -221,17 +221,16 @@
 
 <script>
     //       var status = document.getElementById("status");
-    function enter() {
-        let a = document.getElementById("status").value;
-        alert(a);
-        if (target == "DTIERIMA" || target == "DITOLAK") {
-            $("#pesan").show();
+    // function enter() {
+    //     let target = document.getElementById("status").value;
+    //     if (target == "DITERIMA" || target == "DITOLAK") {
+    //         $("#pesan").show();
 
-        } else {
-            $("#pesan").hide();
-            $("#pesan").val('');
-        }
-    }
+    //     } else {
+    //         $("#pesan").hide();
+    //         $("#pesan").val('');
+    //     }
+    // }
 
     $(document).ready(function() {
 
@@ -272,10 +271,10 @@
                     "data": "nama_ruangan"
                 },
                 {
-                    "data": "nama_peminjam"
+                    "data": "nama_lengkap_anggota"
                 },
                 {
-                    "data": "email_peminjam"
+                    "data": "email_anggota"
                 },
                 {
                     "data": "tanggal_booking"
