@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+date_default_timezone_set('Asia/Jakarta');
+
 class Pendeta extends CI_Controller
 {
     public function __construct()
@@ -89,13 +91,14 @@ class Pendeta extends CI_Controller
                 $respon['error_foto'] = "Tidak berhasil upload file. Format file hanya jpg, png dan ukuran file maksimal 5MB";
                 echo json_encode($respon);
             } else {
+                $tanggal = date('Y-m-d H:i:s');
                 $foto = $this->upload->data('file_name');
 
                 $data = array(
                     'no_pendeta' => $no_pendeta, 'nama_lengkap_pendeta' => $nama_pendeta,
                     'alamat_pendeta' => $alamat_pendeta, 'nohp_pendeta' => $nohp_pendeta,
                     'email_pendeta' => $email_pendeta, 'jenis_kelamin_pendeta' => $jenis_kelamin_pendeta,
-                    'tanggal_lahir_pendeta' => $tanggal_lahir_pendeta, 'foto_pendeta' => $foto, 'status_pendeta' => $status_pendeta
+                    'tanggal_lahir_pendeta' => $tanggal_lahir_pendeta, 'foto_pendeta' => $foto, 'status_pendeta' => $status_pendeta, 'created_at' => $tanggal
                 );
 
                 $this->M_Pendeta->insert_record($data, 'pendeta');
@@ -168,13 +171,14 @@ class Pendeta extends CI_Controller
             );
             echo json_encode($respon);
         } else {
+            $tanggal = date('Y-m-d H:i:s');
             $where = array('id_pendeta' => $id_pendeta);
 
             if ($foto_baru == "") {
                 $data = array(
                     'nama_lengkap_pendeta' => $nama_pendeta, 'alamat_pendeta' => $alamat_pendeta, 'nohp_pendeta' => $nohp_pendeta,
                     'email_pendeta' => $email_pendeta, 'jenis_kelamin_pendeta' => $jenis_kelamin_pendeta,
-                    'tanggal_lahir_pendeta' => $tanggal_lahir_pendeta, 'foto_pendeta' => $foto_lama, 'status_pendeta' => $status_pendeta
+                    'tanggal_lahir_pendeta' => $tanggal_lahir_pendeta, 'foto_pendeta' => $foto_lama, 'status_pendeta' => $status_pendeta, 'updated_at' => $tanggal
                 );
 
                 $this->M_Pendeta->update_record($where, $data, 'pendeta');
@@ -197,7 +201,7 @@ class Pendeta extends CI_Controller
                     $data = array(
                         'nama_lengkap_pendeta' => $nama_pendeta, 'alamat_pendeta' => $alamat_pendeta, 'nohp_pendeta' => $nohp_pendeta,
                         'email_pendeta' => $email_pendeta, 'jenis_kelamin_pendeta' => $jenis_kelamin_pendeta,
-                        'tanggal_lahir_pendeta' => $tanggal_lahir_pendeta, 'foto_pendeta' => $foto, 'status_pendeta' => $status_pendeta
+                        'tanggal_lahir_pendeta' => $tanggal_lahir_pendeta, 'foto_pendeta' => $foto, 'status_pendeta' => $status_pendeta, 'updated_at' => $tanggal
                     );
 
                     @unlink('./resources/assets/img/pendeta/' . $foto_lama); //untuk hapus foto lama
