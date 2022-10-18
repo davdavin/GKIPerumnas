@@ -54,12 +54,16 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['login/jemaat'] = 'Login';
-$route['login/logout'] = 'Login/logout';
+$route['login/jemaat/validasi'] = 'Login/validasi';
+$route['jemaat/forgot_password'] = 'Login/forgot_password';
+$route['jemaat/change_password/(:any)'] = 'Login/change_password/$1';
+$route['jemaat/proses_change_password'] = 'Login/proses_change_password';
+$route['login/jemaat/logout'] = 'Login/logout';
 
 //baca artikel
 $route['artikel/(:num)'] = 'Artikel/baca_artikel/$1';
 
-$route['booking/(:num)'] = 'Ruangan/booking_ruangan/$1';
+$route['booking/(:num)'] = 'Ruangan/booking/$1';
 
 //pengumpulan dokumen
 $route['pengumpulan'] = 'Pengumpulan_Dokumen';
