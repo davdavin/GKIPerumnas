@@ -30,9 +30,6 @@
 
 <body class="hold-transition login-page">
   <div class="login-box">
-    <div class="login-logo">
-      <b>Admin</b> GKI Perumnas
-    </div>
 
     <!-- Alert jika username atau password salah-->
     <?php if ($this->session->has_userdata('gagal')) { ?>

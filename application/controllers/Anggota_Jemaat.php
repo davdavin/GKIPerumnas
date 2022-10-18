@@ -54,6 +54,7 @@ class Anggota_Jemaat extends CI_Controller
         $baris =  $this->M_Anggota_Jemaat->tampil()->num_rows();
         $no_anggota = '0000' . $baris + 1;
         $nama_anggota = $this->input->post('nama_anggota');
+        $username = $this->input->post('username');
         $alamat_anggota = $this->input->post('alamat_anggota');
         $nohp_anggota = $this->input->post('nohp');
         $id_wilayah = $this->input->post('id_wilayah');
@@ -74,6 +75,7 @@ class Anggota_Jemaat extends CI_Controller
         $tanggal_ex_dkh = $this->input->post('tanggal_ex_dkh');
 
         $this->form_validation->set_rules('nama_anggota', 'Nama', 'required');
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[15]|is_unique[anggota_jemaat.username]');
         $this->form_validation->set_rules('alamat_anggota', 'Alamat', 'required');
         $this->form_validation->set_rules('nohp', 'No. Handphone', 'required|min_length[9]|max_length[15]');
         $this->form_validation->set_rules('id_wilayah', 'Wilayah', 'required');
@@ -96,6 +98,7 @@ class Anggota_Jemaat extends CI_Controller
             $respon = array(
                 'sukses' => false,
                 'error_nama' => form_error('nama_anggota'),
+                'error_username' => form_error('username'),
                 'error_alamat' => form_error('alamat_anggota'),
                 'error_nohp' => form_error('nohp'),
                 'error_wilayah' => form_error('id_wilayah'),
@@ -117,15 +120,18 @@ class Anggota_Jemaat extends CI_Controller
             );
             echo json_encode($respon);
         } else {
+            $pisah = explode("/", date_format(date_create($tanggal_lahir), "d/m/Y"));
+
+            $password = $pisah[0] . $pisah[1] . $pisah[2];
 
             $data = array(
-                'id_wilayah' => $id_wilayah, 'no_anggota' => $no_anggota, 'nama_lengkap_anggota' => $nama_anggota, 'alamat_anggota' => $alamat_anggota,
-                'nohp_anggota' => $nohp_anggota, 'email_anggota' => $email_anggota, 'jenis_kelamin_anggota' => $jenis_kelamin,
+                'id_wilayah' => $id_wilayah, 'no_anggota' => $no_anggota, 'nama_lengkap_anggota' => $nama_anggota, 'username' => strtolower($username), 'password' => password_hash($password, PASSWORD_DEFAULT),
+                'alamat_anggota' => $alamat_anggota, 'nohp_anggota' => $nohp_anggota, 'email_anggota' => $email_anggota, 'jenis_kelamin_anggota' => $jenis_kelamin,
                 'golongan_darah_anggota' => $golongan_darah, 'status_anggota' => $status_anggota, 'pendidikan_anggota' => $pendidikan_anggota,
                 'pekerjaan_anggota' => $pekerjaan_anggota, 'kelompok_etnis_anggota' => $kelompok_etnis,
                 'tanggal_lahir_anggota' => $tanggal_lahir, 'tanggal_baptis_anggota' => $tanggal_baptis, 'tanggal_sidi_anggota' => $tanggal_sidi,
                 'tanggal_atestasi_masuk' => $tanggal_atestasi_masuk, 'tanggal_atestasi_keluar' => $tanggal_atestasi_keluar, 'tanggal_meninggal' => $tanggal_meninggal,
-                'tanggal_dkh' => $tanggal_dkh, 'tanggal_ex_dkh' => $tanggal_ex_dkh
+                'tanggal_dkh' => $tanggal_dkh, 'tanggal_ex_dkh' => $tanggal_ex_dkh, 'status_akun' => 1
             );
 
             $this->M_Anggota_Jemaat->insert_record($data, 'anggota_jemaat');
@@ -136,8 +142,6 @@ class Anggota_Jemaat extends CI_Controller
 
     public function tambah_akun_jemaat()
     {
-        $this->load->library('form_validation');
-
         $jemaat = $this->input->post('jemaat');
         $username = $this->input->post('username');
 
@@ -285,6 +289,12 @@ class Anggota_Jemaat extends CI_Controller
                 $status_anggota = $this->input->post('status');
             }
 
+            if ($status_anggota == 0) {
+                $status_akun = 0;
+            } else {
+                $status_akun = 1;
+            }
+
             $where = array('no_anggota' => $no_anggota);
 
             $data = array(
@@ -294,7 +304,7 @@ class Anggota_Jemaat extends CI_Controller
                 'pendidikan_anggota' => $pendidikan_anggota, 'pekerjaan_anggota' => $pekerjaan_anggota, 'kelompok_etnis_anggota' => $kelompok_etnis,
                 'tanggal_lahir_anggota' => $tanggal_lahir, 'tanggal_baptis_anggota' => $tanggal_baptis, 'tanggal_sidi_anggota' => $tanggal_sidi,
                 'tanggal_atestasi_masuk' => $tanggal_atestasi_masuk, 'tanggal_atestasi_keluar' => $tanggal_atestasi_keluar, 'tanggal_meninggal' => $tanggal_meninggal,
-                'tanggal_dkh' => $tanggal_dkh, 'tanggal_ex_dkh' => $tanggal_ex_dkh
+                'tanggal_dkh' => $tanggal_dkh, 'tanggal_ex_dkh' => $tanggal_ex_dkh, 'status_akun' => $status_akun
             );
 
             $this->M_Anggota_Jemaat->update_record($where, $data, 'anggota_jemaat');
