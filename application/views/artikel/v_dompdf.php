@@ -42,7 +42,7 @@
             <article>
                 <h2 style="text-align: center;"><?php echo $lihat_artikel->judul_artikel ?></h2>
                 <h4>
-                    <?php echo tanggal_indonesia($lihat_artikel->tanggal_pembuatan);  ?>
+                    <?php echo tanggal_indonesia($lihat_artikel->created_at);  ?>
                 </h4>
                 <?php echo $lihat_artikel->isi ?>
             </article>

@@ -2,16 +2,16 @@
 
 class M_Dokumen extends CI_Model {
    public function tampil() {
-        $query = $this->db->query("SELECT * FROM dokumen");
+        $query = $this->db->query("SELECT * FROM dokumen WHERE deleted_at IS NULL");
         return $query;
     }
 
     public function tampil_pengumpulan() {
-        $query = $this->db->query("SELECT jenis_dokumen, id_pengumpulan, nama_lengkap_pengumpul, email_pengumpul, pengumpulan_dokumen.nama_dokumen, tanggal_kumpul FROM dokumen, pengumpulan_dokumen WHERE pengumpulan_dokumen.id_dokumen = dokumen.id_dokumen ORDER BY id_pengumpulan DESC");
+        $query = $this->db->query("SELECT jenis_dokumen, id_pengumpulan, nama_lengkap_pengumpul, email_pengumpul, pengumpulan_dokumen.nama_dokumen, tanggal_kumpul 
+                                FROM dokumen JOIN pengumpulan_dokumen ON dokumen.id_dokumen = pengumpulan_dokumen.id_dokumen ORDER BY id_pengumpulan DESC");
         return $query;
     }
 
-    //pengumpulan dokumen oleh jemaat dan input dokumen baru oleh admin
     public function insert_record($data,$table) {
         $this->db->insert($table, $data);
     }
