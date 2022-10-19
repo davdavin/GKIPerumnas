@@ -95,29 +95,9 @@ $route['mengelola_ruangan'] = 'MengelolaRuangan';
 $route['mengelola_ruangan/tampil'] = 'MengelolaRuangan/tampil_ruangan';
 $route['mengelola_ruangan/tambah'] = 'MengelolaRuangan/tambah_ruangan';
 $route['mengelola_ruangan/edit/(:num)'] = 'MengelolaRuangan/edit_ruangan/$1';
+$route['mengelola_ruangan/hapus_ruangan/(:num)'] = 'MengelolaRuangan/hapus_ruangan/$1';
 $route['mengelola_ruangan/proses_edit'] = 'MengelolaRuangan/proses_edit_ruangan';
 $route['mengelola_ruangan/peminjaman'] = 'MengelolaRuangan/lihat_peminjaman';
 $route['mengelola_ruangan/tampil_peminjaman'] = 'MengelolaRuangan/tampil_peminjaman';
 $route['mengelola_ruangan/update_status'] = 'MengelolaRuangan/update_status';
 $route['mengelola_ruangan/hapus/(:num)'] = 'MengelolaRuangan/hapus_peminjaman/$1';
-
-// dashboard admin
-/*$route['dashboard'] = 'Dashboard';
-
-// kelola admin
-$route['admin'] = 'Admin';
-$route['admin/tambah'] = 'Admin/tambah_admin';
-$route['admin/proses_edit_status'] = 'Admin/proses_edit_status';
-$route['admin/hapus/(:num)'] = 'Admin/hapus_admin/$1';
-
-// anggota Jemaat
-$route['anggota_jemaat'] = 'Anggota_Jemaat';
-$route['anggota_jemaat/tambah'] = 'Anggota_Jemaat/tambah_anggota_jemaat';
-$route['anggota_jemaat/detail/(:num)'] = 'Anggota_Jemaat/lihat_detail_anggota/$1';
-$route['anggota_jemaat/edit/(:num)'] = 'Anggota_Jemaat/edit_anggota/$1';
-$route['anggota_jemaat/proses_edit'] = 'Anggota_Jemaat/proses_edit';
-$route['anggota_jemaat/hapus/(:num)'] = 'Anggota_Jemaat/hapus_anggota/$1';
-
-// respon permintaan perubahan
-$route['anggota_jemaat/ubah_data_jemaat/(:num)'] = 'Anggota_Jemaat/ubah_data_jemaat/$1';
-$route['anggota_jemaat/proses_permintaan_perubahan'] = 'Anggota_Jemaat/proses_permintaan_perubahan'; */

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2022 at 05:05 PM
+-- Generation Time: Oct 19, 2022 at 10:25 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -90,21 +90,24 @@ CREATE TABLE `artikel` (
   `deskripsi_singkat` varchar(100) NOT NULL,
   `isi` text DEFAULT NULL,
   `file` varchar(100) DEFAULT NULL,
-  `tanggal_pembuatan` date NOT NULL
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `artikel`
 --
 
-INSERT INTO `artikel` (`id_artikel`, `judul_artikel`, `tipe_artikel`, `deskripsi_singkat`, `isi`, `file`, `tanggal_pembuatan`) VALUES
-(1, 'KELUARGA YANG HIDUP DALAM PEMULIHAN', 'Renungan Harian', 'Markus 10 : 17 - 31', '<p><span style=\"font-weight: 400;\">Seringkali kita berpikir bahwa pemulihan atau penyembuhan adalah sebuah pencapaian dalam hidup beriman. Sederhananya karena saya sudah menjadi Kristen yang baik maka saya mendapatkan Anugerah pemulihan itu. Lalu kalau saya Kristen yang tidak baik maka yang terjadi sebaliknya. Pada dasarnya kita tahu bahwa karya Allah tidak bergerak seperti itu, Karya Allah bukan honor berbuat baik atau pahala.&nbsp;</span></p>\r\n<p><span style=\"font-weight: 400;\">Tetapi Karya Allah adalah Anugerah&hellip;. Anugerah berarti bicara sesuatu yang dianugerahkan (diberikan) secara cuma-cuma. Lalu apa standart orang yang layak mendapatkan Anugerah, jawabnya kesetiaan.&nbsp;</span></p>\r\n<p><span style=\"font-weight: 400;\">Kesetiaan untuk hidup dalam Rancangan-Nya, kesetiaan mengikuti ajaran-Nya. Mengalami Anugerah adalah mau setia dalam rancangan Allah. Itulah mengapa Yesus berkata:</span></p>\r\n<p><em><span style=\"font-weight: 400;\">\"Hanya satu lagi kekuranganmu: pergilah, juallah apa yang kaumiliki dan berikanlah itu kepada orang-orang miskin, maka engkau akan beroleh harta di sorga, kemudian datanglah ke mari dan ikutlah Aku.\" (Mar 10:21).</span></em></p>\r\n<p><span style=\"font-weight: 400;\">Dan respon sang anak muda itu adalah kecewa dan sedih karena banyak hartanya. Response kesedihan itu tentu saja karena sang anak muda merasa rencana Allah tak sesuai dengan rancangannya. kita selalu ingin rancangan Allah sesuai dengan kita, dan tak jarang memaksakannya. Hal yang sama mungkin kita paksa kan juga kepada anggota keluarga kita.</span></p>\r\n<p><span style=\"font-weight: 400;\">Orang tua memaksakan rancangan nya pada anaknya, suami pada istrinya, dst. Padahal rancangan kita belum tentu rancangan Allah atas hidup mereka. Itulah mengapa Yesus berkata sukarlah memang untuk masuk kerajaan Allah (ay .24). Karena masuk kerajaan Allah berarti menemukan dan menghidupi rancangan Allah atas keluarga kita.&nbsp;</span></p>\r\n<p><span style=\"font-weight: 400;\">Jadi dapat disimpulkan pemulihan adalah proses perjalanan dalam menghidupi rancangan, Mengikuti rancangan Nya berarti mau melakukan kehendak Nya, setia pada ketetapan Nya, dan bersedia berkarya bagi sesama.</span></p>\r\n<p>&nbsp;</p>\r\n<p style=\"text-align: center;\"><strong><em>Jadikanlah Rancangan-Rancangan Allah sebagai yang terutama maka kita akan merasakan Pemulihan-Nya.</em></strong></p>', NULL, '2022-02-01'),
-(2, 'Sejarah Singkat GKI Perumnas', 'Artikel Lainnya', 'GKI Perumnas awalnya terbentuk dari beberapa keluarga Kristen yang berdomisili di daerah Perumnas 1 ', '<p style=\"text-align: justify; line-height: 1.4;\"><span style=\"font-family: helvetica, arial, sans-serif; font-size: 12pt;\">GKI Perumnas awalnya terbentuk dari beberapa keluarga Kristen yang berdomisili di daerah Perumnas 1 dan 2. Yang sering kali bertemu dalam perjalanan menuju ke GKI Sutopo atau perjalanan pulang ke rumah dengan menaiki kendaraan angkutan kota. Dari perkenalan beberapa keluarga yang sama-sama beribadah di GKI Sutopo, akhirnya terbentuklah paduan suara wilayah Perumnas yang seringkali berlatih di rumah keluarga Andreas atau Totok Suroto. Setelah paduan suara wilayah rutin berlatih akhirnya mulailah dibentuk sekolah minggu bagi anak-anak. Juga dilaksanakan perayaan natal dan paskah untuk anak-anak sekolah minggu dengan menggunakan gedung sekolah SMP 5. Ketika kegiatan sekolah Minggu sudah mulai rutin barulah kemudian dibentuk KRT (Kebaktian Rumah Tangga) di beberapa rumah anggota Jemaat. Dan ketika KRT sudah mulai rutin akhirnya disepakati untuk membuat pos Jemaat sekitar tahun 1985an. Setelah melalui proses yang panjgan menjadi bakal Jemaat akhirnya didewasakan menjadi jemaat yang ke-75 pada tanggal 31 Oktober 1995.</span></p>', NULL, '2021-12-08'),
-(4, 'Test1', 'Renungan Harian', 'okoke', '<p>Oke</p>', NULL, '2022-05-09'),
-(5, 'Test2', 'Renungan Harian', 'lalalal', '<p>Tess</p>', NULL, '2022-05-09'),
-(6, 'Test Yu', 'Renungan Harian', 'sa', '<p>sa</p>', NULL, '2022-06-28'),
-(10, 'Test Test', 'Renungan Harian', 'Test Lagi', '<p>Oke</p>', NULL, '2022-09-20'),
-(11, 'Test Warta', 'Warta Jemaat', 'Test test', NULL, '12677144Konsultasi1.pdf', '2022-09-07');
+INSERT INTO `artikel` (`id_artikel`, `judul_artikel`, `tipe_artikel`, `deskripsi_singkat`, `isi`, `file`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'KELUARGA YANG HIDUP DALAM PEMULIHAN', 'Renungan Harian', 'Markus 10 : 17 - 31', '<p><span style=\"font-weight: 400;\">Seringkali kita berpikir bahwa pemulihan atau penyembuhan adalah sebuah pencapaian dalam hidup beriman. Sederhananya karena saya sudah menjadi Kristen yang baik maka saya mendapatkan Anugerah pemulihan itu. Lalu kalau saya Kristen yang tidak baik maka yang terjadi sebaliknya. Pada dasarnya kita tahu bahwa karya Allah tidak bergerak seperti itu, Karya Allah bukan honor berbuat baik atau pahala.&nbsp;</span></p>\r\n<p><span style=\"font-weight: 400;\">Tetapi Karya Allah adalah Anugerah&hellip;. Anugerah berarti bicara sesuatu yang dianugerahkan (diberikan) secara cuma-cuma. Lalu apa standart orang yang layak mendapatkan Anugerah, jawabnya kesetiaan.&nbsp;</span></p>\r\n<p><span style=\"font-weight: 400;\">Kesetiaan untuk hidup dalam Rancangan-Nya, kesetiaan mengikuti ajaran-Nya. Mengalami Anugerah adalah mau setia dalam rancangan Allah. Itulah mengapa Yesus berkata:</span></p>\r\n<p><em><span style=\"font-weight: 400;\">\"Hanya satu lagi kekuranganmu: pergilah, juallah apa yang kaumiliki dan berikanlah itu kepada orang-orang miskin, maka engkau akan beroleh harta di sorga, kemudian datanglah ke mari dan ikutlah Aku.\" (Mar 10:21).</span></em></p>\r\n<p><span style=\"font-weight: 400;\">Dan respon sang anak muda itu adalah kecewa dan sedih karena banyak hartanya. Response kesedihan itu tentu saja karena sang anak muda merasa rencana Allah tak sesuai dengan rancangannya. kita selalu ingin rancangan Allah sesuai dengan kita, dan tak jarang memaksakannya. Hal yang sama mungkin kita paksa kan juga kepada anggota keluarga kita.</span></p>\r\n<p><span style=\"font-weight: 400;\">Orang tua memaksakan rancangan nya pada anaknya, suami pada istrinya, dst. Padahal rancangan kita belum tentu rancangan Allah atas hidup mereka. Itulah mengapa Yesus berkata sukarlah memang untuk masuk kerajaan Allah (ay .24). Karena masuk kerajaan Allah berarti menemukan dan menghidupi rancangan Allah atas keluarga kita.&nbsp;</span></p>\r\n<p><span style=\"font-weight: 400;\">Jadi dapat disimpulkan pemulihan adalah proses perjalanan dalam menghidupi rancangan, Mengikuti rancangan Nya berarti mau melakukan kehendak Nya, setia pada ketetapan Nya, dan bersedia berkarya bagi sesama.</span></p>\r\n<p>&nbsp;</p>\r\n<p style=\"text-align: center;\"><strong><em>Jadikanlah Rancangan-Rancangan Allah sebagai yang terutama maka kita akan merasakan Pemulihan-Nya.</em></strong></p>', NULL, '2022-02-01 12:28:19', NULL, NULL),
+(2, 'Sejarah Singkat GKI Perumnas', 'Artikel Lainnya', 'GKI Perumnas awalnya terbentuk dari beberapa keluarga Kristen yang berdomisili di daerah Perumnas 1 ', '<p style=\"text-align: justify; line-height: 1.4;\"><span style=\"font-family: helvetica, arial, sans-serif; font-size: 12pt;\">GKI Perumnas awalnya terbentuk dari beberapa keluarga Kristen yang berdomisili di daerah Perumnas 1 dan 2. Yang sering kali bertemu dalam perjalanan menuju ke GKI Sutopo atau perjalanan pulang ke rumah dengan menaiki kendaraan angkutan kota. Dari perkenalan beberapa keluarga yang sama-sama beribadah di GKI Sutopo, akhirnya terbentuklah paduan suara wilayah Perumnas yang seringkali berlatih di rumah keluarga Andreas atau Totok Suroto. Setelah paduan suara wilayah rutin berlatih akhirnya mulailah dibentuk sekolah minggu bagi anak-anak. Juga dilaksanakan perayaan natal dan paskah untuk anak-anak sekolah minggu dengan menggunakan gedung sekolah SMP 5. Ketika kegiatan sekolah Minggu sudah mulai rutin barulah kemudian dibentuk KRT (Kebaktian Rumah Tangga) di beberapa rumah anggota Jemaat. Dan ketika KRT sudah mulai rutin akhirnya disepakati untuk membuat pos Jemaat sekitar tahun 1985an. Setelah melalui proses yang panjgan menjadi bakal Jemaat akhirnya didewasakan menjadi jemaat yang ke-75 pada tanggal 31 Oktober 1995.</span></p>', NULL, '2021-12-08 12:28:53', NULL, NULL),
+(4, 'Test1', 'Renungan Harian', 'okoke', '<p>Oke</p>', NULL, '2022-05-09 13:05:40', NULL, NULL),
+(5, 'Test2', 'Renungan Harian', 'lalalal', '<p>Tess</p>', NULL, '2022-05-09 13:58:30', NULL, NULL),
+(6, 'Test Yu', 'Renungan Harian', 'sa', '<p>Test</p>', NULL, '2022-06-28 13:58:37', '2022-10-19 14:56:07', NULL),
+(10, 'Test Test', 'Renungan Harian', 'Test Lagi', '<p>Oke</p>', NULL, '2022-09-20 13:58:44', NULL, NULL),
+(11, 'Test Warta', 'Warta Jemaat', 'Test test', NULL, '12677144Konsultasi1.pdf', '2022-09-07 13:58:54', NULL, NULL),
+(12, 'Renungan', 'Renungan Harian', 'Tes', '<p>Tes</p>', NULL, '2022-10-19 14:38:13', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -115,22 +118,24 @@ INSERT INTO `artikel` (`id_artikel`, `judul_artikel`, `tipe_artikel`, `deskripsi
 CREATE TABLE `detail_wilayah` (
   `id_detail_wilayah` int(11) NOT NULL,
   `id_wilayah` int(11) NOT NULL,
-  `koordinator_wilayah` int(11) NOT NULL
+  `koordinator_wilayah` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `detail_wilayah`
 --
 
-INSERT INTO `detail_wilayah` (`id_detail_wilayah`, `id_wilayah`, `koordinator_wilayah`) VALUES
-(1, 1, 1),
-(2, 2, 2),
-(3, 3, 3),
-(4, 4, 8),
-(5, 5, 11),
-(6, 6, 6),
-(7, 7, 7),
-(8, 8, 5);
+INSERT INTO `detail_wilayah` (`id_detail_wilayah`, `id_wilayah`, `koordinator_wilayah`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, '2022-02-22 10:44:53', NULL),
+(2, 2, 2, '2022-02-22 10:45:04', NULL),
+(3, 3, 3, '2022-02-22 10:45:09', NULL),
+(4, 4, 8, '2022-02-22 10:45:15', NULL),
+(5, 5, 10, '2022-02-22 10:45:20', '2022-10-19 10:51:05'),
+(6, 6, 6, '2022-02-22 10:45:25', NULL),
+(7, 7, 7, '2022-02-22 10:45:30', NULL),
+(8, 8, 5, '2022-02-22 10:45:35', NULL);
 
 -- --------------------------------------------------------
 
@@ -142,18 +147,21 @@ CREATE TABLE `dokumen` (
   `id_dokumen` int(11) NOT NULL,
   `jenis_dokumen` varchar(50) NOT NULL,
   `nama_dokumen` varchar(100) NOT NULL,
-  `keterangan` varchar(100) NOT NULL
+  `keterangan` varchar(100) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `dokumen`
 --
 
-INSERT INTO `dokumen` (`id_dokumen`, `jenis_dokumen`, `nama_dokumen`, `keterangan`) VALUES
-(1, 'Formulir Persyaratan Pendaftaran Jemaat Baru', 'Syarat_menjadi_anggota_jemaat.pdf', 'Diperlukan unttuk pendaftaran jemaat baru'),
-(2, 'Formulir Permohonan Baptis Anak', 'Permohonan_Baptis_Anak.pdf', 'Permohonan untuk menerima baptis anak'),
-(3, 'Formulir Katekisasi', 'Formulir-Katekisasi.pdf', 'Formulir ini diperlukan untuk jemaat yang akan menerima sidi'),
-(4, 'Permohonan Sidi', 'Permohonan_Baptis-Sidi.pdf', 'Diperlukan untuk jemaat yang akan menerima sidi');
+INSERT INTO `dokumen` (`id_dokumen`, `jenis_dokumen`, `nama_dokumen`, `keterangan`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Formulir Persyaratan Pendaftaran Jemaat Baru', 'Syarat_menjadi_anggota_jemaat.pdf', 'Diperlukan unttuk pendaftaran jemaat baru', '2022-01-07 10:15:58', NULL, NULL),
+(2, 'Formulir Permohonan Baptis Anak', 'Permohonan_Baptis_Anak.pdf', 'Formulir ini untuk menerima baptis anak', '2022-01-07 10:16:10', '2022-10-19 10:24:18', NULL),
+(3, 'Formulir Katekisasi', 'Formulir-Katekisasi.pdf', 'Formulir ini diperlukan untuk jemaat yang akan menerima sidi', '2022-01-07 10:16:16', NULL, NULL),
+(4, 'Permohonan Sidi', 'Permohonan_Baptis-Sidi.pdf', 'Diperlukan untuk jemaat yang akan menerima sidi', '2022-01-07 10:16:23', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -275,21 +283,17 @@ CREATE TABLE `peminjaman_ruangan` (
   `jam_selesai` time NOT NULL,
   `status_peminjaman` varchar(20) NOT NULL,
   `pesan` varchar(100) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `deleted_at` datetime DEFAULT NULL,
-  `is_deleted` tinyint(4) NOT NULL
+  `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `peminjaman_ruangan`
 --
 
-INSERT INTO `peminjaman_ruangan` (`id_peminjaman`, `id_ruangan`, `id_anggota`, `keperluan`, `tanggal_booking`, `jam_mulai`, `jam_selesai`, `status_peminjaman`, `pesan`, `updated_at`, `deleted_at`, `is_deleted`) VALUES
-(20, 2, 1, 'Seminar', '2022-10-18', '12:00:00', '14:00:00', 'DITERIMA', '', '2022-10-17 14:16:14', NULL, 0),
-(21, 3, 3, 'rapat', '2022-10-18', '12:00:00', '17:00:00', 'DITERIMA', 'Peminjaman diterima', '2022-10-18 21:58:38', NULL, 0),
-(22, 3, 2, 'rapat', '2022-10-20', '12:21:00', '15:00:00', 'SEDANG DIPROSES', '', NULL, NULL, 0),
-(23, 2, 16, 'Rapat', '2022-11-12', '12:00:00', '14:00:00', 'DITERIMA', '', '2022-10-18 20:49:39', NULL, 0),
-(24, 2, 3, 'Seminar', '2022-10-20', '12:00:00', '19:00:00', 'DITERIMA', 'Peminjaman anda diterima', '2022-10-18 22:03:05', NULL, 0);
+INSERT INTO `peminjaman_ruangan` (`id_peminjaman`, `id_ruangan`, `id_anggota`, `keperluan`, `tanggal_booking`, `jam_mulai`, `jam_selesai`, `status_peminjaman`, `pesan`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(26, 4, 1, 'Rapat mingguan', '2022-12-20', '15:00:00', '18:00:00', 'DITERIMA', 'Peminjaman diterima', '2022-10-19 10:08:48', '2022-10-19 10:09:47', NULL);
 
 -- --------------------------------------------------------
 
@@ -307,16 +311,18 @@ CREATE TABLE `pendeta` (
   `jenis_kelamin_pendeta` varchar(20) NOT NULL,
   `tanggal_lahir_pendeta` date NOT NULL,
   `foto_pendeta` varchar(100) NOT NULL,
-  `status_pendeta` varchar(20) NOT NULL
+  `status_pendeta` varchar(20) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `pendeta`
 --
 
-INSERT INTO `pendeta` (`id_pendeta`, `no_pendeta`, `nama_lengkap_pendeta`, `alamat_pendeta`, `nohp_pendeta`, `email_pendeta`, `jenis_kelamin_pendeta`, `tanggal_lahir_pendeta`, `foto_pendeta`, `status_pendeta`) VALUES
-(1, '00001', 'Pdt. Suryatie Ambarsari', 'Jl. Anggur No. 3 Blok. A', '082732623142', 'pendeta001@example.com', 'Perempuan', '1978-12-01', 'GembalaGereja1.jpg', 'PENDETA AKTIF'),
-(2, '00002', 'Pnt. Irving BNW Gultom', 'Jl. Rumah Apel', '088270120023', 'nama@example.com', 'Laki-laki', '1989-12-14', 'GembalaGereja2.jpg', 'PENDETA AKTIF');
+INSERT INTO `pendeta` (`id_pendeta`, `no_pendeta`, `nama_lengkap_pendeta`, `alamat_pendeta`, `nohp_pendeta`, `email_pendeta`, `jenis_kelamin_pendeta`, `tanggal_lahir_pendeta`, `foto_pendeta`, `status_pendeta`, `created_at`, `updated_at`) VALUES
+(1, '00001', 'Pdt. Suryatie Ambarsari', 'Jl. Anggur No. 3 Blok. A', '082732623142', 'pendeta001@example.com', 'Perempuan', '1978-12-01', 'GembalaGereja1.jpg', 'PENDETA AKTIF', '2022-05-11 23:06:54', '2022-10-18 23:38:43'),
+(2, '00002', 'Pnt. Irving BNW Gultom', 'Jl. Rumah Mangga', '088270120023', 'nama@example.com', 'Laki-laki', '1989-12-14', 'GembalaGereja2.jpg', 'PENDETA AKTIF', '2022-05-11 23:07:08', '2022-10-18 23:11:19');
 
 -- --------------------------------------------------------
 
@@ -379,20 +385,21 @@ CREATE TABLE `ruangan` (
   `kapasitas` int(11) NOT NULL,
   `perlengkapan` varchar(200) NOT NULL,
   `foto` varchar(100) NOT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `ruangan`
 --
 
-INSERT INTO `ruangan` (`id_ruangan`, `nama_ruangan`, `kapasitas`, `perlengkapan`, `foto`, `created_at`, `updated_at`) VALUES
-(1, 'Ibadah Umum', 300, '<ul>\r\n<li>Proyektor</li>\r\n<li>AC</li>\r\n<li>Perlengkapan Sound system</li>\r\n</ul>', 'ibadah-umum.jpg', '2022-09-08 14:59:55', '2022-10-15 15:14:29'),
-(2, 'Majelis', 30, '<ul>\r\n<li>Proyektor</li>\r\n<li>TV</li>\r\n<li>AC</li>\r\n</ul>', 'majelis.jpg', '2022-09-08 15:00:02', NULL),
-(3, 'Aula', 40, '<ul>\r\n<li>2 Proyektor</li>\r\n<li>AC</li>\r\n<li>Perlengkapan sound system</li>\r\n</ul>', 'aula.jpg', '2022-09-08 15:00:06', NULL),
-(4, 'Ruang Remaja', 30, '<ul>\r\n<li>Proyektor</li>\r\n<li>AC</li>\r\n<li>Papan tulis</li>\r\n</ul>', 'remaja.jpg', '2022-09-09 15:00:30', NULL),
-(5, 'Ruang Dewasa', 30, '<ul>\r\n<li>TV</li>\r\n<li>AC</li>\r\n<li>Papan tulis</li>\r\n</ul>', 'dewasa.jpg', '2022-09-09 15:00:36', NULL);
+INSERT INTO `ruangan` (`id_ruangan`, `nama_ruangan`, `kapasitas`, `perlengkapan`, `foto`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Ibadah Umum', 300, '<ul>\r\n<li>Proyektor</li>\r\n<li>AC</li>\r\n<li>Perlengkapan Sound system</li>\r\n</ul>', 'ibadah-umum.jpg', '2022-09-08 14:59:55', '2022-10-15 15:14:29', NULL),
+(2, 'Majelis', 30, '<ul>\r\n<li>Proyektor</li>\r\n<li>TV</li>\r\n<li>AC</li>\r\n</ul>', 'majelis.jpg', '2022-09-08 15:00:02', NULL, NULL),
+(3, 'Aula', 40, '<ul>\r\n<li>2 Proyektor</li>\r\n<li>AC</li>\r\n<li>Perlengkapan sound system</li>\r\n</ul>', 'aula.jpg', '2022-09-08 15:00:06', NULL, NULL),
+(4, 'Ruang Remaja', 30, '<ul>\r\n<li>Proyektor</li>\r\n<li>AC</li>\r\n<li>Papan tulis</li>\r\n</ul>', 'remaja.jpg', '2022-09-09 15:00:30', NULL, NULL),
+(5, 'Ruang Dewasa', 30, '<ul>\r\n<li>TV</li>\r\n<li>AC</li>\r\n<li>Papan tulis</li>\r\n</ul>', 'dewasa.jpg', '2022-09-09 15:00:36', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -433,23 +440,24 @@ INSERT INTO `user` (`id_user`, `id_level_user`, `nama_lengkap`, `username`, `pas
 CREATE TABLE `wilayah` (
   `id_wilayah` int(11) NOT NULL,
   `nama_wilayah` varchar(50) NOT NULL,
-  `is_koordinator` tinyint(4) NOT NULL
+  `is_koordinator` tinyint(4) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `wilayah`
 --
 
-INSERT INTO `wilayah` (`id_wilayah`, `nama_wilayah`, `is_koordinator`) VALUES
-(1, 'Wilayah 1', 1),
-(2, 'Wilayah 2', 1),
-(3, 'Wilayah 3', 1),
-(4, 'Wilayah 4', 1),
-(5, 'Wilayah 5', 1),
-(6, 'Wilayah 6', 1),
-(7, 'Wilayah 7', 1),
-(8, 'Bajem Kutabumi', 1),
-(9, 'Wilayah 9', 0);
+INSERT INTO `wilayah` (`id_wilayah`, `nama_wilayah`, `is_koordinator`, `created_at`, `updated_at`) VALUES
+(1, 'Wilayah 1', 1, '2022-02-02 10:38:48', '2022-02-10 10:42:23'),
+(2, 'Wilayah 2', 1, '2022-02-02 10:38:55', '2022-02-10 10:42:39'),
+(3, 'Wilayah 3', 1, '2022-02-02 10:39:02', '2022-02-10 10:42:44'),
+(4, 'Wilayah 4', 1, '2022-02-08 10:39:07', '2022-02-10 10:42:49'),
+(5, 'Wilayah 5', 1, '2022-02-08 10:39:08', '2022-10-19 10:51:05'),
+(6, 'Wilayah 6', 1, '2022-02-08 10:39:20', '2022-02-10 10:43:00'),
+(7, 'Wilayah 7', 1, '2022-02-08 10:39:27', '2022-02-10 10:43:06'),
+(8, 'Bajem Kutabumi', 1, '2022-02-08 10:39:34', '2022-02-10 10:43:22');
 
 --
 -- Indexes for dumped tables
@@ -560,13 +568,13 @@ ALTER TABLE `anggota_jemaat`
 -- AUTO_INCREMENT for table `artikel`
 --
 ALTER TABLE `artikel`
-  MODIFY `id_artikel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_artikel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `detail_wilayah`
 --
 ALTER TABLE `detail_wilayah`
-  MODIFY `id_detail_wilayah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_detail_wilayah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `dokumen`
@@ -602,7 +610,7 @@ ALTER TABLE `level_user`
 -- AUTO_INCREMENT for table `peminjaman_ruangan`
 --
 ALTER TABLE `peminjaman_ruangan`
-  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `pendeta`
@@ -638,7 +646,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `wilayah`
 --
 ALTER TABLE `wilayah`
-  MODIFY `id_wilayah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_wilayah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
