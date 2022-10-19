@@ -219,8 +219,7 @@
                                     <tr>
                                         <th>No.</th>
                                         <th>Tanggal</th>
-                                        <th>Jam Mulasi</th>
-                                        <th>Jam Selesai</th>
+                                        <th>Jam</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -311,10 +310,7 @@
                         "data": "tanggal_booking"
                     },
                     {
-                        "data": "jam_mulai"
-                    },
-                    {
-                        "data": "jam_selesai"
+                        "data":"jam"
                     }
                 ]
             });

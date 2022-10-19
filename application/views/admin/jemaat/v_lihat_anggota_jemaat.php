@@ -30,10 +30,10 @@
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
               <i class="fas fa-plus"></i> Tambah anggota jemaat
             </button><br><br>
+            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-akun-jemaat">
+              <i class="mr-1 fas fa-plus"></i> Akun Jemaat
+            </button><br><br> -->
           <?php } ?>
-          <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-akun-jemaat">
-            <i class="mr-1 fas fa-plus"></i> Akun Jemaat
-          </button><br><br> -->
 
           <table id="list_anggota" class="table table-bordered table-striped">
             <thead>
@@ -73,6 +73,11 @@
                 <input type="text" class="form-control" name="nama_anggota" placeholder="Nama Lengkap Anggota">
                 <div class="px-2 error_nama clear" style="display: none">
                 </div>
+              </div>
+              <div class="form-group">
+                <label>Username</label>
+                <input type="text" class="form-control" name="username" placeholder="username">
+                <div class="px-2 error_username" style="display: none"></div>
               </div>
               <div class="form-group">
                 <label>Alamat Anggota</label>
@@ -442,6 +447,13 @@
             } else {
               $('.error_nama').hide();
             }
+            if (respon.error_username) {
+              $('.error_username').show();
+              $('.error_username').html(respon.error_username);
+              $('.error_username').css("color", "red");
+            } else {
+              $('.error_username').hide();
+            }
             if (respon.error_alamat) {
               $('.error_alamat').show();
               $('.error_alamat').html(respon.error_alamat);
@@ -621,9 +633,7 @@
             Swal.fire({
               title: 'Sukses',
               text: respon.sukses,
-              icon: 'success',
-              showConfirmButton: false,
-              timer: 1000,
+              icon: 'success'
             }).then((confirmed) => {
               window.location.reload();
             });
