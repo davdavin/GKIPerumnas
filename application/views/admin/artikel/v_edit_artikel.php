@@ -78,13 +78,6 @@
             </div>
 
             <div class="form-group">
-              <label>Tanggal Pembuatan</label>
-              <input type="date" class="form-control" name="tanggal_pembuatan" value="<?= $detail->tanggal_pembuatan; ?>" required>
-              <div class="p-2 is-invalid error_tanggal clear" style="display: none">
-              </div>
-            </div>
-
-            <div class="form-group">
               <label>Deskripsi Singkat</label>
               <textarea class="form-control" name="deskripsi_singkat"><?= $detail->deskripsi_singkat; ?></textarea>
               <div class="p-2 is-invalid error_deskripsi clear" style="display: none">
@@ -234,13 +227,6 @@
                 } else {
                   $('.error_tipe').hide();
                 }
-                if (respon.error_tanggal) {
-                  $('.error_tanggal').show();
-                  $('.error_tanggal').html(respon.error_tanggal);
-                  $('.error_tanggal').css("color", "red");
-                } else {
-                  $('.error_tanggal').hide();
-                }
                 if (respon.error_deskripsi) {
                   $('.error_deskripsi').show();
                   $('.error_deskripsi').html(respon.error_deskripsi);
@@ -261,9 +247,7 @@
                 Swal.fire({
                   title: 'Sukses',
                   text: respon.sukses,
-                  icon: 'success',
-                  showConfirmButton: false,
-                  timer: 1000,
+                  icon: 'success'
                 }).then((confirmed) => {
                   window.location.href = "<?php echo base_url() . 'mengelola_artikel' ?>";
                 });
