@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+date_default_timezone_set('Asia/Jakarta');
+
 class Wilayah extends CI_Controller
 {
     public function __construct()
@@ -49,10 +51,12 @@ class Wilayah extends CI_Controller
     public function tambah_wilayah()
     {
         $nama_wilayah = $this->input->post('nama_wilayah');
+        $tanggal = date('Y-m-d H:i:s');
 
         $data = array(
             'nama_wilayah' => $nama_wilayah,
-            'is_koordinator' => 0
+            'is_koordinator' => 0,
+            'created_at' => $tanggal
         );
 
         $this->M_Wilayah->insert_record($data, 'wilayah');
@@ -73,18 +77,21 @@ class Wilayah extends CI_Controller
     {
         $id_wilayah = $this->input->post('id_wilayah');
         $koordinator_wilayah = $this->input->post('koordinator_wilayah');
+        $tanggal = date('Y-m-d H:i:s');
 
         $where = array(
             'id_wilayah' => $id_wilayah
         );
 
         $data_wilayah = array(
-            'is_koordinator' => 1
+            'is_koordinator' => 1,
+            'updated_at' => $tanggal
         );
 
         $data_koordinator_wilayah = array(
             'id_wilayah' => $id_wilayah,
-            'koordinator_wilayah' => $koordinator_wilayah
+            'koordinator_wilayah' => $koordinator_wilayah,
+            'created_at' => $tanggal
         );
 
         $this->M_Wilayah->update_record($where, $data_wilayah, 'wilayah');
@@ -107,10 +114,10 @@ class Wilayah extends CI_Controller
     public function nama_jemaat_per_wilayah($id_wilayah)
     {
         if (!isset($_POST['searchJemaat'])) {
-            $nama = $this->db->query("SELECT id_anggota, nama_lengkap_anggota, nama_wilayah FROM anggota_jemaat JOIN wilayah ON anggota_jemaat.id_wilayah = Wilayah.id_wilayah WHERE anggota_jemaat.id_wilayah = '$id_wilayah'")->result_array();
+            $nama = $this->db->query("SELECT id_anggota, nama_lengkap_anggota, nama_wilayah FROM anggota_jemaat JOIN wilayah ON anggota_jemaat.id_wilayah = Wilayah.id_wilayah WHERE anggota_jemaat.id_wilayah = '$id_wilayah' AND status_anggota = 1")->result_array();
         } else {
             $search = strtolower($_POST['searchJemaat']);
-            $nama = $this->db->query("SELECT id_anggota, nama_lengkap_anggota, nama_wilayah FROM anggota_jemaat JOIN wilayah ON anggota_jemaat.id_wilayah = Wilayah.id_wilayah WHERE nama_lengkap_anggota LIKE '%$search%' AND anggota_jemaat.id_wilayah = '$id_wilayah'")->result_array();
+            $nama = $this->db->query("SELECT id_anggota, nama_lengkap_anggota, nama_wilayah FROM anggota_jemaat JOIN wilayah ON anggota_jemaat.id_wilayah = Wilayah.id_wilayah WHERE nama_lengkap_anggota LIKE '%$search%' AND anggota_jemaat.id_wilayah = '$id_wilayah' AND status_anggota = 1")->result_array();
         }
 
         $list = array();
@@ -128,14 +135,18 @@ class Wilayah extends CI_Controller
         $koordinator_wilayah = $this->input->post('koordinator_wilayah');
         $nama_wilayah = $this->input->post('nama_wilayah');
 
+        $tanggal = date('Y-m-d H:i:s');
+
         $where = array('id_wilayah' => $id_wilayah);
 
         $data_wilayah = array(
-            'nama_wilayah' => $nama_wilayah
+            'nama_wilayah' => $nama_wilayah,
+            'updated_at' => $tanggal
         );
 
         $data_detail_wilayah = array(
-            'koordinator_wilayah' => $koordinator_wilayah
+            'koordinator_wilayah' => $koordinator_wilayah,
+            'updated_at' => $tanggal
         );
 
         $this->M_Wilayah->update_record($where, $data_wilayah, 'wilayah');

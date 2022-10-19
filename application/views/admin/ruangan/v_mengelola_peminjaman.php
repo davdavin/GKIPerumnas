@@ -38,8 +38,9 @@
                                 <th>No.</th>
                                 <th>Ruangan</th>
                                 <th>Nama</th>
-                                <th>Email</th>
+                                <th>Keperluan</th>
                                 <th>Tanggal</th>
+                                <th>Jam</th>
                                 <th>Status</th>
                                 <?php if ($this->session->userdata('level_user') == 2) { ?>
                                     <th>Aksi</th>
@@ -274,10 +275,13 @@
                     "data": "nama_lengkap_anggota"
                 },
                 {
-                    "data": "email_anggota"
+                    "data":"keperluan"
                 },
                 {
                     "data": "tanggal_booking"
+                },
+                {
+                    "data":"jam"
                 },
                 {
                     "data": "status_peminjaman"
