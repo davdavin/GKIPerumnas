@@ -49,13 +49,6 @@
           </div>
 
           <div class="form-group">
-            <label>Tanggal Pembuatan</label>
-            <input type="date" class="form-control" id="tanggal" name="tanggal_pembuatan">
-            <div class="px-2 error_tanggal clear" style="display: none">
-            </div>
-          </div>
-
-          <div class="form-group">
             <label>Deskripsi Singkat</label>
             <textarea class="form-control" id="deskripsi" name="deskripsi_singkat"></textarea>
             <div class="px-2 error_deskripsi clear" style="display: none">
@@ -171,15 +164,6 @@
       content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
     });
 
-    function valid() {
-      $('.clear').hide();
-      $('#judul').removeClass('is-invalid');
-      $('#tipe').removeClass('is-invalid');
-      $('#tanggal').removeClass('is-invalid');
-      $('#deskripsi').removeClass('is-invalid');
-      $('#inputFile').removeClass('is-invalid');
-    }
-
     $('.submit-artikel').submit(function(e) {
       e.preventDefault();
       $.ajax({
@@ -201,62 +185,42 @@
         success: function(respon) {
           if (respon.sukses == false) {
             if (respon.error_judul) {
-              $('#judul').addClass('is-invalid');
               $('.error_judul').show();
               $('.error_judul').html(respon.error_judul);
               $('.error_judul').css("color", "red");
             } else {
-              $('#judul').removeClass('is-invalid');
               $('.error_judul').hide();
             }
             if (respon.error_tipe) {
-              $('#tipe').addClass('is-invalid');
               $('.error_tipe').show();
               $('.error_tipe').html(respon.error_tipe);
               $('.error_tipe').css("color", "red");
             } else {
-              $('#tipe').removeClass('is-invalid');
               $('.error_tipe').hide();
             }
-            if (respon.error_tanggal) {
-              $('#tanggal').addClass('is-invalid');
-              $('.error_tanggal').show();
-              $('.error_tanggal').html(respon.error_tanggal);
-              $('.error_tanggal').css("color", "red");
-            } else {
-              $('#tanggal').removeClass('is-invalid');
-              $('.error_tanggal').hide();
-            }
             if (respon.error_deskripsi) {
-              $('#deskripsi').addClass('is-invalid');
               $('.error_deskripsi').show();
               $('.error_deskripsi').html(respon.error_deskripsi);
               $('.error_deskripsi').css("color", "red");
             } else {
-              $('#deskripsi').removeClass('is-invalid');
               $('.error_deskripsi').hide();
             }
             if (respon.error_file) {
-              $('#inputFile').addClass('is-invalid');
               $('.error_file').show();
               $('.error_file').html(respon.error_file);
               $('.error_file').css("color", "red");
             } else {
-              $('#inputFile').removeClass('is-invalid');
               $('.error_file').hide();
             }
 
           } else {
-            //   $('.clear').hide();
-            valid();
+            $('.clear').hide();
             Swal.fire({
               title: 'Sukses',
               text: respon.sukses,
-              icon: 'success',
-              showConfirmButton: false,
-              timer: 1000,
+              icon: 'success'
             }).then((confirmed) => {
-              window.location.reload();
+              window.location.href = "<?php echo base_url() . 'mengelola_artikel' ?>";
             });
           }
         }

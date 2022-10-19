@@ -170,12 +170,11 @@
     });
 
     $(document).on('click', '.tombol-hapus', function(e) {
-      e.preventDefault(); //untuk stop link href yang awal
+      e.preventDefault();
       const href = $(this).attr('href');
 
       Swal.fire({
         title: 'Apakah anda yakin?',
-        text: 'Artikel akan dihapus secara permanen',
         icon: 'warning',
         showCancelButton: true,
         cancelButtonText: 'batal',

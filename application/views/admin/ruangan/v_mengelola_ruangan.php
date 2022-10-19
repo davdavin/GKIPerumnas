@@ -230,11 +230,33 @@
                         render: function(data, type, row, meta) {
                             return `<a class="btn btn-info btn-sm" href="<?php echo base_url() . 'mengelola_ruangan/edit/' ?>${row.id_ruangan}">
                           <i class="fas fa-pencil-alt"></i> Edit
+                        </a>
+                        <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'mengelola_ruangan/hapus_ruangan/' ?>${row.id_ruangan}">
+                          <i class="fas fa-trash"></i> Hapus
                         </a>`;
                         }
                     }
                 <?php } ?>
             ]
+        });
+
+        $(document).on('click', '.tombol-hapus', function(e) {
+            e.preventDefault();
+            const href = $(this).attr('href')
+
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                icon: 'warning',
+                showCancelButton: true,
+                cancelButtonText: 'batal',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Hapus'
+            }).then((result) => {
+                if (result.value) {
+                document.location.href = href;
+                }
+            });
         });
 
 

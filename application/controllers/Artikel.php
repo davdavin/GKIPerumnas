@@ -20,7 +20,7 @@ class Artikel extends CI_Controller
 
         //config
         $config['base_url'] =  base_url() . 'Artikel/index';
-        $config['total_rows'] = $this->db->query("SELECT * FROM artikel")->num_rows();
+        $config['total_rows'] = $this->db->query("SELECT * FROM artikel WHERE deleted_at IS NULL")->num_rows();
         $config['per_page'] = 4; //10
         //  $config['num_links'] = 2;
 
@@ -65,10 +65,10 @@ class Artikel extends CI_Controller
     {
         // $data = [];
         if (!isset($_POST['searchTerm'])) {
-            $artikel = $this->db->query("SELECT * FROM artikel")->result_array();
+            $artikel = $this->db->query("SELECT * FROM artikel WHERE deleted_at IS NULL")->result_array();
         } else {
             $search = strtolower($_POST['searchTerm']);
-            $artikel = $this->db->query("SELECT id_artikel, judul_artikel FROM artikel WHERE judul_artikel LIKE '%$search%'")->result_array();
+            $artikel = $this->db->query("SELECT id_artikel, judul_artikel FROM artikel WHERE deleted_at IS NULL AND judul_artikel LIKE '%$search%'")->result_array();
         }
 
         $list = array();
@@ -83,10 +83,64 @@ class Artikel extends CI_Controller
     public function cari_renungan_harian()
     {
         if (!isset($_POST['searchTerm'])) {
-            $renungan = $this->db->query("SELECT * FROM artikel WHERE tipe_artikel = 'Renungan Harian'")->result_array();
+            $renungan = $this->db->query("SELECT * FROM artikel WHERE deleted_at IS NULL AND tipe_artikel = 'Renungan Harian'")->result_array();
         } else {
             $search = strtolower($_POST['searchTerm']);
-            $renungan = $this->db->query("SELECT id_artikel, judul_artikel FROM artikel WHERE tipe_artikel = 'Renungan Harian' AND judul_artikel LIKE '%$search%'")->result_array();
+            $renungan = $this->db->query("SELECT id_artikel, judul_artikel FROM artikel WHERE deleted_at IS NULL AND tipe_artikel = 'Renungan Harian' AND judul_artikel LIKE '%$search%'")->result_array();
+        }
+
+        $list = array();
+        for ($i = 0; $i < count($renungan); $i++) {
+            $list[$i]['id'] = $renungan[$i]['id_artikel'];
+            $list[$i]['text'] = $renungan[$i]['judul_artikel'];
+        }
+
+        echo json_encode($list);
+    }
+
+    public function cari_doa_harian()
+    {
+        if (!isset($_POST['searchTerm'])) {
+            $renungan = $this->db->query("SELECT * FROM artikel WHERE deleted_at IS NULL AND tipe_artikel = 'Doa Harian'")->result_array();
+        } else {
+            $search = strtolower($_POST['searchTerm']);
+            $renungan = $this->db->query("SELECT id_artikel, judul_artikel FROM artikel WHERE deleted_at IS NULL AND tipe_artikel = 'Doa Harian' AND judul_artikel LIKE '%$search%'")->result_array();
+        }
+
+        $list = array();
+        for ($i = 0; $i < count($renungan); $i++) {
+            $list[$i]['id'] = $renungan[$i]['id_artikel'];
+            $list[$i]['text'] = $renungan[$i]['judul_artikel'];
+        }
+
+        echo json_encode($list);
+    }
+
+    public function cari_warta_jemaat()
+    {
+        if (!isset($_POST['searchTerm'])) {
+            $renungan = $this->db->query("SELECT * FROM artikel WHERE deleted_at IS NULL AND tipe_artikel = 'Warta Jemaat'")->result_array();
+        } else {
+            $search = strtolower($_POST['searchTerm']);
+            $renungan = $this->db->query("SELECT id_artikel, judul_artikel FROM artikel WHERE deleted_at IS NULL AND tipe_artikel = 'Warta Jemaat' AND judul_artikel LIKE '%$search%'")->result_array();
+        }
+
+        $list = array();
+        for ($i = 0; $i < count($renungan); $i++) {
+            $list[$i]['id'] = $renungan[$i]['id_artikel'];
+            $list[$i]['text'] = $renungan[$i]['judul_artikel'];
+        }
+
+        echo json_encode($list);
+    }
+
+    public function cari_artikel_lainnya()
+    {
+        if (!isset($_POST['searchTerm'])) {
+            $renungan = $this->db->query("SELECT * FROM artikel WHERE deleted_at IS NULL AND tipe_artikel = 'Artikel Lainnya'")->result_array();
+        } else {
+            $search = strtolower($_POST['searchTerm']);
+            $renungan = $this->db->query("SELECT id_artikel, judul_artikel FROM artikel WHERE deleted_at IS NULL AND tipe_artikel = 'Artikel Lainnya' AND judul_artikel LIKE '%$search%'")->result_array();
         }
 
         $list = array();
@@ -104,7 +158,6 @@ class Artikel extends CI_Controller
         if ($id_artikel == NULL) {
             redirect('Artikel');
         } else {
-            //$this->baca_artikel($id_artikel);
             redirect('Artikel/baca_artikel/' . $id_artikel);
         }
     }
@@ -130,7 +183,7 @@ class Artikel extends CI_Controller
 
         //config
         $config['base_url'] = base_url() . 'Artikel/' . $function;
-        $config['total_rows'] = $this->db->query("SELECT * FROM artikel WHERE tipe_artikel = '$tipe'")->num_rows();
+        $config['total_rows'] = $this->db->query("SELECT * FROM artikel WHERE deleted_at IS NULL AND tipe_artikel = '$tipe'")->num_rows();
         $config['per_page'] = 4; //10
         //  $config['num_links'] = 2;
 
