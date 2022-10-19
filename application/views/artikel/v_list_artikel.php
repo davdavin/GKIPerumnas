@@ -28,7 +28,6 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 	<!-- Template Main CSS File -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>resources/assets/css/styleHome.css">
-	<!--	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/artikel/css/styleArtikel.css"> -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>resources/tambahanStyle.css">
 
 	<style>
@@ -129,7 +128,7 @@
 						return "Mencari...";
 					},
 					noResults: function() {
-						return "Tidak ada data yang sesuai";
+						return "Tidak ditemukan";
 					}
 				},
 				minimumInputLength: 3,

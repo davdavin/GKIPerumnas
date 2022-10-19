@@ -66,7 +66,7 @@
               <h2 style="text-align: center;"><?php echo $lihat_artikel->judul_artikel ?></h2>
               <br>
               <h5>
-                <?php echo tanggal_indonesia($lihat_artikel->tanggal_pembuatan);  ?>
+                <?php echo tanggal_indonesia($lihat_artikel->created_at);  ?>
               </h5>
               <br>
               <div class="isi-artikel">

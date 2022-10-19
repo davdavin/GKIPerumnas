@@ -110,7 +110,11 @@
             language: {
                 inputTooShort: function(args) {
                     var chars = args.minimum - args.input.length;
-                    return "Masukan minimal " + chars + " atau lebih huruf";
+                    if (chars == args.minimum) {
+                        return "Masukan minimal " + chars + " atau lebih karakter";
+                    } else {
+                        return "Masukan " + chars + " huruf lagi";
+                    }
                 },
                 searching: function() {
                     return "Mencari";

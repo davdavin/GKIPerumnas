@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/artikel/css/styleArtikel.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i,900" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/fontawesome-free/css/all.min.css">
 
     <!-- Vendor CSS Files -->
     <link href="<?php echo base_url(); ?>resources/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
@@ -22,6 +24,9 @@
     <link href="<?php echo base_url(); ?>resources/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>resources/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>resources/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
     <!-- Template Main CSS File -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>resources/assets/css/styleHome.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>resources/tambahanStyle.css">
@@ -54,9 +59,17 @@
     <main id="main">
         <section id="artikel" class="artikel section-bg">
             <div class="container">
-                <!--	<div class="col-sm-6">
-					<select class="pilih-artikel form-control" name="artikel"></select>
-				</div> -->
+                <div class="col-sm-6">
+                    <form action="<?php echo base_url() . 'Artikel/hasil_pencarian' ?>" method="post">
+                        <div class="input-group">
+                            <select class="pilih-artikel form-control" name="artikel"></select>
+                            <!--	<span class="input-group-text"><i class="fas fa-phone"></i></span> -->
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-sm"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div><br>
                 <div class="row  d-flex align-items-stretch">
                     <?php if (count($warta) > 0) {
                         foreach ($warta as $list) {
@@ -75,6 +88,7 @@
         </section>
     </main>
 
+    <script src="<?php echo base_url(); ?>jquery-3.4.1.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Vendor JS Files -->
@@ -85,9 +99,56 @@
     <script src="<?php echo base_url(); ?>resources/assets/vendor/php-email-form/validate.js"></script>
     <script src="<?php echo base_url(); ?>resources/assets/vendor/purecounter/purecounter.js"></script>
     <script src="<?php echo base_url(); ?>resources/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <!-- Select2 -->
+    <script src="<?php echo base_url(); ?>assets/plugins/select2/js/select2.full.min.js"></script>
 
     <!-- Template Main JS File -->
     <script src="<?php echo base_url(); ?>resources/assets/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.pilih-artikel').select2({
+                placeholder: 'cari',
+                //language: "id",
+                language: {
+                    inputTooShort: function(args) {
+                        var chars = args.minimum - args.input.length;
+                        if (chars == args.minimum) {
+                            return "Masukan minimal " + chars + " atau lebih karakter";
+                        } else {
+                            return "Masukan " + chars + " huruf lagi";
+                        }
+                    },
+                    searching: function() {
+                        return "Mencari...";
+                    },
+                    noResults: function() {
+                        return "Tidak ditemukan";
+                    }
+                },
+                minimumInputLength: 3,
+                ajax: {
+                    url: '<?php echo base_url() . 'Artikel/cari_warta_jemaat' ?>',
+                    type: 'POST',
+                    dataType: 'JSON',
+                    delay: 250,
+                    data: function(params) {
+                        return {
+                            searchTerm: params.term
+                        };
+                    },
+                    processResults: function(data) {
+                        return {
+                            results: data,
+                        };
+                    },
+                    //	cache: true
+                },
+            });
+
+            $('b[role="presentation"]').hide();
+        });
+    </script>
 </body>
 
 </html>
