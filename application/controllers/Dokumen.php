@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+date_default_timezone_set('Asia/Jakarta');
+
 class Dokumen extends CI_Controller
 {
     public function __construct()
@@ -82,12 +84,14 @@ class Dokumen extends CI_Controller
                 $respon['error_dokumen'] = "Tidak berhasil upload file. Format file hanya pdf dan ukuran file maksimal 5MB";
                 echo json_encode($respon);
             } else {
+                $tanggal = date('Y-m-d H:i:s');
                 $dokumen = $this->upload->data('file_name');
 
                 $data = array(
                     'jenis_dokumen' => $jenis_dokumen,
                     'nama_dokumen' => $dokumen,
-                    'keterangan' => $keterangan
+                    'keterangan' => $keterangan,
+                    'created_at' => $tanggal
                 );
 
                 $this->M_Dokumen->insert_record($data, 'dokumen');
@@ -132,13 +136,15 @@ class Dokumen extends CI_Controller
             echo json_encode($respon);
         } else {
 
+            $tanggal = date('Y-m-d H:i:s');
             $where = array('id_dokumen' => $id_dokumen);
 
             if ($_FILES['dokumen_baru']['name'] == "") {
                 $data = array(
                     'jenis_dokumen' => $jenis_dokumen,
                     'nama_dokumen' => $dokumen_lama,
-                    'keterangan' => $keterangan
+                    'keterangan' => $keterangan,
+                    'updated_at' => $tanggal
                 );
 
                 $this->M_Dokumen->update_record($where, $data, 'dokumen');
@@ -162,7 +168,8 @@ class Dokumen extends CI_Controller
                     $data = array(
                         'jenis_dokumen' => $jenis_dokumen,
                         'nama_dokumen' => $dokumen,
-                        'keterangan' => $keterangan
+                        'keterangan' => $keterangan,
+                        'updated_at' => $tanggal
                     );
 
                     @unlink('./dokumenFormulir/' . $dokumen_lama);
@@ -177,11 +184,10 @@ class Dokumen extends CI_Controller
 
     public function hapus_dokumen($id_dokumen)
     {
-        $dokumen = $this->db->query("SELECT nama_dokumen FROM dokumen WHERE id_dokumen = '$id_dokumen'")->row_array();
+        $tanggal = date('Y-m-d H:i:s');
         $where = array('id_dokumen' => $id_dokumen);
-
-        @unlink('./dokumenFormulir/' . $dokumen['nama_dokumen']);
-        $this->M_Dokumen->delete_record($where, 'dokumen');
+        $data = array('deleted_at' => $tanggal);
+        $this->M_Dokumen->update_record($where, $data, 'dokumen');
         $this->session->set_flashdata('sukses', 'Formulir berhasil dihapus');
         redirect('Dokumen');
     }

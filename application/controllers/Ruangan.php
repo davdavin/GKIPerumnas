@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+date_default_timezone_set('Asia/Jakarta');
+
 class Ruangan extends CI_Controller
 {
 
@@ -98,9 +100,10 @@ class Ruangan extends CI_Controller
                 }
 
                 if ($uploadOk == 1) {
+                    $tanggal = date('Y-m-d H:i:s');
                     $data = array(
                         'id_ruangan' => $id_ruangan, 'id_anggota' => $id_anggota, 'keperluan' => $keperluan,
-                        'tanggal_booking' => $tanggal_booking, 'jam_mulai' => $jam_mulai, 'jam_selesai' => $jam_selesai, 'status_peminjaman' => 'SEDANG DIPROSES', 'is_deleted' => 0
+                        'tanggal_booking' => $tanggal_booking, 'jam_mulai' => $jam_mulai, 'jam_selesai' => $jam_selesai, 'status_peminjaman' => 'SEDANG DIPROSES', 'created_at' => $tanggal
                     );
                     $this->M_Ruangan->insert_record($data, 'peminjaman_ruangan');
                     $respon['sukses'] = "Berhasil booking";
@@ -115,8 +118,7 @@ class Ruangan extends CI_Controller
         $peminjaman = $this->M_Ruangan->informasi_detail_peminjaman($id_ruangan)->result_array();
         for ($i = 0; $i < count($peminjaman); $i++) {
             $peminjaman[$i]['tanggal_booking'] = tanggal_indonesia($peminjaman[$i]['tanggal_booking']);
-            $peminjaman[$i]['jam_mulai'] = waktu($peminjaman[$i]['jam_mulai']);
-            $peminjaman[$i]['jam_selesai'] = waktu($peminjaman[$i]['jam_selesai']);
+            $peminjaman[$i]['jam'] = waktu($peminjaman[$i]['jam_mulai']) . ' - ' .  waktu($peminjaman[$i]['jam_selesai']);
         }
         echo json_encode($peminjaman);
     }
@@ -135,8 +137,7 @@ class Ruangan extends CI_Controller
         $jemaat_peminjaman = $this->M_Ruangan->detail_peminjaman_oleh_jemaat($id_anggota)->result_array();
         for ($i = 0; $i < count($jemaat_peminjaman); $i++) {
             $jemaat_peminjaman[$i]['tanggal_booking'] = tanggal_indonesia($jemaat_peminjaman[$i]['tanggal_booking']);
-            $jemaat_peminjaman[$i]['jam_mulai'] = waktu($jemaat_peminjaman[$i]['jam_mulai']);
-            $jemaat_peminjaman[$i]['jam_selesai'] = waktu($jemaat_peminjaman[$i]['jam_selesai']);
+            $jemaat_peminjaman[$i]['jam'] = waktu($jemaat_peminjaman[$i]['jam_mulai']) . ' - ' . waktu($jemaat_peminjaman[$i]['jam_selesai']);
         }
         echo json_encode($jemaat_peminjaman);
     }
@@ -152,9 +153,6 @@ class Ruangan extends CI_Controller
     {
         $id_ruangan = $this->input->post('id_ruangan');
         $no_anggota = $this->input->post('no_anggota');
-        //   $nama = $this->input->post('nama');
-        //  $email = $this->input->post('email');
-        //   $nohp = $this->input->post('nohp');
         $keperluan = $this->input->post('keperluan');
         $tanggal_booking = $this->input->post('tanggal_booking');
         $jam_mulai = $this->input->post('jam_mulai');
@@ -188,6 +186,7 @@ class Ruangan extends CI_Controller
             //$no_anggota_sekarang = $cek_no_anggota['no_anggota'];
 
             if ($cek_no_anggota > 0) {
+
                 $peminjaman = $this->db->query("SELECT tanggal_booking, jam_mulai, jam_selesai FROM peminjaman_ruangan WHERE id_ruangan = '$id_ruangan'")->result_array();
 
                 for ($i = 0; $i < count($peminjaman); $i++) {
@@ -201,8 +200,6 @@ class Ruangan extends CI_Controller
                             $respon['error_booking'] = "Tidak berhasil booking";
                             echo json_encode($respon);
                             break;
-                            //$this->session->set_flashdata('gagal', 'Tidak berhasil booking');
-                            //redirect('booking/' . $id_ruangan);
                         } else {
                             $uploadOk = 1;
                         }
@@ -212,6 +209,7 @@ class Ruangan extends CI_Controller
                 }
 
                 if ($uploadOk == 1) {
+                    $tanggal = date('Y-m-d H:i:s');
 
                     $anggota = $this->db->query("SELECT id_anggota, no_anggota, nama_lengkap_anggota, email_anggota FROM anggota_jemaat WHERE no_anggota = '$no_anggota'")->row_array();
 
@@ -222,7 +220,7 @@ class Ruangan extends CI_Controller
 
                     $data = array(
                         'id_ruangan' => $id_ruangan, 'id_anggota' => $id_anggota, 'keperluan' => $keperluan,
-                        'tanggal_booking' => $tanggal_booking, 'jam_mulai' => $jam_mulai, 'jam_selesai' => $jam_selesai, 'status_peminjaman' => 'SEDANG DIPROSES', 'is_deleted' => 0
+                        'tanggal_booking' => $tanggal_booking, 'jam_mulai' => $jam_mulai, 'jam_selesai' => $jam_selesai, 'status_peminjaman' => 'SEDANG DIPROSES', 'created_at' => $tanggal
                     );
                     $this->M_Ruangan->insert_record($data, 'peminjaman_ruangan');
 
@@ -512,13 +510,5 @@ class Ruangan extends CI_Controller
                 echo json_encode($respon);
             }
         }
-    }
-
-    public function coba()
-    {
-        $data['ruangan'] = $this->db->query("SELECT * FROM coba_ruangan")->result_array();
-        $data['detail'] = $this->db->query("SELECT * FROM detail_coba_ruangan")->result_array();
-
-        $this->load->view('v_peminjaman_ruangan.php', $data);
     }
 }
