@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+date_default_timezone_set('Asia/Jakarta');
+
 class Anggota_Jemaat extends CI_Controller
 {
     public function __construct()
@@ -120,6 +122,7 @@ class Anggota_Jemaat extends CI_Controller
             );
             echo json_encode($respon);
         } else {
+            $tanggal = date('Y-m-d H:i:s');
             $pisah = explode("/", date_format(date_create($tanggal_lahir), "d/m/Y"));
 
             $password = $pisah[0] . $pisah[1] . $pisah[2];
@@ -131,7 +134,7 @@ class Anggota_Jemaat extends CI_Controller
                 'pekerjaan_anggota' => $pekerjaan_anggota, 'kelompok_etnis_anggota' => $kelompok_etnis,
                 'tanggal_lahir_anggota' => $tanggal_lahir, 'tanggal_baptis_anggota' => $tanggal_baptis, 'tanggal_sidi_anggota' => $tanggal_sidi,
                 'tanggal_atestasi_masuk' => $tanggal_atestasi_masuk, 'tanggal_atestasi_keluar' => $tanggal_atestasi_keluar, 'tanggal_meninggal' => $tanggal_meninggal,
-                'tanggal_dkh' => $tanggal_dkh, 'tanggal_ex_dkh' => $tanggal_ex_dkh, 'status_akun' => 1
+                'tanggal_dkh' => $tanggal_dkh, 'tanggal_ex_dkh' => $tanggal_ex_dkh, 'status_akun' => 1, 'created_at' => $tanggal
             );
 
             $this->M_Anggota_Jemaat->insert_record($data, 'anggota_jemaat');
@@ -295,6 +298,7 @@ class Anggota_Jemaat extends CI_Controller
                 $status_akun = 1;
             }
 
+            $tanggal = date('Y-m-d H:i:s');
             $where = array('no_anggota' => $no_anggota);
 
             $data = array(
@@ -304,7 +308,7 @@ class Anggota_Jemaat extends CI_Controller
                 'pendidikan_anggota' => $pendidikan_anggota, 'pekerjaan_anggota' => $pekerjaan_anggota, 'kelompok_etnis_anggota' => $kelompok_etnis,
                 'tanggal_lahir_anggota' => $tanggal_lahir, 'tanggal_baptis_anggota' => $tanggal_baptis, 'tanggal_sidi_anggota' => $tanggal_sidi,
                 'tanggal_atestasi_masuk' => $tanggal_atestasi_masuk, 'tanggal_atestasi_keluar' => $tanggal_atestasi_keluar, 'tanggal_meninggal' => $tanggal_meninggal,
-                'tanggal_dkh' => $tanggal_dkh, 'tanggal_ex_dkh' => $tanggal_ex_dkh, 'status_akun' => $status_akun
+                'tanggal_dkh' => $tanggal_dkh, 'tanggal_ex_dkh' => $tanggal_ex_dkh, 'status_akun' => $status_akun, 'updated_at' => $tanggal
             );
 
             $this->M_Anggota_Jemaat->update_record($where, $data, 'anggota_jemaat');
@@ -332,27 +336,28 @@ class Anggota_Jemaat extends CI_Controller
         $pekerjaan_anggota = $this->input->post('pekerjaan');
         $pendidikan_anggota = $this->input->post('pendidikan');
 
+        $tanggal = date('Y-m-d H:i:s');
         $where = array(
             'no_anggota' => $no_anggota
         );
         if ($nohp_anggota != "-") {
-            $nohp_baru = array('nohp_anggota' => $nohp_anggota);
+            $nohp_baru = array('nohp_anggota' => $nohp_anggota, 'updated_at' => $tanggal);
             $this->M_Anggota_Jemaat->update_record($where, $nohp_baru, 'anggota_jemaat');
         }
         if ($email_anggota != "-") {
-            $email_baru = array('email_anggota' => $email_anggota);
+            $email_baru = array('email_anggota' => $email_anggota, 'updated_at' => $tanggal);
             $this->M_Anggota_Jemaat->update_record($where, $email_baru, 'anggota_jemaat');
         }
         if ($alamat_anggota != "-") {
-            $alamat_baru = array('alamat_anggota' => $alamat_anggota);
+            $alamat_baru = array('alamat_anggota' => $alamat_anggota, 'updated_at' => $tanggal);
             $this->M_Anggota_Jemaat->update_record($where, $alamat_baru, 'anggota_jemaat');
         }
         if ($pekerjaan_anggota != "-") {
-            $pekerjaan_baru = array('pekerjaan_anggota' => $pekerjaan_anggota);
+            $pekerjaan_baru = array('pekerjaan_anggota' => $pekerjaan_anggota, 'updated_at' => $tanggal);
             $this->M_Anggota_Jemaat->update_record($where, $pekerjaan_baru, 'anggota_jemaat');
         }
         if ($pendidikan_anggota != "-") {
-            $pendidikan_baru = array('pendidikan_anggota' => $pendidikan_anggota);
+            $pendidikan_baru = array('pendidikan_anggota' => $pendidikan_anggota, 'updated_at' => $tanggal);
             $this->M_Anggota_Jemaat->update_record($where, $pendidikan_baru, 'anggota_jemaat');
         }
         $where_permintaan = array(
