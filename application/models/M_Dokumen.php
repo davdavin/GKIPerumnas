@@ -7,7 +7,7 @@ class M_Dokumen extends CI_Model {
     }
 
     public function tampil_pengumpulan() {
-        $query = $this->db->query("SELECT jenis_dokumen, id_pengumpulan, nama_lengkap_pengumpul, email_pengumpul, pengumpulan_dokumen.nama_dokumen, tanggal_kumpul 
+        $query = $this->db->query("SELECT jenis_dokumen, id_pengumpulan, nama_lengkap_pengumpul, email_pengumpul, pengumpulan_dokumen.nama_dokumen, pengumpulan_dokumen.created_at 
                                 FROM dokumen JOIN pengumpulan_dokumen ON dokumen.id_dokumen = pengumpulan_dokumen.id_dokumen ORDER BY id_pengumpulan DESC");
         return $query;
     }

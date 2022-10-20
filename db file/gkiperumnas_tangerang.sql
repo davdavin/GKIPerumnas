@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 19, 2022 at 10:25 AM
+-- Generation Time: Oct 20, 2022 at 10:27 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -51,31 +51,34 @@ CREATE TABLE `anggota_jemaat` (
   `tanggal_meninggal` date DEFAULT NULL,
   `tanggal_dkh` date DEFAULT NULL,
   `tanggal_ex_dkh` date DEFAULT NULL,
-  `status_akun` tinyint(4) NOT NULL
+  `status_akun` tinyint(4) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `anggota_jemaat`
 --
 
-INSERT INTO `anggota_jemaat` (`id_anggota`, `id_wilayah`, `no_anggota`, `nama_lengkap_anggota`, `username`, `password`, `alamat_anggota`, `nohp_anggota`, `email_anggota`, `jenis_kelamin_anggota`, `golongan_darah_anggota`, `status_anggota`, `pendidikan_anggota`, `pekerjaan_anggota`, `kelompok_etnis_anggota`, `tanggal_lahir_anggota`, `tanggal_baptis_anggota`, `tanggal_sidi_anggota`, `tanggal_atestasi_masuk`, `tanggal_atestasi_keluar`, `tanggal_meninggal`, `tanggal_dkh`, `tanggal_ex_dkh`, `status_akun`) VALUES
-(1, 1, '00001', 'Christella', 'christella', '$2y$10$u2bfkTIjd52ujs7fSPDcPeZetdIMgz413bOnjegqTf0KcF3b7pp9u', 'Jl Melati No. 2', '082042832322', 'electronicdm10@gmail.com', 'Perempuan', 'A', 1, 'S2', 'Karyawan', 'Sunda', '1999-10-05', '2017-10-06', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1),
-(2, 2, '00002', 'Sinta', 'sinta', '$2y$10$sUJv0eyLkWJuOfnTnZiFX.NuPctX4PAfEw4mig4YU8ZKQwLQVLY7a', 'Jl Melati', '0808273262314', 'projectwebdua@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1998-01-23', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1),
-(3, 3, '00003', 'Philip', 'philip', '$2y$10$7qRn4l9mAYBItnaIC/kU8OVskRbS2puY5kjhztosyqMuoLem2YAtC', 'Jl Melati', '089283282121', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '2000-12-16', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1),
-(4, 1, '00004', 'Bro', 'brobro', '$2y$10$4F9OrTTJueuYZk2VL9KeheLXCBnCpRfzA.7EDNRgY.q5/M.MaxH/m', 'Jl. Apel ', '089283282121', 'contoh1@example.com', 'Laki-laki', 'A', 1, 'S2', 'Karyawan', 'Sunda', '1996-02-09', '2021-01-01', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1),
-(5, 8, '00005', 'Toni', 'tonitoni', '$2y$10$VbYbXQm/lWpLZcS0a06UC.lYdpGrQF2wXNJ3DFiyWF6F7S3tjHEjq', 'Jl. Apel ', '0808273262314', 'vinvin@gmail.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '2000-09-16', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1),
-(6, 6, '00006', 'Marcelo', 'marcelo', '$2y$10$6lWx87msZTVCrX0q9zgayO0oX055kxtd52cqrPBKcPZ/K3Q4Ahpvi', 'Jl. Apel ', '0808273262314', 'contoh2@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1990-01-08', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1),
-(7, 7, '00007', 'Boy', 'boyboy', '$2y$10$UzljG9n//muG3t6VdQzZSeLAb3ySr6Lo1icwoZmvME9N1ZGBNwrBO', 'Jl. Apel ', '089283282121', 'contoh3@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1996-02-09', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1),
-(8, 4, '00008', 'Joseph', 'joseph', '$2y$10$PyrYlxviw0nm92xesrnU9enzCEZffEud44QUxPLMfv6SSr.dhm6AC', 'Jl. Apel ', '0808273262314', 'contoh4@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1996-02-09', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1),
-(9, 2, '00009', 'Jack', 'jackjack', '$2y$10$Jb3MU6ntMSaaA7WC62NH8uv8YVNZWcBCthG/mC4shECTmObL6veLi', 'Jl. Apel ', '0808273262314', 'brobro@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1990-10-21', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1),
-(10, 5, '000010', 'Yohanes', 'yohanes', '$2y$10$5zB0ZskcP6uBP2qoKkBTm.nnCz.U/o/XbR10B.OsrN4OjqZy6dKk2', 'Jl. Apel ', '0808273262314', 'contoh5@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1998-10-09', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1),
-(11, 5, '000011', 'Koko', 'kokokoko', '$2y$10$UveDTJSbo6V9piXU0yJz5Oabd7WsZrspOWB4iVauhKcCsnlF4HSga', 'Jl. Mangga', '088217231921', 'kokoko@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Jawa', '2000-10-01', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1),
-(12, 7, '000012', 'Bella', 'bella', '$2y$10$XXMV0OA79RJPkn7sSqyyjud8ndeYUzakK/Ljw7UhAxqKKzt12xdQ2', 'Jl. Buah Apel No.2 ', '088904040829', 'bellabella@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1994-10-22', '2010-08-21', '0000-00-00', '2008-07-16', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1),
-(13, 6, '000013', 'Josephine', 'josephine', '$2y$10$TcwfWb8/FU.AR/cy4jk/oeQJDqgxV2RmfufPky.Jml9K.i8GKgiwS', 'Jl. Cengkeh Blok. A', '088904040829', 'josejose@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1995-07-12', '2012-11-22', '2022-07-21', '2000-10-18', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1),
-(14, 4, '000014', 'Maria', 'maria', '$2y$10$HB01DdkDoYciXShzR8Ob/eaCCkx.EIHZyoQ5rVoedfO288R5H5Oly', 'Jl. Mangga', '088904040829', 'marmar@example.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Jawa', '1996-11-05', '2008-02-12', '0000-00-00', '2000-10-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1),
-(15, 8, '000015', 'Brandon', 'brandon', '$2y$10$1FDI0sUlpGHauFwHX1W.W.NqH3Rr3Spe8sbjkJ8LnyFztk9bsEvpO', 'Jl. Cengkeh Blok. AC', '088270120023', 'brandonbrandon@gmail.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Jawa', '1997-12-01', '2009-02-18', '2015-07-12', '2005-12-02', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1),
-(16, 3, '000016', 'Budi Boy', 'budibudi', '$2y$10$OBOFkQtSepxyu3cqhrj/zO5u9qivcsGIUIa5bJbObJxQO8.H8Zj1y', 'Jl. Anggur No. 2 Blok. AC', '088270120023', 'budibudi@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Jawa', '1967-12-08', '1975-04-12', '0000-00-00', '1975-01-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1),
-(17, 7, '000017', 'Merry', 'merry', '$2y$10$ulQrY6ymejC0rj97oTscQujUS2t7rRM1sHAQSUefmMrw5GTb5oiDO', 'Jl. Buah Apel No. 10', '08327139232', 'merrymerry@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Jawa', '2000-12-12', '2008-02-12', '0000-00-00', '2000-01-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1);
+INSERT INTO `anggota_jemaat` (`id_anggota`, `id_wilayah`, `no_anggota`, `nama_lengkap_anggota`, `username`, `password`, `alamat_anggota`, `nohp_anggota`, `email_anggota`, `jenis_kelamin_anggota`, `golongan_darah_anggota`, `status_anggota`, `pendidikan_anggota`, `pekerjaan_anggota`, `kelompok_etnis_anggota`, `tanggal_lahir_anggota`, `tanggal_baptis_anggota`, `tanggal_sidi_anggota`, `tanggal_atestasi_masuk`, `tanggal_atestasi_keluar`, `tanggal_meninggal`, `tanggal_dkh`, `tanggal_ex_dkh`, `status_akun`, `created_at`, `updated_at`) VALUES
+(1, 1, '00001', 'Christella', 'christella', '$2y$10$u2bfkTIjd52ujs7fSPDcPeZetdIMgz413bOnjegqTf0KcF3b7pp9u', 'Jl Melati No. 2', '082042832322', 'electronicdm10@gmail.com', 'Perempuan', 'A', 1, 'S2', 'Direktur', 'Sunda', '1999-10-05', '2017-10-06', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1, '2021-10-14 14:56:27', '2022-10-20 15:21:38'),
+(2, 2, '00002', 'Sinta', 'sinta', '$2y$10$sUJv0eyLkWJuOfnTnZiFX.NuPctX4PAfEw4mig4YU8ZKQwLQVLY7a', 'Jl Melati', '0808273262314', 'projectwebdua@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1998-01-23', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1, '2021-10-14 14:56:42', NULL),
+(3, 3, '00003', 'Philip', 'philip', '$2y$10$7qRn4l9mAYBItnaIC/kU8OVskRbS2puY5kjhztosyqMuoLem2YAtC', 'Jl Melati', '089283282121', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '2000-12-16', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1, '2021-11-08 14:56:51', NULL),
+(4, 1, '00004', 'Bro', 'brobro', '$2y$10$4F9OrTTJueuYZk2VL9KeheLXCBnCpRfzA.7EDNRgY.q5/M.MaxH/m', 'Jl. Apel ', '089283282121', 'contoh1@example.com', 'Laki-laki', 'A', 1, 'S2', 'Karyawan', 'Sunda', '1996-02-09', '2021-01-01', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1, '2021-11-08 14:57:30', NULL),
+(5, 8, '00005', 'Toni', 'tonitoni', '$2y$10$VbYbXQm/lWpLZcS0a06UC.lYdpGrQF2wXNJ3DFiyWF6F7S3tjHEjq', 'Jl. Apel ', '0808273262314', 'vinvin@gmail.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '2000-09-16', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1, '2021-11-08 14:57:43', NULL),
+(6, 6, '00006', 'Marcelo', 'marcelo', '$2y$10$6lWx87msZTVCrX0q9zgayO0oX055kxtd52cqrPBKcPZ/K3Q4Ahpvi', 'Jl. Apel ', '0808273262314', 'contoh2@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1990-01-08', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1, '2021-11-10 14:57:56', NULL),
+(7, 7, '00007', 'Boy', 'boyboy', '$2y$10$UzljG9n//muG3t6VdQzZSeLAb3ySr6Lo1icwoZmvME9N1ZGBNwrBO', 'Jl. Apel ', '089283282121', 'contoh3@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1996-02-09', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1, '2021-11-10 15:00:00', NULL),
+(8, 4, '00008', 'Joseph', 'joseph', '$2y$10$PyrYlxviw0nm92xesrnU9enzCEZffEud44QUxPLMfv6SSr.dhm6AC', 'Jl. Apel ', '0808273262314', 'contoh4@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1996-02-09', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1, '2021-11-10 16:00:00', NULL),
+(9, 2, '00009', 'Jack', 'jackjack', '$2y$10$Jb3MU6ntMSaaA7WC62NH8uv8YVNZWcBCthG/mC4shECTmObL6veLi', 'Jl. Apel ', '0808273262314', 'brobro@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1990-10-21', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1, '2021-11-10 16:30:00', NULL),
+(10, 5, '000010', 'Yohanes', 'yohanes', '$2y$10$5zB0ZskcP6uBP2qoKkBTm.nnCz.U/o/XbR10B.OsrN4OjqZy6dKk2', 'Jl. Apel ', '0808273262314', 'contoh5@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1998-10-09', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1, '2021-11-12 10:00:00', NULL),
+(11, 5, '000011', 'Koko', 'kokokoko', '$2y$10$UveDTJSbo6V9piXU0yJz5Oabd7WsZrspOWB4iVauhKcCsnlF4HSga', 'Jl. Mangga', '088217231921', 'kokoko@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Jawa', '2000-10-01', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1, '2021-11-12 11:00:00', NULL),
+(12, 7, '000012', 'Bella', 'bella', '$2y$10$XXMV0OA79RJPkn7sSqyyjud8ndeYUzakK/Ljw7UhAxqKKzt12xdQ2', 'Jl. Buah Apel No.2 ', '088904040829', 'bellabella@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1994-10-22', '2010-08-21', '0000-00-00', '2008-07-16', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1, '2021-11-12 11:30:00', NULL),
+(13, 6, '000013', 'Josephine', 'josephine', '$2y$10$TcwfWb8/FU.AR/cy4jk/oeQJDqgxV2RmfufPky.Jml9K.i8GKgiwS', 'Jl. Cengkeh Blok. A', '088904040829', 'josejose@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', '1995-07-12', '2012-11-22', '2022-07-21', '2000-10-18', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1, '2022-01-12 12:00:00', NULL),
+(14, 4, '000014', 'Maria', 'maria', '$2y$10$HB01DdkDoYciXShzR8Ob/eaCCkx.EIHZyoQ5rVoedfO288R5H5Oly', 'Jl. Mangga', '088904040829', 'marmar@example.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Jawa', '1996-11-05', '2008-02-12', '0000-00-00', '2000-10-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1, '2022-01-14 15:01:02', NULL),
+(15, 8, '000015', 'Brandon', 'brandon', '$2y$10$1FDI0sUlpGHauFwHX1W.W.NqH3Rr3Spe8sbjkJ8LnyFztk9bsEvpO', 'Jl. Cengkeh Blok. AC', '088270120023', 'brandonbrandon@gmail.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Jawa', '1997-12-01', '2009-02-18', '2015-07-12', '2005-12-02', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1, '2022-09-01 15:01:14', NULL),
+(16, 3, '000016', 'Budi Boy', 'budibudi', '$2y$10$OBOFkQtSepxyu3cqhrj/zO5u9qivcsGIUIa5bJbObJxQO8.H8Zj1y', 'Jl. Anggur No. 2 Blok. AC', '088270120023', 'budibudi@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Jawa', '1967-12-08', '1975-04-12', '0000-00-00', '1975-01-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1, '2022-09-02 15:01:22', NULL),
+(17, 7, '000017', 'Merry', 'merry', '$2y$10$ulQrY6ymejC0rj97oTscQujUS2t7rRM1sHAQSUefmMrw5GTb5oiDO', 'Jl. Buah Apel No. 10', '08327139232', 'merrymerry@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Jawa', '2000-12-12', '2008-02-12', '0000-00-00', '2000-01-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1, '2022-10-07 15:01:33', NULL),
+(18, 8, '000018', 'Pearly', 'pearly', '$2y$10$Q9jD1W8.c4yAwlDh.xZ0o.dx/3SB5HkkHTdsA7ODwsZpgpVKJbFh.', 'Jl Melati No. 4', '08729213123', 'pearlypearly@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', '2006-01-12', '2016-02-12', '0000-00-00', '2005-01-01', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1, '2022-10-20 15:08:49', '2022-10-20 15:22:31');
 
 -- --------------------------------------------------------
 
@@ -336,16 +339,16 @@ CREATE TABLE `pengumpulan_dokumen` (
   `nama_lengkap_pengumpul` varchar(100) NOT NULL,
   `email_pengumpul` varchar(50) NOT NULL,
   `nama_dokumen` varchar(100) NOT NULL,
-  `tanggal_kumpul` date NOT NULL
+  `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `pengumpulan_dokumen`
 --
 
-INSERT INTO `pengumpulan_dokumen` (`id_pengumpulan`, `id_dokumen`, `nama_lengkap_pengumpul`, `email_pengumpul`, `nama_dokumen`, `tanggal_kumpul`) VALUES
-(3, 3, 'tes', 'testes@example.com', 'tes.zip', '2022-10-05'),
-(4, 2, 'Test', 'jjjj@example.com', 'Tes2.zip', '2022-10-06');
+INSERT INTO `pengumpulan_dokumen` (`id_pengumpulan`, `id_dokumen`, `nama_lengkap_pengumpul`, `email_pengumpul`, `nama_dokumen`, `created_at`) VALUES
+(3, 3, 'tes', 'testes@example.com', 'tes.zip', '2022-10-05 12:00:00'),
+(4, 2, 'Test', 'jjjj@example.com', 'Tes2.zip', '2022-10-06 14:00:00');
 
 -- --------------------------------------------------------
 
@@ -562,7 +565,7 @@ ALTER TABLE `wilayah`
 -- AUTO_INCREMENT for table `anggota_jemaat`
 --
 ALTER TABLE `anggota_jemaat`
-  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `artikel`

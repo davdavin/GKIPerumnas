@@ -38,7 +38,7 @@ class Dokumen extends CI_Controller
     {
         $pengumpulan = $this->M_Dokumen->tampil_pengumpulan()->result_array();
         for ($i = 0; $i < count($pengumpulan); $i++) {
-            $pengumpulan[$i]['tanggal_kumpul'] = tanggal_indonesia($pengumpulan[$i]['tanggal_kumpul']);
+            $pengumpulan[$i]['created_at'] = tanggal_indonesia($pengumpulan[$i]['created_at']);
         }
         echo json_encode($pengumpulan);
     }

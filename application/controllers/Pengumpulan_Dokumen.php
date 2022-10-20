@@ -25,10 +25,9 @@ class Pengumpulan_Dokumen extends CI_Controller
         $nama_pengumpul = $this->input->post('nama_pengumpul');
         $email_pengumpul = $this->input->post('email_pengumpul');
         $id_dokumen = $this->input->post('id_dokumen');
-        $tanggal = date('Y-m-d');
 
-        $this->form_validation->set_rules('nama_pengumpul', 'Nama', 'trim|required');
-        $this->form_validation->set_rules('email_pengumpul', 'Email', 'trim|required|valid_email');
+        $this->form_validation->set_rules('nama_pengumpul', 'Nama', 'required');
+        $this->form_validation->set_rules('email_pengumpul', 'Email', 'required|valid_email');
         $this->form_validation->set_rules('id_dokumen', 'Jenis Dokumen', 'required');
         if (empty($_FILES['dokumen']['name'])) {
             $this->form_validation->set_rules('dokumen', 'File', 'required');
@@ -60,13 +59,14 @@ class Pengumpulan_Dokumen extends CI_Controller
                 );
                 echo json_encode($respon);
             } else {
+                $tanggal = date('Y-m-d H:i:s');
                 $dokumen =  $this->upload->data('file_name');
                 $data = array(
                     'id_dokumen' => $id_dokumen,
                     'nama_lengkap_pengumpul' => $nama_pengumpul,
                     'email_pengumpul' => $email_pengumpul,
                     'nama_dokumen' => $dokumen,
-                    'tanggal_kumpul' => $tanggal
+                    'created_at' => $tanggal
                 );
                 $this->M_Dokumen->insert_record($data, 'pengumpulan_dokumen');
                 $respon['sukses'] = "Pengumpulan berhasil";

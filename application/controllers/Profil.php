@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+date_default_timezone_set('Asia/Jakarta');
+
 class Profil extends CI_Controller
 {
     public function __construct()
@@ -71,12 +73,12 @@ class Profil extends CI_Controller
             );
             echo json_encode($respon);
         } else {
-
+            $tanggal = date('Y-m-d H:i:s');
             $where = array('no_anggota' => $no_anggota);
 
             $data = array(
                 'username' => $username, 'alamat_anggota' => $alamat_anggota, 'nohp_anggota' => $nohp_anggota, 'email_anggota' => $email_anggota,
-                'pendidikan_anggota' => $pendidikan_anggota, 'pekerjaan_anggota' => $pekerjaan_anggota
+                'pendidikan_anggota' => $pendidikan_anggota, 'pekerjaan_anggota' => $pekerjaan_anggota, 'updated_at' => $tanggal
             );
 
             $this->M_Profil->update_record($where, $data, 'anggota_jemaat');
@@ -125,9 +127,10 @@ class Profil extends CI_Controller
         } else {
             $cek_pass = $this->M_Profil->cek_login('anggota_jemaat', ['id_anggota' => $id])->row_array();
             if (password_verify($pass_lama, $cek_pass['password'])) {
+                $tanggal = date('Y-m-d H:i:s');
                 $where = array('id_anggota' => $id);
                 $data = array(
-                    'password' => password_hash($pass_baru, PASSWORD_DEFAULT),
+                    'password' => password_hash($pass_baru, PASSWORD_DEFAULT), 'updated_at' => $tanggal
                 );
                 $this->M_Profil->update_record($where, $data, 'anggota_jemaat');
                 $respon['sukses'] = 'Berhasil ganti password';
