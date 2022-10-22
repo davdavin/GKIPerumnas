@@ -98,7 +98,7 @@ class Ruangan extends CI_Controller
                         $uploadOk = 1;
                     }
                 }
-                
+
                 if ($uploadOk == 1) {
                     $tanggal = date('Y-m-d H:i:s');
                     $data = array(
@@ -140,12 +140,5 @@ class Ruangan extends CI_Controller
             $jemaat_peminjaman[$i]['jam'] = waktu($jemaat_peminjaman[$i]['jam_mulai']) . ' - ' . waktu($jemaat_peminjaman[$i]['jam_selesai']);
         }
         echo json_encode($jemaat_peminjaman);
-    }
-
-    public function booking_ruangan($id_ruangan)
-    {
-        $data['ruangan'] = $this->M_Ruangan->pilih_ruangan($id_ruangan)->row_array();
-        $data['id_ruangan'] = $id_ruangan;
-        $this->load->view('ruangan/v_proses_booking.php', $data);
     }
 }
