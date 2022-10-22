@@ -98,7 +98,7 @@ class Pendeta extends CI_Controller
                     'no_pendeta' => $no_pendeta, 'nama_lengkap_pendeta' => $nama_pendeta,
                     'alamat_pendeta' => $alamat_pendeta, 'nohp_pendeta' => $nohp_pendeta,
                     'email_pendeta' => $email_pendeta, 'jenis_kelamin_pendeta' => $jenis_kelamin_pendeta,
-                    'tanggal_lahir_pendeta' => $tanggal_lahir_pendeta, 'foto_pendeta' => $foto, 'status_pendeta' => $status_pendeta, 'created_at' => $tanggal
+                    'tanggal_lahir_pendeta' => $tanggal_lahir_pendeta, 'foto_pendeta' => $foto, 'status_pendeta' => $status_pendeta, 'id_user' => $this->session->userdata('id_user'), 'created_at' => $tanggal
                 );
 
                 $this->M_Pendeta->insert_record($data, 'pendeta');
@@ -178,7 +178,7 @@ class Pendeta extends CI_Controller
                 $data = array(
                     'nama_lengkap_pendeta' => $nama_pendeta, 'alamat_pendeta' => $alamat_pendeta, 'nohp_pendeta' => $nohp_pendeta,
                     'email_pendeta' => $email_pendeta, 'jenis_kelamin_pendeta' => $jenis_kelamin_pendeta,
-                    'tanggal_lahir_pendeta' => $tanggal_lahir_pendeta, 'foto_pendeta' => $foto_lama, 'status_pendeta' => $status_pendeta, 'updated_at' => $tanggal
+                    'tanggal_lahir_pendeta' => $tanggal_lahir_pendeta, 'foto_pendeta' => $foto_lama, 'status_pendeta' => $status_pendeta, 'id_user' => $this->session->userdata('id_user'), 'updated_at' => $tanggal
                 );
 
                 $this->M_Pendeta->update_record($where, $data, 'pendeta');
@@ -201,7 +201,7 @@ class Pendeta extends CI_Controller
                     $data = array(
                         'nama_lengkap_pendeta' => $nama_pendeta, 'alamat_pendeta' => $alamat_pendeta, 'nohp_pendeta' => $nohp_pendeta,
                         'email_pendeta' => $email_pendeta, 'jenis_kelamin_pendeta' => $jenis_kelamin_pendeta,
-                        'tanggal_lahir_pendeta' => $tanggal_lahir_pendeta, 'foto_pendeta' => $foto, 'status_pendeta' => $status_pendeta, 'updated_at' => $tanggal
+                        'tanggal_lahir_pendeta' => $tanggal_lahir_pendeta, 'foto_pendeta' => $foto, 'status_pendeta' => $status_pendeta, 'id_user' => $this->session->userdata('id_user'), 'updated_at' => $tanggal
                     );
 
                     @unlink('./resources/assets/img/pendeta/' . $foto_lama); //untuk hapus foto lama

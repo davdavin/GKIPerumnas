@@ -58,7 +58,7 @@ class Keuangan extends CI_Controller
 
         $data = array(
             'kegiatan' => $kegiatan, 'keterangan' => $keterangan, 'uang_masuk' => $uang_masuk, 'tanggal_terima' => $tanggal_masuk, 'tanggal_pencatatan' => $tanggal,
-            'saldo_awal' => $saldo, 'saldo_akhir' => $saldo_tambah, 'is_debit' => '1'
+            'saldo_awal' => $saldo, 'saldo_akhir' => $saldo_tambah, 'is_debit' => '1', 'id_user' => $this->session->userdata('id_user')
         );
 
         $this->M_Keuangan->insert_record($data, 'keuangan');
@@ -107,7 +107,7 @@ class Keuangan extends CI_Controller
 
         $data = array(
             'kegiatan' => $kegiatan, 'keterangan' => $keterangan, 'uang_keluar' => $uang_keluar, 'tanggal_keluar' => $tanggal_keluar, 'tanggal_pencatatan' => $tanggal,
-            'saldo_awal' => $saldo, 'saldo_akhir' => $saldo_berkurang, 'is_kredit' => '1'
+            'saldo_awal' => $saldo, 'saldo_akhir' => $saldo_berkurang, 'is_kredit' => '1', 'id_user' => $this->session->userdata('id_user')
         );
 
         $this->M_Keuangan->insert_record($data, 'keuangan');

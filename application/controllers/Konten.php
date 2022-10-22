@@ -77,7 +77,9 @@ class Konten extends CI_Controller
                 $data = array(
                     'judul_slide' => $judul_slide,
                     'deskripsi_slide' => $deskripsi_slide,
-                    'gambar_slide' => $gambar_lama
+                    'gambar_slide' => $gambar_lama,
+                    'id_user' => $this->session->userdata('id_user'),
+                    'updated_at' => $tanggal
                 );
 
                 $this->M_Konten->update_record($where, $data, 'konten_slide');
@@ -101,6 +103,7 @@ class Konten extends CI_Controller
                         'judul_slide' => $judul_slide,
                         'deskripsi_slide' => $deskripsi_slide,
                         'gambar_slide' => $this->upload->data('file_name'),
+                        'id_user' => $this->session->userdata('id_user'),
                         'updated_at' => $tanggal
                     );
 
@@ -136,7 +139,7 @@ class Konten extends CI_Controller
             $tanggal = date('Y-m-d H:i:s');
             $foto = $this->upload->data('file_name');
             $where = array('id_foto_ibadah' => $id_foto_ibadah);
-            $data = array('foto_ibadah' => $foto, 'updated_at' => $tanggal);
+            $data = array('foto_ibadah' => $foto, 'id_user' => $this->session->userdata('id_user'), 'updated_at' => $tanggal);
 
             @unlink('./resources/assets/img/gallery/' . $foto_lama); //untuk hapus foto lama
 

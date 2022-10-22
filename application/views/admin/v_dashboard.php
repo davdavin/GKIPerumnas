@@ -81,25 +81,7 @@
             </div>
           </div>
         </div>
-        <?php
-        foreach ($permintaanBaru as $jumlah) { ?>
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-teal">
-              <div class="inner">
-                <h3><?Php echo $jumlah->jumlahPermintaanBaru ?></h3>
-                <p>Permintaan Perubahan Data</p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-map"></i>
-              </div>
-              <?php if ($this->session->userdata('level_user') == 2) { ?>
-                <a href="<?php echo base_url() . 'Notifikasi' ?>" class="small-box-footer">Lihat lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
-              <?php } ?>
-            </div>
-          </div>
-        <?php } ?>
-        <?php
+        <?php if($this->session->userdata('level_user') != 4) {
         foreach ($peminjamanBaru as $jumlah) { ?>
           <div class="col-lg-3 col-6">
             <!-- small box -->
@@ -114,7 +96,7 @@
               <a href="<?php echo base_url() . 'mengelola_ruangan/peminjaman' ?>" class="small-box-footer">Lihat lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-        <?php  } ?>
+        <?php } } ?>
       </div>
     </div><!-- /.container-fluid -->
 

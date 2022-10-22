@@ -82,7 +82,7 @@ class MengelolaArtikel extends CI_Controller
                     $file = $this->upload->data('file_name');
 
                     $data = array(
-                        'judul_artikel' => $judul_artikel, 'tipe_artikel' => $tipe_artikel, 'deskripsi_singkat' => $deskripsi_singkat, 'file' => $file, 'created_at' => $tanggal
+                        'judul_artikel' => $judul_artikel, 'tipe_artikel' => $tipe_artikel, 'deskripsi_singkat' => $deskripsi_singkat, 'file' => $file, 'id_user' => $this->session->userdata('id_user'), 'created_at' => $tanggal
                     );
 
                     $this->M_Artikel->insert_record($data, 'artikel');
@@ -92,7 +92,7 @@ class MengelolaArtikel extends CI_Controller
             } else if ($isi != "") {
                 $data = array(
                     'judul_artikel' => $judul_artikel, 'tipe_artikel' => $tipe_artikel, 'deskripsi_singkat' => $deskripsi_singkat,
-                    'isi' => $isi, 'created_at' => $tanggal
+                    'isi' => $isi, 'id_user' => $this->session->userdata('id_user'), 'created_at' => $tanggal
                 );
                 $this->M_Artikel->insert_record($data, 'artikel');
                 $respon['sukses'] = "Artikel berhasil ditambah";
@@ -148,7 +148,7 @@ class MengelolaArtikel extends CI_Controller
                 if ($_FILES['pdf']['name'] == "") {
                     $data = array(
                         'judul_artikel' => $judul_artikel, 'tipe_artikel' => $tipe_artikel, 'deskripsi_singkat' => $deskripsi_singkat,
-                        'isi' => NULL, 'file' => $artikel_lama['file'], 'updated_at' => $tanggal
+                        'isi' => NULL, 'file' => $artikel_lama['file'], 'id_user' => $this->session->userdata('id_user'), 'updated_at' => $tanggal
                     );
 
                     $this->M_Artikel->update_record($where, $data, 'artikel');
@@ -171,7 +171,7 @@ class MengelolaArtikel extends CI_Controller
 
                         $data = array(
                             'judul_artikel' => $judul_artikel, 'tipe_artikel' => $tipe_artikel, 'deskripsi_singkat' => $deskripsi_singkat,
-                            'isi' => NULL, 'file' => $file, 'updated_at' => $tanggal
+                            'isi' => NULL, 'file' => $file, 'id_user' => $this->session->userdata('id_user'), 'updated_at' => $tanggal
                         );
 
                         @unlink('./wartaJemaat/' . $artikel_lama['file']);
@@ -184,7 +184,7 @@ class MengelolaArtikel extends CI_Controller
             } else if ($isi != "") {
                 $data = array(
                     'judul_artikel' => $judul_artikel, 'tipe_artikel' => $tipe_artikel, 'deskripsi_singkat' => $deskripsi_singkat,
-                    'isi' => $isi, 'updated_at' => $tanggal
+                    'isi' => $isi, 'id_user' => $this->session->userdata('id_user'), 'updated_at' => $tanggal
                 );
                 $this->M_Artikel->update_record($where, $data, 'artikel');
                 $respon['sukses'] = "Artikel berhasil diubah";
