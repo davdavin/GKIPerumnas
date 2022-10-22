@@ -152,6 +152,13 @@
                 </div>
 
                 <div class="form-group">
+                  <label for="inputJabatan">Jabatan</label>
+                  <input type="text" class="form-control" id="inputJabatan" name="jabatan" value="<?= $list_jemaat_edit->jabatan_anggota ?>">
+                  <div class="px-2 error_jabatan clear" style="display: none">
+                  </div>
+                </div>
+
+                <div class="form-group">
                   <label>Tanggal Lahir</label>
                   <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="<?= $list_jemaat_edit->tanggal_lahir_anggota ?>">
                   <div class="px-2 error_tanggal_lahir clear" style="display: none">
@@ -377,6 +384,13 @@
                   $('.error_kelompok').css("color", "red");
                 } else {
                   $('.error_kelompok').hide();
+                }
+                if (respon.error_jabatan) {
+                  $('.error_jabatan').show();
+                  $('.error_jabatan').html(respon.error_jabatan);
+                  $('.error_jabatan').css("color", "red");
+                } else {
+                  $('.error_jabatan').hide();
                 }
                 if (respon.error_tanggal_lahir) {
                   $('.error_tanggal_lahir').show();

@@ -101,6 +101,7 @@
                                 <p> Ubah Password </p>
                             </a>
                         </li>
+                        <?php if($this->session->userdata('jabatan_anggota') != "Jemaat") { ?> 
                         <li class="nav-item">
                             <a href="<?php echo base_url() . 'Ruangan/list_ruangan' ?>" class="nav-link">
                                 <i class="nav-icon fas fa-door-open"></i>
@@ -124,6 +125,7 @@
                                 </li>
                             </ul>
                         </li>
+                        <?php } ?>
                         <li class="nav-item">
                             <a href="<?php echo base_url() . 'login/jemaat/logout' ?>" class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
@@ -210,6 +212,11 @@
                                             <p><?php echo $list_detail_jemaat->kelompok_etnis_anggota; ?></p>
                                             <h5> <strong> Umur </strong> </h5>
                                             <p><?php echo date('Y') - date_format(date_create($list_detail_jemaat->tanggal_lahir_anggota), "Y"); ?></p>
+                                            <h5> <strong> Jabatan </strong> </h5>
+                                            <p><?php echo $list_detail_jemaat->jabatan_anggota; ?></p>
+                                        </div>
+
+                                        <div class="col-sm-4">
                                             <h5> <strong> Tanggal Lahir </strong> </h5>
                                             <p><?php if ($list_detail_jemaat->tanggal_lahir_anggota == "0000-00-00") {
                                                     echo "-" . "<br>";
@@ -218,9 +225,6 @@
                                                 }
                                                 ?>
                                             </p>
-                                        </div>
-
-                                        <div class="col-sm-4">
                                             <h5> <strong> Tanggal Baptis </strong> </h5>
                                             <p><?php if ($list_detail_jemaat->tanggal_baptis_anggota == "0000-00-00") {
                                                     echo "-" . "<br>";

@@ -95,6 +95,7 @@
                                 <p> Ubah Password </p>
                             </a>
                         </li>
+                        <?php if($this->session->userdata('jabatan_anggota') != "Jemaat") { ?> 
                         <li class="nav-item">
                             <a href="<?php echo base_url() . 'Ruangan/list_ruangan' ?>" class="nav-link">
                                 <i class="nav-icon fas fa-door-open"></i>
@@ -118,6 +119,7 @@
                                 </li>
                             </ul>
                         </li>
+                        <?php } ?>
                         <li class="nav-item">
                             <a href="<?php echo base_url() . 'login/jemaat/logout' ?>" class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
