@@ -93,7 +93,7 @@ class User extends CI_Controller
         $where = array('id_user' => $id_user);
         $data = array('status_user' => '0', 'deleted_at' => $tanggal);
         $this->M_User->update_record($where, $data, 'user');
-        $this->session->set_flashdata('sukses', 'Berhasil ubah status menjadi tidak akitf');
+        $this->session->set_flashdata('sukses', 'Berhasil dihapus');
         redirect('User');
     }
 }

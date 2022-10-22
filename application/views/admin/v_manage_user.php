@@ -86,8 +86,19 @@
                         <label>Status</label>
                         <select class="form-control select2bs4" style="width: 100%;" id="status" name="status" required>
                           <option selected disabled value>Status</option>
-                          <option value="1">Aktif</option>
-                          <option value="0">Tidak Aktif</option>
+                          <?php if ($list_user->status_user == 1) { ?>
+                            <option value="<?php echo $list_user->status_user ?>" <?php echo "selected"; ?>>
+                              <?php echo 'Aktif'; ?>
+                            </option>
+                            <option value="0">Tidak Aktif</option>
+                          <?php } ?>
+
+                          <?php if ($list_user->status_user == 0) { ?>
+                            <option value="1">Aktif</option>
+                            <option value="<?php echo $list_user->status_user ?>" <?php echo "selected"; ?>>
+                              <?php echo 'Tidak Aktif'; ?>
+                            </option>
+                          <?php } ?>
                         </select>
                       </div>
                       <button type="submit" class="btn btn-block btn-primary btn-sm">Submit</button>
@@ -285,21 +296,34 @@
           name: null,
           sortable: false,
           render: function(data, type, row, meta) {
-            switch (row.status_user) {
-              case "1":
-                return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_user}">
+            if (row.id_user == <?php echo $this->session->userdata('id_user') ?>) {
+              return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_user}">
+                          <i class="fas fa-pencil-alt"></i> Edit
+                        </a>`;
+            } else {
+              return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_user}">
                           <i class="fas fa-pencil-alt"></i> Edit
                         </a>
                         <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'user/hapus_user/' ?>${row.id_user}">
                           <i class="fas fa-trash"></i> Hapus
                         </a>`;
-                break;
-              default:
-                return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_user}">
-                          <i class="fas fa-pencil-alt"></i> Edit
-                        </a>`;
-                break;
             }
+
+            /* switch (row.status_user) {
+               case "1":
+                 return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_user}">
+                           <i class="fas fa-pencil-alt"></i> Edit
+                         </a>
+                         <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'user/hapus_user/' ?>${row.id_user}">
+                           <i class="fas fa-trash"></i> Hapus
+                         </a>`;
+                 break;
+               default:
+                 return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_user}">
+                           <i class="fas fa-pencil-alt"></i> Edit
+                         </a>`;
+                 break;
+             } */
           }
         }
       ]
