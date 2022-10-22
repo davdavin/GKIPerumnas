@@ -28,9 +28,6 @@
                 </div>
 
                 <div class="card-body">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
-                        <i class="fas fa-plus"></i> Peminjaman
-                    </button><br><br>
 
                     <table id="tabel_ruangan" class="table table-bordered table-striped" style="width: 100%;">
                         <thead>
