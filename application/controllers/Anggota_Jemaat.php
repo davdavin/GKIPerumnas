@@ -131,7 +131,7 @@ class Anggota_Jemaat extends CI_Controller
                 'id_wilayah' => $id_wilayah, 'no_anggota' => $no_anggota, 'nama_lengkap_anggota' => $nama_anggota, 'username' => strtolower($username), 'password' => password_hash($password, PASSWORD_DEFAULT),
                 'alamat_anggota' => $alamat_anggota, 'nohp_anggota' => $nohp_anggota, 'email_anggota' => $email_anggota, 'jenis_kelamin_anggota' => $jenis_kelamin,
                 'golongan_darah_anggota' => $golongan_darah, 'status_anggota' => $status_anggota, 'pendidikan_anggota' => $pendidikan_anggota,
-                'pekerjaan_anggota' => $pekerjaan_anggota, 'kelompok_etnis_anggota' => $kelompok_etnis,
+                'pekerjaan_anggota' => $pekerjaan_anggota, 'kelompok_etnis_anggota' => $kelompok_etnis, 'jabatan_anggota' => 'Jemaat',
                 'tanggal_lahir_anggota' => $tanggal_lahir, 'tanggal_baptis_anggota' => $tanggal_baptis, 'tanggal_sidi_anggota' => $tanggal_sidi,
                 'tanggal_atestasi_masuk' => $tanggal_atestasi_masuk, 'tanggal_atestasi_keluar' => $tanggal_atestasi_keluar, 'tanggal_meninggal' => $tanggal_meninggal,
                 'tanggal_dkh' => $tanggal_dkh, 'tanggal_ex_dkh' => $tanggal_ex_dkh, 'status_akun' => 1, 'created_at' => $tanggal
@@ -230,6 +230,7 @@ class Anggota_Jemaat extends CI_Controller
         $pendidikan_anggota = $this->input->post('pendidikan');
         $pekerjaan_anggota = $this->input->post('pekerjaan');
         $kelompok_etnis = $this->input->post('kelompok_etnis');
+        $jabatan_anggota = $this->input->post('jabatan');
         $tanggal_lahir = $this->input->post('tanggal_lahir');
         $tanggal_baptis = $this->input->post('tanggal_baptis');
         $tanggal_sidi = $this->input->post('tanggal_sidi');
@@ -252,6 +253,7 @@ class Anggota_Jemaat extends CI_Controller
         $this->form_validation->set_rules('pendidikan', 'Pendidikan', 'required');
         $this->form_validation->set_rules('pekerjaan', 'Pekerjaan', 'required');
         $this->form_validation->set_rules('kelompok_etnis', 'Kelompok Etnis', 'required');
+        $this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
         $this->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'required');
 
         $this->form_validation->set_message('required', '{field} wajib diisi');
@@ -274,6 +276,7 @@ class Anggota_Jemaat extends CI_Controller
                 'error_pendidikan' => form_error('pendidikan'),
                 'error_pekerjaan' => form_error('pekerjaan'),
                 'error_kelompok' => form_error('kelompok_etnis'),
+                'error_jabatan' => form_error('jabatan'),
                 'error_tanggal_lahir' => form_error('tanggal_lahir'),
                 'error_tanggal_baptis' => form_error('tanggal_baptis'),
                 'error_tanggal_sidi' => form_error('tanggal_sidi'),
@@ -305,7 +308,7 @@ class Anggota_Jemaat extends CI_Controller
                 'id_wilayah' => $id_wilayah, 'nama_lengkap_anggota' => $nama_anggota, 'alamat_anggota' => $alamat_anggota,
                 'nohp_anggota' => $nohp_anggota, 'email_anggota' => $email_anggota, 'jenis_kelamin_anggota' => $jenis_kelamin,
                 'golongan_darah_anggota' => $golongan_darah, 'status_anggota' => $status_anggota,
-                'pendidikan_anggota' => $pendidikan_anggota, 'pekerjaan_anggota' => $pekerjaan_anggota, 'kelompok_etnis_anggota' => $kelompok_etnis,
+                'pendidikan_anggota' => $pendidikan_anggota, 'pekerjaan_anggota' => $pekerjaan_anggota, 'kelompok_etnis_anggota' => $kelompok_etnis, 'jabatan_anggota' => $jabatan_anggota,
                 'tanggal_lahir_anggota' => $tanggal_lahir, 'tanggal_baptis_anggota' => $tanggal_baptis, 'tanggal_sidi_anggota' => $tanggal_sidi,
                 'tanggal_atestasi_masuk' => $tanggal_atestasi_masuk, 'tanggal_atestasi_keluar' => $tanggal_atestasi_keluar, 'tanggal_meninggal' => $tanggal_meninggal,
                 'tanggal_dkh' => $tanggal_dkh, 'tanggal_ex_dkh' => $tanggal_ex_dkh, 'status_akun' => $status_akun, 'updated_at' => $tanggal

@@ -77,6 +77,11 @@
                                     <p><?php echo $list_detail_jemaat->kelompok_etnis_anggota; ?></p>
                                     <h5> <strong> Umur </strong> </h5>
                                     <p><?php echo date('Y') - date_format(date_create($list_detail_jemaat->tanggal_lahir_anggota), "Y"); ?></p>
+                                    <h5> <strong> Jabatan </strong> </h5>
+                                    <p><?php echo $list_detail_jemaat->jabatan_anggota; ?></p>
+                                </div>
+
+                                <div class="col-sm-4">
                                     <h5> <strong> Tanggal Lahir </strong> </h5>
                                     <p><?php if ($list_detail_jemaat->tanggal_lahir_anggota == "0000-00-00" || $list_detail_jemaat->tanggal_lahir_anggota == NULL) {
                                             echo "-" . "<br>";
@@ -85,9 +90,6 @@
                                         }
                                         ?>
                                     </p>
-                                </div>
-
-                                <div class="col-sm-4">
                                     <h5> <strong> Tanggal Baptis </strong> </h5>
                                     <p><?php if ($list_detail_jemaat->tanggal_baptis_anggota == "0000-00-00" || $list_detail_jemaat->tanggal_baptis_anggota == NULL) {
                                             echo "-" . "<br>";

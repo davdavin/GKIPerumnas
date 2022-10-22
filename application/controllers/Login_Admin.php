@@ -36,14 +36,8 @@ class Login_Admin extends CI_Controller
             'level_user' => $cek_login['id_level_user'],
             'status' => 'login'
           );
-
-          if ($cek_login['id_level_user'] != 4) {
             $this->session->set_userdata($session);
             redirect('admin/dashboard');
-          } else {
-            $this->session->set_userdata($session);
-            redirect('keuangan');
-          }
         } else {
           $this->session->set_flashdata('gagal', 'Password salah');
           redirect('login');

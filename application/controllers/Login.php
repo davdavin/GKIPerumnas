@@ -32,6 +32,7 @@ class Login extends CI_Controller
           $session = array(
             'id' => $cek_login['id_anggota'],
             'username' => $cek_login['username'],
+            'jabatan_anggota' => $cek_login['jabatan_anggota'],
             'status_jemaat' => "login",
           );
           $this->session->set_userdata($session);

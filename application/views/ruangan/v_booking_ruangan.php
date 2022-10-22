@@ -210,7 +210,7 @@
                 <div class="container-fluid">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Tanggal yang sudah dibooking</h3>
+                            <h3 class="card-title">Jadwal Pemakaian Ruang Terjadwal</h3>
                         </div>
 
                         <div class="card-body">
@@ -272,6 +272,18 @@
 
     <script>
         $(document).ready(function() {
+            const date = new Date();
+
+let day = date.getDate() + 1;
+let month = date.getMonth() + 1;
+let year = date.getFullYear();
+
+// This arrangement can be altered based on how we want the date's format to appear.
+let currentDate = year+'-'+month+'-'+day;
+//console.log(currentDate); // "17-6-2022"
+
+            document.getElementById("tanggal_booking").min = currentDate;
+
             $('#info_booking').DataTable({
                 "responsive": true,
                 "autoWidth": false,

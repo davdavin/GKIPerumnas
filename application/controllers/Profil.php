@@ -36,8 +36,6 @@ class Profil extends CI_Controller
     public function proses_update()
     {
         $no_anggota = $this->input->post('no_anggota');
-        $username_sekarang = $this->input->post('username_sekarang');
-        $username = $this->input->post('username');
         $alamat_anggota = $this->input->post('alamat_anggota');
         $nohp_anggota = $this->input->post('nohp');
         $email_sekarang = $this->input->post('email_sekarang');
@@ -45,9 +43,6 @@ class Profil extends CI_Controller
         $pendidikan_anggota = $this->input->post('pendidikan');
         $pekerjaan_anggota = $this->input->post('pekerjaan');
 
-        if ($username != $username_sekarang) {
-            $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[15]|is_unique[anggota_jemaat.username]');
-        }
         $this->form_validation->set_rules('alamat_anggota', 'Alamat', 'required');
         $this->form_validation->set_rules('nohp', 'No. Handphone', 'required|min_length[9]|max_length[15]');
         if ($email_anggota != $email_sekarang) {
@@ -77,18 +72,12 @@ class Profil extends CI_Controller
             $where = array('no_anggota' => $no_anggota);
 
             $data = array(
-                'username' => $username, 'alamat_anggota' => $alamat_anggota, 'nohp_anggota' => $nohp_anggota, 'email_anggota' => $email_anggota,
+                'alamat_anggota' => $alamat_anggota, 'nohp_anggota' => $nohp_anggota, 'email_anggota' => $email_anggota,
                 'pendidikan_anggota' => $pendidikan_anggota, 'pekerjaan_anggota' => $pekerjaan_anggota, 'updated_at' => $tanggal
             );
 
             $this->M_Profil->update_record($where, $data, 'anggota_jemaat');
 
-            if ($username != $username_sekarang) {
-                $session = array(
-                    'username' => $username
-                );
-                $this->session->set_userdata($session);
-            }
             $respon['sukses'] = "Data berhasil diubah";
             echo json_encode($respon);
             //      $this->session->set_flashdata('sukses', 'Data berhasil diubah');
