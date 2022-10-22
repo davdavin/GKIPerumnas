@@ -38,7 +38,7 @@
               <tr>
                 <th>No.</th>
                 <th>Nama Wilayah</th>
-                <?php if ($this->session->userdata('level_user') == 1) { ?>
+                <?php if ($this->session->userdata('level_user') == 2) { ?>
                   <th>Aksi</th>
                 <?php } ?>
               </tr>
