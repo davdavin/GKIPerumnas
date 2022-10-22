@@ -305,7 +305,7 @@
           data: "nama_dokumen"
         },
         {
-          data: "tanggal_kumpul"
+          data: "created_at"
         },
         <?php if ($this->session->userdata('level_user') == 2 || $this->session->userdata('level_user') == 3) { ?> {
             data: null,
