@@ -80,8 +80,6 @@ class Profil extends CI_Controller
 
             $respon['sukses'] = "Data berhasil diubah";
             echo json_encode($respon);
-            //      $this->session->set_flashdata('sukses', 'Data berhasil diubah');
-            //    redirect('Profil');
         }
     }
 

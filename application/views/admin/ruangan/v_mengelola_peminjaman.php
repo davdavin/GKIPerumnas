@@ -53,76 +53,6 @@
             </div>
         </div>
 
-        <div class="modal fade" id="modal-lg">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content" style="border-top: 10px solid #428bca;">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Input Peminjaman</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form class="form-submit" action="<?php echo base_url() . 'mengelola_ruangan/proses_peminjaman'  ?>" method="post" enctype="multipart/form-data">
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label>Ruangan</label>
-                                <select class="pilih-ruangan form-control" name="id_ruangan" required></select>
-                                <div class="px-2 error_ruangan" style="display: none"></div>
-                            </div>
-                            <div class="form-group">
-                                <span class="form-label">Nama</span>
-                                <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama peminjam" required>
-                                <div class="px-2 error_nama clear" style="display: none">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <span class="form-label">Email</span>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Email peminjam" required>
-                                <div class="px-2 error_email clear" style="display: none">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <span class="form-label">No. Handphone</span>
-                                <input type="number" class="form-control" id="nohp" name="nohp" placeholder="No. Handphone peminjam" required>
-                                <div class="px-2 error_nohp clear" style="display: none">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <span class="form-label">Keperluan</span>
-                                <input type="text" class="form-control" id="keperluan" name="keperluan" placeholder="Keperluan" required>
-                                <div class="px-2 error_keperluan clear" style="display: none">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <span class="form-label">Tanggal</span>
-                                <input type="date" class="form-control" id="tanggal_booking" name="tanggal_booking" placeholder="dd/mm/YYYY" required>
-                                <div class="px-2 error_tanggal clear" style="display: none">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <span class="form-label">Jam Mulai</span>
-                                <input type="time" class="form-control" id="jam_mulai" name="jam_mulai" required>
-                                <div class="px-2 error_jam_mulai clear" style="display: none">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <span class="form-label">Jam Selesai</span>
-                                <input type="time" class="form-control" id="jam_selesai" name="jam_selesai" required>
-                                <div class="px-2 error_jam_selesai clear" style="display: none">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <!-- <a type="button" class="btn btn-primary" onclick="addRow()">Add row</a> -->
-                            <button type="submit" class="btn btn-primary simpan" id="tombolSimpan">Submit</button>
-                        </div>
-                    </form>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
-
         <?php $no = 0;
         foreach ($peminjaman as $list) {
             $no++; ?>
@@ -221,18 +151,6 @@
 <script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
 <script>
-    //       var status = document.getElementById("status");
-    // function enter() {
-    //     let target = document.getElementById("status").value;
-    //     if (target == "DITERIMA" || target == "DITOLAK") {
-    //         $("#pesan").show();
-
-    //     } else {
-    //         $("#pesan").hide();
-    //         $("#pesan").val('');
-    //     }
-    // }
-
     $(document).ready(function() {
 
         $('#tabel_ruangan').DataTable({
@@ -275,13 +193,13 @@
                     "data": "nama_lengkap_anggota"
                 },
                 {
-                    "data":"keperluan"
+                    "data": "keperluan"
                 },
                 {
                     "data": "tanggal_booking"
                 },
                 {
-                    "data":"jam"
+                    "data": "jam"
                 },
                 {
                     "data": "status_peminjaman"
@@ -398,94 +316,6 @@
                 icon: 'error'
             });
         }
-
-        $('.form-submit').submit(function(e) {
-            e.preventDefault();
-            $.ajax({
-                url: $(this).attr('action'),
-                type: "POST",
-                dataType: "JSON",
-                data: $(this).serialize(),
-                beforeSend: function() {
-                    $('.simpan').attr('disable', 'disabled');
-                    $('.simpan').html('<i class="fa fa-spin fa-spinner"></i>');
-                },
-                complete: function() {
-                    $('.simpan').removeAttr('disable');
-                    $('.simpan').html('Submit');
-                },
-                success: function(respon) {
-                    if (respon.sukses == false) {
-                        if (respon.error_nama) {
-                            $('.error_nama').show();
-                            $('.error_nama').html(respon.error_nama);
-                            $('.error_nama').css("color", "red");
-                        } else {
-                            $('.error_nama').hide();
-                        }
-                        if (respon.error_email) {
-                            $('.error_email').show();
-                            $('.error_email').html(respon.error_email);
-                            $('.error_email').css("color", "red");
-                        } else {
-                            $('.error_email').hide();
-                        }
-                        if (respon.error_nohp) {
-                            $('.error_nohp').show();
-                            $('.error_nohp').html(respon.error_nohp);
-                            $('.error_nohp').css("color", "red");
-                        } else {
-                            $('.error_nohp').hide();
-                        }
-                        if (respon.error_keperluan) {
-                            $('.error_keperluan').show();
-                            $('.error_keperluan').html(respon.error_keperluan);
-                            $('.error_keperluan').css("color", "red");
-                        } else {
-                            $('.error_keperluan').hide();
-                        }
-                        if (respon.error_tanggal) {
-                            $('.error_tanggal').show();
-                            $('.error_tanggal').html(respon.error_tanggal);
-                            $('.error_tanggal').css("color", "red");
-                        } else {
-                            $('.error_tanggal').hide();
-                        }
-                        if (respon.error_jam_mulai) {
-                            $('.error_jam_mulai').show();
-                            $('.error_jam_mulai').html(respon.error_jam_mulai);
-                            $('.error_jam_mulai').css("color", "red");
-                        } else {
-                            $('.error_jam_mulai').hide();
-                        }
-                        if (respon.error_jam_selesai) {
-                            $('.error_jam_selesai').show();
-                            $('.error_jam_selesai').html(respon.error_jam_selesai);
-                            $('.error_jam_selesai').css("color", "red");
-                        } else {
-                            $('.error_jam_selesai').hide();
-                        }
-                        if (respon.error_booking) {
-                            Swal.fire({
-                                title: 'Peminjaman',
-                                text: respon.error_booking,
-                                icon: 'error'
-                            });
-                        }
-                    } else {
-                        $('.clear').hide();
-                        Swal.fire({
-                            title: 'Sukses',
-                            text: respon.sukses,
-                            icon: 'success',
-                        }).then((confirmed) => {
-                            window.location.reload();
-                        });
-                    }
-
-                }
-            });
-        });
     });
 </script>
 

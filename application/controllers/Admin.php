@@ -22,7 +22,6 @@ class Admin extends CI_Controller
         $data['jumlahJemaatWilayah'] = $this->M_Wilayah->total_jemaat_di_wilayah()->result();
         $data['totalStatusJemaat'] = $this->M_Anggota_Jemaat->total_status_jemaat()->result();
         $data['totalKeuangan'] = $this->M_Keuangan->total_keuangan()->result();
-        $data['permintaanBaru'] = $this->M_Permintaan->jumlah_permintaan_baru()->result();
         $data['peminjamanBaru'] = $this->M_Ruangan->jumlah_peminjaman_baru()->result();
         $data['urutanWilayah'] = $this->M_Wilayah->urutan_wilayah_terbanyak()->result();
         $data['urutanRuangan'] = $this->M_Ruangan->urutan_peminjaman_ruangan_terbanyak()->result();
