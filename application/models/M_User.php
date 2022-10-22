@@ -9,7 +9,7 @@ class M_User extends CI_Model
 
     public function tampil()
     {
-        $query = $this->db->query("SELECT * FROM user JOIN level_user ON user.id_level_user = level_user.id_level_user ");
+        $query = $this->db->query("SELECT * FROM user JOIN level_user ON user.id_level_user = level_user.id_level_user WHERE status_user = '1' AND deleted_at IS NULL");
         return $query;
     }
 
