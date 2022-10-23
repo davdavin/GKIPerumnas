@@ -41,9 +41,7 @@
                                 <th>Kapasitas</th>
                                 <th>Perlengkapan</th>
                                 <th>Foto</th>
-                                <?php if ($this->session->userdata('level_user') == 2) { ?>
-                                    <th>Aksi</th>
-                                <?php } ?>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                     </table>
@@ -159,20 +157,6 @@
 <script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
 <script>
-    /*  let count = 1;
-
-    function addRow() {
-        if (count == 3) {
-            return false;
-        }
-        count++;
-        let html = `<div class="form-group"> <label>Input Foto</label> 
-                     <input type="file" class="form-control" id="foto" name="foto${count}"> 
-                    <div class="px-2 error_foto${count} clear" style="display: none"></div> </div>`;
-        //  document.getElementById("add").appendChild = html;
-        $('#add').append(html);
-        document.getElementById('count').value = count;
-    } */
     $(document).ready(function() {
         $('#tabel_ruangan').DataTable({
             "responsive": true,
@@ -224,19 +208,18 @@
                         return `<img src="<?php echo base_url(); ?>resources/assets/img/ruangan/${row.foto}" class="img-fluid" alt="` + data + `" width="200" height="200">`;
                     }
                 },
-                <?php if ($this->session->userdata('level_user') == 2) { ?> {
-                        data: null,
-                        name: null,
-                        render: function(data, type, row, meta) {
-                            return `<a class="btn btn-info btn-sm" href="<?php echo base_url() . 'mengelola_ruangan/edit/' ?>${row.id_ruangan}">
+                {
+                    data: null,
+                    name: null,
+                    render: function(data, type, row, meta) {
+                        return `<a class="btn btn-info btn-sm" href="<?php echo base_url() . 'mengelola_ruangan/edit/' ?>${row.id_ruangan}">
                           <i class="fas fa-pencil-alt"></i> Edit
                         </a>
                         <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'mengelola_ruangan/hapus_ruangan/' ?>${row.id_ruangan}">
                           <i class="fas fa-trash"></i> Hapus
                         </a>`;
-                        }
                     }
-                <?php } ?>
+                }
             ]
         });
 
@@ -254,7 +237,7 @@
                 confirmButtonText: 'Hapus'
             }).then((result) => {
                 if (result.value) {
-                document.location.href = href;
+                    document.location.href = href;
                 }
             });
         });

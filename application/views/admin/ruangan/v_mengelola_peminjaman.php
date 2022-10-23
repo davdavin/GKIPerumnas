@@ -39,9 +39,7 @@
                                 <th>Tanggal</th>
                                 <th>Jam</th>
                                 <th>Status</th>
-                                <?php if ($this->session->userdata('level_user') == 2) { ?>
-                                    <th>Aksi</th>
-                                <?php } ?>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                     </table>
@@ -201,42 +199,41 @@
                 {
                     "data": "status_peminjaman"
                 },
-                <?php if ($this->session->userdata('level_user') == 2) { ?> {
-                        data: null,
-                        name: null,
-                        render: function(data, type, row, meta) {
-                            switch (row.status_peminjaman) {
-                                case "SEDANG DIPROSES":
-                                    return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_peminjaman}">
+                {
+                    data: null,
+                    name: null,
+                    render: function(data, type, row, meta) {
+                        switch (row.status_peminjaman) {
+                            case "SEDANG DIPROSES":
+                                return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_peminjaman}">
                                                         <i class="fas fa-pencil-alt">
                                                         </i>
                                                         Konfirmasi
                                         </a>`;
-                                    break;
-                                case "DITERIMA":
-                                    return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_peminjaman}">
+                                break;
+                            case "DITERIMA":
+                                return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_peminjaman}">
                                                         <i class="fas fa-pencil-alt">
                                                         </i>
                                                         Konfirmasi
                                         </a>`;
-                                    break;
-                                case "DITOLAK":
-                                    return ` <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'mengelola_ruangan/hapus/' ?>${row.id_peminjaman}" data-toggle="tooltip" data-placement="bottom" title="Hapus Data Admin">
+                                break;
+                            case "DITOLAK":
+                                return ` <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'mengelola_ruangan/hapus/' ?>${row.id_peminjaman}" data-toggle="tooltip" data-placement="bottom" title="Hapus Data Admin">
                                         <i class="fas fa-trash"></i> Hapus
                                         </a>`;
-                                    break;
-                                case "SELESAI":
-                                    return ` <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'mengelola_ruangan/hapus/' ?>${row.id_peminjaman}" data-toggle="tooltip" data-placement="bottom" title="Hapus Data Admin">
+                                break;
+                            case "SELESAI":
+                                return ` <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'mengelola_ruangan/hapus/' ?>${row.id_peminjaman}" data-toggle="tooltip" data-placement="bottom" title="Hapus Data Admin">
                                         <i class="fas fa-trash"></i> Hapus
                                         </a>`;
-                                    break;
-                                default:
-                                    return ``;
-                                    break;
-                            }
+                                break;
+                            default:
+                                return ``;
+                                break;
                         }
                     }
-                <?php } ?>
+                }
             ]
         });
 
