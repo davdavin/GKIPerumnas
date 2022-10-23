@@ -68,9 +68,7 @@
                 <th>Jenis Dokumen</th>
                 <th>File</th>
                 <th>Tanggal Kumpul</th>
-                <?php if ($this->session->userdata('level_user') == 2 || $this->session->userdata('level_user') == 3) { ?>
-                  <th>Aksi</th>
-                <?php } ?>
+                <th>Aksi</th>
               </tr>
             </thead>
           </table>
@@ -238,7 +236,7 @@
           name: null,
           sortable: false,
           render: function(data, type, row, meta) {
-            return `<?php if ($this->session->userdata('level_user') == 2) { ?> <a class=" btn btn-primary btn-sm" href="<?php echo base_url() . 'uploadDokumen/' ?>${row.id_dokumen}" download>
+            return `<a class=" btn btn-primary btn-sm" href="<?php echo base_url() . 'uploadDokumen/' ?>${row.id_dokumen}" download>
                       <i class="fas fa-download">
                       </i>
                       Download
@@ -252,8 +250,7 @@
                       <i class="fas fa-trash">
                       </i>
                       Hapus
-                    </a>
-                    <?php } ?>`
+                    </a>`
           }
         }
       ]
@@ -307,19 +304,18 @@
         {
           data: "created_at"
         },
-        <?php if ($this->session->userdata('level_user') == 2 || $this->session->userdata('level_user') == 3) { ?> {
-            data: null,
-            name: null,
-            sortable: false,
-            render: function(data, type, row, meta) {
-              return `<a class="btn btn-primary btn-sm" href="<?php echo base_url() . 'pengumpulanDokumen/' ?>${row.nama_dokumen}" download>
+        {
+          data: null,
+          name: null,
+          sortable: false,
+          render: function(data, type, row, meta) {
+            return `<a class="btn btn-primary btn-sm" href="<?php echo base_url() . 'pengumpulanDokumen/' ?>${row.nama_dokumen}" download>
                         <i class="fas fa-download">
                         </i>
                         Download
                       </a>`
-            }
           }
-        <?php } ?>
+        }
       ]
     });
 

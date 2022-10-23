@@ -20,12 +20,12 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                    <li class="nav-item">
-                        <a <?= $this->uri->segment(1) == "admin" || $this->uri->segment(1) == "" ? "class='nav-link active'" : "class='nav-link'" ?> href="<?php echo base_url() . 'admin/dashboard' ?>">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
-                            <p> Dashboard </p>
-                        </a>
-                    </li>
+                <li class="nav-item">
+                    <a <?= $this->uri->segment(1) == "admin" || $this->uri->segment(1) == "" ? "class='nav-link active'" : "class='nav-link'" ?> href="<?php echo base_url() . 'admin/dashboard' ?>">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p> Dashboard </p>
+                    </a>
+                </li>
                 <?php if ($this->session->userdata('level_user') == 1) { ?>
                     <li class="nav-item">
                         <a <?php if ($this->uri->segment(1) == "User") {
@@ -39,7 +39,7 @@
                         </a>
                     </li>
                 <?php } ?>
-                <?php if ($this->session->userdata('level_user') != 4) { ?>
+                <?php if ($this->session->userdata('level_user') == 2 || $this->session->userdata('level_user') == 3) { ?>
                     <li class="nav-item">
                         <a <?php if ($this->uri->segment(1) == "Anggota_Jemaat") {
                                 echo "class='nav-link active'";
@@ -70,6 +70,8 @@
                             <p> Wilayah </p>
                         </a>
                     </li>
+                <?php } ?>
+                <?php if ($this->session->userdata('level_user') == 2) { ?>
                     <li <?php if ($this->uri->segment(1) == "mengelola_ruangan") {
                             echo "class='nav-item menu-open'";
                         } else {
@@ -109,56 +111,58 @@
                         </ul>
                     </li>
                 <?php } ?>
-                <li <?php if ($this->uri->segment(1) == "keuangan") {
-                        echo "class='nav-item menu-open'";
-                    } else {
-                        echo "class='nav-item'";
-                    } ?>>
-                    <a <?php if ($this->uri->segment(1) == "keuangan") {
-                            echo "class='nav-link active'";
+                <?php if ($this->session->userdata('level_user') != 1) { ?>
+                    <li <?php if ($this->uri->segment(1) == "keuangan") {
+                            echo "class='nav-item menu-open'";
                         } else {
-                            echo "class='nav-link'";
-                        } ?> href="<?php echo base_url() . 'keuangan' ?>">
-                        <i class="nav-icon fas fa-money-bill"></i>
-                        <p>
-                            Keuangan
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a <?php if ($this->uri->segment(1) == "keuangan" && $this->uri->segment(2) == "") {
-                                    echo "class='nav-link active'";
-                                } else {
-                                    echo "class='nav-link'";
-                                } ?> href="<?php echo base_url() . 'keuangan' ?>">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Uang Masuk</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a <?php if ($this->uri->segment(1) == "keuangan" && $this->uri->segment(2) == "pengeluaran") {
-                                    echo "class='nav-link active'";
-                                } else {
-                                    echo "class='nav-link'";
-                                } ?> href="<?php echo base_url() . 'keuangan/pengeluaran' ?>">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Uang Keluar</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a <?php if ($this->uri->segment(1) == "keuangan" && $this->uri->segment(2) == "laporan") {
-                                    echo "class='nav-link active'";
-                                } else {
-                                    echo "class='nav-link'";
-                                } ?> href="<?php echo base_url() . 'keuangan/laporan' ?>">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Laporan</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <?php if ($this->session->userdata('level_user') != 4) { ?>
+                            echo "class='nav-item'";
+                        } ?>>
+                        <a <?php if ($this->uri->segment(1) == "keuangan") {
+                                echo "class='nav-link active'";
+                            } else {
+                                echo "class='nav-link'";
+                            } ?> href="<?php echo base_url() . 'keuangan' ?>">
+                            <i class="nav-icon fas fa-money-bill"></i>
+                            <p>
+                                Keuangan
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a <?php if ($this->uri->segment(1) == "keuangan" && $this->uri->segment(2) == "") {
+                                        echo "class='nav-link active'";
+                                    } else {
+                                        echo "class='nav-link'";
+                                    } ?> href="<?php echo base_url() . 'keuangan' ?>">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Uang Masuk</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a <?php if ($this->uri->segment(1) == "keuangan" && $this->uri->segment(2) == "pengeluaran") {
+                                        echo "class='nav-link active'";
+                                    } else {
+                                        echo "class='nav-link'";
+                                    } ?> href="<?php echo base_url() . 'keuangan/pengeluaran' ?>">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Uang Keluar</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a <?php if ($this->uri->segment(1) == "keuangan" && $this->uri->segment(2) == "laporan") {
+                                        echo "class='nav-link active'";
+                                    } else {
+                                        echo "class='nav-link'";
+                                    } ?> href="<?php echo base_url() . 'keuangan/laporan' ?>">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Laporan</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                <?php } ?>
+                <?php if ($this->session->userdata('level_user') == 2 || $this->session->userdata('level_user') == 3) { ?>
                     <li class="nav-item">
                         <a <?php if ($this->uri->segment(1) == "mengelola_artikel") {
                                 echo "class='nav-link active'";
@@ -169,6 +173,8 @@
                             <p> Artikel </p>
                         </a>
                     </li>
+                <?php } ?>
+                <?php if ($this->session->userdata('level_user') == 2) { ?>
                     <li class="nav-item">
                         <a <?php if ($this->uri->segment(1) == "Dokumen") {
                                 echo "class='nav-link active'";
