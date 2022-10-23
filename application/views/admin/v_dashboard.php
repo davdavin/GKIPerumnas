@@ -81,7 +81,7 @@
             </div>
           </div>
         </div>
-        <?php if($this->session->userdata('level_user') != 4) {
+        <?php
         foreach ($peminjamanBaru as $jumlah) { ?>
           <div class="col-lg-3 col-6">
             <!-- small box -->
@@ -91,12 +91,14 @@
                 <p>Peminjaman Ruangan</p>
               </div>
               <div class="icon">
-                <i class="fas fa-map"></i>
+                <i class="fas fa-door-open"></i>
               </div>
-              <a href="<?php echo base_url() . 'mengelola_ruangan/peminjaman' ?>" class="small-box-footer">Lihat lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
+              <?php if ($this->session->userdata('level_user') == 2) { ?>
+                <a href="<?php echo base_url() . 'mengelola_ruangan/peminjaman' ?>" class="small-box-footer">Lihat lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
+              <?php } ?>
             </div>
           </div>
-        <?php } } ?>
+        <?php } ?>
       </div>
     </div><!-- /.container-fluid -->
 
