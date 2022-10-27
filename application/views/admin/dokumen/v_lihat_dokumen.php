@@ -236,7 +236,7 @@
           name: null,
           sortable: false,
           render: function(data, type, row, meta) {
-            return `<a class=" btn btn-primary btn-sm" href="<?php echo base_url() . 'uploadDokumen/' ?>${row.id_dokumen}" download>
+            return `<a class=" btn btn-primary btn-sm" href="<?php echo base_url() . 'dokumenFormulir/' ?>${row.nama_dokumen}" download>
                       <i class="fas fa-download">
                       </i>
                       Download

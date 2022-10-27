@@ -38,7 +38,7 @@
 
                         <div class="form-group">
                             <label>Koordinator Wilayah</label>
-                            <select class="pilih-jemaat form-control" name="koordinator_wilayah"></select>
+                            <select class="pilih-jemaat form-control" name="koordinator_wilayah" required></select>
                         </div>
 
 

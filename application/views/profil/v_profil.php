@@ -58,17 +58,7 @@
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <span class="mr-2 float-left text-muted"><?php echo $this->session->userdata('username'); ?></span>
                         <i class="far fa-user-circle fa-2x"></i>
-                        <span class="ml-1 float-right"><i class="fas fa-caret-down fa-sm"></i></span> <!-- far fa-angle-down -->
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-user mr-2"></i> Profil
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="<?php echo base_url() . 'Login/logout' ?>" class="dropdown-item">
-                            <i class="fas fa-sign-out-alt mr-2"></i> Logout
-                        </a>
-                    </div>
                 </li>
             </ul>
         </nav>
@@ -101,30 +91,30 @@
                                 <p> Ubah Password </p>
                             </a>
                         </li>
-                        <?php if($this->session->userdata('jabatan_anggota') != "Jemaat") { ?> 
-                        <li class="nav-item">
-                            <a href="<?php echo base_url() . 'Ruangan/list_ruangan' ?>" class="nav-link">
-                                <i class="nav-icon fas fa-door-open"></i>
-                                <p>
-                                    Ruangan
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo base_url() . 'Ruangan/list_ruangan' ?>" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Ruangan</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="<?php echo base_url() . 'Ruangan/list_peminjaman' ?>" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Peminjaman</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                        <?php if ($this->session->userdata('jabatan_anggota') != "Jemaat") { ?>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url() . 'Ruangan/list_ruangan' ?>" class="nav-link">
+                                    <i class="nav-icon fas fa-door-open"></i>
+                                    <p>
+                                        Ruangan
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?php echo base_url() . 'Ruangan/list_ruangan' ?>" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Ruangan</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="<?php echo base_url() . 'Ruangan/list_peminjaman' ?>" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Peminjaman</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
                         <?php } ?>
                         <li class="nav-item">
                             <a href="<?php echo base_url() . 'login/jemaat/logout' ?>" class="nav-link">

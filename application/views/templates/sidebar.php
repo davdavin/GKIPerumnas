@@ -96,7 +96,7 @@
                                         echo "class='nav-link'";
                                     } ?> href="<?php echo base_url() . 'mengelola_ruangan' ?>">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Nama Ruangan</p>
+                                    <p>Informasi Ruangan</p>
                                 </a>
                                 <a <?php if ($this->uri->segment(1) == "mengelola_ruangan" && $this->uri->segment(2) == "peminjaman") {
                                         echo "class='nav-link active'";
@@ -136,7 +136,7 @@
                                         echo "class='nav-link'";
                                     } ?> href="<?php echo base_url() . 'keuangan' ?>">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Uang Masuk</p>
+                                    <p>Pemasukan</p>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -146,7 +146,7 @@
                                         echo "class='nav-link'";
                                     } ?> href="<?php echo base_url() . 'keuangan/pengeluaran' ?>">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Uang Keluar</p>
+                                    <p>Pengeluaran</p>
                                 </a>
                             </li>
                             <li class="nav-item">
