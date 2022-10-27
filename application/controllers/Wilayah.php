@@ -132,7 +132,8 @@ class Wilayah extends CI_Controller
     public function proses_edit_wilayah()
     {
         $id_wilayah = $this->input->post('id_wilayah');
-        $koordinator_wilayah = $this->input->post('koordinator_wilayah');
+        $koordinator_wilayah_sekarang = $this->input->post('koordinator_wilayah_sekarang');
+        $koordinator_wilayah_baru = $this->input->post('koordinator_wilayah_baru');
         $nama_wilayah = $this->input->post('nama_wilayah');
 
         $tanggal = date('Y-m-d H:i:s');
@@ -144,10 +145,16 @@ class Wilayah extends CI_Controller
             'updated_at' => $tanggal
         );
 
-        $data_detail_wilayah = array(
-            'koordinator_wilayah' => $koordinator_wilayah,
-            'updated_at' => $tanggal
-        );
+        if ($koordinator_wilayah_baru != $koordinator_wilayah_sekarang && $koordinator_wilayah_baru != NULL) {
+            $data_detail_wilayah = array(
+                'koordinator_wilayah' => $koordinator_wilayah_baru,
+                'updated_at' => $tanggal
+            );
+        } else if ($koordinator_wilayah_baru == NULL) {
+            $data_detail_wilayah = array(
+                'koordinator_wilayah' => $koordinator_wilayah_sekarang
+            );
+        }
 
         $this->M_Wilayah->update_record($where, $data_wilayah, 'wilayah');
         $this->M_Wilayah->update_record($where, $data_detail_wilayah, 'detail_wilayah');

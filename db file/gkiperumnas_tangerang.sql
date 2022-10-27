@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 21, 2022 at 12:18 PM
+-- Generation Time: Oct 24, 2022 at 02:13 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -64,7 +64,7 @@ CREATE TABLE `anggota_jemaat` (
 INSERT INTO `anggota_jemaat` (`id_anggota`, `id_wilayah`, `no_anggota`, `nama_lengkap_anggota`, `username`, `password`, `alamat_anggota`, `nohp_anggota`, `email_anggota`, `jenis_kelamin_anggota`, `golongan_darah_anggota`, `status_anggota`, `pendidikan_anggota`, `pekerjaan_anggota`, `kelompok_etnis_anggota`, `jabatan_anggota`, `tanggal_lahir_anggota`, `tanggal_baptis_anggota`, `tanggal_sidi_anggota`, `tanggal_atestasi_masuk`, `tanggal_atestasi_keluar`, `tanggal_meninggal`, `tanggal_dkh`, `tanggal_ex_dkh`, `status_akun`, `created_at`, `updated_at`) VALUES
 (1, 1, '00001', 'Christella', 'christella', '$2y$10$u2bfkTIjd52ujs7fSPDcPeZetdIMgz413bOnjegqTf0KcF3b7pp9u', 'Jl Melati No. 2', '082042832322', 'electronicdm10@gmail.com', 'Perempuan', 'A', 1, 'S2', 'Direktur', 'Sunda', 'Pengurus', '1999-10-05', '2017-10-06', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1, '2021-10-14 14:56:27', '2022-10-21 12:48:34'),
 (2, 2, '00002', 'Sinta', 'sinta', '$2y$10$sUJv0eyLkWJuOfnTnZiFX.NuPctX4PAfEw4mig4YU8ZKQwLQVLY7a', 'Jl Melati', '0808273262314', 'projectwebdua@gmail.com', 'Perempuan', 'A', 1, 'S1', 'Karyawan', 'Sunda', 'Jemaat', '1998-01-23', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1, '2021-10-14 14:56:42', NULL),
-(3, 3, '00003', 'Philip', 'philip', '$2y$10$7qRn4l9mAYBItnaIC/kU8OVskRbS2puY5kjhztosyqMuoLem2YAtC', 'Jl Melati', '089283282121', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', 'Jemaat', '2000-12-16', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1, '2021-11-08 14:56:51', NULL),
+(3, 3, '00003', 'Philip', 'philip', '$2y$10$IQLyqorYQtGhShMw4M9bsOeDWYJCMXV/xSVjKRrDCJ390FpV6mwPK', 'Jl Melati No. 1', '089283282121', 'contoh@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', 'Jemaat', '2000-12-16', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1, '2021-11-08 14:56:51', '2022-10-24 19:01:33'),
 (4, 1, '00004', 'Bro', 'brobro', '$2y$10$4F9OrTTJueuYZk2VL9KeheLXCBnCpRfzA.7EDNRgY.q5/M.MaxH/m', 'Jl. Apel ', '089283282121', 'contoh1@example.com', 'Laki-laki', 'A', 1, 'S2', 'Karyawan', 'Sunda', 'Jemaat', '1996-02-09', '2021-01-01', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1, '2021-11-08 14:57:30', NULL),
 (5, 8, '00005', 'Toni', 'tonitoni', '$2y$10$VbYbXQm/lWpLZcS0a06UC.lYdpGrQF2wXNJ3DFiyWF6F7S3tjHEjq', 'Jl. Apel ', '0808273262314', 'vinvin@gmail.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', 'Jemaat', '2000-09-16', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1, '2021-11-08 14:57:43', NULL),
 (6, 6, '00006', 'Marcelo', 'marcelo', '$2y$10$6lWx87msZTVCrX0q9zgayO0oX055kxtd52cqrPBKcPZ/K3Q4Ahpvi', 'Jl. Apel ', '0808273262314', 'contoh2@example.com', 'Laki-laki', 'A', 1, 'S1', 'Karyawan', 'Sunda', 'Jemaat', '1990-01-08', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 1, '2021-11-10 14:57:56', NULL),
@@ -303,7 +303,7 @@ CREATE TABLE `peminjaman_ruangan` (
 
 INSERT INTO `peminjaman_ruangan` (`id_peminjaman`, `id_ruangan`, `id_anggota`, `keperluan`, `tanggal_booking`, `jam_mulai`, `jam_selesai`, `status_peminjaman`, `pesan`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (26, 4, 1, 'Rapat mingguan', '2022-12-20', '15:00:00', '18:00:00', 'DITERIMA', 'Peminjaman diterima', '2022-10-19 10:08:48', '2022-10-19 10:09:47', NULL),
-(27, 4, 1, 'rapat', '2022-10-22', '12:00:00', '14:00:00', 'DITERIMA', 'Peminjaman diterima', '2022-10-21 11:22:30', '2022-10-21 11:23:30', NULL),
+(27, 4, 1, 'rapat', '2022-10-22', '12:00:00', '14:00:00', 'SELESAI', 'SELESAI', '2022-10-21 11:22:30', '2022-10-23 17:07:53', NULL),
 (28, 4, 1, 'rapat', '2022-12-20', '19:00:00', '20:00:00', 'DITERIMA', 'Peminjaman diterima', '2022-10-21 11:33:19', '2022-10-21 11:34:56', NULL);
 
 -- --------------------------------------------------------
@@ -362,32 +362,6 @@ INSERT INTO `pengumpulan_dokumen` (`id_pengumpulan`, `id_dokumen`, `nama_lengkap
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permintaan_perubahan_data_jemaat`
---
-
-CREATE TABLE `permintaan_perubahan_data_jemaat` (
-  `id_permintaan` int(11) NOT NULL,
-  `id_anggota` int(11) NOT NULL,
-  `nohp_baru` varchar(255) DEFAULT NULL,
-  `email_baru` varchar(255) DEFAULT NULL,
-  `alamat_baru` varchar(255) DEFAULT NULL,
-  `pekerjaan_baru` varchar(255) DEFAULT NULL,
-  `pendidikan_baru` varchar(255) DEFAULT NULL,
-  `tanggal_permintaan` datetime NOT NULL,
-  `is_notif` tinyint(4) NOT NULL,
-  `is_updated` tinyint(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `permintaan_perubahan_data_jemaat`
---
-
-INSERT INTO `permintaan_perubahan_data_jemaat` (`id_permintaan`, `id_anggota`, `nohp_baru`, `email_baru`, `alamat_baru`, `pekerjaan_baru`, `pendidikan_baru`, `tanggal_permintaan`, `is_notif`, `is_updated`) VALUES
-(5, 1, '51c75403ef174d0495ff7b29b19ebd5f95312d5ec43574a3d9950abf980fc0d52fe11ca0286574c30fbf3aaae045eb0e7547bb601979845e39eb14cfd9b42f13pgPDLIh3C8e5WBPRlch0SyeNd6XIoYDjxp2J1eZPmkc=', NULL, NULL, NULL, NULL, '2022-10-06 11:32:38', 1, 1);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `ruangan`
 --
 
@@ -438,7 +412,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `id_level_user`, `nama_lengkap`, `username`, `password`, `email_user`, `status_user`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 1, 'Admin min', 'admin', '$2y$10$9KhGw19pT6w7zIjP2h/wD.zMBdQOU0GqqGb0i05wuJX4yvntK3TcG', 'contoh@example.com', 1, '2022-09-18 20:18:08', '2022-10-11 09:01:06', NULL),
-(2, 2, 'Christella', 'stella', '$2y$10$zWa0ie9.mG4qe98Ax2L9POR5eRm0orxzPgLQalCxdkd.tY035Cay6', 'stella@gmail.com', 1, '2022-09-18 20:13:20', '2022-10-15 11:16:34', NULL),
+(2, 2, 'Christella', 'stella', '$2y$10$zWa0ie9.mG4qe98Ax2L9POR5eRm0orxzPgLQalCxdkd.tY035Cay6', 'stella@gmail.com', 1, '2022-09-18 20:13:20', '2022-10-22 21:25:28', NULL),
 (4, 3, 'Yohanes', 'yohanes', '$2y$10$jpLepgnYa5lmDmSm3I2fWe7guZ55EmtDxM4vLiAxQjSQFFcutZVc6', 'yohanes@gmail.com', 1, '2022-09-19 21:27:47', '2022-10-16 16:00:11', NULL),
 (5, 2, 'Bro', 'sekretariat', '$2y$10$rMmoMktv2U/oS9vqK7EpFu7f9/0Z14oAyrWMIOea/n1kwwJLi8K26', 'satusatu@gmail.com', 1, '2022-09-20 10:39:22', '2022-09-20 10:41:26', NULL),
 (6, 4, 'markus', 'markus', '$2y$10$SfzDnadVBTS4xmGtd15CruLdbqipmX/eEWi1NQ/O7/56J/evkdCky', 'electronicdm10@gmail.com', 1, '2022-10-15 11:09:39', NULL, NULL);
@@ -543,12 +517,6 @@ ALTER TABLE `pengumpulan_dokumen`
   ADD PRIMARY KEY (`id_pengumpulan`);
 
 --
--- Indexes for table `permintaan_perubahan_data_jemaat`
---
-ALTER TABLE `permintaan_perubahan_data_jemaat`
-  ADD PRIMARY KEY (`id_permintaan`);
-
---
 -- Indexes for table `ruangan`
 --
 ALTER TABLE `ruangan`
@@ -635,12 +603,6 @@ ALTER TABLE `pendeta`
 --
 ALTER TABLE `pengumpulan_dokumen`
   MODIFY `id_pengumpulan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `permintaan_perubahan_data_jemaat`
---
-ALTER TABLE `permintaan_perubahan_data_jemaat`
-  MODIFY `id_permintaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `ruangan`

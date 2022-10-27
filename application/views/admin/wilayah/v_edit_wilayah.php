@@ -36,7 +36,8 @@
 
             <div class="form-group">
               <label>Koordinator Wilayah</label>
-              <select class="pilih-jemaat form-control" name="koordinator_wilayah"></select>
+              <input type="hidden" name="koordinator_wilayah_sekarang" value="<?= $list_wilayah_edit->id_anggota ?>">
+              <select class="pilih-jemaat form-control" name="koordinator_wilayah_baru"></select>
             </div>
 
             <div class="form-group">
