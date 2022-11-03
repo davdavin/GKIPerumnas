@@ -152,8 +152,22 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="inputJabatan">Jabatan</label>
-                  <input type="text" class="form-control" id="inputJabatan" name="jabatan" value="<?= $list_jemaat_edit->jabatan_anggota ?>">
+                  <label>Jabatan</label>
+                  <select class="custom-select select2bs4" style="width: 100%;" name="jabatan">
+                    <?php if ($list_jemaat_edit->jabatan_anggota == "Jemaat") { ?>
+                      <option value="<?php echo $list_jemaat_edit->jabatan_anggota ?>" <?php echo "selected"; ?>>
+                        <?php echo $list_jemaat_edit->jabatan_anggota; ?>
+                      </option>
+                      <option value="Pengurus">Pengurus</option>
+                    <?php } ?>
+
+                    <?php if ( $list_jemaat_edit->jabatan_anggota == "Pengurus") { ?>
+                      <option value="Jemaat">Jemaat</option>
+                      <option value="<?php echo $list_jemaat_edit->jabatan_anggota ?>" <?php echo "selected"; ?>>
+                        <?php echo $list_jemaat_edit->jabatan_anggota; ?>
+                      </option>
+                    <?php } ?>
+                  </select>
                   <div class="px-2 error_jabatan clear" style="display: none">
                   </div>
                 </div>

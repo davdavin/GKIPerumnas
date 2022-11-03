@@ -176,31 +176,9 @@
           "previous": "Sebelumnya"
         },
       },
-      "buttons": [{
-          extend: 'pdfHtml5',
-          //   className: 'btn-primary',
-          orientation: 'potrait',
-          pageSize: 'A4',
-          title: 'Laporan Keuangan',
-          exportOptions: {
-            columns: [0, 1, 2, 3, 4]
-          }
-          //   download: 'open'
-        },
-        {
-          extend: 'copyHtml5',
-          exportOptions: {
-            columns: [0, 1, 2, 3, 4]
-          }
-        },
+      "buttons": [
         {
           extend: 'excelHtml5',
-          exportOptions: {
-            columns: [0, 1, 2, 3, 4]
-          }
-        },
-        {
-          extend: 'print',
           exportOptions: {
             columns: [0, 1, 2, 3, 4]
           }

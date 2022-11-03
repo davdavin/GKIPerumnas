@@ -296,59 +296,15 @@
           name: null,
           sortable: false,
           render: function(data, type, row, meta) {
-            if (row.id_user == <?php echo $this->session->userdata('id_user') ?>) {
               return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_user}">
                           <i class="fas fa-pencil-alt"></i> Edit
                         </a>`;
-            } else {
-              return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_user}">
-                          <i class="fas fa-pencil-alt"></i> Edit
-                        </a>
-                        <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'user/hapus_user/' ?>${row.id_user}">
-                          <i class="fas fa-trash"></i> Hapus
-                        </a>`;
-            }
-
-            /* switch (row.status_user) {
-               case "1":
-                 return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_user}">
-                           <i class="fas fa-pencil-alt"></i> Edit
-                         </a>
-                         <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'user/hapus_user/' ?>${row.id_user}">
-                           <i class="fas fa-trash"></i> Hapus
-                         </a>`;
-                 break;
-               default:
-                 return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_user}">
-                           <i class="fas fa-pencil-alt"></i> Edit
-                         </a>`;
-                 break;
-             } */
           }
         }
       ]
     });
 
     $('[data-mask]').inputmask();
-
-    $(document).on('click', '.tombol-hapus', function(e) {
-      e.preventDefault();
-      const href = $(this).attr('href')
-
-      Swal.fire({
-        title: 'Apakah anda yakin user ini akan dihapus?',
-        icon: 'warning',
-        showCancelButton: true,
-        cancelButtonText: 'batal',
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Hapus'
-      }).then((result) => {
-        if (result.value) { //ini sama aja kayak == TRUE
-          document.location.href = href;
-        }
-      });
-    });
 
     const sukses = $('.sukses').data('flashdata');
     if (sukses) {
