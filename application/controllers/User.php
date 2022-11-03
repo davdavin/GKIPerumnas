@@ -9,6 +9,10 @@ class User extends CI_Controller
     {
         parent::__construct();
 
+        if ($this->session->userdata('status') != "login") {
+            redirect('login');
+        }
+        
         $this->load->model(array('M_User'));
         $this->load->helper('url', 'form');
         $this->load->library('form_validation');
