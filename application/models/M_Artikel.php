@@ -4,26 +4,25 @@ class M_Artikel extends CI_Model
 {
     public function lihat_artikel()
     {
-        return $this->db->query("SELECT * FROM artikel WHERE deleted_at IS NULL");
+        return $this->db->query("SELECT * FROM artikel");
     }
 
     public function tampil()
     {
-        $query = $this->db->query("SELECT * FROM artikel WHERE deleted_at IS NULL ORDER BY id_artikel DESC LIMIT 6");
+        $query = $this->db->query("SELECT * FROM artikel WHERE status_artikel = 'DITERBITKAN' ORDER BY id_artikel DESC LIMIT 6");
         return $query;
     }
 
     public function tampil_warta()
     {
-        $query = $this->db->query("SELECT * FROM artikel WHERE tipe_artikel = 'Warta Jemaat' AND deleted_at IS NULL ORDER BY id_artikel DESC LIMIT 6");
+        $query = $this->db->query("SELECT * FROM artikel WHERE tipe_artikel = 'Warta Jemaat' AND status_artikel = 'DITERBITKAN' ORDER BY id_artikel DESC LIMIT 6");
         return $query;
     }
 
     public function semua_artikel($limit, $start)
     {
         $this->db->from('artikel');
-        $where = 'deleted_at IS NULL';
-        $this->db->where($where);
+        $this->db->where(array('status_artikel' => 'DITERBITKAN'));
         $this->db->order_by('id_artikel', 'DESC');
         $this->db->limit($limit, $start);
         return $this->db->get();
@@ -37,8 +36,7 @@ class M_Artikel extends CI_Model
     public function pilih_tipe_artikel($tipe, $limit, $start)
     {
         $this->db->from('artikel');
-        $where = 'deleted_at IS NULL';
-        $this->db->where($where);
+        $this->db->where(array('status_artikel' => 'DITERBITKAN'));
         $this->db->where('tipe_artikel', $tipe);
         $this->db->order_by('id_artikel', 'DESC');
         $this->db->limit($limit, $start);

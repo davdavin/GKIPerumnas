@@ -40,6 +40,7 @@
                 <th>Judul</th>
                 <th>Tipe</th>
                 <th>Deskripsi Singkat</th>
+                <th>Status</th>
                 <?php if ($this->session->userdata('level_user') == 2 || $this->session->userdata('level_user') == 3) { ?>
                   <th>Aksi</th>
                 <?php } ?>
@@ -146,7 +147,12 @@
           "data": "tipe_artikel"
         },
         {
-          "data": "deskripsi_singkat"
+          "data": "deskripsi_singkat",
+          sortable: false
+        },
+        {
+          "data": "status_artikel",
+          "sortable": false
         },
         <?php if ($this->session->userdata('level_user') == 2 || $this->session->userdata('level_user') == 3) { ?> {
             data: null,
@@ -157,35 +163,11 @@
                       <i class="fas fa-pencil-alt">
                       </i>
                       Edit
-                    </a>
-                    <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'mengelola_artikel/hapus/' ?>${row.id_artikel}">
-                      <i class="fas fa-trash">
-                      </i>
-                      Hapus
                     </a>`;
             }
           },
         <?php } ?>
       ]
-    });
-
-    $(document).on('click', '.tombol-hapus', function(e) {
-      e.preventDefault();
-      const href = $(this).attr('href');
-
-      Swal.fire({
-        title: 'Apakah anda yakin?',
-        icon: 'warning',
-        showCancelButton: true,
-        cancelButtonText: 'batal',
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Hapus'
-      }).then((result) => {
-        if (result.value) {
-          document.location.href = href;
-        }
-      });
     });
 
     const sukses = $('.sukses').data('flashdata');
