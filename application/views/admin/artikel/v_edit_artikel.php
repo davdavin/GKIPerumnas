@@ -111,6 +111,27 @@
                 </div>
               </div>
             <?php } ?>
+
+            <div class="form-group">
+              <label>Status Artikel</label>
+              <select class="form-control select2bs4" style="width: 100%;" name="status">
+                <option selected disabled value>-- Pilih --</option>
+                <?php if ($detail->status_artikel == "DITERBITKAN") { ?>
+                  <option value="<?php echo $detail->status_artikel ?>" <?php echo "selected"; ?>>
+                    <?php echo $detail->status_artikel ?>
+                  </option>
+                  <option value="TIDAK DITERBITKAN">TIDAK DITERBITKAN</option>
+                <?php } ?>
+                <?php if ($detail->status_artikel == "TIDAK DITERBITKAN") { ?>
+                  <option value="DITERBITKAN">DITERBITKAN</option>
+                  <option value="<?php echo $detail->status_artikel ?>" <?php echo "selected"; ?>>
+                    <?php echo $detail->status_artikel ?>
+                  </option>
+                <?php } ?>
+              </select>
+              <div class="p-2 is-invalid error_status clear" style="display: none">
+              </div>
+            </div>
           </div>
 
           <div class="card-footer">
@@ -240,6 +261,13 @@
                   $('.error_file').css("color", "red");
                 } else {
                   $('.error_file').hide();
+                }
+                if (respon.error_status) {
+                  $('.error_status').show();
+                  $('.error_status').html(respon.error_status);
+                  $('.error_status').css("color", "red");
+                } else {
+                  $('.error_status').hide();
                 }
 
               } else {

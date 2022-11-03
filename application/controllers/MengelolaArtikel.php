@@ -40,7 +40,7 @@ class MengelolaArtikel extends CI_Controller
         $this->load->view('templates/sidebar.php');
         $this->load->view('admin/artikel/v_input_artikel.php', $data);
     }
-    
+
     public function proses_tambah_artikel()
     {
         $judul_artikel = $this->input->post('judul_artikel');
@@ -82,7 +82,7 @@ class MengelolaArtikel extends CI_Controller
                     $file = $this->upload->data('file_name');
 
                     $data = array(
-                        'judul_artikel' => $judul_artikel, 'tipe_artikel' => $tipe_artikel, 'deskripsi_singkat' => $deskripsi_singkat, 'file' => $file, 'id_user' => $this->session->userdata('id_user'), 'created_at' => $tanggal
+                        'judul_artikel' => $judul_artikel, 'tipe_artikel' => $tipe_artikel, 'deskripsi_singkat' => $deskripsi_singkat, 'file' => $file, 'status_artikel' => 'DITERBITKAN', 'id_user' => $this->session->userdata('id_user'), 'created_at' => $tanggal
                     );
 
                     $this->M_Artikel->insert_record($data, 'artikel');
@@ -92,7 +92,7 @@ class MengelolaArtikel extends CI_Controller
             } else if ($isi != "") {
                 $data = array(
                     'judul_artikel' => $judul_artikel, 'tipe_artikel' => $tipe_artikel, 'deskripsi_singkat' => $deskripsi_singkat,
-                    'isi' => $isi, 'id_user' => $this->session->userdata('id_user'), 'created_at' => $tanggal
+                    'isi' => $isi, 'status_artikel' => 'DITERBITKAN', 'id_user' => $this->session->userdata('id_user'), 'created_at' => $tanggal
                 );
                 $this->M_Artikel->insert_record($data, 'artikel');
                 $respon['sukses'] = "Artikel berhasil ditambah";
@@ -117,6 +117,7 @@ class MengelolaArtikel extends CI_Controller
         $tipe_artikel = $this->input->post('tipe_artikel');
         $deskripsi_singkat = $this->input->post('deskripsi_singkat');
         $isi = $this->input->post('isi');
+        $status = $this->input->post('status');
 
         $where = array('id_artikel' => $id_artikel);
 
@@ -128,7 +129,8 @@ class MengelolaArtikel extends CI_Controller
             $this->form_validation->set_rules('judul_artikel', 'Judul', 'required|is_unique[artikel.judul_artikel]');
         }
         $this->form_validation->set_rules('tipe_artikel', 'Tipe', 'required');
-        $this->form_validation->set_rules('deskripsi_singkat', 'Deskripsi', 'trim|required');
+        $this->form_validation->set_rules('deskripsi_singkat', 'Deskripsi', 'required');
+        $this->form_validation->set_rules('status', 'Status', 'required');
 
         $this->form_validation->set_message('required', '{field} wajib diisi');
         $this->form_validation->set_message('is_unique', '{field} sudah digunakan');
@@ -138,7 +140,8 @@ class MengelolaArtikel extends CI_Controller
                 'sukses' => false,
                 'error_judul' => form_error('judul_artikel'),
                 'error_tipe' => form_error('tipe_artikel'),
-                'error_deskripsi' => form_error('deskripsi_singkat')
+                'error_deskripsi' => form_error('deskripsi_singkat'),
+                'error_status' => form_error('status')
             );
             echo json_encode($respon);
         } else {
@@ -148,7 +151,7 @@ class MengelolaArtikel extends CI_Controller
                 if ($_FILES['pdf']['name'] == "") {
                     $data = array(
                         'judul_artikel' => $judul_artikel, 'tipe_artikel' => $tipe_artikel, 'deskripsi_singkat' => $deskripsi_singkat,
-                        'isi' => NULL, 'file' => $artikel_lama['file'], 'id_user' => $this->session->userdata('id_user'), 'updated_at' => $tanggal
+                        'isi' => NULL, 'file' => $artikel_lama['file'], 'status_artikel' => $status, 'id_user' => $this->session->userdata('id_user'), 'updated_at' => $tanggal
                     );
 
                     $this->M_Artikel->update_record($where, $data, 'artikel');
@@ -171,7 +174,7 @@ class MengelolaArtikel extends CI_Controller
 
                         $data = array(
                             'judul_artikel' => $judul_artikel, 'tipe_artikel' => $tipe_artikel, 'deskripsi_singkat' => $deskripsi_singkat,
-                            'isi' => NULL, 'file' => $file, 'id_user' => $this->session->userdata('id_user'), 'updated_at' => $tanggal
+                            'isi' => NULL, 'file' => $file, 'status_artikel' => $status, 'id_user' => $this->session->userdata('id_user'), 'updated_at' => $tanggal
                         );
 
                         @unlink('./wartaJemaat/' . $artikel_lama['file']);
@@ -184,35 +187,12 @@ class MengelolaArtikel extends CI_Controller
             } else if ($isi != "") {
                 $data = array(
                     'judul_artikel' => $judul_artikel, 'tipe_artikel' => $tipe_artikel, 'deskripsi_singkat' => $deskripsi_singkat,
-                    'isi' => $isi, 'id_user' => $this->session->userdata('id_user'), 'updated_at' => $tanggal
+                    'isi' => $isi, 'status_artikel' => $status, 'id_user' => $this->session->userdata('id_user'), 'updated_at' => $tanggal
                 );
                 $this->M_Artikel->update_record($where, $data, 'artikel');
                 $respon['sukses'] = "Artikel berhasil diubah";
                 echo json_encode($respon);
             }
         }
-    }
-
-    public function hapus_artikel($id_artikel)
-    {
-        $tanggal = date('Y-m-d H:i:s');
-        $where = array('id_artikel' => $id_artikel);
-        $data = array('deleted_at' => $tanggal);
-        $this->M_Artikel->update_record($where, $data, 'artikel');
-        $this->session->set_flashdata('sukses', 'Artikel berhasil dihapus');
-        redirect('mengelola_artikel');
-
-   /*     $file = $this->db->query("SELECT file FROM artikel WHERE id_artikel = '$id_artikel'")->row_array();
-
-        if ($file['file'] == NULL) {
-            $this->M_Artikel->delete_record($where, 'artikel');
-            $this->session->set_flashdata('sukses', 'Artikel berhasil dihapus');
-            redirect('mengelola_artikel');
-        } else {
-            @unlink('./wartaJemaat/' . $file['file']);
-            $this->M_Artikel->delete_record($where, 'artikel');
-            $this->session->set_flashdata('sukses', 'Artikel berhasil dihapus');
-            redirect('mengelola_artikel');
-        } */
     }
 }
