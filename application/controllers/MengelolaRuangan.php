@@ -59,9 +59,9 @@ class MengelolaRuangan extends CI_Controller
         $perlengkapan = $this->input->post('perlengkapan');
         //  $foto = $_FILES['foto']['name'];
 
-        $this->form_validation->set_rules('nama_ruangan', 'Nama', 'trim|required');
-        $this->form_validation->set_rules('perlengkapan', 'Perlengkapan', 'trim|required');
-        $this->form_validation->set_rules('kapasitas', 'Kapasitas', 'trim|required|greater_than[0]');
+        $this->form_validation->set_rules('nama_ruangan', 'Nama', 'required');
+        $this->form_validation->set_rules('perlengkapan', 'Perlengkapan', 'required');
+        $this->form_validation->set_rules('kapasitas', 'Kapasitas', 'required|greater_than[0]');
         $requiredImage = 1;
         if (empty($_FILES['foto']['name'])) {
             $this->form_validation->set_rules('foto', 'Foto', 'required');
@@ -98,38 +98,13 @@ class MengelolaRuangan extends CI_Controller
             $tanggal = date('Y-m-d H:i:s');
             $foto = $this->upload->data('file_name');
             $data = array(
-                'nama_ruangan' => $nama, 'kapasitas' => $kapasitas, 'perlengkapan' => $perlengkapan, 'foto' => $foto, 'created_at' => $tanggal
+                'nama_ruangan' => $nama, 'kapasitas' => $kapasitas, 'perlengkapan' => $perlengkapan, 'foto' => $foto, 'status_ruangan' => 'TERSEDIA', 'created_at' => $tanggal
             );
 
             $this->M_Ruangan->insert_record($data, 'ruangan');
 
             $respon['sukses'] = "Berhasil ditambahkan";
             echo json_encode($respon);
-            //    $id_ruangan = $this->db->insert_id();
-            // for ($i = 1; $i <= $count; $i++) {
-            //     // $foto = $this->upload->data('file_name');
-            //     $detail = array(
-            //         'id_ruangan' => $id_ruangan, 'foto' => $_FILES['foto' . $count]['name']
-            //     );
-            //     $this->M_Ruangan->insert_record($detail, 'detail_ruangan');
-            // }
-
-            /*   if (!$this->upload->do_upload('foto')) {
-                $respon = array(
-                    'sukses' => false,
-                    'error_foto' => "Tidak berhasil upload file. Format file hanya gif, jpg, png dan ukuran file maksimal 5MB"
-                );
-                echo json_encode($respon);
-            } else {
-                $foto = $this->upload->data('file_name');
-                $data = array(
-                    'nama_ruangan' => $nama, 'kapasitas' => $kapasitas, 'perlengkapan' => $perlengkapan, 'foto' => $foto
-                );
-
-                $this->M_Ruangan->insert_record($data, 'ruangan');
-                $respon['sukses'] = "Berhasil ditambahkan";
-                echo json_encode($respon);
-            } */
         }
     }
 
@@ -148,12 +123,13 @@ class MengelolaRuangan extends CI_Controller
         $nama = $this->input->post('nama_ruangan');
         $kapasitas = $this->input->post('kapasitas');
         $perlengkapan = $this->input->post('perlengkapan');
+        $status = $this->input->post('status');
         $foto_lama = $this->input->post('foto_lama');
         $foto_baru = $_FILES['foto_baru']['name'];
 
-        $this->form_validation->set_rules('nama_ruangan', 'Nama', 'trim|required');
-        $this->form_validation->set_rules('perlengkapan', 'Perlengkapan', 'trim|required');
-        $this->form_validation->set_rules('kapasitas', 'Kapasitas', 'trim|required|greater_than[0]');
+        $this->form_validation->set_rules('nama_ruangan', 'Nama', 'required');
+        $this->form_validation->set_rules('perlengkapan', 'Perlengkapan', 'required');
+        $this->form_validation->set_rules('kapasitas', 'Kapasitas', 'required|greater_than[0]');
 
         $this->form_validation->set_message('required', '{field} wajib diisi');
         $this->form_validation->set_message('greater_than', 'Harus lebih dari 0');
@@ -172,7 +148,7 @@ class MengelolaRuangan extends CI_Controller
 
             if ($foto_baru == "") {
                 $data = array(
-                    'nama_ruangan' => $nama, 'kapasitas' => $kapasitas, 'perlengkapan' => $perlengkapan, 'foto' => $foto_lama, 'updated_at' => $tanggal
+                    'nama_ruangan' => $nama, 'kapasitas' => $kapasitas, 'perlengkapan' => $perlengkapan, 'foto' => $foto_lama, 'status_ruangan' => $status, 'updated_at' => $tanggal
                 );
 
                 $this->M_Ruangan->update_record($where, $data, 'ruangan');
@@ -193,7 +169,7 @@ class MengelolaRuangan extends CI_Controller
                     $foto = $this->upload->data('file_name');
 
                     $data = array(
-                        'nama_ruangan' => $nama, 'kapasitas' => $kapasitas, 'perlengkapan' => $perlengkapan, 'foto' => $foto, 'updated_at' => $tanggal
+                        'nama_ruangan' => $nama, 'kapasitas' => $kapasitas, 'perlengkapan' => $perlengkapan, 'foto' => $foto, 'status_ruangan' => $status, 'updated_at' => $tanggal
                     );
                     @unlink('./resources/assets/img/ruangan/' . $foto_lama); //untuk hapus foto lama
 
@@ -203,16 +179,6 @@ class MengelolaRuangan extends CI_Controller
                 }
             }
         }
-    }
-
-    public function hapus_ruangan($id_ruangan)
-    {
-        $tanggal = date('Y-m-d H:i:s');
-        $where = array('id_ruangan' => $id_ruangan);
-        $data = array('deleted_at' => $tanggal);
-        $this->M_Ruangan->update_record($where, $data, 'ruangan');
-        $this->session->set_flashdata('sukses', 'Berhasil dihapus');
-        redirect('mengelola_ruangan');
     }
 
     public function lihat_peminjaman()

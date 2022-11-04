@@ -21,7 +21,7 @@
   <section class="content">
     <div class="card card-primary">
       <div class="card-header">
-        <h3 class="card-title">Form Edit Artikel</h3>
+        <h3 class="card-title">Form Edit Ruangan</h3>
       </div>
       <?php foreach ($edit_ruangan as $detail) { ?>
         <form method="post" action="<?php echo base_url() . 'mengelola_ruangan/proses_edit' ?>" class="form-submit" enctype="multipart/form-data">
@@ -48,8 +48,7 @@
               <div class="px-2 error_perlengkapan clear" style="display: none">
               </div>
             </div>
-            <!-- Foto -->
-            <!-- <input type="hidden" id="count" name="count"> -->
+          
             <div class="form-group">
               <input type="hidden" name="foto_lama" value="<?= $detail->foto ?>">
               <img src="<?php echo base_url(); ?>resources/assets/img/ruangan/<?php echo $detail->foto; ?>" class="img-fluid" style="width: 500px; height: 400px;"><br><br>
@@ -61,6 +60,27 @@
                 </div>
               </div>
               <div class="px-2 error_foto clear" style="display: none">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Status</label>
+              <select class="form-control select2bs4" style="width: 100%;" name="status">
+                <option selected disabled value>-- Pilih --</option>
+                <?php if ($detail->status_ruangan == "TERSEDIA") { ?>
+                  <option value="<?php echo $detail->status_ruangan ?>" <?php echo "selected"; ?>>
+                    <?php echo $detail->status_ruangan ?>
+                  </option>
+                  <option value="TIDAK TERSEDIA">TIDAK TERSEDIA</option>
+                <?php } ?>
+                <?php if ($detail->status_ruangan == "TIDAK TERSEDIA") { ?>
+                  <option value="TERSEDIA">TERSEDIA</option>
+                  <option value="<?php echo $detail->status_ruangan ?>" <?php echo "selected"; ?>>
+                    <?php echo $detail->status_ruangan ?>
+                  </option>
+                <?php } ?>
+              </select>
+              <div class="p-2 error_status clear" style="display: none">
               </div>
             </div>
           </div>
@@ -191,6 +211,13 @@
                   $('.error_foto').css("color", "red");
                 } else {
                   $('.error_foto').hide();
+                }
+                if (respon.error_status) {
+                  $('.error_status').show();
+                  $('.error_status').html(respon.error_status);
+                  $('.error_status').css("color", "red");
+                } else {
+                  $('.error_status').hide();
                 }
               } else {
                 $('.clear').hide();

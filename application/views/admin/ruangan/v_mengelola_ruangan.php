@@ -29,7 +29,7 @@
                 <div class="card-body">
                     <?php if ($this->session->userdata('level_user') == 2) { ?>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
-                            <i class="fas fa-plus"></i> Ruangan
+                            <i class="fas fa-plus"></i> Tambah ruangan
                         </button><br><br>
                     <?php } ?>
 
@@ -209,14 +209,14 @@
                     }
                 },
                 {
+                    "data": "status_ruangan"
+                },
+                {
                     data: null,
                     name: null,
                     render: function(data, type, row, meta) {
                         return `<a class="btn btn-info btn-sm" href="<?php echo base_url() . 'mengelola_ruangan/edit/' ?>${row.id_ruangan}">
                           <i class="fas fa-pencil-alt"></i> Edit
-                        </a>
-                        <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'mengelola_ruangan/hapus_ruangan/' ?>${row.id_ruangan}">
-                          <i class="fas fa-trash"></i> Hapus
                         </a>`;
                     }
                 }
