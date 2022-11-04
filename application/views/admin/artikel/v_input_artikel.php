@@ -78,7 +78,7 @@
 
         </div>
         <div class="card-footer">
-          <button type="submit" class="btn btn-primary simpan">Tambah</button>
+          <button type="submit" class="btn btn-primary simpan">Submit</button>
         </div>
       </form>
     </div>
@@ -180,7 +180,7 @@
         },
         complete: function() {
           $('.simpan').removeAttr('disable');
-          $('.simpan').html('Tambah');
+          $('.simpan').html('Submit');
         },
         success: function(respon) {
           if (respon.sukses == false) {
