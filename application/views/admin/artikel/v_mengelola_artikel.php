@@ -157,10 +157,10 @@
           render: function(data, type, row, meta) {
             switch (row.status_artikel) {
               case "DITERBITKAN":
-                return `<span class="badge badge-success">DITERBITKAN</span>`;
+                return `<span class="badge badge-success">Diterbitkan</span>`;
                 break;
               default:
-                return `<span class="badge badge-danger">TIDAK DITERBITKAN</span>`;
+                return `<span class="badge badge-danger">Tidak Diterbitkan</span>`;
                 break;
             }
           }

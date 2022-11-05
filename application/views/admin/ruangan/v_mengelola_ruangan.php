@@ -214,12 +214,12 @@
                     //  searchable: false,
                     render: function(data, type, row, meta) {
                         switch (row.status_ruangan) {
-                        case "TERSEDIA":
-                            return `<span class="badge badge-success">TERSEDIA</span>`;
-                            break;
-                        default:
-                            return `<span class="badge badge-danger">TIDAK TERSEDIA</span>`;
-                            break;
+                            case "TERSEDIA":
+                                return `<span class="badge badge-success">Tersedia</span>`;
+                                break;
+                            default:
+                                return `<span class="badge badge-danger">Tidak Tersedia</span>`;
+                                break;
                         }
                     }
                 },
@@ -234,26 +234,6 @@
                 }
             ]
         });
-
-        $(document).on('click', '.tombol-hapus', function(e) {
-            e.preventDefault();
-            const href = $(this).attr('href')
-
-            Swal.fire({
-                title: 'Apakah anda yakin?',
-                icon: 'warning',
-                showCancelButton: true,
-                cancelButtonText: 'batal',
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Hapus'
-            }).then((result) => {
-                if (result.value) {
-                    document.location.href = href;
-                }
-            });
-        });
-
 
         tinymce.init({
             selector: '#textArea',
