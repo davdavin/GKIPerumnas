@@ -91,6 +91,7 @@ class Dokumen extends CI_Controller
                     'jenis_dokumen' => $jenis_dokumen,
                     'nama_dokumen' => $dokumen,
                     'keterangan' => $keterangan,
+                    'status_dokumen' => 'DITERBITKAN',
                     'created_at' => $tanggal
                 );
 
@@ -118,6 +119,7 @@ class Dokumen extends CI_Controller
         $jenis_dokumen = $this->input->post('jenis');
         $keterangan = $this->input->post('keterangan');
         $dokumen_lama = $this->input->post('dokumen_lama');
+        $status = $this->input->post('status');
 
         if ($jenis_dokumen_lama != $jenis_dokumen) {
             $this->form_validation->set_rules('jenis', 'Jenis', 'required|is_unique[dokumen.jenis_dokumen]');
@@ -144,7 +146,8 @@ class Dokumen extends CI_Controller
                     'jenis_dokumen' => $jenis_dokumen,
                     'nama_dokumen' => $dokumen_lama,
                     'keterangan' => $keterangan,
-                    'updated_at' => $tanggal
+                    'status_dokumen' => $status,
+                    'updated_at' => $tanggal,
                 );
 
                 $this->M_Dokumen->update_record($where, $data, 'dokumen');
@@ -169,6 +172,7 @@ class Dokumen extends CI_Controller
                         'jenis_dokumen' => $jenis_dokumen,
                         'nama_dokumen' => $dokumen,
                         'keterangan' => $keterangan,
+                        'status_dokumen' => $status,
                         'updated_at' => $tanggal
                     );
 
@@ -180,15 +184,5 @@ class Dokumen extends CI_Controller
                 }
             }
         }
-    }
-
-    public function hapus_dokumen($id_dokumen)
-    {
-        $tanggal = date('Y-m-d H:i:s');
-        $where = array('id_dokumen' => $id_dokumen);
-        $data = array('deleted_at' => $tanggal);
-        $this->M_Dokumen->update_record($where, $data, 'dokumen');
-        $this->session->set_flashdata('sukses', 'Formulir berhasil dihapus');
-        redirect('Dokumen');
     }
 }
