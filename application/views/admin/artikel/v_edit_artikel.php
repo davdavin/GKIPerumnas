@@ -114,7 +114,7 @@
 
             <div class="form-group">
               <label>Status</label>
-              <select class="form-control select2bs4" style="width: 100%;" name="status">
+              <select class="custom-select select2bs4" style="width: 100%;" name="status">
                 <option selected disabled value>-- Pilih --</option>
                 <?php if ($detail->status_artikel == "DITERBITKAN") { ?>
                   <option value="<?php echo $detail->status_artikel ?>" <?php echo "selected"; ?>>

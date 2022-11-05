@@ -151,8 +151,19 @@
           sortable: false
         },
         {
-          "data": "status_artikel",
-          "sortable": false
+          data: null,
+          name: null,
+          //  searchable: false,
+          render: function(data, type, row, meta) {
+            switch (row.status_artikel) {
+              case "DITERBITKAN":
+                return `<span class="badge badge-success">DITERBITKAN</span>`;
+                break;
+              default:
+                return `<span class="badge badge-danger">TIDAK DITERBITKAN</span>`;
+                break;
+            }
+          }
         },
         <?php if ($this->session->userdata('level_user') == 2 || $this->session->userdata('level_user') == 3) { ?> {
             data: null,

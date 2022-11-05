@@ -272,7 +272,25 @@
                         "data": "jam"
                     },
                     {
-                        "data": "status_peminjaman"
+                        data: null,
+                        name: null,
+                        //  searchable: false,
+                        render: function(data, type, row, meta) {
+                            switch (row.status_peminjaman) {
+                            case "SEDANG DIPROSES":
+                                return `<span class="badge badge-warning text-white">SEDANG DIPROSES</span>`;
+                                break;
+                            case "DITERIMA":
+                                return `<span class="badge badge-success">DITERIMA</span>`;
+                                break;
+                            case "DITOLAK":
+                                return `<span class="badge badge-danger">DITOLAK</span>`;
+                                break;
+                            default:
+                                return `<span class="badge badge-success">SELESAI</span>`;
+                                break;
+                            }
+                        }
                     },
                     {
                         "data": "pesan",

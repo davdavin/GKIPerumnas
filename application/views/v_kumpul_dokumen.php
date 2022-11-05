@@ -60,7 +60,7 @@
             <div class="form-group">
               <label>Jenis Dokumen</label>
               <select class="form-control select2bs4" style="width: 100%;" name="id_dokumen">
-                <option selected disabled value>Pilih Jenis Dokumen</option>
+                <option selected disabled value>-- Pilih --</option>
                 <?php foreach ($jenisDokumen as $list_jenis_dokumen) { ?>
                   <option value="<?php echo $list_jenis_dokumen->id_dokumen ?>">
                     <?php echo $list_jenis_dokumen->jenis_dokumen ?>
