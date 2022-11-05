@@ -239,10 +239,10 @@
           render: function(data, type, row, meta) {
             switch (row.status_dokumen) {
               case "DITERBITKAN":
-                return `<span class="badge badge-success">DITERBITKAN</span>`;
+                return `<span class="badge badge-success">Diterbitkan</span>`;
                 break;
               default:
-                return `<span class="badge badge-danger">TIDAK DITERBITKAN</span>`;
+                return `<span class="badge badge-danger">Tidak Diterbitkan</span>`;
                 break;
             }
           }
@@ -351,25 +351,6 @@
         icon: 'error'
       });
     }
-
-    $(document).on('click', '.tombol-hapus', function(e) {
-      e.preventDefault();
-      const href = $(this).attr('href')
-
-      Swal.fire({
-        title: 'Apakah anda yakin dokumen ini akan dihapus?',
-        icon: 'warning',
-        showCancelButton: true,
-        cancelButtonText: 'batal',
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Ubah status'
-      }).then((result) => {
-        if (result.value) { //ini sama aja kayak == TRUE
-          document.location.href = href;
-        }
-      });
-    });
 
     $('.form-submit').submit(function(e) {
       e.preventDefault();
