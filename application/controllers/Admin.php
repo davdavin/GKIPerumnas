@@ -10,7 +10,7 @@ class Admin extends CI_Controller
         if ($this->session->userdata('status') != "login") {
             redirect('login');
         }
-        $this->load->model(array('M_Anggota_Jemaat', 'M_Pendeta', 'M_Wilayah', 'M_Permintaan', 'M_Keuangan', 'M_Ruangan'));
+        $this->load->model(array('M_Anggota_Jemaat', 'M_Pendeta', 'M_Wilayah', 'M_Keuangan', 'M_Ruangan'));
     }
 
     public function index()

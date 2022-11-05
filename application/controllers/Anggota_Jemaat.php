@@ -13,7 +13,7 @@ class Anggota_Jemaat extends CI_Controller
             redirect('login');
         }
 
-        $this->load->model(array('M_Anggota_Jemaat', 'M_Wilayah', 'M_Permintaan'));
+        $this->load->model(array('M_Anggota_Jemaat', 'M_Wilayah'));
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
     }

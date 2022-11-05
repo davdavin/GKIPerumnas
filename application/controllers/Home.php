@@ -19,7 +19,7 @@ class Home extends CI_Controller
         $data['kontenSlide5'] = $this->M_Konten->tampil_konten_slide5()->result();
         $data['fotoIbadah'] = $this->M_Konten->tampil_foto_ibadah()->result();
         $data['momen'] = $this->M_Konten->tampil_nama_momen()->result();
-        $data['formPendaftaran'] = $this->M_Dokumen->tampil()->result();
+        $data['formPendaftaran'] = $this->M_Dokumen->tampil_dokumen_diterbitkan()->result();
         $data['jemaatLaki'] = $this->M_Anggota_Jemaat->tampil_jemaat_lakilaki()->result();
         $data['jemaatPerempuan'] = $this->M_Anggota_Jemaat->tampil_jemaat_perempuan()->result();
 
@@ -56,15 +56,15 @@ class Home extends CI_Controller
         echo $encrypt . '<br>';
 
         echo $this->encryption->decrypt($encrypt) . '<br>';
-    }
+    } */
 
     function coba2()
     {
         $to = "projectwebdua@gmail.com";
         $subject = "My subject";
         $txt = "Hello world!";
-        $headers = "From: officehourcompany@gmail.com";
+        $headers = "From: gerejagkiperumnas@gmail.com";
 
         mail($to, $subject, $txt, $headers);
-    } */
+    }
 }

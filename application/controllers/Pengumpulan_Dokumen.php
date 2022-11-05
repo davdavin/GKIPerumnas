@@ -16,7 +16,7 @@ class Pengumpulan_Dokumen extends CI_Controller
 
     function index()
     {
-        $data['jenisDokumen'] = $this->M_Dokumen->tampil()->result();
+        $data['jenisDokumen'] = $this->M_Dokumen->tampil_dokumen_diterbitkan()->result();
         $this->load->view('v_kumpul_dokumen.php', $data);
     }
 
