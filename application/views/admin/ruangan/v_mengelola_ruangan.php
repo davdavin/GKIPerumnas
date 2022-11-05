@@ -209,7 +209,19 @@
                     }
                 },
                 {
-                    "data": "status_ruangan"
+                    data: null,
+                    name: null,
+                    //  searchable: false,
+                    render: function(data, type, row, meta) {
+                        switch (row.status_ruangan) {
+                        case "TERSEDIA":
+                            return `<span class="badge badge-success">TERSEDIA</span>`;
+                            break;
+                        default:
+                            return `<span class="badge badge-danger">TIDAK TERSEDIA</span>`;
+                            break;
+                        }
+                    }
                 },
                 {
                     data: null,

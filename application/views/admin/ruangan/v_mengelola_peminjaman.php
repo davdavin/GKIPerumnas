@@ -197,7 +197,25 @@
                     "data": "jam"
                 },
                 {
-                    "data": "status_peminjaman"
+                    data: null,
+                    name: null,
+                    //  searchable: false,
+                    render: function(data, type, row, meta) {
+                        switch (row.status_peminjaman) {
+                        case "SEDANG DIPROSES":
+                            return `<span class="badge badge-warning text-white">SEDANG DIPROSES</span>`;
+                            break;
+                        case "DITERIMA":
+                            return `<span class="badge badge-success">DITERIMA</span>`;
+                            break;
+                        case "DITOLAK":
+                            return `<span class="badge badge-danger">DITOLAK</span>`;
+                            break;
+                        default:
+                            return `<span class="badge badge-success">SELESAI</span>`;
+                            break;
+                        }
+                    }
                 },
                 {
                     data: null,
@@ -219,17 +237,18 @@
                                         </a>`;
                                 break;
                             case "DITOLAK":
-                                return ` <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'mengelola_ruangan/hapus/' ?>${row.id_peminjaman}" data-toggle="tooltip" data-placement="bottom" title="Hapus Data Admin">
-                                        <i class="fas fa-trash"></i> Hapus
-                                        </a>`;
-                                break;
-                            case "SELESAI":
-                                return ` <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'mengelola_ruangan/hapus/' ?>${row.id_peminjaman}" data-toggle="tooltip" data-placement="bottom" title="Hapus Data Admin">
-                                        <i class="fas fa-trash"></i> Hapus
+                                return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_peminjaman}">
+                                        <i class="fas fa-pencil-alt">
+                                        </i>
+                                        Konfirmasi
                                         </a>`;
                                 break;
                             default:
-                                return ``;
+                                return `<button class="btn btn-info btn-sm" disabled>
+                                        <i class="fas fa-pencil-alt">
+                                        </i>
+                                        Konfirmasi
+                                        </button>`;
                                 break;
                         }
                     }

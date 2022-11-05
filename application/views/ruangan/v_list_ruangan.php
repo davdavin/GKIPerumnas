@@ -169,6 +169,7 @@
                                         <th>Kapasitas</th>
                                         <th>Perlengkapan</th>
                                         <th>Foto</th>
+                                        <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -276,10 +277,31 @@
                     {
                         data: null,
                         name: null,
+                        //  searchable: false,
                         render: function(data, type, row, meta) {
-                            return `<a class="btn btn-info btn-sm" href="<?php echo base_url() . 'Ruangan/booking/' ?>${row.id_ruangan}">
-                          <i class="fas fa-solid fa-book"></i> Booking
-                        </a>`;
+                            switch (row.status_ruangan) {
+                            case "TERSEDIA":
+                                return `<span class="badge badge-success">TERSEDIA</span>`;
+                                break;
+                            default:
+                                return `<span class="badge badge-danger">TIDAK TERSEDIA</span>`;
+                                break;
+                            }
+                        }
+                    },
+                    {
+                        data: null,
+                        name: null,
+                        render: function(data, type, row, meta) {
+                            if (row.status_ruangan != "TIDAK TERSEDIA") {
+                                return `<a class="btn btn-info btn-sm" href="<?php echo base_url() . 'Ruangan/booking/' ?>${row.id_ruangan}">
+                                        <i class="fas fa-solid fa-book"></i> Booking
+                                        </a>`;
+                            } else {
+                                return `<button class="btn btn-info btn-sm" disabled>
+                                        <i class="fas fa-solid fa-book"></i> Booking
+                                        </button>`;
+                            }
                         }
                     }
                 ]

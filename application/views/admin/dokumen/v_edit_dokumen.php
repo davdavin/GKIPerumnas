@@ -61,6 +61,27 @@
               <div class="px-2 error_keterangan clear" style="display: none">
               </div>
             </div>
+
+            <div class="form-group">
+              <label>Status</label>
+              <select class="custom-select select2bs4" style="width: 100%;" name="status">
+                <option selected disabled value>-- Pilih --</option>
+                <?php if ($list_dokumen_edit->status_dokumen == "DITERBITKAN") { ?>
+                  <option value="<?php echo $list_dokumen_edit->status_dokumen ?>" <?php echo "selected"; ?>>
+                    <?php echo $list_dokumen_edit->status_dokumen ?>
+                  </option>
+                  <option value="TIDAK DITERBITKAN">TIDAK DITERBITKAN</option>
+                <?php } ?>
+                <?php if ($list_dokumen_edit->status_dokumen == "TIDAK DITERBITKAN") { ?>
+                  <option value="DITERBITKAN">DITERBITKAN</option>
+                  <option value="<?php echo $list_dokumen_edit->status_dokumen ?>" <?php echo "selected"; ?>>
+                    <?php echo $list_dokumen_edit->status_dokumen ?>
+                  </option>
+                <?php } ?>
+              </select>
+              <div class="p-2 error_status clear" style="display: none">
+              </div>
+            </div>
           </div>
           <div class="card-footer">
             <button type="submit" class="btn btn-primary simpan">Ubah</button>
@@ -161,6 +182,13 @@
                   $('.error_keterangan').css("color", "red");
                 } else {
                   $('.error_keterangan').hide();
+                }
+                if (respon.error_status) {
+                  $('.error_status').show();
+                  $('.error_status').html(respon.error_status);
+                  $('.error_status').css("color", "red");
+                } else {
+                  $('.error_status').hide();
                 }
               } else {
                 $('.clear').hide();

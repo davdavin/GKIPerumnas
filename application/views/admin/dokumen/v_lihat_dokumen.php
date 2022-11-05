@@ -40,6 +40,7 @@
                 <th>Jenis Dokumen</th>
                 <th>File</th>
                 <th>Keterangan</th>
+                <th>Status</th>
                 <?php if ($this->session->userdata('level_user') == 2) { ?>
                   <th>Aksi</th>
                 <?php } ?>
@@ -234,6 +235,21 @@
         {
           data: null,
           name: null,
+          //  searchable: false,
+          render: function(data, type, row, meta) {
+            switch (row.status_dokumen) {
+              case "DITERBITKAN":
+                return `<span class="badge badge-success">DITERBITKAN</span>`;
+                break;
+              default:
+                return `<span class="badge badge-danger">TIDAK DITERBITKAN</span>`;
+                break;
+            }
+          }
+        },
+        {
+          data: null,
+          name: null,
           sortable: false,
           render: function(data, type, row, meta) {
             return `<a class=" btn btn-primary btn-sm" href="<?php echo base_url() . 'dokumenFormulir/' ?>${row.nama_dokumen}" download>
@@ -245,12 +261,7 @@
                       <i class="fas fa-pencil-alt">
                       </i>
                       Edit
-                    </a>
-                    <a class="btn btn-danger btn-sm tombol-hapus" href="<?php echo base_url() . 'Dokumen/hapus_dokumen/' ?>${row.id_dokumen}">
-                      <i class="fas fa-trash">
-                      </i>
-                      Hapus
-                    </a>`
+                    </a>`;
           }
         }
       ]
