@@ -259,7 +259,26 @@
           "data": "tanggal_lahir_pendeta"
         },
         {
-          "data": "status_pendeta"
+          data: null,
+          name: null,
+          sortable: true,
+          //  searchable: false,
+          render: function(data, type, row, meta) {
+            switch (row.status_pendeta) {
+              case "PENDETA AKTIF":
+                return `<span class="badge badge-success">Pendeta Aktif</span>`;
+                break;
+              case "PENATUA AKTIF":
+                return `<span class="badge badge-success">Penatua Aktif</span>`;
+                break;
+              case "EMERITUS":
+                return `<span class="badge badge-danger">Emeritus</span>`;
+                break;
+              default:
+                return `<span class="badge badge-danger">Tidak Aktif</span>`;
+                break;
+            }
+          }
         },
         <?php if ($this->session->userdata('level_user') == 2) { ?> {
             data: null,

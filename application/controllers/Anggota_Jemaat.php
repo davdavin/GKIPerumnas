@@ -134,7 +134,7 @@ class Anggota_Jemaat extends CI_Controller
                 'pekerjaan_anggota' => $pekerjaan_anggota, 'kelompok_etnis_anggota' => $kelompok_etnis, 'jabatan_anggota' => 'Jemaat',
                 'tanggal_lahir_anggota' => $tanggal_lahir, 'tanggal_baptis_anggota' => $tanggal_baptis, 'tanggal_sidi_anggota' => $tanggal_sidi,
                 'tanggal_atestasi_masuk' => $tanggal_atestasi_masuk, 'tanggal_atestasi_keluar' => $tanggal_atestasi_keluar, 'tanggal_meninggal' => $tanggal_meninggal,
-                'tanggal_dkh' => $tanggal_dkh, 'tanggal_ex_dkh' => $tanggal_ex_dkh, 'status_akun' => 1, 'created_at' => $tanggal
+                'tanggal_dkh' => $tanggal_dkh, 'tanggal_ex_dkh' => $tanggal_ex_dkh, 'created_at' => $tanggal
             );
 
             $this->M_Anggota_Jemaat->insert_record($data, 'anggota_jemaat');
@@ -290,15 +290,9 @@ class Anggota_Jemaat extends CI_Controller
         } else {
 
             if ($tanggal_meninggal) {
-                $status_anggota = 0;
+                $status_anggota = "TIDAK AKTIF";
             } else {
                 $status_anggota = $this->input->post('status');
-            }
-
-            if ($status_anggota == 0) {
-                $status_akun = 0;
-            } else {
-                $status_akun = 1;
             }
 
             $tanggal = date('Y-m-d H:i:s');
@@ -311,7 +305,7 @@ class Anggota_Jemaat extends CI_Controller
                 'pendidikan_anggota' => $pendidikan_anggota, 'pekerjaan_anggota' => $pekerjaan_anggota, 'kelompok_etnis_anggota' => $kelompok_etnis, 'jabatan_anggota' => $jabatan_anggota,
                 'tanggal_lahir_anggota' => $tanggal_lahir, 'tanggal_baptis_anggota' => $tanggal_baptis, 'tanggal_sidi_anggota' => $tanggal_sidi,
                 'tanggal_atestasi_masuk' => $tanggal_atestasi_masuk, 'tanggal_atestasi_keluar' => $tanggal_atestasi_keluar, 'tanggal_meninggal' => $tanggal_meninggal,
-                'tanggal_dkh' => $tanggal_dkh, 'tanggal_ex_dkh' => $tanggal_ex_dkh, 'status_akun' => $status_akun, 'updated_at' => $tanggal
+                'tanggal_dkh' => $tanggal_dkh, 'tanggal_ex_dkh' => $tanggal_ex_dkh, 'updated_at' => $tanggal
             );
 
             $this->M_Anggota_Jemaat->update_record($where, $data, 'anggota_jemaat');

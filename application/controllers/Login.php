@@ -27,7 +27,7 @@ class Login extends CI_Controller
     $cek_login = $this->M_Profil->cek_login('anggota_jemaat', $where)->row_array();
 
     if ($cek_login) {
-      if ($cek_login['status_akun'] == 1) { //$cek_login['status_akun'] == 1
+      if ($cek_login['status_anggota'] == "AKTIF") {
         if (password_verify($password, $cek_login['password'])) {
           $session = array(
             'id' => $cek_login['id_anggota'],

@@ -277,18 +277,18 @@
                         //  searchable: false,
                         render: function(data, type, row, meta) {
                             switch (row.status_peminjaman) {
-                            case "SEDANG DIPROSES":
-                                return `<span class="badge badge-warning text-white">SEDANG DIPROSES</span>`;
-                                break;
-                            case "DITERIMA":
-                                return `<span class="badge badge-success">DITERIMA</span>`;
-                                break;
-                            case "DITOLAK":
-                                return `<span class="badge badge-danger">DITOLAK</span>`;
-                                break;
-                            default:
-                                return `<span class="badge badge-success">SELESAI</span>`;
-                                break;
+                                case "SEDANG DIPROSES":
+                                    return `<span class="badge badge-warning text-white">Sedang Diproses</span>`;
+                                    break;
+                                case "DITERIMA":
+                                    return `<span class="badge badge-success">Diterima</span>`;
+                                    break;
+                                case "DITOLAK":
+                                    return `<span class="badge badge-danger">Ditolak</span>`;
+                                    break;
+                                default:
+                                    return `<span class="badge badge-success">Selesai</span>`;
+                                    break;
                             }
                         }
                     },

@@ -61,14 +61,7 @@
                                     <h5> <strong> Golongan Darah </strong> </h5>
                                     <p><?php echo $list_detail_jemaat->golongan_darah_anggota; ?></p>
                                     <h5> <strong> Status </strong> </h5>
-                                    <p>
-                                        <?php if ($list_detail_jemaat->status_anggota == 1) {
-                                            echo 'Aktif';
-                                        } else {
-                                            echo 'Tidak Aktif';
-                                        }
-                                        ?>
-                                    </p>
+                                    <p><?php echo $list_detail_jemaat->status_anggota; ?></p>
                                     <h5> <strong> Pendidikan </strong> </h5>
                                     <p><?php echo $list_detail_jemaat->pendidikan_anggota; ?></p>
                                     <h5> <strong> Pekerjaan </strong> </h5>
