@@ -139,8 +139,8 @@
                 <label>Status</label>
                 <select class="custom-select select2bs4" style="width: 100%;" name="status">
                   <option selected disabled value>-- Pilih --</option>
-                  <option value="1">Aktif</option>
-                  <option value="0">Tidak Aktif</option>
+                  <option value="AKTIF">Aktif</option>
+                  <option value="TIDAK AKTIF">Tidak Aktif</option>
                 </select>
                 <div class="px-2 error_status clear" style="display: none">
                 </div>
@@ -371,7 +371,7 @@
           //  searchable: false,
           render: function(data, type, row, meta) {
             switch (row.status_anggota) {
-              case "1":
+              case "AKTIF":
                 return `<span class="badge badge-success">Aktif</span>`;
                 break;
               default:

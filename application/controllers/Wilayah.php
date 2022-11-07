@@ -114,10 +114,10 @@ class Wilayah extends CI_Controller
     public function nama_jemaat_per_wilayah($id_wilayah)
     {
         if (!isset($_POST['searchJemaat'])) {
-            $nama = $this->db->query("SELECT id_anggota, nama_lengkap_anggota, nama_wilayah FROM anggota_jemaat JOIN wilayah ON anggota_jemaat.id_wilayah = Wilayah.id_wilayah WHERE anggota_jemaat.id_wilayah = '$id_wilayah' AND status_anggota = 1")->result_array();
+            $nama = $this->db->query("SELECT id_anggota, nama_lengkap_anggota, nama_wilayah FROM anggota_jemaat JOIN wilayah ON anggota_jemaat.id_wilayah = Wilayah.id_wilayah WHERE anggota_jemaat.id_wilayah = '$id_wilayah' AND status_anggota = 'AKTIF'")->result_array();
         } else {
             $search = strtolower($_POST['searchJemaat']);
-            $nama = $this->db->query("SELECT id_anggota, nama_lengkap_anggota, nama_wilayah FROM anggota_jemaat JOIN wilayah ON anggota_jemaat.id_wilayah = Wilayah.id_wilayah WHERE nama_lengkap_anggota LIKE '%$search%' AND anggota_jemaat.id_wilayah = '$id_wilayah' AND status_anggota = 1")->result_array();
+            $nama = $this->db->query("SELECT id_anggota, nama_lengkap_anggota, nama_wilayah FROM anggota_jemaat JOIN wilayah ON anggota_jemaat.id_wilayah = Wilayah.id_wilayah WHERE nama_lengkap_anggota LIKE '%$search%' AND anggota_jemaat.id_wilayah = '$id_wilayah' AND status_anggota = 'AKTIF'")->result_array();
         }
 
         $list = array();

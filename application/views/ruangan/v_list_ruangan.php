@@ -280,12 +280,12 @@
                         //  searchable: false,
                         render: function(data, type, row, meta) {
                             switch (row.status_ruangan) {
-                            case "TERSEDIA":
-                                return `<span class="badge badge-success">TERSEDIA</span>`;
-                                break;
-                            default:
-                                return `<span class="badge badge-danger">TIDAK TERSEDIA</span>`;
-                                break;
+                                case "TERSEDIA":
+                                    return `<span class="badge badge-success">Tersedia</span>`;
+                                    break;
+                                default:
+                                    return `<span class="badge badge-danger">Tidak Tersedia</span>`;
+                                    break;
                             }
                         }
                     },

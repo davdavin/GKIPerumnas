@@ -111,15 +111,15 @@
                 <div class="form-group">
                   <label>Status</label>
                   <select class="custom-select select2bs4" style="width: 100%;" name="status">
-                    <?php if ($list_jemaat_edit->status_anggota == 1) { ?>
+                    <?php if ($list_jemaat_edit->status_anggota == "AKTIF") { ?>
                       <option value="<?php echo $list_jemaat_edit->status_anggota ?>" <?php echo "selected"; ?>>
                         <?php echo 'Aktif'; ?>
                       </option>
-                      <option value="0">Tidak Aktif</option>
+                      <option value="TIdak AKTIF">Tidak Aktif</option>
                     <?php } ?>
 
-                    <?php if ($list_jemaat_edit->status_anggota == 0) { ?>
-                      <option value="1">Aktif</option>
+                    <?php if ($list_jemaat_edit->status_anggota == "TIDAK AKTIF") { ?>
+                      <option value="AKTIF">Aktif</option>
                       <option value="<?php echo $list_jemaat_edit->status_anggota ?>" <?php echo "selected"; ?>>
                         <?php echo 'Tidak Aktif'; ?>
                       </option>
@@ -161,7 +161,7 @@
                       <option value="Pengurus">Pengurus</option>
                     <?php } ?>
 
-                    <?php if ( $list_jemaat_edit->jabatan_anggota == "Pengurus") { ?>
+                    <?php if ($list_jemaat_edit->jabatan_anggota == "Pengurus") { ?>
                       <option value="Jemaat">Jemaat</option>
                       <option value="<?php echo $list_jemaat_edit->jabatan_anggota ?>" <?php echo "selected"; ?>>
                         <?php echo $list_jemaat_edit->jabatan_anggota; ?>
