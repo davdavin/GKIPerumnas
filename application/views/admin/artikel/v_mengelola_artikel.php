@@ -29,7 +29,7 @@
         <div class="card-body">
           <?php if ($this->session->userdata('level_user') == 2 || $this->session->userdata('level_user') == 3) { ?>
             <a href="<?php echo base_url() . 'mengelola_artikel/tambah' ?>"><button type="button" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Tambah artikel
+                <i class="fas fa-plus"></i> Tambah
               </button></a><br><br>
           <?php } ?>
 

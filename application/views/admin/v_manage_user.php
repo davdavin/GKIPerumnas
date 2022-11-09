@@ -28,7 +28,7 @@
 
         <div class="card-body">
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
-            <i class="fas fa-plus"></i> Tambah user
+            <i class="fas fa-plus"></i> Tambah
           </button><br><br>
 
           <table id="tabel_user" class="table table-bordered table-striped">
@@ -55,7 +55,7 @@
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h4 class="modal-title">Edit User</h4>
+                    <h4 class="modal-title">Form Edit User</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -119,7 +119,7 @@
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Input User Baru</h4>
+            <h4 class="modal-title">Tambah User</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>

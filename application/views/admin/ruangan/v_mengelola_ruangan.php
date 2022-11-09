@@ -29,7 +29,7 @@
                 <div class="card-body">
                     <?php if ($this->session->userdata('level_user') == 2) { ?>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
-                            <i class="fas fa-plus"></i> Tambah ruangan
+                            <i class="fas fa-plus"></i> Tambah
                         </button><br><br>
                     <?php } ?>
 
@@ -54,7 +54,7 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content" style="border-top: 10px solid #428bca;">
                     <div class="modal-header">
-                        <h4 class="modal-title">Input Ruangan</h4>
+                        <h4 class="modal-title">Tambah Ruangan</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

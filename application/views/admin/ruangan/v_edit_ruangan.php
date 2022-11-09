@@ -48,7 +48,7 @@
               <div class="px-2 error_perlengkapan clear" style="display: none">
               </div>
             </div>
-          
+
             <div class="form-group">
               <input type="hidden" name="foto_lama" value="<?= $detail->foto ?>">
               <img src="<?php echo base_url(); ?>resources/assets/img/ruangan/<?php echo $detail->foto; ?>" class="img-fluid" style="width: 500px; height: 400px;"><br><br>
