@@ -28,7 +28,7 @@ class Login_Admin extends CI_Controller
     $cek_login = $this->M_User->cek_login('user', $where)->row_array();
 
     if ($cek_login) {
-      if ($cek_login['status_user'] == 1) {
+      if ($cek_login['status_user'] == "AKTIF") {
         if (password_verify($password, $cek_login['password'])) {
           $session = array(
             'id_user' => $cek_login['id_user'],
@@ -36,8 +36,8 @@ class Login_Admin extends CI_Controller
             'level_user' => $cek_login['id_level_user'],
             'status' => 'login'
           );
-            $this->session->set_userdata($session);
-            redirect('admin/dashboard');
+          $this->session->set_userdata($session);
+          redirect('admin/dashboard');
         } else {
           $this->session->set_flashdata('gagal', 'Password salah');
           redirect('login');

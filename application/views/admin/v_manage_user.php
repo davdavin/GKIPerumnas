@@ -86,15 +86,15 @@
                         <label>Status</label>
                         <select class="form-control select2bs4" style="width: 100%;" id="status" name="status" required>
                           <option selected disabled value>Status</option>
-                          <?php if ($list_user->status_user == 1) { ?>
+                          <?php if ($list_user->status_user == "AKTIF") { ?>
                             <option value="<?php echo $list_user->status_user ?>" <?php echo "selected"; ?>>
                               <?php echo 'Aktif'; ?>
                             </option>
-                            <option value="0">Tidak Aktif</option>
+                            <option value="TIDAK AKTIF">Tidak Aktif</option>
                           <?php } ?>
 
-                          <?php if ($list_user->status_user == 0) { ?>
-                            <option value="1">Aktif</option>
+                          <?php if ($list_user->status_user == "TIDAK AKTIF") { ?>
+                            <option value="AKTIF">Aktif</option>
                             <option value="<?php echo $list_user->status_user ?>" <?php echo "selected"; ?>>
                               <?php echo 'Tidak Aktif'; ?>
                             </option>
@@ -282,7 +282,7 @@
           name: null,
           render: function(data, type, row, meta) {
             switch (row.status_user) {
-              case "1":
+              case "AKTIF":
                 return `<span class="badge badge-success">Aktif</span>`;
                 break;
               default:
@@ -296,7 +296,7 @@
           name: null,
           sortable: false,
           render: function(data, type, row, meta) {
-              return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_user}">
+            return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_user}">
                           <i class="fas fa-pencil-alt"></i> Edit
                         </a>`;
           }
