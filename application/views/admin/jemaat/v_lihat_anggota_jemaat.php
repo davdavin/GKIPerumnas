@@ -28,7 +28,7 @@
         <div class="card-body">
           <?php if ($this->session->userdata('level_user') == 2) { ?>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
-              <i class="fas fa-plus"></i> Tambah anggota jemaat
+              <i class="fas fa-plus"></i> Tambah
             </button><br><br>
             <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-akun-jemaat">
               <i class="mr-1 fas fa-plus"></i> Akun Jemaat
@@ -61,7 +61,7 @@
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Input Data Anggota Jemaat Baru</h4>
+            <h4 class="modal-title">Tambah Data Anggota Jemaat</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>

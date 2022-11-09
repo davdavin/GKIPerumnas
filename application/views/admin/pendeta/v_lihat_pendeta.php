@@ -30,7 +30,7 @@
         <div class="card-body">
           <?php if ($this->session->userdata('level_user') == 2) { ?>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
-              <i class="fas fa-plus"></i> Tambah pendeta
+              <i class="fas fa-plus"></i> Tambah
             </button><br><br>
           <?php } ?>
 

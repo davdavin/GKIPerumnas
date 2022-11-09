@@ -21,7 +21,7 @@
   <section class="content">
     <div class="card card-primary">
       <div class="card-header">
-        <h3 class="card-title">Form Ubah Data Wilayah</h3>
+        <h3 class="card-title">Form Edit Data Wilayah</h3>
       </div>
       <!-- /.card-header -->
       <!-- form start -->
