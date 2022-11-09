@@ -81,7 +81,7 @@
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Input Dokumen Baru</h4>
+            <h4 class="modal-title">Tambah Dokumen</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -96,7 +96,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label>File Input</label>
+                <label>File</label>
                 <div class="input-group">
                   <div class="custom-file">
                     <input type="file" class="custom-file-input" id="exampleInputFile" name="dokumen">

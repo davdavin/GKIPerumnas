@@ -61,7 +61,7 @@
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Input Pendeta Baru</h4>
+            <h4 class="modal-title">Tambah Data Pendeta</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -116,7 +116,7 @@
 
               <!-- Foto -->
               <div class="form-group">
-                <label>File Input</label>
+                <label>File</label>
                 <div class="input-group">
                   <div class="custom-file">
                     <input type="file" class="custom-file-input" id="exampleInputFile" name="foto">
