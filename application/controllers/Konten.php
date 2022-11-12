@@ -83,7 +83,7 @@ class Konten extends CI_Controller
                 );
 
                 $this->M_Konten->update_record($where, $data, 'konten_slide');
-                $respon['sukses'] = "Berhasil diubah";
+                $respon['sukses'] = "Data berhasil diubah";
                 echo json_encode($respon);
             } else {
                 //upload file
@@ -110,7 +110,7 @@ class Konten extends CI_Controller
                     @unlink('./resources/assets/img/slide/' . $gambar_lama); //untuk hapus gambar lama
 
                     $this->M_Konten->update_record($where, $data, 'konten_slide');
-                    $respon['sukses'] = "Berhasil diubah";
+                    $respon['sukses'] = "Data berhasil diubah";
                     echo json_encode($respon);
                 }
             }
@@ -145,7 +145,7 @@ class Konten extends CI_Controller
 
             $this->M_Konten->update_record($where, $data, 'konten_foto_ibadah');
 
-            $respon['sukses'] = "Berhasil ganti foto";
+            $respon['sukses'] = "Data berhasil diubah";
             echo json_encode($respon);
         }
     }

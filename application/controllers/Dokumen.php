@@ -151,7 +151,7 @@ class Dokumen extends CI_Controller
                 );
 
                 $this->M_Dokumen->update_record($where, $data, 'dokumen');
-                $respon['sukses'] = "Data berhasil disimpan";
+                $respon['sukses'] = "Data berhasil diubah";
                 echo json_encode($respon);
             } else {
                 //upload file
@@ -179,7 +179,7 @@ class Dokumen extends CI_Controller
                     @unlink('./dokumenFormulir/' . $dokumen_lama);
 
                     $this->M_Dokumen->update_record($where, $data, 'dokumen');
-                    $respon['sukses'] = "Data berhasil disimpan";
+                    $respon['sukses'] = "Data berhasil diubah";
                     echo json_encode($respon);
                 }
             }
