@@ -85,7 +85,7 @@
                             <!-- Foto -->
                             <!-- <input type="hidden" id="count" name="count"> -->
                             <div class="form-group">
-                                <label>Input Foto</label>
+                                <label>Foto</label>
                                 <div class="input-group">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="foto" name="foto">
