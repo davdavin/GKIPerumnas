@@ -87,7 +87,7 @@ class User extends CI_Controller
         $where = array('id_user' => $this->input->post('id'));
         $data = array('id_level_user' => $level, 'nama_lengkap' => $nama, 'status_user' => $status, 'updated_at' => $tanggal);
         $this->M_User->update_record($where, $data, 'user');
-        $this->session->set_flashdata('sukses', 'Berhasil ubah data');
+        $this->session->set_flashdata('sukses', 'Data berhasil diubah');
         redirect('User');
     }
 }

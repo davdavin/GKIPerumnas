@@ -103,7 +103,7 @@ class MengelolaRuangan extends CI_Controller
 
             $this->M_Ruangan->insert_record($data, 'ruangan');
 
-            $respon['sukses'] = "Berhasil disimpan";
+            $respon['sukses'] = "Data berhasil disimpan";
             echo json_encode($respon);
         }
     }
@@ -209,17 +209,7 @@ class MengelolaRuangan extends CI_Controller
         $data = array('status_peminjaman' => $status, 'pesan' => $pesan, 'updated_at' => $tanggal);
         $this->M_Ruangan->update_record($where, $data, 'peminjaman_ruangan');
 
-        $this->session->set_flashdata('sukses', 'Berhasil mengubah status');
-        redirect('mengelola_ruangan/peminjaman');
-    }
-
-    public function hapus_peminjaman($id_peminjaman)
-    {
-        $tanggal = date('Y-m-d H:i:s');
-        $where = array('id_peminjaman' => $id_peminjaman);
-        $data = array('deleted_at' => $tanggal);
-        $this->M_Ruangan->update_record($where, $data, 'peminjaman_ruangan');
-        $this->session->set_flashdata('sukses', 'Berhasil dihapus');
+        $this->session->set_flashdata('sukses', 'Berhasil konfirmasi');
         redirect('mengelola_ruangan/peminjaman');
     }
 }

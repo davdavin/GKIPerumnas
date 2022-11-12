@@ -143,58 +143,6 @@ class Anggota_Jemaat extends CI_Controller
         }
     }
 
-    public function tambah_akun_jemaat()
-    {
-        $jemaat = $this->input->post('jemaat');
-        $username = $this->input->post('username');
-
-        $this->form_validation->set_rules('jemaat', 'Nama', 'required');
-        $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[15]|is_unique[anggota_jemaat.username]');
-
-        $this->form_validation->set_message('required', '{field} wajib diisi');
-        $this->form_validation->set_message('is_unique', '{field} sudah digunakan');
-        $this->form_validation->set_message('min_length', '{field} minimal {param} karakter');
-        $this->form_validation->set_message('max_length', '{field} maksimal {param} karakter');
-
-        if ($this->form_validation->run() == FALSE) {
-            $respon = array(
-                'sukses' => false,
-                'error_jemaat' => form_error('jemaat'),
-                'error_username' => form_error('username')
-            );
-            echo json_encode($respon);
-        } else {
-            $cek_akun = $this->db->query("SELECT username FROM anggota_jemaat WHERE id_anggota = '$jemaat'")->row_array();
-
-            if ($cek_akun['username'] != "") {
-                $respon = array(
-                    'sukses' => false,
-                    'error_jemaat' => 'sudah memiliki akun'
-                );
-                echo json_encode($respon);
-            } else {
-                $ambil_tglahir_nama = $this->db->query("SELECT nama_lengkap_anggota, tanggal_lahir_anggota FROM anggota_jemaat WHERE id_anggota = '$jemaat'")->row_array();
-
-                //masih coba
-                $pisah = explode("/", date_format(date_create($ambil_tglahir_nama['tanggal_lahir_anggota']), "d/m/Y"));
-
-                $pass = $pisah[0] . $pisah[1] . $pisah[2];
-
-                $where = array(
-                    'id_anggota' => $jemaat
-                );
-
-                $data = array(
-                    'username' => strtolower($username), 'password' => password_hash($pass, PASSWORD_DEFAULT), 'status_akun' => 1
-                );
-
-                $this->M_Anggota_Jemaat->update_record($where, $data, 'anggota_jemaat');
-                $respon['sukses'] = 'Berhasil membuat akun jemaat';
-                echo json_encode($respon);
-            }
-        }
-    }
-
     public function lihat_detail_anggota($id_anggota)
     {
         $data['title'] = "Jemaat";
@@ -309,60 +257,60 @@ class Anggota_Jemaat extends CI_Controller
             );
 
             $this->M_Anggota_Jemaat->update_record($where, $data, 'anggota_jemaat');
-            $respon['sukses'] = 'Berhasil diubah';
+            $respon['sukses'] = "Data berhasil diubah";
             echo json_encode($respon);
         }
     }
 
-    public function ubah_data_jemaat($id_permintaan)
+    public function tambah_akun_jemaat()
     {
-        $data['title'] = "Jemaat";
-        $data['permintaanPerubahan'] = $this->M_Permintaan->tampil_data_permintaan($id_permintaan)->result();
-        $this->load->view('templates/header.php', $data);
-        $this->load->view('templates/sidebar.php');
-        $this->load->view('v_respon_perubahan_data.php', $data);
-    }
+        $jemaat = $this->input->post('jemaat');
+        $username = $this->input->post('username');
 
-    public function proses_permintaan_perubahan()
-    {
-        $id_permintaan = $this->input->post('id_permintaan');
-        $no_anggota = $this->input->post('no_anggota');
-        $nohp_anggota = $this->input->post('nohp');
-        $email_anggota = $this->input->post('email_anggota');
-        $alamat_anggota = $this->input->post('alamat_anggota');
-        $pekerjaan_anggota = $this->input->post('pekerjaan');
-        $pendidikan_anggota = $this->input->post('pendidikan');
+        $this->form_validation->set_rules('jemaat', 'Nama', 'required');
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[15]|is_unique[anggota_jemaat.username]');
 
-        $tanggal = date('Y-m-d H:i:s');
-        $where = array(
-            'no_anggota' => $no_anggota
-        );
-        if ($nohp_anggota != "-") {
-            $nohp_baru = array('nohp_anggota' => $nohp_anggota, 'updated_at' => $tanggal);
-            $this->M_Anggota_Jemaat->update_record($where, $nohp_baru, 'anggota_jemaat');
+        $this->form_validation->set_message('required', '{field} wajib diisi');
+        $this->form_validation->set_message('is_unique', '{field} sudah digunakan');
+        $this->form_validation->set_message('min_length', '{field} minimal {param} karakter');
+        $this->form_validation->set_message('max_length', '{field} maksimal {param} karakter');
+
+        if ($this->form_validation->run() == FALSE) {
+            $respon = array(
+                'sukses' => false,
+                'error_jemaat' => form_error('jemaat'),
+                'error_username' => form_error('username')
+            );
+            echo json_encode($respon);
+        } else {
+            $cek_akun = $this->db->query("SELECT username FROM anggota_jemaat WHERE id_anggota = '$jemaat'")->row_array();
+
+            if ($cek_akun['username'] != "") {
+                $respon = array(
+                    'sukses' => false,
+                    'error_jemaat' => 'sudah memiliki akun'
+                );
+                echo json_encode($respon);
+            } else {
+                $ambil_tglahir_nama = $this->db->query("SELECT nama_lengkap_anggota, tanggal_lahir_anggota FROM anggota_jemaat WHERE id_anggota = '$jemaat'")->row_array();
+
+                //masih coba
+                $pisah = explode("/", date_format(date_create($ambil_tglahir_nama['tanggal_lahir_anggota']), "d/m/Y"));
+
+                $pass = $pisah[0] . $pisah[1] . $pisah[2];
+
+                $where = array(
+                    'id_anggota' => $jemaat
+                );
+
+                $data = array(
+                    'username' => strtolower($username), 'password' => password_hash($pass, PASSWORD_DEFAULT), 'status_akun' => 1
+                );
+
+                $this->M_Anggota_Jemaat->update_record($where, $data, 'anggota_jemaat');
+                $respon['sukses'] = 'Berhasil membuat akun jemaat';
+                echo json_encode($respon);
+            }
         }
-        if ($email_anggota != "-") {
-            $email_baru = array('email_anggota' => $email_anggota, 'updated_at' => $tanggal);
-            $this->M_Anggota_Jemaat->update_record($where, $email_baru, 'anggota_jemaat');
-        }
-        if ($alamat_anggota != "-") {
-            $alamat_baru = array('alamat_anggota' => $alamat_anggota, 'updated_at' => $tanggal);
-            $this->M_Anggota_Jemaat->update_record($where, $alamat_baru, 'anggota_jemaat');
-        }
-        if ($pekerjaan_anggota != "-") {
-            $pekerjaan_baru = array('pekerjaan_anggota' => $pekerjaan_anggota, 'updated_at' => $tanggal);
-            $this->M_Anggota_Jemaat->update_record($where, $pekerjaan_baru, 'anggota_jemaat');
-        }
-        if ($pendidikan_anggota != "-") {
-            $pendidikan_baru = array('pendidikan_anggota' => $pendidikan_anggota, 'updated_at' => $tanggal);
-            $this->M_Anggota_Jemaat->update_record($where, $pendidikan_baru, 'anggota_jemaat');
-        }
-        $where_permintaan = array(
-            'id_permintaan' => $id_permintaan
-        );
-        $permintaan = array('is_updated' => 1);
-        $this->M_Permintaan->update_record($where_permintaan, $permintaan, 'permintaan_perubahan_data_jemaat');
-        $this->session->set_flashdata('sukses', 'Data berhasil diubah');
-        redirect('Anggota_Jemaat');
     }
 }
