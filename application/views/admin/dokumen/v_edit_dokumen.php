@@ -21,17 +21,14 @@
   <section class="content">
     <div class="card card-primary">
       <div class="card-header">
-        <h3 class="card-title">Form Ubah Data Dokumen</h3>
+        <h3 class="card-title">Form Edit Data Dokumen</h3>
       </div>
       <!-- /.card-header -->
       <!-- form start -->
       <?php foreach ($dokumenEdit as $list_dokumen_edit) { ?>
         <form class="form-submit" action="<?php echo base_url() . 'Dokumen/proses_edit_dokumen' ?>" method="post" enctype="multipart/form-data">
           <div class="card-body">
-            <div class="form-group">
-              <label>ID</label>
-              <input type="text" class="form-control" name="id_dokumen" value="<?= $list_dokumen_edit->id_dokumen; ?>" readonly>
-            </div>
+            <input type="hidden" class="form-control" name="id_dokumen" value="<?= $list_dokumen_edit->id_dokumen; ?>" readonly>
             <div class="form-group">
               <label for="jenisDokumen">Jenis dokumen</label>
               <input type="hidden" name="jenis_lama" value="<?= $list_dokumen_edit->jenis_dokumen ?>">

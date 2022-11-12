@@ -103,7 +103,7 @@ class MengelolaRuangan extends CI_Controller
 
             $this->M_Ruangan->insert_record($data, 'ruangan');
 
-            $respon['sukses'] = "Berhasil ditambahkan";
+            $respon['sukses'] = "Berhasil disimpan";
             echo json_encode($respon);
         }
     }

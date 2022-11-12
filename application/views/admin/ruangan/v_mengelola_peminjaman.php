@@ -56,7 +56,7 @@
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title">Edit Status</h4>
+                            <h4 class="modal-title">Konfirmasi</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -206,7 +206,7 @@
                                 return `<span class="badge badge-warning text-white">Sedang Diproses</span>`;
                                 break;
                             case "DITERIMA":
-                                return `<span class="badge badge-success>Diterima</span>`;
+                                return `<span class="badge badge-success">Diterima</span>`;
                                 break;
                             case "DITOLAK":
                                 return `<span class="badge badge-danger">Ditolak</span>`;

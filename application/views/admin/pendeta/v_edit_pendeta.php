@@ -30,10 +30,7 @@
           <div class="card-body">
             <div class="row edit-center">
               <div class="col-sm-4">
-                <div class="form-group">
-                  <label>ID</label>
-                  <input type="text" class="form-control" name="id_pendeta" value="<?= $list_pendeta_edit->id_pendeta; ?>" readonly>
-                </div>
+                <input type="hidden" class="form-control" name="id_pendeta" value="<?= $list_pendeta_edit->id_pendeta; ?>">
                 <div class="form-group">
                   <label>No Pendeta</label>
                   <input type="text" class="form-control" name="no_pendeta" value="<?= $list_pendeta_edit->no_pendeta; ?>" readonly>
