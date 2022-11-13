@@ -120,7 +120,7 @@ class Profil extends CI_Controller
                     'password' => password_hash($pass_baru, PASSWORD_DEFAULT), 'updated_at' => $tanggal
                 );
                 $this->M_Profil->update_record($where, $data, 'anggota_jemaat');
-                $respon['sukses'] = 'Berhasil ganti password';
+                $respon['sukses'] = 'Password berhasil diubah';
                 echo json_encode($respon);
             } else {
                 $respon = array(
