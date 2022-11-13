@@ -14,14 +14,13 @@ class Artikel extends CI_Controller
     {
         $data['title'] = "Artikel";
 
-        //masih coba
         //PAGINATION
         $this->load->library('pagination');
 
         //config
         $config['base_url'] =  base_url() . 'Artikel/index';
         $config['total_rows'] = $this->db->query("SELECT * FROM artikel WHERE status_artikel = 'DITERBITKAN'")->num_rows();
-        $config['per_page'] = 4; //10
+        $config['per_page'] = 10; //10
         //  $config['num_links'] = 2;
 
         //styling
@@ -184,7 +183,7 @@ class Artikel extends CI_Controller
         //config
         $config['base_url'] = base_url() . 'Artikel/' . $function;
         $config['total_rows'] = $this->db->query("SELECT * FROM artikel WHERE status_artikel = 'DITERBITKAN' AND tipe_artikel = '$tipe'")->num_rows();
-        $config['per_page'] = 4; //10
+        $config['per_page'] = 10; //10
         //  $config['num_links'] = 2;
 
         //styling
@@ -222,7 +221,7 @@ class Artikel extends CI_Controller
     {
         $data['title'] = "Renungan Harian";
         $this->pagination_tipe_artikel('renungan_harian', $data['title']);
-        $per_page = 4; //10
+        $per_page = 10; //10
         $start = $this->uri->segment(3);
         $data['renungan'] = $this->M_Artikel->pilih_tipe_artikel('Renungan Harian', $per_page, $start)->result();
         //  $data['renungan'] = $this->M_Artikel->pilih_tipe_artikel('Renungan Harian')->result();
@@ -233,7 +232,7 @@ class Artikel extends CI_Controller
     {
         $data['title'] = "Doa Harian";
         $this->pagination_tipe_artikel('bacaan_doa', $data['title']);
-        $per_page = 4;
+        $per_page = 10;
         $start = $this->uri->segment(3);
         $data['doa_harian'] = $this->M_Artikel->pilih_tipe_artikel('Doa Harian', $per_page, $start)->result();
         $this->load->view('artikel/v_bacaan_doa.php', $data);
@@ -243,7 +242,7 @@ class Artikel extends CI_Controller
     {
         $data['title'] = "Warta Jemaat";
         $this->pagination_tipe_artikel('warta_jemaat', $data['title']);
-        $per_page = 4;
+        $per_page = 10;
         $start = $this->uri->segment(3);
         $data['warta'] = $this->M_Artikel->pilih_tipe_artikel('Warta Jemaat', $per_page, $start)->result();
         $this->load->view('artikel/v_warta_jemaat.php', $data);
@@ -253,7 +252,7 @@ class Artikel extends CI_Controller
     {
         $data['title'] = "Artikel Lainnya";
         $this->pagination_tipe_artikel('artikel_lainnya', $data['title']);
-        $per_page = 4;
+        $per_page = 10;
         $start = $this->uri->segment(3);
         $data['artikel'] = $this->M_Artikel->pilih_tipe_artikel('Artikel Lainnya', $per_page, $start)->result();
         $this->load->view('artikel/v_artikel_lainnya.php', $data);

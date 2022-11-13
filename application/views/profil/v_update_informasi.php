@@ -159,13 +159,6 @@
                                     <div class="col-sm-5">
                                         <input type="hidden" class="form-control" id="inputNoAnggota" name="no_anggota" value="<?= $list_jemaat_edit->no_anggota ?>" readonly>
                                         <div class="form-group">
-                                            <label for="inputUsername">Username</label>
-                                            <input type="hidden" name="username_sekarang" value="<?= $list_jemaat_edit->username ?>">
-                                            <input type="text" class="form-control" id="inputUsername" name="username" value="<?= $list_jemaat_edit->username ?>" readonly>
-                                            <div class="px-2 error_username clear" style="display: none">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
                                             <label>Alamat Anggota</label>
                                             <input type="text" class="form-control" name="alamat_anggota" value="<?= $list_jemaat_edit->alamat_anggota ?>">
                                             <div class="px-2 error_alamat clear" style="display: none">
@@ -178,8 +171,6 @@
                                             <div class="px-2 error_nohp clear" style="display: none">
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-5">
                                         <div class="form-group">
                                             <label for="inputEmailAnggota">Email Anggota</label>
                                             <input type="hidden" name="email_sekarang" value="<?= $list_jemaat_edit->email_anggota ?>">
@@ -187,6 +178,8 @@
                                             <div class="px-2 error_email clear" style="display: none">
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="col-sm-5">
                                         <div class="form-group">
                                             <label for="inputPendidikan">Pendidikan</label>
                                             <input type="text" class="form-control" id="inputPendidikan" name="pendidikan" value="<?= $list_jemaat_edit->pendidikan_anggota ?>">
