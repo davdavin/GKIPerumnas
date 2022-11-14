@@ -60,6 +60,8 @@
                             <p> Pendeta </p>
                         </a>
                     </li>
+                <?php } ?>
+                <?php if ($this->session->userdata('level_user') == 2) { ?>
                     <li class="nav-item">
                         <a <?php if ($this->uri->segment(1) == "Wilayah") {
                                 echo "class='nav-link active'";
@@ -70,8 +72,6 @@
                             <p> Wilayah </p>
                         </a>
                     </li>
-                <?php } ?>
-                <?php if ($this->session->userdata('level_user') == 2) { ?>
                     <li <?php if ($this->uri->segment(1) == "mengelola_ruangan") {
                             echo "class='nav-item menu-open'";
                         } else {
