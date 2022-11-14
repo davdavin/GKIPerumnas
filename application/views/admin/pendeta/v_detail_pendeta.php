@@ -31,8 +31,6 @@
               </div>
               <div class="row">
                 <div class="col-sm-4">
-                  <h5> <strong> ID </strong> </h5>
-                  <p><?php echo $list_detail_pendeta->id_pendeta; ?></p>
                   <h5> <strong> No. Pendeta </strong> </h5>
                   <p><?php echo $list_detail_pendeta->no_pendeta; ?></p>
                   <h5> <strong> Nama Lengkap </strong> </h5>

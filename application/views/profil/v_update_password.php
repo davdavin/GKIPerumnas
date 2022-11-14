@@ -95,30 +95,30 @@
                                 <p> Ubah Password </p>
                             </a>
                         </li>
-                        <?php if($this->session->userdata('jabatan_anggota') != "Jemaat") { ?> 
-                        <li class="nav-item">
-                            <a href="<?php echo base_url() . 'Ruangan/list_ruangan' ?>" class="nav-link">
-                                <i class="nav-icon fas fa-door-open"></i>
-                                <p>
-                                    Ruangan
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo base_url() . 'Ruangan/list_ruangan' ?>" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Ruangan</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="<?php echo base_url() . 'Ruangan/list_peminjaman' ?>" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Peminjaman</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                        <?php if ($this->session->userdata('jabatan_anggota') != "Jemaat") { ?>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url() . 'Ruangan/list_ruangan' ?>" class="nav-link">
+                                    <i class="nav-icon fas fa-door-open"></i>
+                                    <p>
+                                        Ruangan
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?php echo base_url() . 'Ruangan/list_ruangan' ?>" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Ruangan</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="<?php echo base_url() . 'Ruangan/list_peminjaman' ?>" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Peminjaman</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
                         <?php } ?>
                         <li class="nav-item">
                             <a href="<?php echo base_url() . 'login/jemaat/logout' ?>" class="nav-link">
@@ -154,7 +154,6 @@
                     <!-- form start -->
                     <form class="form-change" action="<?php echo base_url() . 'Profil/proses_update_password' ?>" method="post">
                         <div class="card-body box-profile">
-
                             <div class="form-group">
                                 <label>Password Lama</label>
                                 <input type="password" class="form-control" name="currentpass">
@@ -170,7 +169,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>Ketik Ulang Password Baru</label>
+                                <label>Ulangi Password Baru</label>
                                 <input type="password" class="form-control" name="confirmpass">
                                 <!-- INFO ERROR -->
                                 <div class="p-2 error_retype" style="display: none">

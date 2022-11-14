@@ -97,7 +97,7 @@ class Profil extends CI_Controller
 
         $this->form_validation->set_rules('currentpass', 'Password', 'required|trim');
         $this->form_validation->set_rules('newpass', 'Password', 'required|min_length[5]|max_length[20]');
-        $this->form_validation->set_rules('confirmpass', 'Konfirmasi Password', 'required|matches[newpass]', array('matches' => '%s tidak sesuai'));
+        $this->form_validation->set_rules('confirmpass', 'Ulangi Password Baru', 'required|matches[newpass]', array('matches' => '%s tidak sesuai'));
 
         $this->form_validation->set_message('required', '{field} wajib diisi');
         $this->form_validation->set_message('min_length', '{field} minimal {param} karakter');
