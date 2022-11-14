@@ -136,7 +136,7 @@
 
     if (sukses) {
       Swal.fire({
-        title: 'Data Wilayah',
+        title: 'Sukses',
         text: sukses,
         icon: 'success'
       });

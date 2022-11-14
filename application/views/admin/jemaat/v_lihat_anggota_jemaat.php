@@ -646,7 +646,7 @@
 
     if (sukses) {
       Swal.fire({
-        title: 'Data Jemaat',
+        title: 'Sukses',
         text: sukses,
         icon: 'success'
       });

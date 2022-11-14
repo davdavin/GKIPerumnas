@@ -336,7 +336,7 @@
 
     if (sukses) {
       Swal.fire({
-        title: 'Dokumen',
+        title: 'Sukses',
         text: sukses,
         icon: 'success'
       });
@@ -346,7 +346,7 @@
 
     if (gagal) {
       Swal.fire({
-        title: 'Tidak Berhasil',
+        title: 'Gagal',
         text: gagal,
         icon: 'error'
       });
