@@ -69,7 +69,7 @@ class Pendeta extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $respon = array(
                 'sukses' => false,
-                'error_nama' => form_error('nama_lengkap'),
+                'error_nama' => form_error('nama_pendeta'),
                 'error_alamat' => form_error('alamat_pendeta'),
                 'error_nohp' => form_error('nohp'),
                 'error_email' => form_error('email_pendeta'),
@@ -161,7 +161,7 @@ class Pendeta extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $respon = array(
                 'sukses' => false,
-                'error_nama' => form_error('nama_lengkap'),
+                'error_nama' => form_error('nama_pendeta'),
                 'error_alamat' => form_error('alamat_pendeta'),
                 'error_nohp' => form_error('nohp'),
                 'error_email' => form_error('email_pendeta'),

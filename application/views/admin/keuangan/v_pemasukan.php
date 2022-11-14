@@ -58,7 +58,7 @@
     <!-- modal untuk menampilkan form input admin -->
     <div class="modal fade" id="modal-lg">
       <div class="modal-dialog modal-lg">
-        <div class="modal-content" style="border-top: 10px solid #428bca;">
+        <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title">Pencatatan Pemasukan</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">

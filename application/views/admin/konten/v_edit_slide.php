@@ -21,17 +21,14 @@
   <section class="content">
     <div class="card card-primary">
       <div class="card-header">
-        <h3 class="card-title">Mengubah Tulisan</h3>
+        <h3 class="card-title">Form Edit Konten Slide</h3>
       </div>
       <!-- /.card-header -->
       <!-- form start -->
       <?php foreach ($kontenSlide as $list_edit) { ?>
         <form class="form-submit" action="<?php echo base_url() . 'Konten/proses_edit_slide' ?>" method="post" enctype="multipart/form-data">
           <div class="card-body">
-            <div class="form-group">
-              <label>ID</label>
-              <input type="text" class="form-control" name="id_slide" value="<?= $list_edit->id_slide; ?>" readonly>
-            </div>
+            <input type="hidden" class="form-control" name="id_slide" value="<?= $list_edit->id_slide; ?>">
             <div class="form-group">
               <label>Judul</label>
               <input type="text" class="form-control" name="judul_slide" value="<?= $list_edit->judul_slide; ?>">

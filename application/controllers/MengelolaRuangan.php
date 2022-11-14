@@ -209,7 +209,7 @@ class MengelolaRuangan extends CI_Controller
         $data = array('status_peminjaman' => $status, 'pesan' => $pesan, 'updated_at' => $tanggal);
         $this->M_Ruangan->update_record($where, $data, 'peminjaman_ruangan');
 
-        $this->session->set_flashdata('sukses', 'Berhasil konfirmasi');
+        $this->session->set_flashdata('sukses', 'Konfirmasi berhasil');
         redirect('mengelola_ruangan/peminjaman');
     }
 }
