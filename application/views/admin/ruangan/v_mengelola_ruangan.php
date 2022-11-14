@@ -320,7 +320,7 @@
         const sukses = $('.sukses').data('flashdata');
         if (sukses) {
             Swal.fire({
-                title: 'Ruangan',
+                title: 'Sukses',
                 text: sukses,
                 icon: 'success'
             });
@@ -330,7 +330,7 @@
 
         if (gagal) {
             Swal.fire({
-                title: 'Ruangan',
+                title: 'Gagal',
                 text: gagal,
                 icon: 'error'
             });

@@ -302,7 +302,7 @@
 
     if (sukses) {
       Swal.fire({
-        title: 'Data Pendeta ',
+        title: 'Sukses',
         text: sukses,
         icon: 'success'
       });
@@ -312,7 +312,7 @@
 
     if (gagal) {
       Swal.fire({
-        title: 'Data Pendeta',
+        title: 'Gagal',
         text: gagal,
         icon: 'error'
       });
