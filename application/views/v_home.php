@@ -326,11 +326,11 @@
 
         <div class="row  d-flex align-items-stretch">
           <?php foreach ($artikel as $list_artikel) { ?>
-              <div class="col-lg-6 artikel-item" data-aos="fade-up">
-                <h4><a href="<?php echo base_url() . 'artikel/' . $list_artikel->id_artikel; ?>"><?php echo $list_artikel->judul_artikel ?> </a></h4>
-                <p><?php echo $list_artikel->deskripsi_singkat ?></p>
-              </div>
-          <?php 
+            <div class="col-lg-6 artikel-item" data-aos="fade-up">
+              <h4><a href="<?php echo base_url() . 'artikel/' . $list_artikel->id_artikel; ?>"><?php echo $list_artikel->judul_artikel ?> </a></h4>
+              <p><?php echo $list_artikel->deskripsi_singkat ?></p>
+            </div>
+          <?php
           } ?>
         </div>
 
@@ -353,7 +353,7 @@
             <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
               <div class="icon"><i class="bx bx-file"></i></div>
               <h4 class="title"><?php echo $listFormPendaftaran->jenis_dokumen ?></h4>
-              <p class="description">Anda bisa download
+              <p class="description">Anda bisa unduh
                 <a href="<?php echo base_url() . 'dokumenFormulir/' . $listFormPendaftaran->nama_dokumen ?>" download>disini</a>
               </p>
 
@@ -361,9 +361,9 @@
           <?php }  ?>
           <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
             <div class="icon"><i class="bx bx-upload"></i></div>
-            <h4 class="title">Pengumpulan Dokumen</h4>
-            <p class="description">Anda bisa kumpul <a href="<?php echo base_url() . 'pengumpulan'
-                                                              ?>">disini</a></p>
+            <h4 class="title">Menyerahkan Dokumen</h4>
+            <p class="description">Anda bisa serahkan <a href="<?php echo base_url() . 'pengumpulan'
+                                                                ?>">disini</a></p>
           </div>
         </div>
 

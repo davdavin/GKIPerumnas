@@ -39,7 +39,7 @@
                         </a>
                     </li>
                 <?php } ?>
-                <?php if ($this->session->userdata('level_user') == 2 || $this->session->userdata('level_user') == 3) { ?>
+                <?php if ($this->session->userdata('level_user') == 2) { ?>
                     <li class="nav-item">
                         <a <?php if ($this->uri->segment(1) == "Anggota_Jemaat") {
                                 echo "class='nav-link active'";
@@ -50,6 +50,8 @@
                             <p> Anggota Jemaat </p>
                         </a>
                     </li>
+                <?php } ?>
+                <?php if ($this->session->userdata('level_user') == 2 || $this->session->userdata('level_user') == 3) { ?>
                     <li class="nav-item">
                         <a <?php if ($this->uri->segment(1) == "Pendeta") {
                                 echo "class='nav-link active'";
@@ -111,7 +113,7 @@
                         </ul>
                     </li>
                 <?php } ?>
-                <?php if ($this->session->userdata('level_user') != 1) { ?>
+                <?php if ($this->session->userdata('level_user') == 2 || $this->session->userdata('level_user') == 4) { ?>
                     <li <?php if ($this->uri->segment(1) == "keuangan") {
                             echo "class='nav-item menu-open'";
                         } else {
@@ -162,7 +164,7 @@
                         </ul>
                     </li>
                 <?php } ?>
-                <?php if ($this->session->userdata('level_user') == 2 || $this->session->userdata('level_user') == 3) { ?>
+                <?php if ($this->session->userdata('level_user') == 2) { ?>
                     <li class="nav-item">
                         <a <?php if ($this->uri->segment(1) == "mengelola_artikel") {
                                 echo "class='nav-link active'";

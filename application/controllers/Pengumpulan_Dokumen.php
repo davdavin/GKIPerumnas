@@ -69,7 +69,7 @@ class Pengumpulan_Dokumen extends CI_Controller
                     'created_at' => $tanggal
                 );
                 $this->M_Dokumen->insert_record($data, 'pengumpulan_dokumen');
-                $respon['sukses'] = "Pengumpulan berhasil";
+                $respon['sukses'] = "Berhasil";
                 echo json_encode($respon);
             }
         }

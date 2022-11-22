@@ -9,6 +9,7 @@
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <?php if ($this->session->userdata('level_user') == 4) { ?>
+              <li class="breadcrumb-item"><a href="<?php echo base_url() . 'admin/dashboard' ?>">Dashboard</a></li>
               <li class="breadcrumb-item active">Keuangan</li>
               <li class="breadcrumb-item active">Pemasukan</li>
             <?php } else { ?>
@@ -69,7 +70,7 @@
             <div class="modal-body">
               <div class="form-group">
                 <label>Kegiatan</label>
-                <input type="text" class="form-control" id="kegiatan" name="kegiatan" placeholder="Kegiatan" required>
+                <input type="text" class="form-control" id="kegiatan" name="kegiatan" placeholder="Kegiatan">
                 <!-- INFO ERROR -->
                 <div class="px-2 error_kegiatan clear" style="display: none">
                 </div>
@@ -80,13 +81,15 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text">Rp.</span>
                   </div>
-                  <input type="number" class="form-control" id="uang_masuk" name="uang_masuk" required>
+                  <input type="number" class="form-control" id="uang_masuk" name="uang_masuk">
+                </div>
+                <div class="px-2 error_uang_masuk clear" style="display: none">
                 </div>
               </div>
               <div class="form-group">
                 <label>Tanggal Masuk</label>
-                <input type="date" class="form-control" id="tanggal" name="tanggal_masuk" required>
-                <div class="px-2 error_tanggal" style="display: none">
+                <input type="date" class="form-control" id="tanggal" name="tanggal_masuk">
+                <div class="px-2 error_tanggal clear" style="display: none">
                 </div>
               </div>
               <div class="form-group">
@@ -97,7 +100,7 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary" id="tombolSimpan">Submit</button>
+              <button type="submit" class="btn btn-primary simpan" id="tombolSimpan">Submit</button>
             </div>
           </form>
         </div>
@@ -214,24 +217,68 @@
 
     $('[data-mask]').inputmask();
 
-    const sukses = $('.sukses').data('flashdata');
-    if (sukses) {
-      Swal.fire({
-        title: 'Pencatatan',
-        text: sukses,
-        icon: 'success'
-      });
-    }
+    $('.form-submit').submit(function(e) {
+      e.preventDefault();
+      $.ajax({
+        url: $(this).attr('action'),
+        type: "POST",
+        dataType: "JSON",
+        data: new FormData(this),
+        contentType: false,
+        //cache: false,
+        processData: false,
+        beforeSend: function() {
+          $('.simpan').attr('disable', 'disabled');
+          $('.simpan').html('<i class="fa fa-spin fa-spinner"></i>');
+        },
+        complete: function() {
+          $('.simpan').removeAttr('disable');
+          $('.simpan').html('Submit');
+        },
+        success: function(respon) {
+          if (respon.sukses == false) {
+            if (respon.error_kegiatan) {
+              $('.error_kegiatan').show();
+              $('.error_kegiatan').html(respon.error_kegiatan);
+              $('.error_kegiatan').css("color", "red");
+            } else {
+              $('.error_kegiatan').hide();
+            }
+            if (respon.error_uang_masuk) {
+              $('.error_uang_masuk').show();
+              $('.error_uang_masuk').html(respon.error_uang_masuk);
+              $('.error_uang_masuk').css("color", "red");
+            } else {
+              $('.error_uang_masuk').hide();
+            }
+            if (respon.error_tanggal) {
+              $('.error_tanggal').show();
+              $('.error_tanggal').html(respon.error_tanggal);
+              $('.error_tanggal').css("color", "red");
+            } else {
+              $('.error_tanggal').hide();
+            }
+            if (respon.error_keterangan) {
+              $('.error_keterangan').show();
+              $('.error_keterangan').html(respon.error_keterangan);
+              $('.error_keterangan').css("color", "red");
+            } else {
+              $('.error_keterangan').hide();
+            }
+          } else {
+            $('.clear').hide();
+            Swal.fire({
+              title: 'Sukses',
+              text: respon.sukses,
+              icon: 'success',
+            }).then((confirmed) => {
+              window.location.reload();
+            });
+          }
 
-    const gagal = $('.gagal').data('flashdata');
-
-    if (gagal) {
-      Swal.fire({
-        title: 'Pencatatan',
-        text: gagal,
-        icon: 'error'
+        }
       });
-    }
+    });
   });
 </script>
 

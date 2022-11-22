@@ -56,7 +56,7 @@
 
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Tabel Pengumpulan Dokumen</h3>
+          <h3 class="card-title">Tabel Penyerahan Dokumen</h3>
         </div>
 
         <div class="card-body">
@@ -255,7 +255,7 @@
             return `<a class=" btn btn-primary btn-sm" href="<?php echo base_url() . 'dokumenFormulir/' ?>${row.nama_dokumen}" download>
                       <i class="fas fa-download">
                       </i>
-                      Download
+                      Unduh
                     </a>
                     <a class="btn btn-info btn-sm" href="<?php echo base_url() . 'Dokumen/edit_dokumen/' ?>${row.id_dokumen}">
                       <i class="fas fa-pencil-alt">
@@ -323,7 +323,7 @@
             return `<a class="btn btn-primary btn-sm" href="<?php echo base_url() . 'pengumpulanDokumen/' ?>${row.nama_dokumen}" download>
                         <i class="fas fa-download">
                         </i>
-                        Download
+                        Unduh
                       </a>`
           }
         }

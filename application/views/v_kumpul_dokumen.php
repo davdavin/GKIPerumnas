@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pengumpulan Dokumen</title>
+  <title>Menyerahkan Dokumen</title>
 
   <!-- Favicons -->
   <link href="<?php echo base_url(); ?>resources/assets/img/logo-GKI-tr.png" rel="icon">
@@ -36,7 +36,7 @@
     <div class="container-fluid">
       <div class="card card-primary">
         <div class="card-header">
-          <h3 class="card-title">Form Pengumpulan Dokumen</h3>
+          <h3 class="card-title">Form Menyerahkan Dokumen</h3>
         </div>
 
         <!-- form start -->

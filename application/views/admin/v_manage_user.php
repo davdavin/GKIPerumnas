@@ -309,7 +309,7 @@
     const sukses = $('.sukses').data('flashdata');
     if (sukses) {
       Swal.fire({
-        title: 'Data User',
+        title: 'Sukses',
         text: sukses,
         icon: 'success'
       });

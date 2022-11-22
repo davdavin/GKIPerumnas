@@ -16,6 +16,7 @@ class Keuangan extends CI_Controller
 
         $this->load->model(array('M_Keuangan'));
         $this->load->helper('url', 'form');
+        $this->load->library('form_validation');
     }
 
     public function index()
@@ -44,26 +45,44 @@ class Keuangan extends CI_Controller
         $tanggal_masuk = $this->input->post('tanggal_masuk');
         $keterangan = $this->input->post('keterangan');
 
-        $laporan = $this->M_Keuangan->saldo_akhir()->row_array();
+        $this->form_validation->set_rules('kegiatan', 'Kegiatan', 'required');
+        $this->form_validation->set_rules('uang_masuk', 'Total', 'required');
+        $this->form_validation->set_rules('tanggal_masuk', 'Tanggal Masuk', 'required');
+        $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
 
-        if (isset($laporan['saldo']) == NULL) {
-            $saldo = '0';
+        $this->form_validation->set_message('required', '{field} wajib diisi');
+
+        if ($this->form_validation->run() == FALSE) {
+            $respon = array(
+                'sukses' => false,
+                'error_kegiatan' => form_error('kegiatan'),
+                'error_uang_masuk' => form_error('uang_masuk'),
+                'error_tanggal' => form_error('tanggal_masuk'),
+                'error_keterangan' => form_error('keterangan')
+            );
+            echo json_encode($respon);
         } else {
-            $saldo = $laporan['saldo'];
+            $laporan = $this->M_Keuangan->saldo_akhir()->row_array();
+
+            if (isset($laporan['saldo']) == NULL) {
+                $saldo = '0';
+            } else {
+                $saldo = $laporan['saldo'];
+            }
+
+            $saldo_tambah = $saldo + $uang_masuk;
+
+            $tanggal = date('Y-m-d H:i:s');
+
+            $data = array(
+                'kegiatan' => $kegiatan, 'keterangan' => $keterangan, 'uang_masuk' => $uang_masuk, 'tanggal_terima' => $tanggal_masuk, 'tanggal_pencatatan' => $tanggal,
+                'saldo_awal' => $saldo, 'saldo_akhir' => $saldo_tambah, 'is_debit' => '1', 'id_user' => $this->session->userdata('id_user')
+            );
+
+            $this->M_Keuangan->insert_record($data, 'keuangan');
+            $respon['sukses'] = "Pencatatan berhasil disimpan";
+            echo json_encode($respon);
         }
-
-        $saldo_tambah = $saldo + $uang_masuk;
-
-        $tanggal = date('Y-m-d H:i:s');
-
-        $data = array(
-            'kegiatan' => $kegiatan, 'keterangan' => $keterangan, 'uang_masuk' => $uang_masuk, 'tanggal_terima' => $tanggal_masuk, 'tanggal_pencatatan' => $tanggal,
-            'saldo_awal' => $saldo, 'saldo_akhir' => $saldo_tambah, 'is_debit' => '1', 'id_user' => $this->session->userdata('id_user')
-        );
-
-        $this->M_Keuangan->insert_record($data, 'keuangan');
-        $this->session->set_flashdata('sukses', 'Berhasil dicatat');
-        redirect('keuangan');
     }
 
     public function pengeluaran()
@@ -93,26 +112,44 @@ class Keuangan extends CI_Controller
         $tanggal_keluar = $this->input->post('tanggal_keluar');
         $keterangan = $this->input->post('keterangan');
 
-        $laporan = $this->M_Keuangan->saldo_akhir()->row_array();
+        $this->form_validation->set_rules('kegiatan', 'Kegiatan', 'required');
+        $this->form_validation->set_rules('uang_keluar', 'Total', 'required');
+        $this->form_validation->set_rules('tanggal_keluar', 'Tanggal Keluar', 'required');
+        $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
 
-        if (isset($laporan['saldo']) == NULL) {
-            $saldo = '0';
+        $this->form_validation->set_message('required', '{field} wajib diisi');
+
+        if ($this->form_validation->run() == FALSE) {
+            $respon = array(
+                'sukses' => false,
+                'error_kegiatan' => form_error('kegiatan'),
+                'error_uang_keluar' => form_error('uang_keluar'),
+                'error_tanggal' => form_error('tanggal_keluar'),
+                'error_keterangan' => form_error('keterangan')
+            );
+            echo json_encode($respon);
         } else {
-            $saldo = $laporan['saldo'];
+            $laporan = $this->M_Keuangan->saldo_akhir()->row_array();
+
+            if (isset($laporan['saldo']) == NULL) {
+                $saldo = '0';
+            } else {
+                $saldo = $laporan['saldo'];
+            }
+
+            $saldo_berkurang = $saldo - $uang_keluar;
+
+            $tanggal = date('Y-m-d H:i:s');
+
+            $data = array(
+                'kegiatan' => $kegiatan, 'keterangan' => $keterangan, 'uang_keluar' => $uang_keluar, 'tanggal_keluar' => $tanggal_keluar, 'tanggal_pencatatan' => $tanggal,
+                'saldo_awal' => $saldo, 'saldo_akhir' => $saldo_berkurang, 'is_kredit' => '1', 'id_user' => $this->session->userdata('id_user')
+            );
+
+            $this->M_Keuangan->insert_record($data, 'keuangan');
+            $respon['sukses'] = "Pencatatan berhasil disimpan";
+            echo json_encode($respon);
         }
-
-        $saldo_berkurang = $saldo - $uang_keluar;
-
-        $tanggal = date('Y-m-d H:i:s');
-
-        $data = array(
-            'kegiatan' => $kegiatan, 'keterangan' => $keterangan, 'uang_keluar' => $uang_keluar, 'tanggal_keluar' => $tanggal_keluar, 'tanggal_pencatatan' => $tanggal,
-            'saldo_awal' => $saldo, 'saldo_akhir' => $saldo_berkurang, 'is_kredit' => '1', 'id_user' => $this->session->userdata('id_user')
-        );
-
-        $this->M_Keuangan->insert_record($data, 'keuangan');
-        $this->session->set_flashdata('sukses', 'Berhasil dicatat');
-        redirect('keuangan/pengeluaran');
     }
 
     public function laporan()
