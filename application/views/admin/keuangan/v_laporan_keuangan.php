@@ -9,6 +9,7 @@
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <?php if ($this->session->userdata('level_user') == 4) { ?>
+              <li class="breadcrumb-item"><a href="<?php echo base_url() . 'admin/dashboard' ?>">Dashboard</a></li>
               <li class="breadcrumb-item"><a href="<?php echo base_url() . 'keuangan' ?>">Keuangan</a></li>
               <li class="breadcrumb-item active">Laporan</li>
             <?php } else { ?>

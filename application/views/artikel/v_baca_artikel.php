@@ -74,7 +74,7 @@
               </div>
               <br>
 
-              <a href="<?php echo base_url() . 'Artikel/pdf/' . $lihat_artikel->id_artikel; ?>" target="_blank">Download PDF</a>
+              <a href="<?php echo base_url() . 'Artikel/pdf/' . $lihat_artikel->id_artikel; ?>" target="_blank">Unduh</a>
             </article>
 
           <?php
