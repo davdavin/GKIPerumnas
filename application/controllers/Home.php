@@ -42,29 +42,7 @@ class Home extends CI_Controller
         $data['pendeta'] = $this->M_Pendeta->tampil_pendeta()->result();
         $data['artikel'] = $this->M_Artikel->tampil()->result();
         $data['warta'] = $this->M_Artikel->tampil_warta()->result();
+        $data['kontak'] = $this->M_Konten->tampil_kontak()->row_array();
         $this->load->view('v_home.php', $data);
-    }
-
-    /*  public function coba()
-    {
-        $this->load->library('encryption');
-
-        $input = 'a';
-
-        $encrypt = $this->encryption->encrypt($input);
-
-        echo $encrypt . '<br>';
-
-        echo $this->encryption->decrypt($encrypt) . '<br>';
-    } */
-
-    function coba2()
-    {
-        $to = "projectwebdua@gmail.com";
-        $subject = "My subject";
-        $txt = "Hello world!";
-        $headers = "From: gerejagkiperumnas@gmail.com";
-
-        mail($to, $subject, $txt, $headers);
     }
 }
