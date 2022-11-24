@@ -40,6 +40,7 @@
                 <th>Judul</th>
                 <th>Tipe</th>
                 <th>Deskripsi Singkat</th>
+                <th>Tanggal Pembuatan</th>
                 <th>Status</th>
                 <?php if ($this->session->userdata('level_user') == 2 || $this->session->userdata('level_user') == 3) { ?>
                   <th>Aksi</th>
@@ -147,8 +148,11 @@
           "data": "tipe_artikel"
         },
         {
-          "data": "deskripsi_singkat",
+          "data":"deskripsi_singkat",
           sortable: false
+        },
+        {
+          "data": "created_at"
         },
         {
           data: null,

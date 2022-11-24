@@ -94,6 +94,16 @@ class Wilayah extends CI_Controller
             'created_at' => $tanggal
         );
 
+        $where_anggota = array(
+            'id_anggota' => $koordinator_wilayah
+        );
+
+        $data_anggota = array(
+            'jabatan_anggota' => 'Pengurus',
+            'updated_at' => $tanggal
+        );
+
+        $this->M_Anggota_Jemaat->update_record($where_anggota, $data_anggota, 'anggota_jemaat');
         $this->M_Wilayah->update_record($where, $data_wilayah, 'wilayah');
         $this->M_Wilayah->insert_record($data_koordinator_wilayah, 'detail_wilayah');
         $this->session->set_flashdata('sukses', 'Data berhasil disimpan');
@@ -150,12 +160,32 @@ class Wilayah extends CI_Controller
                 'koordinator_wilayah' => $koordinator_wilayah_baru,
                 'updated_at' => $tanggal
             );
+
+            $where_anggota_koordinator_baru = array(
+                'id_anggota' => $koordinator_wilayah_baru
+            );
+
+            $data_anggota_koordinator_baru = array(
+                'jabatan_anggota' => 'Pengurus',
+                'updated_at' => $tanggal
+            );
+
+            $where_anggota_koordinator_sekarang = array(
+                'id_anggota' => $koordinator_wilayah_sekarang
+            );
+
+            $data_anggota_koordinator_sekarang = array(
+                'jabatan_anggota' => 'Jemaat',
+                'updated_at' => $tanggal
+            );
+
+            $this->M_Anggota_Jemaat->update_record($where_anggota_koordinator_sekarang, $data_anggota_koordinator_sekarang, 'anggota_jemaat');
+            $this->M_Anggota_Jemaat->update_record($where_anggota_koordinator_baru, $data_anggota_koordinator_baru, 'anggota_jemaat');
         } else if ($koordinator_wilayah_baru == NULL) {
             $data_detail_wilayah = array(
                 'koordinator_wilayah' => $koordinator_wilayah_sekarang
             );
         }
-
         $this->M_Wilayah->update_record($where, $data_wilayah, 'wilayah');
         $this->M_Wilayah->update_record($where, $data_detail_wilayah, 'detail_wilayah');
         $this->session->set_flashdata('sukses', 'Data berhasil diubah');

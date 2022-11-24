@@ -44,7 +44,7 @@
                                     <p><?php echo $list_detail_jemaat->alamat_anggota; ?></p>
                                     <h5> <strong> No Hp </strong> </h5>
                                     <p><?php echo $list_detail_jemaat->nohp_anggota; ?></p>
-                                    <h5> <strong> Koordinator - Nama Wilayah </strong> </h5>
+                                    <h5> <strong> Wilayah </strong> </h5>
                                     <p><?php foreach ($wilayah as $list_wilayah) {
                                             if ($list_wilayah->id_wilayah == $list_detail_jemaat->id_wilayah) {
                                                 echo $list_wilayah->nama_wilayah;
