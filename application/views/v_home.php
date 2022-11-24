@@ -386,21 +386,21 @@
             <div class="info-box">
               <i class="bx bx-envelope"></i>
               <h3>Email</h3>
-              <p><a href="mailto:gkiperumnas@gmail.com">gkiperumnas@gmail.com</a></p>
+              <p><a href="mailto:<?php echo $kontak['email']; ?>"><?php echo $kontak['email']; ?></a></p>
             </div>
           </div>
           <div class="col-lg-6 d-flex" data-aos="fade-up">
             <div class="info-box">
               <i class="bx bx-map"></i>
               <h3>Alamat</h3>
-              <p>Jl. Karet Raya Blok 22 No. 10 A, Perumnas I, Kel. Cibodasari, Kec. Cibodas, Tangerang, Banten-15138</p>
+              <p><?php echo $kontak['alamat'] ?></p>
             </div>
           </div>
           <div class="col-lg-3 d-flex" data-aos="fade-up" data-aos-delay="200">
             <div class="info-box ">
               <i class="bx bx-phone-call"></i>
               <h3>Telepon</h3>
-              <p>(021) 5520209</p>
+              <p><?php echo $kontak['nohp']; ?></p>
             </div>
           </div>
 

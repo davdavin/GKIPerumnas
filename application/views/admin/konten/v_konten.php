@@ -70,51 +70,110 @@
 
       </div>
 
-      <?php $no = 0;
-      foreach ($kontenFotoIbadah as $list_foto_ibadah) {
-        $no++; ?>
-        <!-- modal untuk menampilkan form edit gambar -->
-        <div class="modal fade" id="edit_foto<?php echo $list_foto_ibadah->id_foto_ibadah; ?>">
-          <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="modal-title">Form Edit Foto Ibadah</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <img src="<?php echo base_url(); ?>resources/assets/img/gallery/<?php echo $list_foto_ibadah->foto_ibadah; ?>" class="img-fluid" alt="">
-                <br><br>
-                <form class="update-foto-ibadah" action="<?php echo base_url() . 'Konten/proses_edit_foto_ibadah' ?>" method="post" enctype="multipart/form-data">
-                  <div class="form-group">
-                    <input type="hidden" class="form-control" name="id_foto_ibadah" value="<?= $list_foto_ibadah->id_foto_ibadah ?>">
-                    <input type="hidden" class="form-control" name="foto_lama" value="<?= $list_foto_ibadah->foto_ibadah  ?>">
-                    <label>Update Slide</label><br>
-                    <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="foto" name="fotoIbadah" required>
-                        <label class="custom-file-label" for="foto">Pilih foto (Maksimal 5MB)</label>
-                      </div>
-                    </div>
-                    <div class="p-2 error_upload clear" style="display:none"></div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary simpan">Update</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title"> Kontak </h3>
         </div>
-      <?php } ?>
-    </div>
 
-    <!-- /.container-fluid -->
-  </section>
-  <!-- /.content -->
+        <div class="card-body">
+          <table id="kontak" class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>Alamat</th>
+                <th>No Hp</th>
+                <th>Email</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+      <!-- modal untuk menampilakn form edit -->
+      <div class="modal fade" id="edit-kontak<?php echo $kontak['id_kontak']; ?>">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Form Edit Kontak</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form action="<?php echo base_url() . 'Konten/proses_edit_kontak' ?>" method="post">
+                <input type="hidden" class="form-control" name="id_kontak" value="<?= $kontak['id_kontak'] ?>">
+                <div class="form-group">
+                  <label>Alamat</label>
+                  <input type="text" class="form-control" id="alamat" name="alamat" value="<?= $kontak['alamat'] ?>" required>
+                </div>
+
+                <div class="form-group">
+                  <label>No Hp</label>
+                  <input type="text" class="form-control" id="nohp" name="nohp" value="<?= $kontak['nohp'] ?>" required>
+                </div>
+
+                <div class="form-group">
+                  <label>Email</label>
+                  <input type="email" class="form-control" id="email" name="email" value="<?= $kontak['email'] ?>" required>
+                </div>
+
+                <button type="submit" class="btn btn-block btn-primary btn-sm">Submit</button>
+              </form>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+    </div>
+    <?php $no = 0;
+    foreach ($kontenFotoIbadah as $list_foto_ibadah) {
+      $no++; ?>
+      <!-- modal untuk menampilkan form edit gambar -->
+      <div class="modal fade" id="edit_foto<?php echo $list_foto_ibadah->id_foto_ibadah; ?>">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Form Edit Foto Ibadah</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <img src="<?php echo base_url(); ?>resources/assets/img/gallery/<?php echo $list_foto_ibadah->foto_ibadah; ?>" class="img-fluid" alt="">
+              <br><br>
+              <form class="update-foto-ibadah" action="<?php echo base_url() . 'Konten/proses_edit_foto_ibadah' ?>" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                  <input type="hidden" class="form-control" name="id_foto_ibadah" value="<?= $list_foto_ibadah->id_foto_ibadah ?>">
+                  <input type="hidden" class="form-control" name="foto_lama" value="<?= $list_foto_ibadah->foto_ibadah  ?>">
+                  <label>Update Slide</label><br>
+                  <div class="input-group">
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="foto" name="fotoIbadah" required>
+                      <label class="custom-file-label" for="foto">Pilih foto (Maksimal 5MB)</label>
+                    </div>
+                  </div>
+                  <div class="p-2 error_upload clear" style="display:none"></div>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary simpan">Update</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+    <?php } ?>
+</div>
+
+<!-- /.container-fluid -->
+</section>
+<!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
 </footer>
@@ -213,17 +272,16 @@
             return `<img src="<?php echo base_url(); ?>resources/assets/img/slide/${row.gambar_slide}" class="img-fluid" alt="` + data + `" width="200" height="200">`;
           }
         },
-        <?php if ($this->session->userdata('level_user') == 1) { ?> {
-            data: null,
-            name: null,
-            sortable: false,
-            render: function(data, type, row, meta) {
-              return `<a class="btn btn-info btn-sm" href="<?php echo base_url() . 'Konten/edit_tulisan/' ?>${row.id_slide}">
+        {
+          data: null,
+          name: null,
+          sortable: false,
+          render: function(data, type, row, meta) {
+            return `<a class="btn btn-info btn-sm" href="<?php echo base_url() . 'Konten/edit_tulisan/' ?>${row.id_slide}">
                     <i class="fas fa-pencil-alt"></i> Edit
                   </a>`;
-            }
           }
-        <?php } ?>
+        }
       ]
     });
 
@@ -272,19 +330,77 @@
             return `<img src="<?php echo base_url(); ?>resources/assets/img/gallery/${row.foto_ibadah}" class="img-fluid" alt="` + data + `" width="25%" height="25%">`;
           }
         },
-        <?php if ($this->session->userdata('level_user') == 1) { ?> {
-            data: null,
-            name: null,
-            sortable: false,
-            render: function(data, type, row, meta) {
-              return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit_foto${row.id_foto_ibadah}">
+        {
+          data: null,
+          name: null,
+          sortable: false,
+          render: function(data, type, row, meta) {
+            return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit_foto${row.id_foto_ibadah}">
                       <i class="fas fa-pencil-alt">
                       </i>
                       Edit
                     </a>`;
-            }
           }
-        <?php } ?>
+        }
+      ]
+    });
+
+
+    $("#kontak").DataTable({
+      "responsive": true,
+      "lengthChange": false,
+      "autoWidth": false,
+      "searching": false,
+      "language": {
+        "emptyTable": "Tidak ada data yang tersedia pada tabel ini",
+        "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+        "infoEmpty": "Menampilkan 0 sampai 0 dari 0 data",
+        "infoFiltered": "(disaring dari _MAX_ entri keseluruhan)",
+        "lengthMenu": "Tampilkan _MENU_ data",
+        "loadingRecords": "Sedang memuat...",
+        "processing": "Sedang memproses...",
+        "search": "Cari:",
+        "zeroRecords": "Tidak ditemukan data yang sesuai",
+        "thousands": "'",
+        "paginate": {
+          "first": "Pertama",
+          "last": "Terakhir",
+          "next": "Selanjutnya",
+          "previous": "Sebelumnya"
+        }
+      },
+      ajax: {
+        url: "<?php echo base_url() . 'Konten/tampil_kontak' ?>",
+        dataSrc: ""
+      },
+      columns: [{
+          data: null,
+          name: null,
+          render: function(data, type, row, meta) {
+            return meta.row + meta.settings._iDisplayStart + 1;
+          }
+        },
+        {
+          "data": "alamat"
+        },
+        {
+          "data": "nohp"
+        },
+        {
+          "data": "email"
+        },
+        {
+          data: null,
+          name: null,
+          sortable: false,
+          render: function(data, type, row, meta) {
+            return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit-kontak${row.id_kontak}">
+                      <i class="fas fa-pencil-alt">
+                      </i>
+                      Edit
+                    </a>`;
+          }
+        }
       ]
     });
 
@@ -294,7 +410,7 @@
 
     if (sukses) {
       Swal.fire({
-        title: 'Konten',
+        title: 'Sukses',
         text: sukses,
         icon: 'success'
       });

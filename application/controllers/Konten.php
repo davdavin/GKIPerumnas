@@ -22,6 +22,7 @@ class Konten extends CI_Controller
     {
         $data['title'] = "Konten";
         $data['kontenFotoIbadah'] = $this->M_Konten->tampil_konten_foto_ibadah()->result();
+        $data['kontak'] = $this->M_Konten->tampil_kontak()->row_array();
         $this->load->view('templates/header.php', $data);
         $this->load->view('templates/sidebar.php');
         $this->load->view('admin/konten/v_konten.php', $data);
@@ -36,6 +37,12 @@ class Konten extends CI_Controller
     public function tampil_foto_ibadah()
     {
         $query = $this->M_Konten->tampil_konten_foto_ibadah()->result();
+        echo json_encode($query);
+    }
+
+    public function tampil_kontak()
+    {
+        $query = $this->M_Konten->tampil_kontak()->result();
         echo json_encode($query);
     }
 
@@ -148,5 +155,19 @@ class Konten extends CI_Controller
             $respon['sukses'] = "Data berhasil diubah";
             echo json_encode($respon);
         }
+    }
+
+    public function proses_edit_kontak()
+    {
+        $id_kontak = $this->input->post('id_kontak');
+        $alamat = $this->input->post('alamat');
+        $nohp = $this->input->post('nohp');
+        $email =  $this->input->post('email');
+        $tanggal = date('Y-m-d H:i:s');
+        $where = array('id_kontak' => $id_kontak);
+        $data = array('alamat' => $alamat, 'nohp' => $nohp, 'email' => $email, 'id_user' => $this->session->userdata('id_user'), 'updated_at' => $tanggal);
+        $this->M_Konten->update_record($where, $data, 'kontak');
+        $this->session->set_flashdata('sukses', 'Data berhasil diubah');
+        redirect('Konten');
     }
 }
