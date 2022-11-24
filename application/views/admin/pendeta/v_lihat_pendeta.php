@@ -43,9 +43,7 @@
                 <th>No Hp</th>
                 <th>Tanggal Lahir</th>
                 <th>Status</th>
-                <?php if ($this->session->userdata('level_user') == 2) { ?>
-                  <th>Aksi</th>
-                <?php } ?>
+                <th>Aksi</th>
               </tr>
             </thead>
             <tbody>
@@ -287,6 +285,16 @@
             render: function(data, type, row, meta) {
               return `<a class="btn btn-primary btn-sm" href="<?php echo base_url('Pendeta/detail_pendeta') ?>/${row.id_pendeta}"><i class="fas fa-eye"></i> Detail</a>
                           <a class="btn btn-info btn-sm" href="<?php echo base_url('Pendeta/edit_pendeta') ?>/${row.id_pendeta}"><i class="fas fa-pencil-alt"></i> Edit</a>`;
+
+            }
+          },
+        <?php } ?>
+        <?php if ($this->session->userdata('level_user') == 3) { ?> {
+            data: null,
+            name: null,
+            sortable: false,
+            render: function(data, type, row, meta) {
+              return `<a class="btn btn-primary btn-sm" href="<?php echo base_url('Pendeta/detail_pendeta') ?>/${row.id_pendeta}"><i class="fas fa-eye"></i> Detail</a>`;
 
             }
           },

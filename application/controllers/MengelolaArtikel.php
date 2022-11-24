@@ -29,7 +29,12 @@ class MengelolaArtikel extends CI_Controller
 
     public function tampil_artikel()
     {
-        $artikel = $this->M_Artikel->lihat_artikel()->result();
+        $artikel = $this->M_Artikel->lihat_artikel()->result_array();
+
+        for ($i = 0; $i < count($artikel); $i++) {
+            $artikel[$i]['created_at'] = tanggal_indonesia($artikel[$i]['created_at']);
+        }
+
         echo json_encode($artikel);
     }
 
