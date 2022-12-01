@@ -60,12 +60,12 @@
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <div class="modal-body">
-                    <form action="<?php echo base_url() . 'User/proses_edit_user' ?>" method="post">
+                  <form action="<?php echo base_url() . 'User/proses_edit_user' ?>" method="post">
+                    <div class="modal-body">
                       <input type="hidden" class="form-control" name="id" value="<?= $list_user->id_user; ?>">
                       <div class="form-group">
                         <label>Nama Lengkap</label>
-                        <input type="text" class="form-control" id="nama" name="nama_lengkap" value="<?= $list_user->nama_lengkap ?>">
+                        <input type="text" class="form-control" id="nama" name="nama_lengkap" value="<?= $list_user->nama_lengkap ?>" readonly>
                       </div>
                       <div class="form-group">
                         <label>Level</label>
@@ -101,9 +101,11 @@
                           <?php } ?>
                         </select>
                       </div>
-                      <button type="submit" class="btn btn-block btn-primary btn-sm">Submit</button>
-                    </form>
-                  </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-primary">Ubah</button>
+                    </div>
+                  </form>
                 </div>
                 <!-- /.modal-content -->
               </div>
