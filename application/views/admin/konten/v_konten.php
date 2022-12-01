@@ -102,8 +102,9 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
-              <form action="<?php echo base_url() . 'Konten/proses_edit_kontak' ?>" method="post">
+
+            <form action="<?php echo base_url() . 'Konten/proses_edit_kontak' ?>" method="post">
+              <div class="modal-body">
                 <input type="hidden" class="form-control" name="id_kontak" value="<?= $kontak['id_kontak'] ?>">
                 <div class="form-group">
                   <label>Alamat</label>
@@ -119,10 +120,11 @@
                   <label>Email</label>
                   <input type="email" class="form-control" id="email" name="email" value="<?= $kontak['email'] ?>" required>
                 </div>
-
-                <button type="submit" class="btn btn-block btn-primary btn-sm">Submit</button>
-              </form>
-            </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Ubah</button>
+              </div>
+            </form>
           </div>
           <!-- /.modal-content -->
         </div>
@@ -159,7 +161,7 @@
                   <div class="p-2 error_upload clear" style="display:none"></div>
                 </div>
                 <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary simpan">Update</button>
+                  <button type="submit" class="btn btn-primary simpan">Ubah</button>
                 </div>
               </form>
             </div>

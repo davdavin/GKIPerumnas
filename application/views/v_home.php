@@ -226,7 +226,6 @@
                   <th>No.</th>
                   <th>Nama</th>
                   <th>Wilayah</th>
-                  <th>Tanggal Ulang Tahun</th>
                 </tr>
               </thead>
               <tbody>
@@ -237,7 +236,6 @@
                       <td><?php echo $no++ ?></td>
                       <td><?php echo $detail_jemaat_ulang_tahun['nama_lengkap_anggota'] ?></td>
                       <td><?php echo $detail_jemaat_ulang_tahun['nama_wilayah'] ?></td>
-                      <td><?php echo tanggal_indonesia($detail_jemaat_ulang_tahun['tanggal_lahir_anggota']); ?></td>
                     </tr>
                   <?php }
                 } else { ?>

@@ -80,12 +80,11 @@ class User extends CI_Controller
 
     public function proses_edit_user()
     {
-        $nama = $this->input->post('nama_lengkap');
         $level = $this->input->post('level');
         $status =  $this->input->post('status');
         $tanggal = date('Y-m-d H:i:s');
         $where = array('id_user' => $this->input->post('id'));
-        $data = array('id_level_user' => $level, 'nama_lengkap' => $nama, 'status_user' => $status, 'updated_at' => $tanggal);
+        $data = array('id_level_user' => $level, 'status_user' => $status, 'updated_at' => $tanggal);
         $this->M_User->update_record($where, $data, 'user');
         $this->session->set_flashdata('sukses', 'Data berhasil diubah');
         redirect('User');
