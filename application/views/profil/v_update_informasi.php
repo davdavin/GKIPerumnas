@@ -108,7 +108,7 @@
                                 <li class="nav-item">
                                     <a href="<?php echo base_url() . 'Ruangan/list_ruangan' ?>" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Ruangan</p>
+                                        <p>Informasi Ruangan</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">

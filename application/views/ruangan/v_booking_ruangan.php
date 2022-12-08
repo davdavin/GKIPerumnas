@@ -116,7 +116,7 @@
                                 <li class="nav-item">
                                     <a href="<?php echo base_url() . 'Ruangan/list_ruangan' ?>" class="nav-link active">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Ruangan</p>
+                                        <p>Informasi Ruangan</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -148,7 +148,7 @@
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="<?php echo base_url() . 'Profil' ?>">Informasi</a></li>
-                                <li class="breadcrumb-item"><a href="<?php echo base_url() . 'Ruangan/list_ruangan' ?>">Ruangan</a></li>
+                                <li class="breadcrumb-item"><a href="<?php echo base_url() . 'Ruangan/list_ruangan' ?>">Informasi Ruangan</a></li>
                                 <li class="breadcrumb-item active">Booking</li>
                             </ol>
                         </div>
