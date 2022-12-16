@@ -34,6 +34,7 @@ class Keuangan extends CI_Controller
         for ($i = 0; $i < count($pemasukan); $i++) {
             $pemasukan[$i]['uang_masuk'] = mata_uang_indo($pemasukan[$i]['uang_masuk']);
             $pemasukan[$i]['tanggal_terima'] = tanggal_indonesia($pemasukan[$i]['tanggal_terima']);
+            $pemasukan[$i]['tanggal_pencatatan'] = tanggal_indonesia($pemasukan[$i]['tanggal_pencatatan']);
         }
         echo json_encode($pemasukan);
     }
@@ -100,6 +101,7 @@ class Keuangan extends CI_Controller
         for ($i = 0; $i < count($pengeluaran); $i++) {
             $pengeluaran[$i]['uang_keluar'] = mata_uang_indo($pengeluaran[$i]['uang_keluar']);
             $pengeluaran[$i]['tanggal_keluar'] = tanggal_indonesia($pengeluaran[$i]['tanggal_keluar']);
+            $pengeluaran[$i]['tanggal_pencatatan'] = tanggal_indonesia($pengeluaran[$i]['tanggal_pencatatan']);
         }
 
         echo json_encode($pengeluaran);
