@@ -48,7 +48,7 @@
                     <li><a href="<?php echo base_url() . 'Artikel/bacaan_doa' ?>" class="active">Bacaan Doa</a></li>
                     <li><a href="<?php echo base_url() . 'Artikel/warta_jemaat' ?>">Warta Jemaat</a></li>
                     <li><a href="<?php echo base_url() . 'Artikel/artikel_lainnya' ?>">Artikel Lain</a></li>
-                    <!-- <a href="#dokumen" class="get-started-btn scrollto">Get Started</a> -->
+                    <li><a href="<?php echo base_url()?>" style="border-radius: 0px; background: none; box-shadow: none"><i class="bx bx-left-arrow-circle" style="font-size: 30px"></i></a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
