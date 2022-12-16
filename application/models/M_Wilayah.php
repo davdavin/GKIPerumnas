@@ -4,7 +4,9 @@ class M_Wilayah extends CI_Model
 {
     public function tampil()
     {
-        return $this->db->query('SELECT * FROM wilayah');
+        return $this->db->query("SELECT wilayah.id_wilayah, nama_wilayah, nama_lengkap_anggota, is_koordinator FROM `detail_wilayah` INNER JOIN wilayah ON wilayah.id_wilayah = detail_wilayah.id_wilayah 
+                                LEFT JOIN anggota_jemaat ON anggota_jemaat.id_anggota = detail_wilayah.koordinator_wilayah 
+                                WHERE anggota_jemaat.id_anggota = detail_wilayah.koordinator_wilayah OR koordinator_wilayah IS NULL");
     }
 
     public function pilih_wilayah($id_wilayah)

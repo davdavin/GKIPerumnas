@@ -67,14 +67,14 @@
               <label>Status</label>
               <select class="custom-select select2bs4" style="width: 100%;" name="status">
                 <option selected disabled value>-- Pilih --</option>
-                <?php if ($detail->status_ruangan == "TERSEDIA") { ?>
+                <?php if ($detail->status_ruangan == "AKTIF") { ?>
                   <option value="<?php echo $detail->status_ruangan ?>" <?php echo "selected"; ?>>
                     <?php echo $detail->status_ruangan ?>
                   </option>
-                  <option value="TIDAK TERSEDIA">TIDAK TERSEDIA</option>
+                  <option value="TIDAK AKTIF">TIDAK AKTIF</option>
                 <?php } ?>
-                <?php if ($detail->status_ruangan == "TIDAK TERSEDIA") { ?>
-                  <option value="TERSEDIA">TERSEDIA</option>
+                <?php if ($detail->status_ruangan == "TIDAK AKTIF") { ?>
+                  <option value="AKTIF">AKTIF</option>
                   <option value="<?php echo $detail->status_ruangan ?>" <?php echo "selected"; ?>>
                     <?php echo $detail->status_ruangan ?>
                   </option>

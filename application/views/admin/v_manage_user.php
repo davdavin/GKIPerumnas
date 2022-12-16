@@ -128,18 +128,39 @@
           </div>
           <form class="form-submit" action="<?php echo base_url() . 'User/tambah_user'  ?>" method="post">
             <div class="modal-body">
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label>Nama Lengkap</label>
                 <input type="text" class="form-control" id="nama" name="nama_lengkap" placeholder="Nama Lengkap">
-                <!-- INFO ERROR -->
                 <div class="px-2 error_nama clear" style="display: none">
                 </div>
+              </div> -->
+
+              <div class="form-group">
+                <label>Pilih <br> Jemaat / Pendeta</label>
+                <select class="custom-select select2bs4" style="width: 100%;" name="pilih" id="pilih">
+                  <option selected disabled value>-- Pilih --</option>
+                  <option value="Jemaat">Jemaat</option>
+                  <option value="Pendeta">Pendeta</option>
+                </select>
+                <div class="px-2 error_pilih clear" style="display: none">
+                </div>
+              </div>
+
+              <div class="form-group" id="pilihJemaat" style="display: none;">
+                <label>Jemaat</label>
+                <select class="pilih-jemaat form-control" id="jemaat" name="jemaat"></select>
+                <div class="px-2 error_jemaat" style="display: none"></div>
+              </div>
+
+              <div class="form-group" id="pilihPendeta" style="display: none;">
+                <label>Pendeta</label>
+                <select class="pilih-pendeta form-control" id="pendeta" name="pendeta"></select>
+                <div class="px-2 error_pendeta" style="display: none"></div>
               </div>
 
               <div class="form-group">
                 <label>Username</label>
                 <input type="text" class="form-control" id="username" name="username" placeholder="Username">
-                <!-- INFO ERROR -->
                 <div class="px-2 error_username clear" style="display: none">
                 </div>
               </div>
@@ -147,18 +168,16 @@
               <div class="form-group">
                 <label>Password</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                <!-- INFO ERROR -->
                 <div class="px-2 error_password clear" style="display: none">
                 </div>
               </div>
 
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label>Email</label>
                 <input type="text" class="form-control" id="email" name="email" placeholder="Email">
-                <!-- INFO ERROR -->
                 <div class="px-2 error_email clear" style="display: none">
                 </div>
-              </div>
+              </div> -->
 
               <!-- Posisi -->
               <div class="form-group">
@@ -201,6 +220,8 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Select2 -->
+<script src="<?php echo base_url(); ?>assets/plugins/select2/js/select2.full.min.js"></script>
 <!-- SweetAlert2 -->
 <script src="<?php echo base_url(); ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
@@ -234,6 +255,21 @@
 
 <script>
   $(document).ready(function() {
+    $('#pilih').change(function() {
+      var target = $('#pilih option:selected').text();
+      //  alert(target);
+      if (target == "Jemaat") {
+        $('#pilihJemaat').show();
+        $('#pilihPendeta').hide();
+        $('#pendeta').val('').trigger('change');
+
+      } else {
+        $('#pilihPendeta').show();
+        $('#pilihJemaat').hide();
+        $('#jemaat').val('').trigger('change');
+      }
+    });
+
     $('#tabel_user').DataTable({
       "responsive": true,
       "lengthChange": true,
@@ -274,7 +310,7 @@
           "data": "username"
         },
         {
-          "data": "email_user"
+          "data": "email"
         },
         {
           "data": "level_user"
@@ -308,6 +344,48 @@
 
     $('[data-mask]').inputmask();
 
+    $('.pilih-jemaat').select2({
+      placeholder: 'pilih',
+      //  minimumInputLength: 3,
+      ajax: {
+        url: "<?php echo base_url() . 'User/nama_jemaat' ?>",
+        type: 'POST',
+        dataType: 'JSON',
+        delay: 250,
+        data: function(params) {
+          return {
+            searchJemaat: params.term
+          };
+        },
+        processResults: function(data) {
+          return {
+            results: data,
+          };
+        },
+      },
+    });
+
+    $('.pilih-pendeta').select2({
+      placeholder: 'pilih',
+      //  minimumInputLength: 3,
+      ajax: {
+        url: "<?php echo base_url() . 'User/nama_pendeta' ?>",
+        type: 'POST',
+        dataType: 'JSON',
+        delay: 250,
+        data: function(params) {
+          return {
+            searchPendeta: params.term
+          };
+        },
+        processResults: function(data) {
+          return {
+            results: data,
+          };
+        },
+      },
+    });
+
     const sukses = $('.sukses').data('flashdata');
     if (sukses) {
       Swal.fire({
@@ -334,13 +412,34 @@
         success: function(respon) {
           var obj = $.parseJSON(respon);
           if (obj.sukses == false) {
-            if (obj.error_nama) {
-              $('.error_nama').show();
-              $('.error_nama').html(obj.error_nama);
-              $('.error_nama').css("color", "red");
+            if (obj.error_pilih) {
+              $('.error_pilih').show();
+              $('.error_pilih').html(obj.error_pilih);
+              $('.error_pilih').css("color", "red");
             } else {
-              $('.error_nama').hide();
+              $('.error_pilih').hide();
             }
+            if (obj.error_jemaat) {
+              $('.error_jemaat').show();
+              $('.error_jemaat').html(obj.error_jemaat);
+              $('.error_jemaat').css("color", "red");
+            } else {
+              $('.error_jemaat').hide();
+            }
+            if (obj.error_pendeta) {
+              $('.error_pendeta').show();
+              $('.error_pendeta').html(obj.error_pendeta);
+              $('.error_pendeta').css("color", "red");
+            } else {
+              $('.error_pendeta').hide();
+            }
+            /*   if (obj.error_nama) {
+                 $('.error_nama').show();
+                 $('.error_nama').html(obj.error_nama);
+                 $('.error_nama').css("color", "red");
+               } else {
+                 $('.error_nama').hide();
+               } */
             if (obj.error_username) {
               $('.error_username').show();
               $('.error_username').html(obj.error_username);
@@ -355,13 +454,13 @@
             } else {
               $('.error_password').hide();
             }
-            if (obj.error_email) {
-              $('.error_email').show();
-              $('.error_email').html(obj.error_email);
-              $('.error_email').css("color", "red");
-            } else {
-              $('.error_email').hide();
-            }
+            /*   if (obj.error_email) {
+                 $('.error_email').show();
+                 $('.error_email').html(obj.error_email);
+                 $('.error_email').css("color", "red");
+               } else {
+                 $('.error_email').hide();
+               } */
             if (obj.error_level) {
               $('.error_level').show();
               $('.error_level').html(obj.error_level);

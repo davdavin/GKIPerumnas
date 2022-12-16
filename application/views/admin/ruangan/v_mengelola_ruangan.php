@@ -41,6 +41,7 @@
                                 <th>Kapasitas</th>
                                 <th>Perlengkapan</th>
                                 <th>Foto</th>
+                                <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -214,11 +215,11 @@
                     //  searchable: false,
                     render: function(data, type, row, meta) {
                         switch (row.status_ruangan) {
-                            case "TERSEDIA":
-                                return `<span class="badge badge-success">Tersedia</span>`;
+                            case "AKTIF":
+                                return `<span class="badge badge-success">Aktif</span>`;
                                 break;
                             default:
-                                return `<span class="badge badge-danger">Tidak Tersedia</span>`;
+                                return `<span class="badge badge-danger">Tidak Aktif</span>`;
                                 break;
                         }
                     }

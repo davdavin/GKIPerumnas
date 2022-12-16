@@ -98,7 +98,7 @@ class MengelolaRuangan extends CI_Controller
             $tanggal = date('Y-m-d H:i:s');
             $foto = $this->upload->data('file_name');
             $data = array(
-                'nama_ruangan' => $nama, 'kapasitas' => $kapasitas, 'perlengkapan' => $perlengkapan, 'foto' => $foto, 'status_ruangan' => 'TERSEDIA', 'created_at' => $tanggal
+                'nama_ruangan' => $nama, 'kapasitas' => $kapasitas, 'perlengkapan' => $perlengkapan, 'foto' => $foto, 'status_ruangan' => 'AKTIF', 'created_at' => $tanggal
             );
 
             $this->M_Ruangan->insert_record($data, 'ruangan');

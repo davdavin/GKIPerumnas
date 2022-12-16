@@ -46,7 +46,8 @@
                                 <th>No.</th>
                                 <th>Kegiatan</th>
                                 <th style="text-align: left;">Total</th>
-                                <th>Tanggal Keluar</th>
+                                <th>Tanggal Transaksi</th>
+                                <th>Tanggal Pencatatan</th>
                                 <th>Keterangan</th>
                                 <!-- <th>Aksi</th> -->
                             </tr>
@@ -207,6 +208,9 @@
                 },
                 {
                     "data": "tanggal_keluar"
+                },
+                {
+                    "data":"tanggal_pencatatan"
                 },
                 {
                     "data": "keterangan",

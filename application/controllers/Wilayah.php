@@ -60,6 +60,12 @@ class Wilayah extends CI_Controller
         );
 
         $this->M_Wilayah->insert_record($data, 'wilayah');
+
+        $data_detail = array(
+            'id_wilayah' => $this->db->insert_id(),
+            'created_at' => $tanggal
+        );
+        $this->M_Wilayah->insert_record($data_detail, 'detail_wilayah');
         $this->session->set_flashdata('sukses', 'Data berhasil disimpan');
         redirect('Wilayah');
     }
@@ -89,9 +95,8 @@ class Wilayah extends CI_Controller
         );
 
         $data_koordinator_wilayah = array(
-            'id_wilayah' => $id_wilayah,
             'koordinator_wilayah' => $koordinator_wilayah,
-            'created_at' => $tanggal
+            'updated_at' => $tanggal
         );
 
         $where_anggota = array(
@@ -105,7 +110,7 @@ class Wilayah extends CI_Controller
 
         $this->M_Anggota_Jemaat->update_record($where_anggota, $data_anggota, 'anggota_jemaat');
         $this->M_Wilayah->update_record($where, $data_wilayah, 'wilayah');
-        $this->M_Wilayah->insert_record($data_koordinator_wilayah, 'detail_wilayah');
+        $this->M_Wilayah->update_record($where, $data_koordinator_wilayah, 'detail_wilayah');
         $this->session->set_flashdata('sukses', 'Data berhasil disimpan');
         redirect('Wilayah');
     }
