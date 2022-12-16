@@ -169,7 +169,6 @@
                                         <th>Kapasitas</th>
                                         <th>Perlengkapan</th>
                                         <th>Foto</th>
-                                        <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -272,21 +271,6 @@
                         sortable: false,
                         render: function(data, type, row, meta) {
                             return `<img src="<?php echo base_url(); ?>resources/assets/img/ruangan/${row.foto}" class="img-fluid" alt="` + data + `" width="200" height="200">`;
-                        }
-                    },
-                    {
-                        data: null,
-                        name: null,
-                        //  searchable: false,
-                        render: function(data, type, row, meta) {
-                            switch (row.status_ruangan) {
-                                case "TERSEDIA":
-                                    return `<span class="badge badge-success">Tersedia</span>`;
-                                    break;
-                                default:
-                                    return `<span class="badge badge-danger">Tidak Tersedia</span>`;
-                                    break;
-                            }
                         }
                     },
                     {

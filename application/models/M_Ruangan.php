@@ -7,6 +7,10 @@ class M_Ruangan extends CI_Model
         return $this->db->query("SELECT * FROM ruangan");
     }
 
+    public function tampil_ruangan_aktif() {
+        return $this->db->query("SELECT * FROM ruangan WHERE status_ruangan = 'AKTIF'");
+    }
+
     public function urutan_peminjaman_ruangan_terbanyak()
     {
         return $this->db->query("SELECT nama_ruangan, count(id_peminjaman) as total FROM peminjaman_ruangan JOIN ruangan ON peminjaman_ruangan.id_ruangan = ruangan.id_ruangan GROUP BY nama_ruangan ORDER BY count(id_peminjaman) DESC");
@@ -23,7 +27,7 @@ class M_Ruangan extends CI_Model
 
     public function informasi_detail_peminjaman($id_ruangan)
     {
-        return $this->db->query("SELECT * FROM peminjaman_ruangan JOIN ruangan ON peminjaman_ruangan.id_ruangan = ruangan.id_ruangan WHERE peminjaman_ruangan.id_ruangan = '$id_ruangan' AND status_peminjaman != 'SELESAI'");
+        return $this->db->query("SELECT * FROM peminjaman_ruangan JOIN ruangan ON peminjaman_ruangan.id_ruangan = ruangan.id_ruangan WHERE peminjaman_ruangan.id_ruangan = '$id_ruangan' AND tanggal_booking > NOW()");
     }
 
     public function detail_peminjaman_oleh_jemaat($id_anggota)

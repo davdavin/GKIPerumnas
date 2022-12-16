@@ -17,7 +17,7 @@ class Ruangan extends CI_Controller
 
     public function index()
     {
-        $data['ruangan'] = $this->M_Ruangan->tampil()->result();
+        $data['ruangan'] = $this->M_Ruangan->tampil_ruangan_aktif()->result();
         $this->load->view('ruangan/v_peminjaman_ruangan.php', $data);
     }
 
@@ -32,7 +32,7 @@ class Ruangan extends CI_Controller
 
     public function tampil_ruangan()
     {
-        $ruangan = $this->M_Ruangan->tampil()->result();
+        $ruangan = $this->M_Ruangan->tampil_ruangan_aktif()->result();
         echo json_encode($ruangan);
     }
 
