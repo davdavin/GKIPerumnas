@@ -186,7 +186,7 @@
         </div>
       </section>
 
-      <section class="col-lg-8 connectedSortable">
+      <section class="col-lg-6 connectedSortable">
         <div class="card card-outline">
           <div class="card-header bg-cyan">
             <h3 class="card-title">
@@ -221,7 +221,7 @@
         </div>
       </section>
 
-      <section class="col-lg-8 connectedSortable">
+      <section class="col-lg-6 connectedSortable">
         <div class="card card-outline">
           <div class="card-header bg-cyan">
             <h3 class="card-title">
@@ -413,7 +413,6 @@
         ],
         borderWidth: 1,
         data: [<?php foreach ($jumlahJemaatWilayah as $total_jemaat) {
-
                   echo "'" . $total_jemaat->total . "', ";
                 } ?>],
       }]

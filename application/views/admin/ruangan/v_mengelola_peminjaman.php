@@ -212,7 +212,7 @@
                                 return `<span class="badge badge-danger">Ditolak</span>`;
                                 break;
                             default:
-                                return `<span class="badge badge-success">Selesai</span>`;
+                                return `<span class="badge badge-primary">Selesai</span>`;
                                 break;
                         }
                     }
