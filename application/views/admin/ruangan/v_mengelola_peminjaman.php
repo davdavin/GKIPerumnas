@@ -237,11 +237,11 @@
                                         </a>`;
                                 break;
                             case "DITOLAK":
-                                return `<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg${row.id_peminjaman}">
+                                return `<button class="btn btn-info btn-sm" disabled>
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                         Konfirmasi
-                                        </a>`;
+                                        </button>`;
                                 break;
                             default:
                                 return `<button class="btn btn-info btn-sm" disabled>

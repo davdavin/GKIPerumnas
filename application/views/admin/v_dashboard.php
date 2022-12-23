@@ -417,6 +417,11 @@
                 } ?>],
       }]
     },
+    options: {
+      legend: {
+        display: false
+      },
+    },
   });
 
   var c = document.getElementById('chart-status-jemaat').getContext('2d');
