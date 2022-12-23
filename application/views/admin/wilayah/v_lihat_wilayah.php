@@ -180,7 +180,7 @@
           "data": "nama_wilayah"
         },
         {
-          "data":"nama_lengkap_anggota"
+          "data": "nama_lengkap_anggota"
         },
 
         <?php if ($this->session->userdata('level_user') == 2) { ?> {

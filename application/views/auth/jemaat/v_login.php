@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Login | Jemaat</title>
+	<title>Login | Jemaat | GKI Perumnas Tangerang</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Favicons -->
@@ -25,7 +25,10 @@
 		<div class="container-login100" style="background-image: url('<?php echo base_url(); ?>resources/assets/img/slide/gedungbaruu.png');">
 			<div class="wrap-login100 p-t-30 p-b-50">
 				<span class="login100-form-title p-b-41">
-					Login
+					GKI Perumnas Tangerang
+				</span>
+				<span class="login100-form-title p-b-41">
+					Login Jemaat
 				</span>
 				<form class="login100-form validate-form p-b-33 p-t-5" method="post" action="<?php echo base_url() . 'login/jemaat/validasi' ?>">
 
