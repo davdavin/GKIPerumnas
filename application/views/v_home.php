@@ -384,7 +384,7 @@
             <div class="info-box">
               <i class="bx bx-envelope"></i>
               <h3>Email</h3>
-              <p><a href="mailto:<?php echo $kontak['email']; ?>"><?php echo $kontak['email']; ?></a></p>
+              <p><a style="color:rgb(102, 102, 102);" href="mailto:<?php echo $kontak['email']; ?>"><?php echo $kontak['email']; ?></a></p>
             </div>
           </div>
           <div class="col-lg-6 d-flex" data-aos="fade-up">

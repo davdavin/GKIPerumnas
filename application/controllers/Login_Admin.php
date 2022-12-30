@@ -58,7 +58,10 @@ class Login_Admin extends CI_Controller
 
     $link = base_url() . 'change_password/' . md5($email);
 
-    $cekEmail = $this->db->query("SELECT email_user FROM user WHERE email_user = '$email'")->row_array();
+    //  $cekEmail = $this->db->query("SELECT email_user FROM user WHERE email_user = '$email'")->row_array();
+    $cekEmail = $this->db->query("SELECT user.id_user, email_anggota as email FROM `user` LEFT JOIN anggota_jemaat ON anggota_jemaat.id_anggota = user.id_anggota INNER JOIN level_user ON level_user.id_level_user = user.id_level_user 
+                                  WHERE anggota_jemaat.id_anggota = user.id_anggota AND email_anggota = '$email' UNION SELECT user.id_user, email_pendeta as email FROM user RIGHT JOIN pendeta ON pendeta.id_pendeta = user.id_pendeta INNER JOIN level_user ON level_user.id_level_user = user.id_level_user 
+                                  WHERE pendeta.id_pendeta = user.id_pendeta AND email_pendeta = '$email'")->row_array();
     if ($cekEmail) {
       /*   $to = $email;
       $subject = "GKI Perumnas | Email Untuk Change Password";
@@ -220,12 +223,16 @@ class Login_Admin extends CI_Controller
     $password = $this->input->post('password');
     $retype = $this->input->post('retype_password');
 
+    $get_id_user = $this->db->query("SELECT user.id_user FROM `user` LEFT JOIN anggota_jemaat ON anggota_jemaat.id_anggota = user.id_anggota INNER JOIN level_user ON level_user.id_level_user = user.id_level_user 
+                                      WHERE anggota_jemaat.id_anggota = user.id_anggota AND email_anggota = '$email' UNION SELECT user.id_user FROM user RIGHT JOIN pendeta ON pendeta.id_pendeta = user.id_pendeta INNER JOIN level_user ON level_user.id_level_user = user.id_level_user 
+                                      WHERE pendeta.id_pendeta = user.id_pendeta AND email_pendeta = '$email'")->row_array();
+
     if (md5($email) == $email_link) {
       if ($password == $retype) {
-        $where = array('email_user' => $email);
+        $where = array('id_user' => $get_id_user['id_user']);
 
         $tanggal = date('Y-m-d H:i:s');
-        $data = array('password' => password_hash($password, PASSWORD_DEFAULT), 'updated_at' => $tanggal, 'deleted_at' => NULL);
+        $data = array('password' => password_hash($password, PASSWORD_DEFAULT), 'updated_at' => $tanggal);
         $this->M_User->update_record($where, $data, 'user');
         $this->session->set_flashdata('sukses', 'Berhasil ubah password');
         redirect('login');

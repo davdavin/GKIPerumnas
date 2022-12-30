@@ -82,7 +82,7 @@
                   <span class="input-group-text">Upload</span>
                 </div>
               </div>
-              <p class="text-red">*Formulir yang telah diisi digabung dengan lampiran yang diperlukan menjadi satu folder dan dibuat menjadi zip</p>
+              <p class="text-red">*Seluruh file disatukan menjadi satu folder dan ekspor ke format zip</p>
               <div class="px-2 error_dokumen clear" style="display: none">
               </div>
             </div>

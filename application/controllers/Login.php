@@ -58,13 +58,13 @@ class Login extends CI_Controller
 
     $cekEmail = $this->db->query("SELECT email_anggota FROM anggota_jemaat WHERE email_anggota = '$email'")->row_array();
     if ($cekEmail) {
-      /*   $to = $email;
-        $subject = "GKI Perumnas | Email Untuk Change Password";
-        $headers = "MIME-Version: 1.0" . "\r\n";
-        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-        $headers .= "From: gerejagkiperumnass@gmail.com";
-          $message = "Halo untuk melakukan pergantian password klik link ini <a href='" . $link . "'>Link Forgot Password</a>";
-        $message = '<html style="width:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;padding:0;Margin:0">
+      $to = $email;
+      $subject = "GKI Perumnas | Email Untuk Change Password";
+      $headers = "MIME-Version: 1.0" . "\r\n";
+      $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+      $headers .= "From: gerejagkiperumnass@gmail.com";
+      $message = "Halo untuk melakukan pergantian password klik link ini <a href='" . $link . "'>Link Forgot Password</a>";
+      /*  $message = '<html style="width:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;padding:0;Margin:0">
             <head>
              <meta charset="UTF-8">
              <meta content="width=device-width, initial-scale=1" name="viewport">
@@ -195,9 +195,9 @@ class Login extends CI_Controller
               </table>
              </div>
             </body>
-           </html>';
-        mail($to, $subject, $message, $headers); */
-      $this->session->set_flashdata('sukses', 'Berhasil' . $link);
+           </html>'; */
+      mail($to, $subject, $message, $headers);
+      $this->session->set_flashdata('sukses', 'Berhasil');
       redirect('login/jemaat');
     } else {
       $this->session->set_flashdata('gagal', 'Email tidak ditemukan');
