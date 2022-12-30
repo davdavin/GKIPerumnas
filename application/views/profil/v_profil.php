@@ -187,7 +187,7 @@
                                             <p><?php echo $list_detail_jemaat->golongan_darah_anggota; ?></p>
                                             <h5> <strong> Status </strong> </h5>
                                             <p>
-                                                <?php if ($list_detail_jemaat->status_anggota == 1) {
+                                                <?php if ($list_detail_jemaat->status_anggota == "AKTIF") {
                                                     echo 'Aktif';
                                                 } else {
                                                     echo 'Tidak Aktif';

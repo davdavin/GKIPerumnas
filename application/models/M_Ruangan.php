@@ -7,7 +7,8 @@ class M_Ruangan extends CI_Model
         return $this->db->query("SELECT * FROM ruangan");
     }
 
-    public function tampil_ruangan_aktif() {
+    public function tampil_ruangan_aktif()
+    {
         return $this->db->query("SELECT * FROM ruangan WHERE status_ruangan = 'AKTIF'");
     }
 
@@ -33,7 +34,7 @@ class M_Ruangan extends CI_Model
     public function detail_peminjaman_oleh_jemaat($id_anggota)
     {
         return $this->db->query("SELECT id_peminjaman, peminjaman_ruangan.id_ruangan, nama_ruangan, nama_lengkap_anggota, keperluan, tanggal_booking, jam_mulai, jam_selesai, status_peminjaman, pesan 
-                                FROM peminjaman_ruangan JOIN ruangan ON peminjaman_ruangan.id_ruangan = ruangan.id_ruangan JOIN anggota_jemaat ON peminjaman_ruangan.id_anggota = anggota_jemaat.id_anggota WHERE peminjaman_ruangan.id_anggota = '$id_anggota'");
+                                FROM peminjaman_ruangan JOIN ruangan ON peminjaman_ruangan.id_ruangan = ruangan.id_ruangan JOIN anggota_jemaat ON peminjaman_ruangan.id_anggota = anggota_jemaat.id_anggota WHERE peminjaman_ruangan.id_anggota = '$id_anggota' ORDER BY id_peminjaman DESC");
     }
 
     public function pilih_ruangan($id_ruangan)

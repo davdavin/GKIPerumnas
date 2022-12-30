@@ -14,7 +14,7 @@ class M_Keuangan extends CI_Model
 
     public function menampilkan_laporan()
     {
-        return $this->db->query("SELECT * FROM keuangan ORDER BY id_keuangan DESC");
+        return $this->db->query("SELECT * FROM keuangan ORDER BY id_keuangan ASC");
     }
 
     public function total_keuangan()

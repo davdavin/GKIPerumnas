@@ -407,7 +407,7 @@
         },
         complete: function() {
           $('.simpan').removeAttr('disable');
-          $('.simpan').html('Tambah');
+          $('.simpan').html('Submit');
         },
         success: function(respon) {
           var obj = $.parseJSON(respon);

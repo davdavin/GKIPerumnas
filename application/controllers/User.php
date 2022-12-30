@@ -104,7 +104,7 @@ class User extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $respon = array(
                 'sukses' => false,
-                'error_ppilih' => form_error('pilih'),
+                'error_pilih' => form_error('pilih'),
                 'error_jemaat' => form_error('jemaat'),
                 'error_pendeta' => form_error('pendeta'),
                 //       'error_nama' => form_error('nama_lengkap'),
